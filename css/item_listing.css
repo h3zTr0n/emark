@@ -1,0 +1,54 @@
+#wrapper{
+	width:60%;
+	display:block;
+	margin:0 auto;
+}
+#sidebar{
+	height:100%;
+}
+#sidebar h1{
+	font-size:24px;
+	font-weight:bold;
+}
+#sidebar h3{
+	margin: 0 auto;
+}
+#item-information{
+	background-color:#EEEEEE;
+	padding:5%;
+}
+#item-information button{
+	width:100%;
+}
+#seller-information{
+	text-align:center;
+	background-color:#EEEEEE;
+	margin-top:3%;
+	padding:5%;
+}
+#profile-picture{
+	width:150px;
+	height:150px;
+	display:block;
+	margin: 0 auto;
+}
+#featured-items{
+	margin-top:3%;
+}
+.col-md-6{
+	padding:5px;
+}
+#image{
+	background-color:#EEEEEE;
+	padding:3%;
+}
+#image img{
+	display:block;
+	width:100%;
+	margin: 0 auto;
+}
+#details{
+	background-color:#EEEEEE;
+	margin-top:1%;
+	padding:3%;
+}

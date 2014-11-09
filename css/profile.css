@@ -1,0 +1,73 @@
+body{
+	background-color:#EEEEEE;
+}
+#profile{
+	background-color:white;
+	text-align:center;
+	width:100%;
+}
+#profile img{
+	width:400px;
+	height:400px;
+}
+#profile-picture{
+	width:400px;
+	height:400px;
+	display:block;
+	margin: 0 auto;
+}
+#profile-picture img{
+	width:100%;
+}
+#personal-information{
+	text-align:left;
+	background-color:#EEEEEE;
+	padding-top:1%;
+}
+#bio{
+	width:60%;
+	margin:0 auto
+}
+.row{	
+	width:70%;
+	display:block;
+	margin:0 auto;
+	text-align:center;
+}
+.featured-item{
+	padding:1%;
+	text-align:center;
+	background-color:white;
+}
+#see-more{
+	height:200px;
+}
+#see-more a:link{
+	text-decoration: none;
+}
+#see-more a:hover{
+	text-decoration:none;
+}
+.caption p{
+	font-size:18px;
+}
+#profile-picture{
+	width:100px;
+	height:100px;
+	margin:0 auto;
+}
+.featured-profile h3{
+	margin-top:1%;
+	margin-bottom: 0;
+}
+#footer{
+	text-align:center;
+	background-color:#80CCFF;
+	margin-top:1%;
+	height:100%;
+	bottom:0;
+}
+#footer p{
+	padding:1%;
+	font-size:18px;
+}
