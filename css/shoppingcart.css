@@ -1,0 +1,163 @@
+/************************************************
+GENERAL
+*************************************************/
+
+a{
+	text-decoration:none;
+}
+
+ul {
+	list-style:none;
+}
+
+img {
+	max-width : 100%;
+}
+
+/************************************************
+HEADING
+*************************************************/
+
+header {
+	float : left;
+	margin : -30px 0 20px 0;
+	padding : 5px 0 0 0;
+	width : 100%;
+}
+	
+#logo {
+	font-family : 'Changa One', sans-serif;
+	text-align : center;
+	margin: 0;
+}
+
+h1 {
+	margin : 15px 0;
+	line-height : 0.8em;
+}
+
+/************************************************
+FOOTER
+*************************************************/
+
+footer {
+  font-size:2em;
+  text-align:center;
+  clear : both;
+  padding-top:50px;
+  padding-bottom : 30px;
+  color: #ccc;
+}
+footer button {
+	width : 30%;
+	font-family : 'Changa One', sans-serif;
+	background-color : #aa00dd;
+}
+
+
+/************************************************
+SHOPPING
+*************************************************/
+
+#shoppingdiv {
+	font-family: 'Open Sans', sans-serif;
+	max-width : 1000px;
+	margin : 0 auto;
+	padding : 0 5%;
+	background-color : #000;
+	color : #fff;
+}
+
+#carttitle {
+	text-align:center;
+	font-size: 1.8em;
+}
+
+#shoppingcart {
+	margin : 0;
+	padding: 0;
+	list-style : none;
+}
+
+#shoppingcart li  {
+	float: left;
+	width :  80%;
+	margin : 5%;
+	background-color : #ccc;
+	color : #00b;
+}
+
+#shoppingcart li  a{
+	background-color : #ccc;
+}
+
+#shoppingcart li a img {
+	float : left;
+	width : 40%;
+	margin : 5%;
+}
+
+#shoppingcart li a p {
+	float : left;
+	width: 40%;
+	margin : 5%;
+}
+
+
+/************************************************
+NAVIGATION
+*************************************************/
+
+nav {
+	text-align:center;
+	padding: 10px, 0;
+	margin : 20px 0 0;
+}
+
+nav ul {
+	list-style: none;
+	margin : 0 10px;
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	font-weight : 800;
+	padding: 15px 10px;
+}
+
+nav a {
+	margin : 0px;
+	padding : 15px;
+}
+
+/************************************************
+COLORS
+*************************************************/
+
+header {
+	background-color:#001f5c;
+	border-color: #4d70b8;
+}
+
+body {
+	background-color : #9cf;
+}
+
+nav {
+	background-color : #4d70b8;
+}
+
+nav a, nav a:visited {
+	color : #fff;
+}
+
+nav a.selected, nav a:hover {
+	color : #cdd0c3;
+	background-color : #001f5c;
+}
+
+h1, h2{
+	color : #fff;
+}
+
