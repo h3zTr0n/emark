@@ -1,0 +1,18 @@
+#main-nav{
+	margin-bottom:0px;
+}
+.navbar{
+	font-size:16px;
+}
+.navbar ul{
+	margin:0;
+}
+#category-nav .navbar-nav {
+	width: 100%;
+	text-align: center;
+}
+#category-nav .navbar-nav li {
+	float: none;
+   	display: inline-block;
+   	font-size:18px;
+}
