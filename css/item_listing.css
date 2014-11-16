@@ -1,24 +1,33 @@
-#main-nav{
-	margin-bottom:0px;
+body{
+	font-family: 'Open Sans', sans-serif;
+	width:100%;
+	background-color:#EEEEEE;
 }
 #wrapper{
+	padding:15px;
 	width:60%;
 	display:block;
 	margin:0 auto;
+	background-color:white;
 }
-#sidebar{
-	height:100%;
+#sidebar, #item-content{
+	padding:0;
 }
 #sidebar h1{
+	margin-top:0;
 	font-size:24px;
 	font-weight:bold;
 }
-#sidebar h3{
-	margin: 0 auto;
-}
 #item-information{
+	padding:10px;
+	margin-left:10px;
 	background-color:#EEEEEE;
-	padding:5%;
+}
+#item-information h4{
+	margin: 0px;
+}
+#price{
+	font-style:italic;
 }
 #item-information button{
 	width:100%;
@@ -26,8 +35,12 @@
 #seller-information{
 	text-align:center;
 	background-color:#EEEEEE;
-	margin-top:3%;
-	padding:5%;
+	margin-left:10px;
+	margin-top:10px;
+	padding:10px;
+}
+#seller-information h3{
+	margin-top:0;
 }
 #profile-picture{
 	width:150px;
@@ -36,12 +49,15 @@
 	margin: 0 auto;
 }
 #featured-items{
-	margin-top:3%;
+	padding-left:10px;
+	padding-right:10px;
 }
 .col-md-6{
 	padding:5px;
 }
 #image{
+	margin-right:10px;
+	margin-left:10px;
 	background-color:#EEEEEE;
 	padding:3%;
 }
@@ -51,7 +67,10 @@
 	margin: 0 auto;
 }
 #details{
-	background-color:#EEEEEE;
-	margin-top:1%;
+	margin-right:10px;
+	margin-left:10px;
 	padding:3%;
+}
+#details p{
+	font-size:16px;
 }

@@ -1,15 +1,22 @@
-/************************************************
-NAVBAR
-*************************************************/
 
-#main-nav {
-	margin-bottom : 0px;
+#main-nav{
+	margin-bottom:0px;
 }
-
-#category-nav {
+.navbar{
+	font-size:16px;
+}
+.navbar ul{
+	margin:0;
+}
+#category-nav{
+	margin-bottom:0px;
+}
+#category-nav .navbar-nav {
+	width: 100%;
 	text-align: center;
 }
-
-#category-nav li{ 
-	margin : 0 20px 0 20px;
+#category-nav .navbar-nav li {
+	float: none;
+   	display: inline-block;
+   	font-size:18px;
 }
