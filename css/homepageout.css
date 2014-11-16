@@ -2,10 +2,14 @@
 GENERAL
 *************************************************/
 
+/************************************************
+NEWSFEED
+*************************************************/
 
 #jumbotron-image {
 	max-width : 100%;
 	padding : 30px 30px 30px 100px;
+	margin : -20px 0 0 0;
 }
 
 .naming-section{
@@ -23,19 +27,5 @@ GENERAL
 	margin: 0 auto;
 }
 
-/************************************************
-NAVBAR
-*************************************************/
 
-#main-nav {
-	margin-bottom : 0px;
-}
-
-#category-nav {
-	text-align: center;
-}
-
-#category-nav li{ 
-	margin : 0 20px 0 20px;
-}
 

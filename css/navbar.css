@@ -1,0 +1,15 @@
+/************************************************
+NAVBAR
+*************************************************/
+
+#main-nav {
+	margin-bottom : 0px;
+}
+
+#category-nav {
+	text-align: center;
+}
+
+#category-nav li{ 
+	margin : 0 20px 0 20px;
+}
