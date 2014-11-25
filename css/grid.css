@@ -4,7 +4,8 @@ body{
 .main {
 	min-width: 750px;
 	width: 60%;
-	margin: 20px auto;
+	margin-left:auto;
+	margin-right:auto;
 }
 .sub {
 	float: left;
@@ -20,8 +21,9 @@ body{
 }
 .grid .item {
 	float: left;
-	padding: 5px;
+	padding: 10px;
 	position: relative;
+	overflow:hidden;
 }
 .grid .r1 {
 	width: 25%;
@@ -41,20 +43,12 @@ body{
 .grid .r {
 	float: right;
 }
-.grid .item .image {
-	width: 100%;
-	height: 100%;
-	background: url("http://placehold.it/700x700") center no-repeat;
-	background-size: cover;
-	-webkit-filter: blur(5px);
-}
-.grid .item .image:hover {
-	-webkit-filter: none;
-}
 .grid .item .title {
-	top: 100%;
-	margin-top: -40px;
-	margin-left: 10px;
-	height: 30px;
-	position: absolute;
+	position:absolute;
+	bottom:0px;
+	margin-bottom:0px;
+	padding:5px;
+	width:100%;
+	background-color:#EEE;
+	color:black;
 }
