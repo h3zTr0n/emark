@@ -5,21 +5,41 @@ GENERAL
 /************************************************
 NEWSFEED
 *************************************************/
-
-#jumbotron-image {
-	max-width : 100%;
-	padding : 30px 30px 30px 100px;
-	margin : -20px 0 0 0;
+#wrapper{
+	width:60%;
+	margin: 0 auto;
+}
+.jumbotron {
+	margin-top:3%;
+	padding:4%;
 }
 
 .naming-section{
 	margin : 50px 0 50px 0;
 	text-align:  center;
 }
-
-.profile-image {
-	max-width : 300px;
-	max-height : 300px;
+.featured-profiles{
+	background-color:#EEE;	
+}
+.featured-profiles h2{
+	margin-top: 1%;
+	margin-bottom:1%;
+}
+.featured-profiles .col-md-4{
+	padding:1%;
+}
+.featured-profiles .col-md-4 .profile{
+	background-color:white;
+	margin: 0 auto;
+	padding:5px;
+}
+.profile-image{
+	margin: 0 auto;
+	width:200px;
+	height:200px;
+}
+.caption h3{
+	text-align:center;
 }
 
 .featured-profiles-row {
