@@ -5,33 +5,55 @@ GENERAL
 /************************************************
 NEWSFEED
 *************************************************/
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+.btn{
+	border: 1px solid #CC5200;
+	border-bottom-width:3px;
+	background-color:#FF6600;
+	color:white;
+}
 #wrapper{
 	width:60%;
 	margin: 0 auto;
 }
 .jumbotron {
+	text-align:center;
 	margin-top:3%;
-	padding:4%;
+	padding:10%;
+	background-image:url(../files/pie.jpg);
+	background-size:cover;
 }
-
-.naming-section{
-	margin : 50px 0 50px 0;
-	text-align:  center;
+.jumbotron h1{
+	color:#222;
+}
+.jumbotron p{
+	color:#333;
+}
+.jumbotron .btn{
+	padding-left:3%;
+	padding-right:3%;
+	padding-top:2%;
+	padding-bottom:2%;
 }
 .featured-profiles{
-	background-color:#EEE;	
+	text-align:center;
+	padding:3%;
+	border-top:1px solid #222;
+	border-bottom:1px solid #222;
 }
 .featured-profiles h2{
-	margin-top: 1%;
-	margin-bottom:1%;
+	margin-top:0;
+	margin-bottom:2%;
 }
 .featured-profiles .col-md-4{
 	padding:1%;
 }
-.featured-profiles .col-md-4 .profile{
-	background-color:white;
+.profile{
+	background-color:#EEE;
 	margin: 0 auto;
-	padding:5px;
+	padding:10%;
 }
 .profile-image{
 	margin: 0 auto;
@@ -41,10 +63,8 @@ NEWSFEED
 .caption h3{
 	text-align:center;
 }
-
-.featured-profiles-row {
-	max-width : 90%;
-	margin: 0 auto;
+.profile a{
+	font-size:14px;
 }
 
 
