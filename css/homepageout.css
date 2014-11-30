@@ -8,12 +8,6 @@ NEWSFEED
 body{
 	font-family: 'Open Sans', sans-serif;
 }
-.btn{
-	border: 1px solid #CC5200;
-	border-bottom-width:3px;
-	background-color:#FF6600;
-	color:white;
-}
 #wrapper{
 	width:60%;
 	margin: 0 auto;
@@ -57,14 +51,32 @@ body{
 }
 .profile-image{
 	margin: 0 auto;
-	width:200px;
-	height:200px;
+	width:150px;
+	height:150px;
 }
 .caption h3{
 	text-align:center;
+	margin-bottom:0px;
 }
 .profile a{
 	font-size:14px;
+}
+.featured-items{
+	padding:3%;
+	text-align:center;
+}
+.featured-items h2{
+	margin-top:0;
+	margin-bottom:2%;
+}
+.img-thumbnail{
+	margin:4%;
+}
+#footer{
+	text-align:center;
+	width:100%;
+	height:50px;
+	background-color:#EEE;
 }
 
 
