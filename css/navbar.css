@@ -32,3 +32,9 @@
 #category-nav .navbar-nav .active a{
 	background-color:#DDD;
 }
+.btn{
+	border: 1px solid #CC5200;
+	border-bottom-width:3px;
+	background-color:#FF6600;
+	color:white;
+}
