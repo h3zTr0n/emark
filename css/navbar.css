@@ -38,3 +38,13 @@
 	background-color:#FF6600;
 	color:white;
 }
+.btn:hover, .btn:focus, .btn:active{
+	background-color:#E65C00;
+	border: 1px solid #B84A00;
+	border-bottom-width:3px;
+	color:white;
+}
+.btn:active{
+	border-bottom-width:1px;
+	border-top-width:3px;
+}

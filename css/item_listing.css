@@ -1,14 +1,16 @@
 body{
 	font-family: 'Open Sans', sans-serif;
 	width:100%;
-	background-color:#EEEEEE;
+	background-color:white;
 }
 #wrapper{
 	padding:15px;
 	width:60%;
 	display:block;
-	margin:0 auto;
-	background-color:white;
+	margin-left: auto;
+	margin-right: auto;	
+	margin-top:2%;
+	background-color:#EEE;
 }
 #sidebar, #item-content{
 	padding:0;
@@ -21,7 +23,7 @@ body{
 #item-information{
 	padding:10px;
 	margin-left:10px;
-	background-color:#EEEEEE;
+	background-color:white;
 }
 #item-information h4{
 	margin: 0px;
@@ -34,7 +36,7 @@ body{
 }
 #seller-information{
 	text-align:center;
-	background-color:#EEEEEE;
+	background-color:white;
 	margin-left:10px;
 	margin-top:10px;
 	padding:10px;
@@ -58,13 +60,16 @@ body{
 #image{
 	margin-right:10px;
 	margin-left:10px;
-	background-color:#EEEEEE;
+	background-color:white;
 	padding:3%;
 }
 #image img{
 	display:block;
 	width:100%;
 	margin: 0 auto;
+}
+#item_content{
+	backgroun-color:white;
 }
 #details{
 	margin-right:10px;
