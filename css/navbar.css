@@ -35,7 +35,7 @@
 #category-nav{
 	background-color:white;
 	border-top:1px solid #AAA;
-	border-bottom:1px solid #AAA;
+	border-bottom:1px solid #CACACA;
 	min-height:0px;
 	margin-left:auto;
 	margin-right:auto;
@@ -54,7 +54,11 @@
 	padding-bottom:6px;
 }
 #category-nav .active a{
-	background-color:#ECECEC;
+	color:white;
+	background-color:#FF6600;
+	border-bottom:6px solid #FF6600;
+}
+#category-nav a:hover{
 	border-bottom:6px solid #FF6600;
 }
 .btn{
