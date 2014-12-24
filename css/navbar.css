@@ -3,34 +3,59 @@
 	border:none;
 	margin-bottom:0px;
 	font-size:16px;
+	background-color:#F5F5F5;
+	width:60%;
+	margin:0 auto;
 }
 #main-nav{
 	margin-bottom:0px;
-	background-color:#CCC;
 }
 #main-nav .navbar-brand{
+	font-size:24px;
+	font-weight:bold;
 	color:#222;
 }
 #main-nav a{
 	color:#222;
 }
+#main-nav .navbar-left{
+	margin-left:1%;
+	width:40%;
+}
+#main-nav .navbar-form .form-group{
+	width:75%;
+}
+
+#main-nav .navbar-form .form-control{
+	width:100%;
+}
 #main-nav .navbar-right{
-	margin-right:2%;
+	margin-right:1%;
 }
 #category-nav{
-	background-color:#EEE;
+	background-color:white;
+	border-top:1px solid #AAA;
+	border-bottom:1px solid #AAA;
+	min-height:0px;
+	margin-left:auto;
+	margin-right:auto;
 }
 #category-nav .navbar-nav {
 	width: 100%;
 	text-align: center;
 }
-#category-nav .navbar-nav li {
+#category-nav li {
 	float: none;
    	display: inline-block;
-   	font-size:14px;
+   	font-size:15px;
 }
-#category-nav .navbar-nav .active a{
-	background-color:#DDD;
+#category-nav li a{
+	padding-top:6px;
+	padding-bottom:6px;
+}
+#category-nav .active a{
+	background-color:#ECECEC;
+	border-bottom:6px solid #FF6600;
 }
 .btn{
 	border: 1px solid #CC5200;
