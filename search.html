@@ -6,27 +6,37 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">  <!-- not responsive yet -->
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/navbar.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
 		<link rel="stylesheet" href="css/grid.css">
 		<link rel="stylesheet" href="css/search.css">
 		<!-- cur req: html5shiv -->
 	</head>
-<body>
-	<div class="navigation">
+	<body>
 		<div class="navigation">
 			<nav id="main-nav" class="navbar navbar-default" role="navigation">
-				<a class="navbar-brand" href="#">CRAFTNET</a>
-				<form class="navbar-form navbar-left" role="search">
-			        <div class="form-group">
-			        	<input type="text" class="form-control" placeholder="Search">
-			        </div>
-			        <button type="submit" class="btn btn-default">Submit</button>
-		    	</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">REGISTER</a></li>
-					<li><a href="#">SIGN IN</a></li>
-					<li><a href="#">SHOPPING CART</a></li>
-				</ul>
+				<div class="nav-wrapper">
+					<a class="navbar-brand" href="#">craftnet</a>
+					<form class="navbar-form navbar-left" role="search">
+				        <div class="form-group">
+				        	<input type="text" class="form-control" placeholder="Search">
+				        </div>
+				        <button type="submit" class="btn btn-default">Submit</button>
+			    	</form>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">
+							<span class="glyphicon glyphicon-pencil"></span>
+							Register
+						</a></li>
+						<li><a href="#">
+							<span class="glyphicon glyphicon-user"></span>
+							Sign In
+						</a></li>
+						<li><a href="#">
+							<span class="glyphicon glyphicon-shopping-cart"></span>
+							Shopping Cart
+						</a></li>
+					</ul>
+				</div>
 			</nav>
 			<nav id="category-nav" class="navbar navbar-default" role="navigation">
 				<ul class="nav navbar-nav">
@@ -38,188 +48,231 @@
 				</ul>
 			</nav>			
 		</div>
-		<nav id="tag-nav" class="navbar navbar-default" role="navigation">
-			<ul class="nav navbar-nav">
-				<li><a href="#">TAG1</a></li>
-				<li><a href="#">TAG2</a></li>
-				<li><a href="#">TAG3</a></li>
-				<li><a href="#">TAG4</a></li>
-				<li><a href="#">TAG5</a></li>
-			</ul>
-		</nav>		
-	</div>
-	<main class="main">
-		<div class="row">
-			<div class="col-md-2 sidebar">
-				<div id="category-filter">
-					<h2>CATEGORIES</h2>
-					<ul>
-						<li><a href="#">JEWELERY</a></li>
-						<li><a href="#">POTTERY</a></li>
-						<li><a href="#">SEWING & WEAVING</a></li>
-						<li><a href="#">CLOTHING</a></li>
-						<li><a href="#">ART</a></li>
-					</ul>
-				</div>
-				<div id="price-filter">
-					<h2>FILTER BY PRICE</h2>
-					<div class="input-group">
-			 			<input type="number" class="form-control" placeholder="$MIN">
+		<main class="main">
+			<div class="row">
+				<div class="col-md-2 sidebar">
+					<div id="category-filter">
+						<h2>CATEGORIES</h2>
+						<ul>
+							<li><a href="#">JEWELERY</a></li>
+							<li><a href="#">POTTERY</a></li>
+							<li><a href="#">SEWING & WEAVING</a></li>
+							<li><a href="#">CLOTHING</a></li>
+							<li><a href="#">ART</a></li>
+						</ul>
 					</div>
-					<p>to</p>
-					<div class="input-group">
-			 			<input type="text" class="form-control" placeholder="$MAX">
+					<div id="price-filter">
+						<h2>FILTER BY PRICE</h2>
+						<div class="input-group">
+				 			<input type="number" class="form-control" placeholder="$MIN">
+						</div>
+						<p>to</p>
+						<div class="input-group">
+				 			<input type="text" class="form-control" placeholder="$MAX">
+						</div>
+					</div>
+					<div id="color-filter">
+						<h2>FILTER BY COLOR</h2>                        
+						<div id="color-buttons">
+							<div class="color" id="red"></div>
+							<div class="color" id="blue"></div>
+							<div class="color" id="green"></div>
+							<div class="color" id="yellow"></div>
+							<div class="color" id="orange"></div>
+							<div class="color" id="purple"></div>
+							<div class="color" id="black"></div>
+							<div class="color" id="white"></div>
+						</div>
+					</div>
+					<div id="location-filter">
+						<h2>FILTER BY LOCATION</h2>
+						<div class="radio"><label>
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+							ANYWHERE
+						</label></div>
+						<div class="radio"><label>
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+							UNITED STATES ONLY
+						</label></div>
 					</div>
 				</div>
-				<div id="color-filter">
-					<h2>FILTER BY COLOR</h2>                        
-					<div id="color-buttons">
-						<div class="color" id="red"></div>
-						<div class="color" id="blue"></div>
-						<div class="color" id="green"></div>
-						<div class="color" id="yellow"></div>
-						<div class="color" id="orange"></div>
-						<div class="color" id="purple"></div>
-						<div class="color" id="black"></div>
-						<div class="color" id="white"></div>
-					</div>
+				<div class="col-md-10 search-items grid">
+					<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured1.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
 				</div>
-				<div id="location-filter">
-					<h2>FILTER BY LOCATION</h2>
-					<div class="radio"><label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						ANYWHERE
-					</label></div>
-					<div class="radio"><label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-						UNITED STATES ONLY
-					</label></div>
-				</div>
-			</div>
-			<div class="col-md-10 search-items grid">
 				<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured1.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
+					<a href="#">
+						<img src="files/featured2.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured3.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/sheu_profile.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured5.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured1.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured2.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured3.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/harrison_profile.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured5.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured1.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				<div class="item r1 c1">
+					<a href="#">
+						<img src="files/featured2.jpg"/>
+						<div class="caption">
+							<p class="title">INTERESTING TITLE</p>
+							<p class="price">$45.78 USD</p>
+							<p class="seller">Harrison Ding</p>
+						</div>
+					</a>
+				</div>
+				</div>
+			</div>
+		</main>
+		<footer class="footer">
+			<div id="footer-wrapper">
+					<div class="row">
+						<div class="col-md-4" id="site-information">
+							<p>About Us</p>
+							<ul>
+								<li><a href="#">Support</a></li>
+								<li><a href="#">FAQ</a></li>
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="#">About Us</a></li>
+							</ul>
+						</div>
+						<div class="col-md-4" id="site-information">
+							<p>Let Us Help You</p>
+							<ul>
+								<li><a href="#">Your Account</a></li>
+								<li><a href="#">Shipping Rates & Policies</a></li>
+								<li><a href="#">Returns & Replacements</a></li>
+								<li><a href="#">Help</a></li>
+							</ul>
+						</div>
+						<div class="col-md-4" id="social-media">
+							<p>Follow craftnet</p>
+							<ul>
+								<li><a href="#">
+									<img src="files/facebook-icon.png" class="social-media-icon"/>
+									<p>Facebook</p>
+								</a></li>
+								<li><a href="#">
+									<img src="files/twitter-icon.png" class="social-media-icon"/>
+									<p>Twitter</p>
+								</a></li>
+								<li><a href="#">
+									<img src="files/pinterest-icon.png" class="social-media-icon"/>
+									<p>Pinterest</p>
+								</a></li>
+								<li><a href="#">
+									<img src="files/instagram-icon.png" class="social-media-icon"/>
+									<p>Instagram</p>
+								</a></li>
+								<li><a href="#">
+									<img src="files/snapchat-icon.png" class="social-media-icon"/>
+									<p>Snapchat</p>
+								</a></li>
+							</ul>
+						</div>
 					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured2.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
+					<div id="copyright">
+						<p>&copy; 2015 craftnet, Inc.</p>	
 					</div>
-				</a>
+				</div>
 			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured3.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/sheu_profile.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured5.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured1.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured2.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured3.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/harrison_profile.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured5.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured1.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			<div class="item r1 c1">
-				<a href="#">
-					<img src="files/featured2.jpg"/>
-					<div class="caption">
-						<p class="title">INTERESTING TITLE</p>
-						<p class="price">$45.78 USD</p>
-						<p class="seller">Harrison Ding</p>
-					</div>
-				</a>
-			</div>
-			</div>
-		</div>
-	</main>
-	<!--<footer class="footer"></footer>-->
-</body>
+		</footer>	
+	</body>
 </html>

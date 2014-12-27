@@ -1,12 +1,9 @@
-body{
-	font-family: 'Open Sans', sans-serif;
-}
-body h1, p{
-	margin-top:0px;
-	margin-bottom:0px;
-}
 #wrapper{
 	margin-top:1%;
+}
+#wrapper h1, #wrapper p{
+	margin-top:0px;
+	margin-bottom:0px;
 }
 #profile{
 	text-align:center;
@@ -93,15 +90,4 @@ body h1, p{
 }
 #featured-profiles .col-md-3{
 	padding: 5px;
-}
-#footer{
-	text-align:center;
-	background-color:#CCCCCC;
-	margin-top:1%;
-	height:100%;
-	bottom:0;
-}
-#footer p{
-	padding:1%;
-	font-size:18px;
 }
