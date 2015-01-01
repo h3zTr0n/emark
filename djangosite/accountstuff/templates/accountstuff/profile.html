@@ -55,7 +55,7 @@
 						<h1>A little bit about myself</h1>
 						<p>EMAIL: {{ user.email }}</p>
 						<p>BIO: {{ userinfo.bio }}</p>
-						<p>GENDER: {{ userinfo.gender }}</p>
+						<p>GENDER: {% if user.gender == True %}Male{% elif user.gender == False %}Female{% else %}Other{% endif %}</p>
 						<p>BIRTHDAY: {{ userinfo.birthday|date:"F d, Y" }}</p>
 						<p>PHONE NUMBER: {{ userinfo.phonenumber }}</p>
 						<br/>	
