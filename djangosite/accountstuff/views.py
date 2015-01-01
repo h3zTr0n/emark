@@ -15,6 +15,14 @@ def info(request):
 	}
 	template = loader.get_template('accountstuff/info.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+def profile(request):
+	posInfos = UserInfo.objects.filter(user=request.user.username)
+	context = {
+		"user": request.user,
+		"userinfo": posInfos[0] if posInfos else None
+	}
+	template = loader.get_template('accountstuff/profile.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
 def signin(request):
 	username = request.POST['username']
 	password = request.POST['password']
