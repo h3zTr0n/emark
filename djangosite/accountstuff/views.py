@@ -13,7 +13,7 @@ def info(request):
 		"user": request.user,
 		"userinfo": posInfos[0] if posInfos else None
 	}
-	template = loader.get_template('accountstuff/info.html')
+	template = loader.get_template('info.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def profile(request):
 	posInfos = UserInfo.objects.filter(user=request.user.username)
@@ -21,10 +21,10 @@ def profile(request):
 		"user": request.user,
 		"userinfo": posInfos[0] if posInfos else None
 	}
-	template = loader.get_template('accountstuff/profile.html')
+	template = loader.get_template('profile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def settings(request):
-        template = loader.get_template('accountstuff/account-settings.html')
+        template = loader.get_template('account-settings.html')
         return HttpResponse(template.render(RequestContext(request)))
 def signin(request):
 	username = request.POST['username']
