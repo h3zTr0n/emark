@@ -1,11 +1,12 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset = "utf-8">
-		<title>Homepage Out</title>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="static/css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
 		{% block page_css %}
 		{% endblock %}
 	</head>
@@ -74,23 +75,23 @@
 							<p>Follow craftnet</p>
 							<ul>
 								<li><a href="#">
-									<img src="static/files/facebook-icon.png" class="social-media-icon"/>
+									<img src="{% static 'files/facebook-icon.png' %}" class="social-media-icon" />
 									<p>Facebook</p>
 								</a></li>
 								<li><a href="#">
-									<img src="static/files/twitter-icon.png" class="social-media-icon"/>
+									<img src="{% static 'files/twitter-icon.png' %}" class="social-media-icon"/>
 									<p>Twitter</p>
 								</a></li>
 								<li><a href="#">
-									<img src="static/files/pinterest-icon.png" class="social-media-icon"/>
+									<img src="{% static 'files/pinterest-icon.png' %}" class="social-media-icon"/>
 									<p>Pinterest</p>
 								</a></li>
 								<li><a href="#">
-									<img src="static/files/instagram-icon.png" class="social-media-icon"/>
+									<img src="{% static 'files/instagram-icon.png' %}" class="social-media-icon"/>
 									<p>Instagram</p>
 								</a></li>
 								<li><a href="#">
-									<img src="static/files/snapchat-icon.png" class="social-media-icon"/>
+									<img src="{% static 'files/snapchat-icon.png' %}" class="social-media-icon"/>
 									<p>Snapchat</p>
 								</a></li>
 							</ul>

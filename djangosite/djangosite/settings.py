@@ -84,10 +84,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,"static"), os.path.join(BASE_DIR, "accountstuff","static"),
+    os.path.join(BASE_DIR,"static"),
 )
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "static", "templates"), os.path.join(BASE_DIR, "accountstuff","static","templates"),
+    os.path.join(BASE_DIR, "static", "templates"), os.path.join(BASE_DIR, "accountstuff","templates"),
 )
 
 MEDIA_ROOT = '/uploads/' #"/var/www/example.com/media/"

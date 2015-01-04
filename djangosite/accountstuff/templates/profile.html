@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-{% if user and userinfo %}
-	{% block page_css %}
-		<link rel="stylesheet" type="text/css" href="/static/css/profile.css"/>
-	{% endblock %}
-	{% block content %}
+{% load staticfiles %}
+
+{% block page_css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
+{% endblock %}
+{% block content %}
 	<body>
 		<div id="wrapper">
 			<div id="profile">
@@ -53,7 +54,4 @@
 			</div>
 		</div>
 	</body>
-	{% endblock %}
-{% else %}
-	<p>Not Signed In</p>
-{% endif %}
+{% endblock %}
