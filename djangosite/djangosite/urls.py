@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'djangosite.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    url(r'^$','djangosite.views.home_out',name="home_out"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^acc/', include('accountstuff.urls'))
 )

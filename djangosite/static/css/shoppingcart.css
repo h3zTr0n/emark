@@ -1,0 +1,92 @@
+/************************************************
+GENERAL
+*************************************************/
+#wrapper{
+	width:60%;
+	margin: 0 auto;
+}
+a{
+	text-decoration:none;
+}
+img {
+	max-width : 100%;
+}
+
+.centered {
+	text-align : center;
+	clear:both;
+	padding-left:  10%;
+	padding-right : 10%;
+}
+
+/************************************************
+HEADING
+*************************************************/
+
+
+
+/************************************************
+FOOTER
+*************************************************/
+.btn-checkout {
+	display : inline-block;
+	clear: both;
+	width : 40%;
+	height : 50px;
+	margin : 30px 30% 40px 30%;
+}
+
+/************************************************
+SHOPPING
+*************************************************/
+.row{
+	margin-top:3%;
+}
+#checkout{
+	background-color:#EEE;
+	padding:1%;
+}
+#checkout p{
+	margin-bottom:1%;
+}
+.item-group{
+	margin-bottom:3%;
+}
+.item-group h4{
+	width:100%;
+	background-color:#CECECE;
+	padding:1%;
+	margin:0 auto;
+}
+.item{
+	overflow:hidden;
+	background-color:#F2F2F2;
+	border-bottom:1px solid #CCC;
+}
+.shopping-cart-images {
+	float:left;
+	max-width: 200px;
+	max-height: 150px;
+	border-radius:0px;
+}
+.item-title{
+	font-weight:bold;
+	font-size:18px;
+	margin-top:5%;
+}
+.item-description{
+	float:left;
+	margin-left:2%;
+	overflow:hidden;
+}
+.item-description p{
+	margin-bottom:1%;
+}
+.price{
+	color:green;
+	font-size:16px;
+}
+
+/************************************************
+COLORS
+*************************************************/

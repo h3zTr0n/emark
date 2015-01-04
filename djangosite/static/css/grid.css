@@ -1,0 +1,64 @@
+.main {
+	min-width: 750px;
+	width: 60%;
+	margin-top:1%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.grid:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.grid .item {
+	float: left;
+	padding-top:0px;
+	padding-left:10px;
+	padding-right:10px;
+	margin-bottom:10px;
+	position: relative;
+	overflow:hidden;
+}
+.grid .r1 {
+	width: 25%;
+}
+.grid .r2 {
+	width: 50%;
+}
+.grid .c1 {
+	height: 200px;
+}
+.grid .c2 {
+	height: 400px;
+}
+.grid .l {
+	float: left;
+}
+.grid .r {
+	float: right;
+}
+.grid .item .caption {
+	position:absolute;
+	bottom:0px;
+	margin-bottom:0px;
+	padding:5px;
+	width:100%;
+	background-color:#EEE;
+	color:black;
+}
+.caption p{
+	margin-bottom:0px;
+}
+.title{
+	float:left;
+	font-weight:bold;
+}
+.price{
+	float:right;
+	margin-right:5%;
+	color:green;
+}
+.seller{
+	clear:both;
+	color:#888;
+}

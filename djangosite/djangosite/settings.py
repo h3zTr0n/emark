@@ -83,5 +83,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,"static"),
+)
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, "static", "templates"),
+)
+
 MEDIA_ROOT = '/uploads/' #"/var/www/example.com/media/"
 MEDIA_URL = '' #http://media.example.com/
