@@ -1,9 +1,17 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from accountstuff.models import UserInfo
+from django.contrib.auth.models import User
 
 def home(request):
-	 return render_to_response('homepage.html', context_instance=RequestContext(request))
+	posInfos = UserInfo.objects.filter(user=request.user.username)
+	context = {
+		"user": request.user,
+		"userinfo": posInfos[0] if posInfos else None
+	}
+	template = loader.get_template('homepage.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
 def browseCategory(request):	 
 	return render_to_response('browseCategory.html', context_instance=RequestContext(request))
 def browseTag(request):	 

@@ -24,7 +24,7 @@ def profile(request):
 	template = loader.get_template('profile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def settings(request):
-        template = loader.get_template('account-settings.html')
+        template = loader.get_template('accountSettings.html')
         return HttpResponse(template.render(RequestContext(request)))
 def signin(request):
 	username = request.POST['username']
