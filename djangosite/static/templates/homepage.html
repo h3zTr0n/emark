@@ -17,6 +17,9 @@
 		<p>GENDER: {% if user.gender == True %}Male{% elif user.gender == False %}Female{% else %}Other{% endif %}</p>
 		<p>BIRTHDAY: {{ userinfo.birthday|date:"F d, Y" }}</p>
 		<p>PHONE NUMBER: {{ userinfo.phonenumber }}</p>
+		<h1>YOUR FEED</h1>
+		<h1>SUGGESTED ITEMS</h1>
+		<h1>OTHER STUFF</h1>
 	{% else %}
 		<div id="wrapper">
 			<div class = "jumbotron">
