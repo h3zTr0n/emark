@@ -1,169 +1,78 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html>
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'account-settings.css' %}"/>
-	</head>
-	<body>
-		<div class="navigation">
-			<nav id="main-nav" class="navbar navbar-default" role="navigation">
-				<div class="nav-wrapper">
-					<a class="navbar-brand" href="#">craftnet</a>
-					<form class="navbar-form navbar-left" role="search">
-				        <div class="form-group">
-				        	<input type="text" class="form-control" placeholder="Search">
-				        </div>
-				        <button type="submit" class="btn btn-default">Submit</button>
-			    	</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">
-							<span class="glyphicon glyphicon-pencil"></span>
-							Register
-						</a></li>
-						<li><a href="#">
-							<span class="glyphicon glyphicon-user"></span>
-							Sign In
-						</a></li>
-						<li><a href="#">
-							<span class="glyphicon glyphicon-shopping-cart"></span>
-							Shopping Cart
-						</a></li>
-					</ul>
-				</div>
-			</nav>
-			<nav id="category-nav" class="navbar navbar-default" role="navigation">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">JEWELERY</a></li>
-					<li><a href="#">POTTERY</a></li>
-					<li><a href="#">SEWING & WEAVING</a></li>
-					<li><a href="#">CLOTHING</a></li>
-					<li><a href="#">ART</a></li>
+
+{% block page_css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/account-settings.css' %}"/>
+{% endblock %}
+	
+{% block content %}
+	<div id="wrapper">
+		<div class="row">
+			<div class="col-md-3" id="sidebar">
+				<ul class="nav nav-pills nav-stacked" role="tablist">
+					<li role="presentation" class="active"><a href="#">Account</a></li>
+		  			<li role="presentation"><a href="#">Preferences</a></li>
+		  			<li role="presentation"><a href="#">Privacy & Security</a></li>
+		  			<li role="presentation"><a href="#">Payment Options</a></li>
 				</ul>
-			</nav>			
-		</div>
-		<div id="wrapper">
-			<div class="row">
-				<div class="col-md-3" id="sidebar">
-					<ul class="nav nav-pills nav-stacked" role="tablist">
-						<li role="presentation" class="active"><a href="#">Account</a></li>
-			  			<li role="presentation"><a href="#">Preferences</a></li>
-			  			<li role="presentation"><a href="#">Privacy & Security</a></li>
-			  			<li role="presentation"><a href="#">Payment Options</a></li>
-					</ul>
-				</div>
-				<div class="col-md-9" id="settings">
-					<div class="option-group">
-						<h3 class="group-name">PASSWORD</h3>
-						<div id="group-options">
-							<p>Current Password</p>
-							<div class="input-group">
-				 				<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<p>New Password</p>
-							<div class="input-group">
-			 					<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<p>Confirm New Password</p>
-							<div class="input-group">
-			 					<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<button type="button" class="btn btn-primary">Change Password</button>
-						</div>
-					</div>
-					<div class="option-group">
-						<h3 class="group-name">E-MAIL</h3>
-						<div id="group-options">
-							<p>New Email</p>
-							<div class="input-group">
-				 				<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<p>Confirm New Email</p>
-							<div class="input-group">
-				 				<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<p>Your Etsy Password</p>
-							<div class="input-group">
-				 				<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<button type="button" class="btn btn-primary">Change Email</button>
-						</div>
-					</div>
-					<div class="option-group">
-						<h3 class="group-name">E-MAIL</h3>
-						<div id="group-options">
-							<p>New Email</p>
-							<div class="input-group">
-				 				<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<p>Confirm New Email</p>
-							<div class="input-group">
-				 				<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<p>Your Etsy Password</p>
-							<div class="input-group">
-				 				<input type="text" class="form-control" placeholder="Username">
-							</div>
-							<button type="button" class="btn btn-primary">Change Email</button>
-						</div>
-					</div>
-				</div>	
 			</div>
-		</div>
-		<footer class="footer">
-			<div id="footer-wrapper">
-					<div class="row">
-						<div class="col-md-4" id="site-information">
-							<p>About Us</p>
-							<ul>
-								<li><a href="#">Support</a></li>
-								<li><a href="#">FAQ</a></li>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">About Us</a></li>
-							</ul>
+			<div class="col-md-9" id="settings">
+				<div class="option-group">
+					<h3 class="group-name">PASSWORD</h3>
+					<div id="group-options">
+						<p>Current Password</p>
+						<div class="input-group">
+			 				<input type="text" class="form-control" placeholder="Username">
 						</div>
-						<div class="col-md-4" id="site-information">
-							<p>Let Us Help You</p>
-							<ul>
-								<li><a href="#">Your Account</a></li>
-								<li><a href="#">Shipping Rates & Policies</a></li>
-								<li><a href="#">Returns & Replacements</a></li>
-								<li><a href="#">Help</a></li>
-							</ul>
+						<p>New Password</p>
+						<div class="input-group">
+		 					<input type="text" class="form-control" placeholder="Username">
 						</div>
-						<div class="col-md-4" id="social-media">
-							<p>Follow craftnet</p>
-							<ul>
-								<li><a href="#">
-									<img src="{% static 'images/facebook-icon.png' %}" class="social-media-icon"/>
-									<p>Facebook</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'images/twitter-icon.png' %}" class="social-media-icon"/>
-									<p>Twitter</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'images/pinterest-icon.png' %}" class="social-media-icon"/>
-									<p>Pinterest</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'images/instagram-icon.png' %}" class="social-media-icon"/>
-									<p>Instagram</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'images/snapchat-icon.png' %}" class="social-media-icon"/>
-									<p>Snapchat</p>
-								</a></li>
-							</ul>
+						<p>Confirm New Password</p>
+						<div class="input-group">
+		 					<input type="text" class="form-control" placeholder="Username">
 						</div>
-					</div>
-					<div id="copyright">
-						<p>&copy; 2015 craftnet, Inc.</p>	
+						<button type="button" class="btn btn-primary">Change Password</button>
 					</div>
 				</div>
-			</div>
-		</footer>	
-	</body>
-</html>
+				<div class="option-group">
+					<h3 class="group-name">E-MAIL</h3>
+					<div id="group-options">
+						<p>New Email</p>
+						<div class="input-group">
+			 				<input type="text" class="form-control" placeholder="Username">
+						</div>
+						<p>Confirm New Email</p>
+						<div class="input-group">
+			 				<input type="text" class="form-control" placeholder="Username">
+						</div>
+						<p>Your Etsy Password</p>
+						<div class="input-group">
+			 				<input type="text" class="form-control" placeholder="Username">
+						</div>
+						<button type="button" class="btn btn-primary">Change Email</button>
+					</div>
+				</div>
+				<div class="option-group">
+					<h3 class="group-name">E-MAIL</h3>
+					<div id="group-options">
+						<p>New Email</p>
+						<div class="input-group">
+			 				<input type="text" class="form-control" placeholder="Username">
+						</div>
+						<p>Confirm New Email</p>
+						<div class="input-group">
+			 				<input type="text" class="form-control" placeholder="Username">
+						</div>
+						<p>Your Etsy Password</p>
+						<div class="input-group">
+			 				<input type="text" class="form-control" placeholder="Username">
+						</div>
+						<button type="button" class="btn btn-primary">Change Email</button>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>	
+{% endblock %}
+
