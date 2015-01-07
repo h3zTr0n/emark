@@ -17,6 +17,7 @@ NEWSFEED
 	background-size:cover;
 }
 .jumbotron h1{
+	font-weight: bold;
 	color:#222;
 }
 .jumbotron p{
@@ -28,18 +29,22 @@ NEWSFEED
 	padding-top:2%;
 	padding-bottom:2%;
 }
-.section-title{
+.section-title h2{
+	font-weight:bold;
 	font-size:36px;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+.section-title p{
+	margin-top:5px;
+	font-size:18px;
+	color:#777;
 }
 .featured-profiles{
 	text-align:center;
 	padding:3%;
 	border-top:1px solid #222;
 	border-bottom:1px solid #222;
-}
-.featured-profiles h2{
-	margin-top:0;
-	margin-bottom:2%;
 }
 .featured-profiles .col-md-4{
 	padding:1%;
@@ -65,11 +70,4 @@ NEWSFEED
 .featured-items{
 	padding:3%;
 	text-align:center;
-}
-.featured-items h2{
-	margin-top:0;
-	margin-bottom:2%;
-}
-.img-thumbnail{
-	margin:4%;
 }
