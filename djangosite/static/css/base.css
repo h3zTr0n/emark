@@ -103,9 +103,14 @@ body{
 .footer .col-md-6{
 	display:inline-block;
 }
+ul{
+	list-style:none;
+}
+a:hover{
+	text-decoration:none;
+}
 .footer ul{
 	padding-left:0px;
-	list-style:none;
 }
 .social-media-icon{
 	float:left;

@@ -11,18 +11,34 @@
 {% endblock %}
 
 {% block content %}
-	{% if user and userinfo %}
-		<h1>Signed in as {{user.first_name}} {{user.last_name}} (Sign out to see other homepage)</h1>
-		<p>EMAIL: {{ user.email }}</p>
-		<p>BIO: {{ userinfo.bio }}</p>
-		<p>GENDER: {% if user.gender == True %}Male{% elif user.gender == False %}Female{% else %}Other{% endif %}</p>
-		<p>BIRTHDAY: {{ userinfo.birthday|date:"F d, Y" }}</p>
-		<p>PHONE NUMBER: {{ userinfo.phonenumber }}</p>
-		<h1>YOUR FEED</h1>
-		<h1>SUGGESTED ITEMS</h1>
-		<h1>OTHER STUFF</h1>
-	{% else %}
-		<div id="wrapper">
+	<div id="wrapper">
+		{% if user and userinfo %}
+			<div id="in">
+				<div class="row">
+					<div class="col-md-3 sidebar">
+						<h1 id="user">{{user.first_name}} {{user.last_name}}</h1>
+						<img src="{% static 'files/young_profile.jpg' %}" class="img-circle profile-image"/>
+						<p>9,231 Connections</p>
+						<ul>
+							<li><a href="#">Profile</a></li>
+							<li><a href="#">Your Shop</a></li>
+							<li><a href="#">Connections</a></li>
+							<li><a href="#">Browse</a></li>
+							<li><a href="#">Filler Link</a></li>
+							<li><a href="#">Filler Link</a></li>
+							<li><a href="#">Filler Link</a></li>
+							<li><a href="#">Filler Link</a></li>
+							<li><a href="#">Filler Link</a></li>
+						</ul>
+					</div>
+					<div class="col-md-9">
+						<h1>YOUR FEED</h1>
+						<h1>SUGGESTED ITEMS</h1>
+						<h1>OTHER STUFF</h1>
+					</div>
+				</div>
+			</div>
+		{% else %}		
 			<div class = "jumbotron">
 				<h1>Welcome to Craftnet</h1>
 				<p>Where you socialize and spread your new arts and crafts through the net</p>
@@ -69,6 +85,6 @@
 					{% endfor %}
 				</div>
 			</div>
-		</div>
-	{% endif %}
+		{% endif %}
+	</div>
 {% endblock %}

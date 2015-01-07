@@ -9,6 +9,23 @@ NEWSFEED
 	width:60%;
 	margin: 0 auto;
 }
+#in .row{
+	margin-top:3%;
+}
+#in #user{
+	margin-top:3%;
+	font-weight:bold;
+	font-size:24px;
+}
+.sidebar{
+	background-color:#EEE;
+	text-align:center;
+}
+.sidebar ul{
+	margin-top:5%;
+	text-align:left;
+	padding-left:10%;
+}
 .jumbotron {
 	text-align:center;
 	margin-top:3%;
@@ -56,8 +73,8 @@ NEWSFEED
 }
 .profile-image{
 	margin: 0 auto;
-	width:200px;
-	height:200px;
+	width:150px;
+	height:150px;
 }
 .caption h3{
 	font-weight:bold;
