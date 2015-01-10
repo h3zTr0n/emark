@@ -53,7 +53,7 @@ NEWSFEED
 	margin-bottom:0px;
 }
 .section-title p{
-	margin-top:5px;
+	margin-top:-5px;
 	font-size:18px;
 	color:#777;
 }
