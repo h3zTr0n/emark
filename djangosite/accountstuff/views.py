@@ -8,7 +8,7 @@ from datetime import date
 
 # Create your views here.
 def info(request):
-	posInfos = UserInfo.objects.filter(user=request.user.username)
+	posInfos = UserInfo.objects.filter(user=request.user)
 	context = {
 		"user": request.user,
 		"userinfo": posInfos[0] if posInfos else None
@@ -16,7 +16,7 @@ def info(request):
 	template = loader.get_template('info.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def profile(request):
-	posInfos = UserInfo.objects.filter(user=request.user.username)
+	posInfos = UserInfo.objects.filter(user=request.user)
 	context = {
 		"user": request.user,
 		"userinfo": posInfos[0] if posInfos else None

@@ -12,9 +12,9 @@ def createItem(request):
 	tags = request.POST['tags']
 	category = request.POST['category']
 
-	item = Item(user=request.user.username,title=title, details=details, price=price, description=description,tags=tags,category=category)
+	item = Item(user=request.user,title=title, details=details, price=price, description=description,tags=tags,category=category)
 	item.save()
-	return HttpResponse("Success! Created " + title + " for " +request.user.username)
+	return HttpResponse("Success! Created " + title + " for " + request.user.username)
 
 def browseCategory(request, category):
 	#categorypath = request.path.split("/")

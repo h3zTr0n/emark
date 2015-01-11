@@ -14,7 +14,7 @@ def home(request):
 	template = loader.get_template('homepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def browseCategory(request):
-	items = Item.objects.filter(category=request.)
+	#items = Item.objects.filter(category=request.)
 	return render_to_response('browseCategory.html', context_instance=RequestContext(request))
 def browseTag(request):	 
 	return render_to_response('browseTag.html', context_instance=RequestContext(request))

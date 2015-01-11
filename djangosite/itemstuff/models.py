@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Item(models.Model):
-	#user = models.ForeignKey(User, default=User.objects.filter(username="youngguo")[0])
-	user = models.TextField()
+	user = models.ForeignKey(User)
+	#user = models.TextField()
 	title = models.TextField()
 	details = models.TextField()
 	price = models.FloatField()
