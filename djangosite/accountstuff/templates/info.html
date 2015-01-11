@@ -26,6 +26,25 @@
 			<td>{{ userinfo.phonenumber }}</td>
 		</tr>
 	</table>
+	<fieldset>
+		<form id ="itemform" action="/item/createItem/" method="POST">
+			{% csrf_token %}
+			Title: <input name="title"><br>
+			Details: <input name="details"><br>
+			Price: <input name="price" type="number"><br>
+			Description: <textarea name="description"></textarea><br>
+			Category: 
+			<select name="category">
+				<option value="1">Jewelery</option>
+				<option value="2">Pottery</option>
+				<option value="3">Sewing & Weaving</option>
+				<option value="4">Clothing</option>
+				<option value="5">Art</option>
+			</select>
+			Tags: <input name="tags"><br>
+			<button type="submit" id="create">Create Item</button>
+		</form>
+	</fieldset>
 	<br><a href="signout/">Sign out</a>
 {% else %}
 	<p>No user information found.</p>
@@ -36,7 +55,8 @@
 			Password: <input name="password"><br>
 			<button type="submit" id="signin">Sign In</button>
 		</form>
-	</fieldset><br>
+	</fieldset>
+	<br>
 	<fieldset>
 		<form id="registerform" action="register/" method="POST">
 			{% csrf_token %}

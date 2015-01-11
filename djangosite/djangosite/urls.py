@@ -13,5 +13,7 @@ urlpatterns = patterns('',
     url(r'^search','djangosite.views.search',name="search"),
     url(r'^shoppingCart','djangosite.views.shoppingCart',name="shoppingCart"),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^acc/', include('accountstuff.urls'))
+    url(r'^acc/', include('accountstuff.urls')),
+    url(r'^item/', include('itemstuff.urls')),
+    url(r'^browse/(?P<category>.+)$', 'itemstuff.views.browseCategory', name="browseCategory"),
 )

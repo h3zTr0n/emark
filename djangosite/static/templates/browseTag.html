@@ -13,13 +13,13 @@
 {% block content %}
 	<main class="main">
 		<div class="grid">
-			{% for 'x' in 'xxxxxxxxxxxx' %}
+			{% for item in items %}
 				<div class="item r1 c1">
 					<a href="#">
 						<img src="{% static 'files/featured1.jpg' %}"/>
 						<div class="caption">
-							<p class="title">TITLE</p>
-							<p class="price">$45.78 USD</p>
+							<p class="title">{{item.title}}</p>
+							<p class="price">${{item.price}} USD</p>
 							<p class="seller">Harrison Ding</p>
 						</div>
 					</a>

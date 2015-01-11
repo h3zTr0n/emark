@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
+from itemstuff.models import Item
 
 def home(request):
 	posInfos = UserInfo.objects.filter(user=request.user.username)
@@ -12,7 +13,8 @@ def home(request):
 	}
 	template = loader.get_template('homepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
-def browseCategory(request):	 
+def browseCategory(request):
+	items = Item.objects.filter(category=request.)
 	return render_to_response('browseCategory.html', context_instance=RequestContext(request))
 def browseTag(request):	 
 	return render_to_response('browseTag.html', context_instance=RequestContext(request))
