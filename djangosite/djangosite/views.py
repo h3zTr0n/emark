@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from itemstuff.models import Item
 
 def home(request):
-	posInfos = UserInfo.objects.filter(user=request.user.username)
+	posInfos = UserInfo.objects.filter(user=request.user)
 	context = {
 		"user": request.user,
 		"userinfo": posInfos[0] if posInfos else None
