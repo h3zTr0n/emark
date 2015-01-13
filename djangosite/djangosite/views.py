@@ -6,11 +6,13 @@ from django.contrib.auth.models import User
 from itemstuff.models import Item
 
 def home(request):
-	posInfos = UserInfo.objects.filter(user=request.user)
-	context = {
-		"user": request.user,
-		"userinfo": posInfos[0] if posInfos else None
-	}
+	context = {}
+	if (request.user.is_authenticated()):
+		posInfos = UserInfo.objects.filter(user=request.user)
+		context = {
+			"user": request.user,
+			"userinfo": posInfos[0] if posInfos else None
+		}
 	template = loader.get_template('homepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def browseCategory(request):

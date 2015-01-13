@@ -8,19 +8,23 @@ from datetime import date
 
 # Create your views here.
 def info(request):
-	posInfos = UserInfo.objects.filter(user=request.user)
-	context = {
-		"user": request.user,
-		"userinfo": posInfos[0] if posInfos else None
-	}
+	context = {}
+	if (request.user.is_authenticated()):
+		posInfos = UserInfo.objects.filter(user=request.user)
+		context = {
+			"user": request.user,
+			"userinfo": posInfos[0] if posInfos else None
+		}
 	template = loader.get_template('info.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def profile(request):
-	posInfos = UserInfo.objects.filter(user=request.user)
-	context = {
-		"user": request.user,
-		"userinfo": posInfos[0] if posInfos else None
-	}
+	context = {}
+	if (request.user.is_authenticated()):
+		posInfos = UserInfo.objects.filter(user=request.user)
+		context = {
+			"user": request.user,
+			"userinfo": posInfos[0] if posInfos else None
+		}
 	template = loader.get_template('profile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def settings(request):
