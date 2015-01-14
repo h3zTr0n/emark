@@ -14,33 +14,41 @@
 	<div id="wrapper">
 		{% if user and userinfo %}
 			<div id="in">
-				<div class="row">
-					<div class="col-md-3 sidebar">
-						<h1 id="user">{{user.first_name}} {{user.last_name}}</h1>
+				<div class="grid">
+					<div class="profile-banner r4 c1">
 						<img src="{% static 'files/young_profile.jpg' %}" class="img-circle profile-image"/>
-						<p>9,231 Connections</p>
+						<p id="user">{{user.first_name}}</p>
 						<ul>
-							<li><a href="#">Profile</a></li>
-							<li><a href="#">Your Shop</a></li>
+							<li><a href="#">Profile</a></li> /
+							<li><a href="#">Your Shop</a></li> /
 							<li><a href="#">Connections</a></li>
+						</ul>
+					</div>
+					<div class="sidebar item r1 c2">
+						<ul>
 							<li><a href="#">Browse</a></li>
-							<li><a href="#">Filler Link</a></li>
 							<li><a href="#">Filler Link</a></li>
 							<li><a href="#">Filler Link</a></li>
 							<li><a href="#">Filler Link</a></li>
 							<li><a href="#">Filler Link</a></li>
 						</ul>
 					</div>
-					<div class="col-md-9">
-						<div class="section-title">
-							<h2>YOUR FEED</h2>
-							<p>See what your connections have been up to</p>
-						</div>
-						<div class="section-title">
-							<h2>SUGGESTIONS</h2>
-							<p>People and items you may be interested in</p>
-						</div>
+					<div class="section-title item r3">
+						<h2>SUGGESTIONS</h2>
+						<p>People and items you may be interested in</p>
 					</div>
+					{% for 'x' in 'xxxxxx' %}
+						<div class="item r1 c1">
+							<a href="#">
+								<img src="{% static 'files/brick.jpg' %}"/>
+								<div class="caption">
+									<p class="title">BRICK CITY</p>
+									<p class="price">$99.99 USD</p>
+									<p class="seller">Brick Seller</p>
+								</div>
+							</a>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		{% else %}		

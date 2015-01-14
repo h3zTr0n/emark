@@ -13,18 +13,31 @@ NEWSFEED
 	margin-top:3%;
 }
 #in #user{
-	margin-top:3%;
 	font-weight:bold;
 	font-size:24px;
+	margin-bottom:0px;
 }
-.sidebar{
-	background-color:#EEE;
+#in .profile-image{
+	margin-top:15px;
+	width:125px;
+	height:125px;
+}
+#in .profile-banner{
+	background-color:#F5F5F5;
 	text-align:center;
+	margin-bottom:10px;
 }
-.sidebar ul{
-	margin-top:5%;
-	text-align:left;
-	padding-left:10%;
+#in .sidebar{
+	background-color:#F5F5F5;
+}
+#in .profile-banner ul{
+	width:100%;
+	padding-left:0px;
+	color:#428bca;
+}
+#in .profile-banner ul li{
+	display:inline;
+	list-style-type:none;
 }
 .jumbotron {
 	text-align:center;
