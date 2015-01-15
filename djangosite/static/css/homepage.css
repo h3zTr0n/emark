@@ -18,26 +18,44 @@ NEWSFEED
 	margin-bottom:0px;
 }
 #in .profile-image{
-	margin-top:15px;
+	margin-top:10px;
 	width:125px;
 	height:125px;
 }
 #in .profile-banner{
-	background-color:#F5F5F5;
+	margin-top:20px;
+	padding:3%;
+	display:block;
+	position:relative;
 	text-align:center;
-	margin-bottom:10px;
+	color:black;
 }
-#in .sidebar{
-	background-color:#F5F5F5;
+#in .profile-banner::after{
+	content:"";
+	background-image:url(/static/files/pie.jpg);
+	background-size:cover;
+	opacity:0.8;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	position:absolute;
+	z-index:-1;
 }
 #in .profile-banner ul{
 	width:100%;
 	padding-left:0px;
-	color:#428bca;
+	color:white;
 }
 #in .profile-banner ul li{
 	display:inline;
 	list-style-type:none;
+}
+#in .profile-banner ul li a{
+	color:white;
+}
+#in .sidebar{
+	background-color:#F5F5F5;
 }
 .jumbotron {
 	text-align:center;
@@ -58,6 +76,9 @@ NEWSFEED
 	padding-right:3%;
 	padding-top:2%;
 	padding-bottom:2%;
+}
+.section-title{
+	text-align:center;
 }
 .section-title h2{
 	font-weight:bold;
