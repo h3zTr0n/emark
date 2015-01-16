@@ -54,7 +54,7 @@
 	margin-bottom:0px;
 	padding:5px;
 	width:100%;
-	background-color:#EEE;
+	background-color:#CCC;
 	color:black;
 }
 .caption p{
@@ -72,6 +72,6 @@
 .seller{
 	clear:both;
 	margin-left:0px;
-	color:#888;
+	color:black;
 	text-align:left;
 }

@@ -23,34 +23,50 @@
 							<li><a href="#">Connections</a></li>
 						</ul>
 					</div>
-					<div class="grid">
-						<!-- TEMPORARY -->
-						<div class="sidebar item r1 c3">							<h1>CHAT?</h1>
-							{% for 'x' in 'xxxxxx' %}
-								<div class="chat-user" style="margin-bottom:5px;">
-									<img src="{% static 'files/harrison_profile.jpg' %}" class="img-circle" style="width:50px; height:50px;"/>
-									<p style="float:right; font-size:18px; padding-right:20%; padding-top:10px">Harrison Ding</p>
-								</div>
-							{% endfor %}
-						</div>
-						<div class="item r3">
-							<div class="section-title">
-								<h2>RECOMMENDED FOR YOU</h2>
-								<p>Based off your previous purchases/interactions</p>
-							</div>
-							<div class="grid">
-								{% for 'x' in 'xxxxxxxxx' %}
-								<div class="item r2 c1">
-									<a href="#">
-										<img src="{% static 'files/featured1.jpg' %}"/>
-										<div class="caption">
-											<p class="title">TITLE</p>
-											<p class="price">$45.78 USD</p>
-											<p class="seller">Harrison Ding</p>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="sidebar">
+								<h1>CHAT?</h1>
+									{% for 'x' in 'xxxxxx' %}
+										<div class="chat-user" style="margin-bottom:5px;">
+											<img src="{% static 'files/harrison_profile.jpg' %}" class="img-circle" style="width:50px; height:50px;"/>
+											<p style="float:right; font-size:18px; padding-right:10%; padding-top:10px">Harrison Ding</p>
 										</div>
-									</a>
+									{% endfor %}
 								</div>
+							</div>
+						<div class="col-md-9">
+							<div id="feed">
+								<div class="section-title">
+									<h2>YOUR FEED</h2>
+									<p>Keep up to date with your connections</p>
+								</div>
+								{% for 'x' in 'xxx' %}
+									<div class="chat-user" style="margin-bottom:5px;">
+										<img src="{% static 'files/harrison_profile.jpg' %}" class="img-circle" style="width:50px; height:50px; margin-left:5%"/>
+										<p style="float:right; font-size:18px; padding-right:50%; padding-top:10px">Harrison Ding bought 'x' item</p>
+									</div>
 								{% endfor %}
+							</div>
+							<div id="recommended">
+								<div class="section-title">
+									<h2>RECOMMENDED</h2>
+									<p>Based off your previous purchases/interactions</p>
+								</div>
+								<div class="grid">
+									{% for 'x' in 'xxxxx' %}
+										<div class="item r2 c1">
+											<a href="#">
+												<img src="{% static 'files/featured1.jpg' %}"/>
+												<div class="caption">
+													<p class="title">TITLE</p>
+													<p class="price">$45.78 USD</p>
+													<p class="seller">Harrison Ding</p>
+												</div>
+											</a>
+										</div>
+									{% endfor %}
+								</div>
 							</div>
 						</div>
 					</div>
