@@ -15,6 +15,7 @@ def home(request):
 		}
 	template = loader.get_template('Dhomepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+
 '''
 def browseCategory(request):
 	#items = Item.objects.filter(category=request.)

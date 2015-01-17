@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     
     url(r'^acc/', include('accountstuff.urls')),
     url(r'^item/', include('itemstuff.urls')),
+    url(r'^msg/', include('messagestuff.urls')),
     
     url(r'^browse/(?P<category>.+)$', 'itemstuff.views.browseCategory', name="browseCategory"),
     url(r'^user/(?P<username>.+)$', 'accountstuff.views.getProfile', name="getProfile"),

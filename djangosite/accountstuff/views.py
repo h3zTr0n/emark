@@ -5,6 +5,7 @@ from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
+import random
 
 # Create your views here.
 
@@ -23,7 +24,11 @@ def getProfile(request, username):
 	
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+def settings(request):
+        template = loader.get_template('DaccountSettings.html')
+        return HttpResponse(template.render(RequestContext(request)))
 
+#SERVER
 def info(request):
 	context = {}
 	if (request.user.is_authenticated()):
@@ -34,23 +39,6 @@ def info(request):
 		}
 	template = loader.get_template('Sinfo.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
-
-'''
-def profile(request):
-	context = {}
-	if (request.user.is_authenticated()):
-		posInfos = UserInfo.objects.filter(user=request.user)
-		context = {
-			"user": request.user,
-			"userinfo": posInfos[0] if posInfos else None
-		}
-	template = loader.get_template('profile.html')
-	return HttpResponse(template.render(RequestContext(request, context)))
-'''
-
-def settings(request):
-        template = loader.get_template('DaccountSettings.html')
-        return HttpResponse(template.render(RequestContext(request)))
 def signin(request):
 	username = request.POST['username']
 	password = request.POST['password']
@@ -65,6 +53,9 @@ def signout(request):
 	return HttpResponse("Success! Logged out.")
 def register(request):
 	username = request.POST['username']
+	if (not username):
+		username = request.POST['firstname'] + request.POST['lastname']
+		username = username.replace(" ", "").lower() + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9)
 	if len(User.objects.filter(username=username)) is not 0:
 		return HttpResponse("Error: Username taken.")
 	email = request.POST['email']
@@ -82,3 +73,5 @@ def register(request):
 	user.save()
 	userinfo.save()
 	return HttpResponse("Success! Registered user " + username)
+def updateSettings(request):
+	#TODO
