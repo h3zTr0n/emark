@@ -23,10 +23,10 @@ def browseCategory(request, category):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def getItem(request, username, itemid):
-	#TODO
+	return HttpResponse("TODO")
 
 def search(request, input):
-	#TODO
+	return HttpResponse("TODO")
 
 #SERVER
 def createItem(request):
@@ -41,4 +41,4 @@ def createItem(request):
 	item.save()
 	return HttpResponse("Success! Created " + title + " for " + request.user.username)
 def editItem(request):
-	#TODO
+	return HttpResponse("TODO")

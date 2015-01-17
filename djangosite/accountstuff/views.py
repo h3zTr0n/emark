@@ -8,15 +8,17 @@ from datetime import date
 import random
 
 # Create your views here.
-
 def getProfile(request, username):
 	posUsers = User.objects.filter(username=username)
 	context = {
-		"user": len(posUsers) > 0 ? posUsers[0] : None,
-		"userinfo": len(posUsers) > 0 ? UserInfo.objects.filter(user=posUsers[0]) : None,
+		"user": None,
+		"userinfo": None,
 		"notFound": False,
 		"self": False,
 	}
+	if (len(posUsers) > 0):
+		context["user"] = posUsers[0]
+		context["userinfo"] = UserInfo.objects.filter(user=posUsers[0])
 	if (len(posUsers) == 0):
 		context["notFound"] = True
 	if (request.user.username == username):
@@ -25,8 +27,8 @@ def getProfile(request, username):
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def settings(request):
-        template = loader.get_template('DaccountSettings.html')
-        return HttpResponse(template.render(RequestContext(request)))
+		template = loader.get_template('DaccountSettings.html')
+		return HttpResponse(template.render(RequestContext(request)))
 
 #SERVER
 def info(request):
@@ -74,4 +76,4 @@ def register(request):
 	userinfo.save()
 	return HttpResponse("Success! Registered user " + username)
 def updateSettings(request):
-	#TODO
+	return HttpResponse("TODO")

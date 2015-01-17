@@ -1,0 +1,44 @@
+{% if user %}
+	<h1>{{ user.username }}</h1>
+	<table border="1">
+		<tr>
+			<td>Full Name</td>
+			<td>{{ user.first_name }} {{ user.last_name }}</td>
+		</tr>
+		<tr>
+			<td>Email address</td>
+			<td>{{ user.email }}</td>
+		</tr>
+	</table><br>
+	<h2>Last 10 Sent</h2>
+	<table>
+		{% for msg in sentTen %}
+			<tr>
+				<td>{{ msg.recipient.username }}</td>
+				<td><small>{{ msg.timestamp|date:"F d, Y. h:i:s A" }}</small></td>
+				<td>{{ msg.body }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<h2>Last 10 Received</h2>
+	<table>
+		{% for msg in recvTen %}
+			<tr>
+				<td>{{ msg.sender.username }}</td>
+				<td><small>{{ msg.timestamp|date:"F d, Y. h:i:s A" }}</small></td>
+				<td>{{ msg.body }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<fieldset>
+		<form id="msgform" action="/msg/sendMessage/" method="POST">
+			{% csrf_token %}
+			To: <input name="recipient" placeholder="Username"><br>
+			Body: <textarea name="body"></textarea><br>
+			<input type="submit" value="Send">
+		</form>
+	</fieldset>
+	<br><a href="signout/">Sign out</a>
+{% else %}
+	<p>No user information found.</p>
+{% endif %}
