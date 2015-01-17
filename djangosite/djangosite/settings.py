@@ -88,7 +88,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"static"),
 )
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "static", "templates"), os.path.join(BASE_DIR, "accountstuff","templates"),
+    os.path.join(BASE_DIR, "static", "templates"), os.path.join(BASE_DIR, "accountstuff","templates"), os.path.join(BASE_DIR, "static","templates2"),
 )
 
 MEDIA_ROOT = '/uploads/' #"/var/www/example.com/media/"

@@ -13,8 +13,9 @@ def home(request):
 			"user": request.user,
 			"userinfo": posInfos[0] if posInfos else None
 		}
-	template = loader.get_template('homepage.html')
+	template = loader.get_template('Dhomepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+'''
 def browseCategory(request):
 	#items = Item.objects.filter(category=request.)
 	return render_to_response('browseCategory.html', context_instance=RequestContext(request))
@@ -26,3 +27,4 @@ def search(request):
 	return render_to_response('search.html', context_instance=RequestContext(request))
 def shoppingCart(request):	 
 	return render_to_response('shoppingcart.html', context_instance=RequestContext(request))
+'''

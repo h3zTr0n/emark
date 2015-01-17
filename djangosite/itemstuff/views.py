@@ -25,11 +25,22 @@ def browseCategory(request, category):
 		"SewingWeaving": 3,
 		"Clothing": 4,
 		"Art": 5,
+		"jewelery": 1,
+		"pottery": 2,
+		"sewingweaving": 3,
+		"clothing": 4,
+		"art": 5,
 	}
-	items = Item.objects.filter(category=categories[category])
+	items = Item.objects.filter(category=categories[category.strip("/")])
 
 	context = {
 		"items": items,
 	}
-	template = loader.get_template('browseTag.html')
+	template = loader.get_template('DbrowseCategory.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+
+def getItem(request, username, itemid):
+	#
+
+def search(request, input):
+	#

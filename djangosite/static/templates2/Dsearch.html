@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	<title>Search</title>
+{% endblock %}
+
+{% block page_css %}
+	<link rel="stylesheet" href="{% static 'css/grid.css' %}">
+	<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+	<main class="main">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				<div id="category-filter">
+					<h2>CATEGORIES</h2>
+					<ul>
+						<li><a href="#">JEWELERY</a></li>
+						<li><a href="#">POTTERY</a></li>
+						<li><a href="#">SEWING & WEAVING</a></li>
+						<li><a href="#">CLOTHING</a></li>
+						<li><a href="#">ART</a></li>
+					</ul>
+				</div>
+				<div id="price-filter">
+					<h2>FILTER BY PRICE</h2>
+					<div class="input-group">
+			 			<input type="number" class="form-control" placeholder="$MIN">
+					</div>
+					<p>to</p>
+					<div class="input-group">
+			 			<input type="text" class="form-control" placeholder="$MAX">
+					</div>
+				</div>
+				<div id="color-filter">
+					<h2>FILTER BY COLOR</h2>                        
+					<div id="color-buttons">
+						<div class="color" id="red"></div>
+						<div class="color" id="blue"></div>
+						<div class="color" id="green"></div>
+						<div class="color" id="yellow"></div>
+						<div class="color" id="orange"></div>
+						<div class="color" id="purple"></div>
+						<div class="color" id="black"></div>
+						<div class="color" id="white"></div>
+					</div>
+				</div>
+				<div id="location-filter">
+					<h2>FILTER BY LOCATION</h2>
+					<div class="radio"><label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+						ANYWHERE
+					</label></div>
+					<div class="radio"><label>
+						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+						UNITED STATES ONLY
+					</label></div>
+				</div>
+			</div>
+			<div class="col-md-10 search-items grid">
+				{% for 'x' in 'xxxxxxxxxxxx' %}
+					<div class="item r1 c1">
+						<a href="#">
+							<img src="{% static 'files/featured1.jpg' %}"/>
+							<div class="caption">
+								<p class="title">INTERESTING TITLE</p>
+								<p class="price">$45.78 USD</p>
+								<p class="seller">Harrison Ding</p>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</main>
+{% endblock %}

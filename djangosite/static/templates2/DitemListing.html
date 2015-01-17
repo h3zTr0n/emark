@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+	<title>Item Title - Item Seller</title>
+{% endblock %}
+
+{% block page_css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/itemListing.css' %}"/>
+{% endblock %}
+		
+{% block content %}
+	<div id="wrapper">
+		<div class="row">
+			<div class="col-md-4" id="sidebar">
+				<div id="item-information">
+					<h1>Antique 14k White Gold 1.5 Carat Old European Diamond Filigree Engagement Ring - 1920s Art Deco Floral Wedding Fine Jewelry EGL Certified</h1>
+					<h4>Item Details</h4>
+					<ul>
+						<li>Vintage item from the 1920s</li>
+						<li>Materials: 14k white gold, one and half carat diamond</li>
+						<li>Only ships to United States from Lancaster Pennsylvania</li>
+					</ul>
+					<h3 id="price">$7,995 USD</h3>
+					<button type="button" class="btn btn-primary">Add to Cart</button>					
+				</div>
+				<div id="seller-information">
+					<h3>More from</h3>
+					<img id="profile-picture" class="img-circle" src="{% static 'files/harrison_profile.jpg' %}"/>
+					<h3>Harrison Ding</h3>
+					<p>223 Followers</p>
+					<div id="featured-items">
+						<div class="row">
+							<div class="col-md-6">
+								{% for 'x' in 'xxx' %}
+									<a href="#"><img src="{% static 'files/featured5.jpg' %}" class="img-thumbnail"/></a>
+								{% endfor %}
+							</div>
+							<div class="col-md-6">
+								{% for 'x' in 'xxx' %}
+									<a href="#"><img src="{% static 'files/featured5.jpg' %}" class="img-thumbnail"/></a>
+								{% endfor %}
+							</div>		
+						</div>
+					</div>
+					<button type="button" class="btn btn-primary">Follow</button>
+				</div>
+			</div>
+			<div class="col-md-8" id="item-content">
+				<div id="image">
+					<img src="{% static 'files/featured1.jpg' %}"/>
+				</div>
+				<div id="details">
+					<p>An absolutely stunning antique engagement ring, featuring a 1 1/2 carat old European diamond solitaire center. The stunning diamond is held in a 14k white gold setting featuring open filigree metal work, a hexagonal head, and intricate floral etchings around the band. The ring comes with an EGL certification, and an appraisal of $10,220.00. Truly a dream antique engagement ring!</p><br/>
+					<p>METAL / MATERIAL - 14k white gold, 1.5 carat old European diamond</p><br/>
+					<p>HALLMARKS / HISTORY - The ring is marked 14k on inside of band with a hallmark that is illegible</p><br/>
+					<p>CONDITION - In excellent antique condition. No breaks to the filigree, etchings are deep, diamond is secure, and setting has been rhodium plated for extra shine. Diamond is eye clean with some inclusions under magnification. Please refer to EGL report below.</p><br/>
+					<p>SIZE / MEASUREMENTS - Size: 7.5, Height of ring when worn on finger: 5 mm, Hexagonal head length: 9 x 9 mm, Weight: 2.8 grams (ring can be resized by your local jeweler or ours, contact us first if you are interested in our jeweler's resizing services )</p>
+				</div>
+			</div>	
+		</div>
+	</div>
+{% endblock %}

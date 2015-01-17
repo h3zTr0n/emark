@@ -7,6 +7,23 @@ from django.contrib.auth import authenticate, login, logout
 from datetime import date
 
 # Create your views here.
+
+def getProfile(request, username):
+	posUsers = User.objects.filter(username=username)
+	context = {
+		"user": len(posUsers) > 0 ? posUsers[0] : None,
+		"userinfo": len(posUsers) > 0 ? UserInfo.objects.filter(user=posUsers[0]) : None,
+		"notFound": False,
+		"self": False,
+	}
+	if (len(posUsers) == 0):
+		context["notFound"] = True
+	if (request.user.username == username):
+		context["self"] = True
+	
+	template = loader.get_template('Dprofile.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
+
 def info(request):
 	context = {}
 	if (request.user.is_authenticated()):
@@ -15,8 +32,10 @@ def info(request):
 			"user": request.user,
 			"userinfo": posInfos[0] if posInfos else None
 		}
-	template = loader.get_template('info.html')
+	template = loader.get_template('Sinfo.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+
+'''
 def profile(request):
 	context = {}
 	if (request.user.is_authenticated()):
@@ -27,8 +46,10 @@ def profile(request):
 		}
 	template = loader.get_template('profile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+'''
+
 def settings(request):
-        template = loader.get_template('accountSettings.html')
+        template = loader.get_template('DaccountSettings.html')
         return HttpResponse(template.render(RequestContext(request)))
 def signin(request):
 	username = request.POST['username']
