@@ -26,7 +26,27 @@ def getItem(request, username, itemid):
 	return HttpResponse("TODO")
 
 def search(request, input):
-	return HttpResponse("TODO")
+	items = []
+	terms = input.split(' ')
+	for term in terms:
+		for item in Item.objects.filter(title__icontains=term):
+			if item not in items:
+				items.append(item)
+		for item in Item.objects.filter(details__icontains=term):
+			if item not in items:
+				items.append(item) 
+		for item in Item.objects.filter(description__icontains=term):
+			if item not in items:
+				items.append(item)
+		for item in Item.objects.filter(tags__icontains=term):
+			if item not in items:
+				items.append(item)
+	context = {
+		"items": items,	
+		"sortby":request.POST['sortby'],
+	}
+	template = loader.get_template('Dsearch.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
 
 #SERVER
 def createItem(request):
