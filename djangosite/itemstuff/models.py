@@ -13,3 +13,5 @@ class Item(models.Model):
 	category = models.IntegerField()
 	tags = models.TextField(blank=True, null=True)
 	time = models.DateTimeField(auto_now=True)
+	def __str__(self):
+		return self.title

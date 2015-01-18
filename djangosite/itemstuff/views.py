@@ -2,6 +2,7 @@ from django.shortcuts import render
 from itemstuff.models import Item
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.contrib.auth.models import User
 
 # Create your views here.
 def browseCategory(request, category):
@@ -23,7 +24,15 @@ def browseCategory(request, category):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def getItem(request, username, itemid):
-	return HttpResponse("TODO")
+	seller = User.objects.filter(username=username)[0]
+	item = Item.objects.filter(title=itemid)[0]
+
+	context = {
+		"seller":seller,
+		"item":item,
+	}
+	template = loader.get_template('DitemListing.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
 
 def cmp_to_key(mycmp):
     'Convert a cmp= function into a key= function'
@@ -48,7 +57,7 @@ def comparePrice(a, b):
 	return a.price - b.price
 
 def compareTime(a,b):
-	return (a.time - b.time).total_seconds() * 1000000
+	return (a.time - b.time).total_seconds()
 
 def search(request, input):
 	items = []
@@ -69,6 +78,28 @@ def search(request, input):
 		for item in Item.objects.filter(tags__icontains=term):
 			if item not in items:
 				items.append(item)
+
+	def compareRelevancy(a,b):
+		acount = bcount = 0
+		for term in terms:
+			if term in a.title:
+				acount+=1
+			if term in a.details:
+				acount+=1
+			if term in a.description:
+				acount+=1
+			if term in a.tags:
+				acount+=1
+			if term in b.title:
+				bcount+=1
+			if term in b.details:
+				bcount+=1
+			if term in b.description:
+				bcount+=1
+			if term in b.tags:
+				bcount+=1
+		return acount - bcount
+
 	if sortby == "lowtohigh":
 		items = sorted(items, key=cmp_to_key(comparePrice))
 	if sortby == "hightolow":
@@ -76,6 +107,9 @@ def search(request, input):
 		items.reverse()
 	if sortby == "recent":
 		items = sorted(items, key=cmp_to_key(compareTime))
+		items.reverse()
+	if sortby == "relevancy":
+		items = sorted(items, key=cmp_to_key(compareRelevancy))
 		items.reverse()
 	context = {
 		"items": items,	

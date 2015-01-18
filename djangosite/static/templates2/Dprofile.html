@@ -24,16 +24,16 @@
 			<div id="wrapper">
 				<div id="profile">
 					<img class="img-circle" src="/static/files/harrison_profile.jpg"/>
-					<h1>{{user.first_name}} {{user.last_name}}</h1>
+					<h1>{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
 					<p>7,324 Followers</p>
 					<div id="personal-information">
 						<div id="bio">
 							<h1>A little bit about myself</h1>
-							<p>EMAIL: {{ user.email }}</p>
-							<p>BIO: {{ userinfo.bio }}</p>
-							<p>GENDER: {% if user.gender == True %}Male{% elif user.gender == False %}Female{% else %}Other{% endif %}</p>
-							<p>BIRTHDAY: {{ userinfo.birthday|date:"F d, Y" }}</p>
-							<p>PHONE NUMBER: {{ userinfo.phonenumber }}</p>
+							<p>EMAIL: {{ requestedUser.email }}</p>
+							<p>BIO: {{ requestedUserInfo.bio }}</p>
+							<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
+							<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>
+							<p>PHONE NUMBER: {{ requestedUserInfo.phonenumber }}</p>
 							<br/>	
 							<h1>My Work</h1>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -69,5 +69,5 @@
 				</div>
 			</div>
 		</body>
-	{% elif %}
+	{% endif %}
 {% endblock %}

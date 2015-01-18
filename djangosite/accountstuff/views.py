@@ -11,14 +11,14 @@ import random
 def getProfile(request, username):
 	posUsers = User.objects.filter(username=username)
 	context = {
-		"user": None,
-		"userinfo": None,
+		"requestedUser": None,
+		"requestedUserInfo": None,
 		"notFound": False,
 		"self": False,
 	}
 	if (len(posUsers) > 0):
-		context["user"] = posUsers[0]
-		context["userinfo"] = UserInfo.objects.filter(user=posUsers[0])
+		context["requestedUser"] = posUsers[0]
+		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
 	if (len(posUsers) == 0):
 		context["notFound"] = True
 	if (request.user.username == username):
@@ -26,6 +26,7 @@ def getProfile(request, username):
 	
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+
 def settings(request):
 		template = loader.get_template('DaccountSettings.html')
 		return HttpResponse(template.render(RequestContext(request)))

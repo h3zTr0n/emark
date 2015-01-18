@@ -10,3 +10,5 @@ class UserInfo(models.Model):
 	gender = models.NullBooleanField()
 	birthday = models.DateField()
 	phonenumber = models.CharField(max_length=20)
+	def __str__(self):
+		return self.user.username
