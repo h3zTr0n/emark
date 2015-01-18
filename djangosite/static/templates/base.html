@@ -20,9 +20,9 @@
 					<a class="navbar-brand" href="#"/>craftnet</a>
 					<form class="navbar-form navbar-left" role="search">
 				        <div class="form-group">
-				        	<input type="text" class="form-control" placeholder="Search">
+				        	<input type="text" class="form-control" placeholder="Search" id="searchInput">
 				        </div>
-				        <button type="submit" class="btn btn-default">Submit</button>
+				        <button type="button" class="btn btn-default" onclick="window.location='/search/' + encodeURI(document.getElementById('searchInput').value)">Submit</button>
 			    	</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">
@@ -42,11 +42,11 @@
 			</nav>
 			<nav id="category-nav" class="navbar navbar-default" role="navigation">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">JEWELERY</a></li>
-					<li><a href="#">POTTERY</a></li>
-					<li><a href="#">SEWING & WEAVING</a></li>
-					<li><a href="#">CLOTHING</a></li>
-					<li><a href="#">ART</a></li>
+					<li><a href="/browse/jewelery">JEWELERY</a></li>
+					<li><a href="/browse/pottery">POTTERY</a></li>
+					<li><a href="/browse/sewingweaving">SEWING & WEAVING</a></li>
+					<li><a href="/browse/clothing">CLOTHING</a></li>
+					<li><a href="/browse/art">ART</a></li>
 				</ul>
 			</nav>			
 		</div>
