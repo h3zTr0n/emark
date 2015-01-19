@@ -1,0 +1,39 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+	background-image:url(/static/files/pie.jpg);
+	background-size:cover;
+}
+#signup-information{
+	text-align:center;
+	width:50%;
+	margin:0 auto;
+	margin-top:10%;
+	background-color:rgba(245,245,245,0.9);
+	padding:1%;
+}
+#signup-information .form-control{
+	border-radius:2px;
+}
+#signup-information h1{
+	font-weight:bold;
+	color:#FF6600;
+	margin-top:0px;
+}
+#signup-information .last{
+	margin-bottom:10px;
+}
+#signup-information .btn{
+	margin-top:20px;
+	width:100%;
+}
+#signup-information textarea{
+	resize:none;
+	width:100%;
+}
+.half-input{
+	width:50%;
+	float:left;
+}
+.half-input:after{
+	clear:bot;
+}

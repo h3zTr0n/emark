@@ -28,8 +28,12 @@ def getProfile(request, username):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def settings(request):
-		template = loader.get_template('DaccountSettings.html')
-		return HttpResponse(template.render(RequestContext(request)))
+	template = loader.get_template('DaccountSettings.html')
+	return HttpResponse(template.render(RequestContext(request)))
+
+def signup(request):
+	template = loader.get_template('signup.html')
+	return HttpResponse(template.render(RequestContext(request)))
 
 #SERVER
 def info(request):
