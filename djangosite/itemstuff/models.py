@@ -13,5 +13,10 @@ class Item(models.Model):
 	category = models.IntegerField()
 	tags = models.TextField(blank=True, null=True)
 	time = models.DateTimeField(auto_now=True)
+	itemid = models.TextField()
 	def __str__(self):
 		return self.title
+class Review(models.Model):
+	user = models.ForeignKey(User)
+	rating = models.IntegerField()
+	text = models.TextField(blank = True, null = True)

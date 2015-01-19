@@ -25,7 +25,7 @@ def browseCategory(request, category):
 
 def getItem(request, username, itemid):
 	seller = User.objects.filter(username=username)[0]
-	item = Item.objects.filter(title=itemid)[0]
+	item = Item.objects.filter(itemid=itemid)[0]
 
 	context = {
 		"seller":seller,
@@ -121,6 +121,7 @@ def search(request, input):
 
 #SERVER
 def createItem(request):
+	itemid = request.POST['title'].replace(" ", "").lower() + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9)
 	title = request.POST['title']
 	details = request.POST['details']
 	price = request.POST['price']
@@ -128,7 +129,7 @@ def createItem(request):
 	tags = request.POST['tags']
 	category = request.POST['category']
 
-	item = Item(user=request.user,title=title, details=details, price=price, description=description,tags=tags,category=category)
+	item = Item(user=request.user,title=title, details=details, price=price, description=description,tags=tags,category=category, itemid = itemid)
 	item.save()
 	return HttpResponse("Success! Created " + title + " for " + request.user.username)
 def editItem(request):

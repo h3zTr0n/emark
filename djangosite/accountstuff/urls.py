@@ -8,7 +8,7 @@ urlpatterns = patterns('',
 #	url(r'^profile/$', views.profile, name='profile'),
 #	url(r'^settings/$', views.settings, name='settings'),
 	url(r'^signin/$', views.signin, name='signin'),
-	url(r'^info/signout/$', views.signout, name='signout'),
+	url(r'^signout/$', views.signout, name='signout'),
 	url(r'^register/$', views.register, name='register'),
 	url(r'^update/$', views.updateSettings, name='modifySettings'),
 )

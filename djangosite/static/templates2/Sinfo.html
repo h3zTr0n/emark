@@ -53,11 +53,11 @@
 			<input type="submit" value="Send">
 		</form>
 	</fieldset>
-	<br><a href="signout/">Sign out</a>
+	<br><a href="/acc/signout/">Sign out</a>
 {% else %}
 	<p>No user information found.</p>
 	<fieldset>
-		<form id="signinform" action="signin/" method="POST">
+		<form id="signinform" action="/acc/signin/" method="POST">
 			{% csrf_token %}
 			Username: <input name="username"><br>
 			Password: <input name="password"><br>
@@ -66,7 +66,7 @@
 	</fieldset>
 	<br>
 	<fieldset>
-		<form id="registerform" action="register/" method="POST">
+		<form id="registerform" action="/acc/register/" method="POST">
 			{% csrf_token %}
 			Name: <input name="firstname"><input name="lastname"> (first and last)<br>
 			Username: <input name="username"><br>
