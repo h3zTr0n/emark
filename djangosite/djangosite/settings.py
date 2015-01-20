@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'itemstuff',
     'messagestuff',
     'shoppingcart',
+    'uploader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,5 +94,5 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "static", "templates"), os.path.join(BASE_DIR, "accountstuff","templates"), os.path.join(BASE_DIR, "static","templates2"),
 )
 
-MEDIA_ROOT = '/uploads/' #"/var/www/example.com/media/"
-MEDIA_URL = '' #http://media.example.com/
+MEDIA_ROOT = os.path.join(BASE_DIR,'media') #"/var/www/example.com/media/"
+MEDIA_URL = '/media/' #http://media.example.com/

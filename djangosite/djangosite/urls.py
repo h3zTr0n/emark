@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
 
 urlpatterns = patterns('',
@@ -15,6 +17,8 @@ urlpatterns = patterns('',
     #url(r'^search','djangosite.views.search',name="search"),
     #url(r'^shoppingCart','djangosite.views.shoppingCart',name="shoppingCart"),
 
+    url(r'^upload/$','uploader.views.home',name='imageupload'),
+
     url(r'^acc/', include('accountstuff.urls')),
     url(r'^item/', include('itemstuff.urls')),
     url(r'^msg/', include('messagestuff.urls')),
@@ -25,4 +29,4 @@ urlpatterns = patterns('',
     url(r'^user/(?P<username>[A-Za-z0-9]+)/(?P<itemid>.+)$', 'itemstuff.views.getItem', name="getItem"),
     url(r'^search/(?P<input>.+)$', 'itemstuff.views.search', name="search"),
     url(r'^settings/(?P<input>.+)$', 'accountstuff.views.settings', name="settings"),
-)
+)+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
