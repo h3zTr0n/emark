@@ -3,11 +3,12 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
+from uploader.models import UploadForm,Upload
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
 import random
 
-# Create your views here.
+# Create your views here.*
 def getProfile(request, username):
 	posUsers = User.objects.filter(username=username)
 	context = {
@@ -31,9 +32,13 @@ def settings(request):
 	context = {}
 	if (request.user.is_authenticated()):
 		posInfos = UserInfo.objects.filter(user=request.user)
+		img = UploadForm(request.POST,request.FILES)
+		if img.is_valid():
+			img.save()
 		context = {
 			"user": request.user,
-			"userinfo": posInfos[0] if posInfos else None
+			"userinfo": posInfos[0] if posInfos else None,
+			'form':img,
 		}
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
@@ -97,6 +102,7 @@ def updateSettings(request):
 	
 	userinfo.bio=request.POST['bio']
 	userinfo.phonenumber=request.POST['phonenumber']
+	userinfo.profile_picture=request.POST['profile_picture']
 
 	user.save()
 	userinfo.save()
