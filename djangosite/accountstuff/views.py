@@ -89,10 +89,15 @@ def register(request):
 def updateSettings(request):
 	user=request.user
 	userinfo = UserInfo.objects.filter(user=user)[0]
-	
-	bio=request.POST['bio']
 
-	userinfo.bio = bio
+	user.first_name = request.POST['firstname']
+	user.last_name = request.POST['lastname']
+	user.email = request.POST['email']
+	user.password = request.POST['password']
 	
+	userinfo.bio=request.POST['bio']
+	userinfo.phonenumber=request.POST['phonenumber']
+
+	user.save()
 	userinfo.save()
 	return HttpResponse("Success! Settings were changed")
