@@ -71,11 +71,10 @@ def register(request):
 	lname = request.POST['lastname']
 	user = User.objects.create_user(username, email, password, first_name=fname, last_name=lname)
 	
-	bio = request.POST['bio']
 	gender = request.POST['gender']
 	birthday = date(int(request.POST['year']), int(request.POST['month']), int(request.POST['day']))
 	phonenumber = request.POST['phonenumber']
-	userinfo = UserInfo(user=user, bio=bio, gender=gender, birthday=birthday, phonenumber=phonenumber)
+	userinfo = UserInfo(user=user, gender=gender, birthday=birthday, phonenumber=phonenumber)
 	
 	user.save()
 	userinfo.save()
