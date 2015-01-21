@@ -20,8 +20,16 @@
 		  			<li role="presentation"><a href="#">Payment Options</a></li>
 				</ul>
 			</div>
+			{{user.first_name}} {{user.last_name}} ({{user.username}}) is logged in
 			<div class="col-md-9" id="settings">
 				<div class="option-group">
+					<form id="settingsform" action="update/" method="POST">
+						{% csrf_token %}
+						<textarea rows="10" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!"></textarea>
+						<button type="submit" id="settingsForm" class="btn">Update Bio</button>
+					</form>
+				</div>
+				<!-- <div class="option-group">
 					<h3 class="group-name">PASSWORD</h3>
 					<div id="group-options">
 						<p>Current Password</p>
@@ -74,7 +82,7 @@
 						</div>
 						<button type="button" class="btn btn-primary">Change Email</button>
 					</div>
-				</div>
+				</div> -->
 			</div>	
 		</div>
 	</div>	

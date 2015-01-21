@@ -28,8 +28,15 @@ def getProfile(request, username):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def settings(request):
+	context = {}
+	if (request.user.is_authenticated()):
+		posInfos = UserInfo.objects.filter(user=request.user)
+		context = {
+			"user": request.user,
+			"userinfo": posInfos[0] if posInfos else None
+		}
 	template = loader.get_template('DaccountSettings.html')
-	return HttpResponse(template.render(RequestContext(request)))
+	return HttpResponse(template.render(RequestContext(request, context)))
 
 def signup(request):
 	template = loader.get_template('signup.html')
@@ -80,4 +87,12 @@ def register(request):
 	userinfo.save()
 	return HttpResponse("Success! Registered user " + username)
 def updateSettings(request):
-	return HttpResponse("TODO")
+	user=request.user
+	userinfo = UserInfo.objects.filter(user=user)[0]
+	
+	bio=request.POST['bio']
+
+	userinfo.bio = bio
+	
+	userinfo.save()
+	return HttpResponse("Success! Settings were changed")

@@ -28,5 +28,4 @@ urlpatterns = patterns('',
     url(r'^user/(?P<username>[A-Za-z0-9]+)$', 'accountstuff.views.getProfile', name="getProfile"),
     url(r'^user/(?P<username>[A-Za-z0-9]+)/(?P<itemid>.+)$', 'itemstuff.views.getItem', name="getItem"),
     url(r'^search/(?P<input>.+)$', 'itemstuff.views.search', name="search"),
-    url(r'^settings/(?P<input>.+)$', 'accountstuff.views.settings', name="settings"),
 )+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
