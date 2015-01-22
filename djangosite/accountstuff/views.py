@@ -30,13 +30,26 @@ def getProfile(request, username):
 
 def settings(request):
 	context = {}
-	if (request.user.is_authenticated()):
+	user=request.user
+	if (user.is_authenticated()):
 		userinfo = UserInfo.objects.filter(user=request.user)[0]
 		if(request.method=="POST"):
+			user.first_name = request.POST['firstname']
+			user.last_name = request.POST['lastname']
+			user.email = request.POST['email']
+			user.password = request.POST['password']
+
+			userinfo.bio=request.POST['bio']
+			userinfo.phonenumber=request.POST['phonenumber']
+
+			user.save()
+			userinfo.save()
+			
 			img = UploadForm(request.POST,request.FILES)
 			if img.is_valid():
-				userinfo.profile_picture = img(file_field=request.FILES['file'])
+				userinfo.profile_picture = img(file_field=request.FILES['file']) #just need to figure out how to specify here
 				userinfo.save()
+			return HttpResponse("Success! Settings were changed")
 		else:
 			img=UploadForm()
 		context = {

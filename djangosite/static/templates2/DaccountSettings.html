@@ -22,7 +22,7 @@
 			</div>
 			{{user.first_name}} {{user.last_name}} ({{user.username}}) is logged in
 			<div class="col-md-9" id="settings">
-				<form id="settingsform" action="update/" method="POST" enctype="multipart/form-data">
+				<form id="settingsform" method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 					<div class="option-group">
 						<h3 class="group-name">USER SETTINGS</h3>
@@ -39,7 +39,7 @@
 						Phone Number <input class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}"/>
 					</div>
 					{{form}}
-					<button type="submit" id="settingsForm" class="btn">Update Account Information</button>
+					<button type="submit" value="settings" class="btn">Update Account Information</button>
 				</form>
 			</div>	
 		</div>
