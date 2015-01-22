@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
-from uploader.models import UploadForm,Upload
+from uploader.models import UploadForm, Upload
+from uploader.forms import UploadFileForm
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
 import random
@@ -31,32 +32,29 @@ def getProfile(request, username):
 def settings(request):
 	context = {}
 	user=request.user
+	userinfo = UserInfo.objects.filter(user=request.user)[0]
 	if (user.is_authenticated()):
-		userinfo = UserInfo.objects.filter(user=request.user)[0]
 		if(request.method=="POST"):
 			user.first_name = request.POST['firstname']
 			user.last_name = request.POST['lastname']
 			user.email = request.POST['email']
 			user.password = request.POST['password']
+			user.save()
 
 			userinfo.bio=request.POST['bio']
 			userinfo.phonenumber=request.POST['phonenumber']
-
-			user.save()
-			userinfo.save()
 			
-			img = UploadForm(request.POST,request.FILES)
-			if img.is_valid():
-				userinfo.profile_picture = img(file_field=request.FILES['file']) #just need to figure out how to specify here
-				userinfo.save()
-			return HttpResponse("Success! Settings were changed")
+			form = UploadFileForm(request.POST,request.FILES)
+			if form.is_valid():
+				userinfo.profile_picture = request.FILES['file']
 		else:
-			img=UploadForm()
+			form=UploadFileForm()
 		context = {
 			"user": request.user,
 			"userinfo": userinfo,
-			'form':img,
+			'form':form,
 		}
+	userinfo.save()
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
@@ -119,6 +117,7 @@ def updateSettings(request):
 
 	userinfo.bio=request.POST['bio']
 	userinfo.phonenumber=request.POST['phonenumber']
+	userinfo.profile_picture = request.FILES['file']
 
 	user.save()
 	userinfo.save()

@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+from django import forms
 
 class Upload(models.Model):
 	pic = models.FileField("Image",upload_to="images/")
