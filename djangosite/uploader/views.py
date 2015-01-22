@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 def home(request):
 	if(request.method=="POST"):
 		img = UploadForm(request.POST,request.FILES)
-		img.user=request.user
 		if img.is_valid():
 			img.save()
 			return HttpResponseRedirect(reverse('imageupload'))

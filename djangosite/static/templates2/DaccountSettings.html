@@ -22,7 +22,7 @@
 			</div>
 			{{user.first_name}} {{user.last_name}} ({{user.username}}) is logged in
 			<div class="col-md-9" id="settings">
-				<form id="settingsform" action="update/" method="POST">
+				<form id="settingsform" action="update/" method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 					<div class="option-group">
 						<h3 class="group-name">USER SETTINGS</h3>
@@ -38,62 +38,9 @@
 						</div>
 						Phone Number <input class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}"/>
 					</div>
+					{{form}}
 					<button type="submit" id="settingsForm" class="btn">Update Account Information</button>
 				</form>
-				<!--<div class="option-group">
-					<h3 class="group-name">PASSWORD</h3>
-					<div id="group-options">
-						<p>Current Password</p>
-						<div class="input-group">
-			 				<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<p>New Password</p>
-						<div class="input-group">
-		 					<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<p>Confirm New Password</p>
-						<div class="input-group">
-		 					<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<button type="button" class="btn btn-primary">Change Password</button>
-					</div>
-				</div>
-				<div class="option-group">
-					<h3 class="group-name">E-MAIL</h3>
-					<div id="group-options">
-						<p>New Email</p>
-						<div class="input-group">
-			 				<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<p>Confirm New Email</p>
-						<div class="input-group">
-			 				<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<p>Your Etsy Password</p>
-						<div class="input-group">
-			 				<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<button type="button" class="btn btn-primary">Change Email</button>
-					</div>
-				</div>
-				<div class="option-group">
-					<h3 class="group-name">E-MAIL</h3>
-					<div id="group-options">
-						<p>New Email</p>
-						<div class="input-group">
-			 				<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<p>Confirm New Email</p>
-						<div class="input-group">
-			 				<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<p>Your Etsy Password</p>
-						<div class="input-group">
-			 				<input type="text" class="form-control" placeholder="Username">
-						</div>
-						<button type="button" class="btn btn-primary">Change Email</button>
-					</div>
-				</div> -->
 			</div>	
 		</div>
 	</div>	

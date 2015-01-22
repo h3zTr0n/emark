@@ -31,13 +31,17 @@ def getProfile(request, username):
 def settings(request):
 	context = {}
 	if (request.user.is_authenticated()):
-		posInfos = UserInfo.objects.filter(user=request.user)
-		img = UploadForm(request.POST,request.FILES)
-		if img.is_valid():
-			img.save()
+		userinfo = UserInfo.objects.filter(user=request.user)[0]
+		if(request.method=="POST"):
+			img = UploadForm(request.POST,request.FILES)
+			if img.is_valid():
+				userinfo.profile_picture = img(file_field=request.FILES['file'])
+				userinfo.save()
+		else:
+			img=UploadForm()
 		context = {
 			"user": request.user,
-			"userinfo": posInfos[0] if posInfos else None,
+			"userinfo": userinfo,
 			'form':img,
 		}
 	template = loader.get_template('DaccountSettings.html')
@@ -99,10 +103,9 @@ def updateSettings(request):
 	user.last_name = request.POST['lastname']
 	user.email = request.POST['email']
 	user.password = request.POST['password']
-	
+
 	userinfo.bio=request.POST['bio']
 	userinfo.phonenumber=request.POST['phonenumber']
-	userinfo.profile_picture=request.POST['profile_picture']
 
 	user.save()
 	userinfo.save()
