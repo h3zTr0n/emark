@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
-from uploader.models import UploadForm, Upload
 from uploader.forms import UploadFileForm
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
@@ -46,7 +45,7 @@ def settings(request):
 			
 			form = UploadFileForm(request.POST,request.FILES)
 			if form.is_valid():
-				userinfo.profile_picture = request.FILES['file']
+				userinfo.profile_picture = request.FILES['Avatar	']
 		else:
 			form=UploadFileForm()
 		context = {
@@ -54,6 +53,8 @@ def settings(request):
 			"userinfo": userinfo,
 			'form':form,
 		}
+	else:
+		return HttpResponse("Not Signed in")
 	userinfo.save()
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))

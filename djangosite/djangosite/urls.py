@@ -17,8 +17,6 @@ urlpatterns = patterns('',
     #url(r'^search','djangosite.views.search',name="search"),
     #url(r'^shoppingCart','djangosite.views.shoppingCart',name="shoppingCart"),
 
-    url(r'^upload/$','uploader.views.home',name='imageupload'),
-
     url(r'^acc/', include('accountstuff.urls')),
     url(r'^item/', include('itemstuff.urls')),
     url(r'^msg/', include('messagestuff.urls')),

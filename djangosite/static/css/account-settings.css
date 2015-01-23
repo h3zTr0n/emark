@@ -10,26 +10,43 @@
 #sidebar{
 	height:100%;
 	padding:0;
+	text-align:center;
 }
 #sidebar ul{
 	background-color:#EEEEEE;
 }
-#settings h3{
-	margin:0px;
-	padding:1%;
-	background-color:#DDDDDD;
+#sidebar #name{
+	font-size:24px;
+	font-weight:bold;
+}
+#sidebar .profile-picture{
+	height:150px;
+	width:150px;
+	margin-bottom:10%;
 }
 .option-group{
 	background-color:#EEEEEE;
 	border-radius:2%;
 	margin-bottom:3%;
 }
-.option-group p{
+.option-group .group-name{
 	margin:0px;
+	padding:1%;
+	background-color:#BBB;
+	font-weight:bold;
+}
+.option-group p{
+	margin-bottom:0px;
+}
+.option-group input, textarea{
+	margin-bottom:10px;
+}
+.option-group textarea{
+	width:100%;
 }
 .option-group button{
 	margin-top:2%;
 }
-#group-options{
+.group-options{
 	padding:2%;
 }

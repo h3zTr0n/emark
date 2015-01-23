@@ -14,32 +14,45 @@
 		<div class="row">
 			<div class="col-md-3" id="sidebar">
 				<ul class="nav nav-pills nav-stacked" role="tablist">
+					<h1 id="name">{{user.first_name}} {{user.last_name}}</h1>
+					{% if userinfo.profile_picture %}
+						<img src={{MEDIA_ROOT}}{{userinfo.profile_picture.url}} class="profile-picture img-circle"/>
+					{% else %}
+						<img src="{% static 'files/default-profile.jpg' %}" class="profile-picture img-circle"/>
+					{% endif %}
 					<li role="presentation" class="active"><a href="#">Account</a></li>
 		  			<li role="presentation"><a href="#">Preferences</a></li>
 		  			<li role="presentation"><a href="#">Privacy & Security</a></li>
 		  			<li role="presentation"><a href="#">Payment Options</a></li>
 				</ul>
 			</div>
-			{{user.first_name}} {{user.last_name}} ({{user.username}}) is logged in
 			<div class="col-md-9" id="settings">
 				<form id="settingsform" action="#" method="POST" enctype="multipart/form-data">
 				{% csrf_token %}
 					<div class="option-group">
 						<h3 class="group-name">USER SETTINGS</h3>
-						First Name<input class="form-control half-input" name="firstname" value="{{user.first_name}}"/>
-						Last Name<input class="form-control half-input" name="lastname" value="{{user.last_name}}"/>
-						Email<input class="form-control" name="email" value="{{user.email}}"/>
-						Password (encrypted or something) <input class="form-control" name="password" value="{{user.password}}"/>
+						<div class="group-options">
+							<p>First Name</p>
+							<input class="form-control half-input" name="firstname" value="{{user.first_name}}"/>
+							<p>Last Name</p>
+							<input class="form-control half-input" name="lastname" value="{{user.last_name}}"/>
+							<p>Email</p>
+							<input class="form-control" name="email" value="{{user.email}}"/>
+							<p>Password (encrypted or something)</p>
+							<input class="form-control" name="password" value="{{user.password}}"/>
+						</div>
 					</div>
 					<div class="option-group">
 						<h3 class="group-name">USERINFO SETTINGS</h3>
-						<div id="group-options">
-							<textarea rows="10" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!">{{userinfo.bio}}</textarea>
+						<div class="group-options">
+							<p>Bio</p>
+							<textarea rows="5" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!">{{userinfo.bio}}</textarea>
+							<p>Phone Number</p>
+							<input class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}"/>	
+							{{form}}
 						</div>
-						Phone Number <input class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}"/>
 					</div>
-					{{form}}
-					<input type="submit" value="Submit" />
+					<input type="submit" value="UPDATE ACCOUNT INFORMATION" class="btn" />
 				</form>
 			</div>	
 		</div>
