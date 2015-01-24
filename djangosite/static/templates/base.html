@@ -26,18 +26,33 @@
 				        <button type="submit" class="btn btn-default">Search</button>
 			    	</form>
 					<ul class="nav navbar-nav navbar-right col-xs-12 col-md-5">
-						<li class="navbar-right-item">
-							<a href="/acc/#signin">
-								<span class="glyphicon glyphicon-user"></span>
-								Sign In
-							</a>
-						</li>
-						<li class="navbar-right-item">
-							<a href="/acc/#register">
-								<span class="glyphicon glyphicon-pencil"></span>
-								Register
-							</a>
-						</li>
+						{% if user and userinfo %}
+							<li class="navbar-right-item">
+								<a href="/acc/signout/">
+									<span class="glyphicon glyphicon-pencil"></span>
+									Sign Out
+								</a>
+							</li>
+							<li class="navbar-right-item">
+								<a href="/acc/#register">
+									<span class="glyphicon glyphicon-user"></span>
+									Profile
+								</a>
+							</li>
+						{% else %}
+							<li class="navbar-right-item">
+								<a href="/acc/#signin">
+									<span class="glyphicon glyphicon-user"></span>
+									Sign In
+								</a>
+							</li>
+							<li class="navbar-right-item">
+								<a href="/acc/#register">
+									<span class="glyphicon glyphicon-pencil"></span>
+									Register
+								</a>
+							</li>
+						{% endif %}
 						<li class="navbar-right-item">
 							<a href="/cart/">
 								<span class="glyphicon glyphicon-shopping-cart"></span>

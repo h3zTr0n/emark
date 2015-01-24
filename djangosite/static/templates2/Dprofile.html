@@ -6,7 +6,7 @@
 	<title>{% if notFound %}
 		profile not found - craftnet
 	{% else %}
-		{{user.first_name}} {{user.last_name}} - craftnet
+		{{requestedUser.first_name}} {{requestedUser.last_name}} - craftnet
 	{% endif %}</title>
 {% endblock %}
 
@@ -23,9 +23,12 @@
 		<div class="container">
 			<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 			<div class="row tallrow profile">
-				<h1>{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
+				<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
 				<p>7,324 Followers</p>
-				<button type="button" class="btn btn-primary btn-lg">Follow</button>
+				{% if not self %}
+					<button type="button" class="btn btn-primary btn-lg">Follow</button>
+					<button type="button" class="btn btn-primary btn-lg btn-msg">Message</button>
+				{% endif %}
 				<div class="profile-information blockbg">
 					<h2>A little bit about myself</h2>
 					<p>EMAIL: {{ requestedUser.email }}</p>
@@ -59,6 +62,7 @@
 							</a>
 							<p class="followers">4,123 Followers</p>
 							<button type="button" class="btn btn-primary">Follow</button>
+							<button type="button" class="btn btn-primary btn-msg">Message</button>
 						<!--</div>-->
 					</div>
 				{% endfor %}
