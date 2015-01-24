@@ -167,6 +167,57 @@ body{
 	display: inline-block;
 	margin-right: 5px;
 }
+.blockbg {
+	background: #f5f5f5;
+	padding: 10px;
+}
+.profile {
+	text-align: center;
+}
+.profPic {
+	width: 200px;
+	height: 200px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 100%;
+	margin: auto;
+}
+.profPicSmall {
+	width: 100px;
+	height: 100px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 100%;
+	margin: auto;
+}
+.tallrow, .profile-information {
+	margin: 10px 0;
+}
+.rowheader {
+	margin-top: 5px;
+	margin-left: 15px;
+}
+.browseProfile {
+	height: 200px;
+	text-align: center;
+	border-right: 1px solid #ccc;
+}
+.browseProfile:last-child {
+	border-right: none;
+}
+.browseProfile a {
+	color: #333;
+}
+.browseProfile .name {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 10px 0 0;
+}
+.browseProfile .followers {
+	font-size: 0.8em;
+}
 @media (max-width: 768px) {
 	#main-nav, #main-nav input, #main-nav .btn {
 		font-size: 0.95em;
