@@ -3,6 +3,7 @@ from itemstuff.models import Item
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
+import random
 
 # Create your views here.
 def browseCategory(request, category):
@@ -122,7 +123,7 @@ def search(request):
 
 #SERVER
 def createItem(request):
-	itemid = request.POST['title'].replace(" ", "").lower() + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9)
+	itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 	title = request.POST['title']
 	details = request.POST['details']
 	price = request.POST['price']
