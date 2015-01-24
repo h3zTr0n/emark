@@ -59,9 +59,9 @@ def comparePrice(a, b):
 def compareTime(a,b):
 	return (a.time - b.time).total_seconds()
 
-def search(request, input):
+def search(request):
 	items = []
-	terms = input.split(' ')
+	terms = request.GET["q"].split(' ')
 	sortby = "relevancy"
 	if "sortby" in request.POST:
 		sortby = request.POST['sortby'] 

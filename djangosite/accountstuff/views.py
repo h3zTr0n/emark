@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from datetime import date
 import random
 
-# Create your views here.*
+#CLIENT
 def getProfile(request, username):
 	posUsers = User.objects.filter(username=username)
 	context = {
@@ -59,9 +59,21 @@ def settings(request):
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
-def signup(request):
+'''
+def signup(request): #gone
 	template = loader.get_template('signup.html')
 	return HttpResponse(template.render(RequestContext(request)))
+'''
+
+def main(request):
+	if (request.user.is_authenticated()):
+		return HttpResponseRedirect("/user/"+request.user.username+"/")
+	template = loader.get_template('Dloginsignup.html')
+	return HttpResponse(template.render(RequestContext(request)))
+
+def signout(request):
+	logout(request)
+	return HttpResponseRedirect("/")
 
 #SERVER
 def info(request):
@@ -83,9 +95,6 @@ def signin(request):
 		return HttpResponse("Signed in as " + user.username)
 	else:
 		return HttpResponse("Unable to sign in.")
-def signout(request):
-	logout(request)
-	return HttpResponse("Success! Logged out.")
 def register(request):
 	username = request.POST['username']
 	if (not username):

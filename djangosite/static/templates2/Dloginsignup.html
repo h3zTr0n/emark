@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	<title>craftnet - login or register</title>
+{% endblock %}
+
+{% block page_css %}
+{% endblock %}
+	
+{% block content %}
+	<style>
+.group {
+  border: 1px solid black;
+  margin: 15px;
+  padding: 15px;
+}
+.signin, .signin:target ~ .register {
+  display: none;
+}
+.signin:target {
+  display: block;
+}
+	</style>
+	<div class="container">
+		<div class="signin row" id="signin">
+			<form class="form-horizontal" method="post" action="/acc/pSignin/">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="sEmail" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="sEmail" placeholder="Email">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sPassword" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="sPassword" placeholder="Password">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Sign in</button>
+					</div>
+				</div>
+				<span id="helpBlock" class="help-block">Not registered yet? <a href="#register">Register</a></span>
+			</form>
+		</div>
+		<div class="register row" id="register">
+			<form class="form-horizontal" method="post" action="/acc/pRegister/">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="rName" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="rName" placeholder="Full Name">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rEmail" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="rEmail" placeholder="Email">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rPassword" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="rPassword" placeholder="Password">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Register</button>
+					</div>
+				</div>
+				<span id="helpBlock" class="help-block">Already registered? <a href="#signin">Sign in</a></span>
+			</form>
+		</div>
+	</div>	
+{% endblock %}
+
