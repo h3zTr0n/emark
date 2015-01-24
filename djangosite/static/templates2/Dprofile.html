@@ -4,9 +4,9 @@
 
 {% block title %}
 	<title>{% if notFound %}
-		{{user.first_name}} {{user.last_name}}
+		profile not found - craftnet
 	{% else %}
-		Profile Not Found
+		{{user.first_name}} {{user.last_name}} - craftnet
 	{% endif %}</title>
 {% endblock %}
 
@@ -17,13 +17,16 @@
 {% block content %}
 	{% if notFound %}
 		<body>Profile Not Found</body>
-	{% elif self %}
-		<body>Your own profile, editable</body>
 	{% else %}
 		<body>
 			<div id="wrapper">
 				<div id="profile">
-					<img class="img-circle" src="/static/files/harrison_profile.jpg"/>
+					{% if requestedUserInfo.profile_picture %}
+						<img src="{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}" class="profile-picture img-circle"/>
+					{% else %}
+						<img src="{% static 'files/default-profile.jpg' %}" class="profile-picture img-circle"/>
+					{% endif %}
+					<!--<img class="img-circle" src="/static/files/harrison_profile.jpg"/>-->
 					<h1>{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
 					<p>7,324 Followers</p>
 					<div id="personal-information">

@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^cart/', include('shoppingcart.urls')),
 
     url(r'^browse/(?P<category>.+)/$', 'itemstuff.views.browseCategory', name="browseCategory"),
+    url(r'^user/settings/$', 'accountstuff.views.settings2', name="getSettings"),
     url(r'^user/(?P<username>[A-Za-z0-9]+)/$', 'accountstuff.views.getProfile', name="getProfile"),
     url(r'^user/(?P<username>[A-Za-z0-9]+)/(?P<itemid>.+)$', 'itemstuff.views.getItem', name="getItem"),
     url(r'^search/$', 'itemstuff.views.search', name="search"),

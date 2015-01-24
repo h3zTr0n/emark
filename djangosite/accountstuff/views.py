@@ -59,6 +59,16 @@ def settings(request):
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+def settings2(request):
+	if (not request.user.is_authenticated()):
+		return HttpResponseRedirect("/acc/#signin")
+	context = {
+		"user": request.user,
+		"userinfo": UserInfo.objects.filter(user=request.user)[0]
+	}
+	template = loader.get_template('Dsettings.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
+
 '''
 def signup(request): #gone
 	template = loader.get_template('signup.html')
@@ -129,18 +139,26 @@ def register(request):
 	user.save()
 	userinfo.save()
 	return HttpResponse("Success! Registered user " + username) #TODO redirect? 
+
 def updateSettings(request):
 	user=request.user
 	userinfo = UserInfo.objects.filter(user=user)[0]
 
-	user.first_name = request.POST['firstname']
-	user.last_name = request.POST['lastname']
-	user.email = request.POST['email']
-	user.password = request.POST['password']
+	if ('firstname' in request.POST and request.POST['firstname']):
+		user.first_name = request.POST['firstname']
+	if ('lastname' in request.POST and request.POST['lastname']):
+		user.last_name = request.POST['lastname']
+	if ('email' in request.POST and request.POST['email']):
+		user.email = request.POST['email']
+	if ('password' in request.POST and request.POST['password']):
+		user.set_password(request.POST['password'])
 
-	userinfo.bio=request.POST['bio']
-	userinfo.phonenumber=request.POST['phonenumber']
-	userinfo.profile_picture = request.FILES['file']
+	if ('bio' in request.POST and request.POST['bio']):
+		userinfo.bio=request.POST['bio']
+	if ('phonenumber' in request.POST and request.POST['phonenumber']):
+		userinfo.phonenumber=request.POST['phonenumber']
+	if ('pic' in request.FILES and request.FILES['pic']):
+		userinfo.profile_picture = request.FILES['pic']
 
 	user.save()
 	userinfo.save()
