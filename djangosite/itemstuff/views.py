@@ -18,6 +18,7 @@ def browseCategory(request, category):
 	items = Item.objects.filter(category=categories[category.strip("/").lower()])
 
 	context = {
+		"category": category.strip("/").lower(),
 		"items": items,
 	}
 	template = loader.get_template('DbrowseCategory.html')

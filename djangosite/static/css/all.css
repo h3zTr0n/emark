@@ -117,6 +117,56 @@ body{
 	text-align:center;
 	color: #333;
 }
+.browseItem {
+	float: left;
+	position: relative;
+	overflow: hidden;
+	width: 24%;
+	height: 200px;
+	margin-left: 1%;
+	margin-bottom: 10px;
+}
+.browseItem a {
+	color: #333;
+}
+.browseItem .img {
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.browseItem .caption {
+	position:absolute;
+	bottom:0px;
+	margin-bottom:0px;
+	padding:5px;
+	width:100%;
+	background-color:#CCC;
+	color:black;
+}
+.browseItem .caption p{
+	margin-bottom:0px;
+}
+.browseItem .caption .title{
+	float:left;
+	font-weight:bold;
+}
+.browseItem .caption .price{
+	float:right;
+	margin-right:5%;
+	color:green;
+}
+.browseItem .caption .seller{
+	clear:both;
+	margin-left:0px;
+	color:black;
+	text-align:left;
+}
+.dropdown-inline {
+	display: inline-block;
+	margin-right: 5px;
+}
 @media (max-width: 768px) {
 	#main-nav, #main-nav input, #main-nav .btn {
 		font-size: 0.95em;
