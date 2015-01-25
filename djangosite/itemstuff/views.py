@@ -32,11 +32,16 @@ def browseCategory(request, category):
 
 def getItem(request, username, itemid):
 	seller = User.objects.filter(username=username)[0]
+	sellerinfo = UserInfo.objects.filter(user = seller)[0]
 	item = Item.objects.filter(itemid=itemid)[0]
+
+	reviews = Review.objects.filter(item=item)
 
 	context = {
 		"seller":seller,
+		"sellerinfo":sellerinfo,
 		"item":item,
+		"reviews":reviews,
 	}
 	template = loader.get_template('DitemListing.html')
 	return HttpResponse(template.render(RequestContext(request, context)))

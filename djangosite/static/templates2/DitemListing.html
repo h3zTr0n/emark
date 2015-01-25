@@ -45,12 +45,16 @@
 			</div>
 			<div class="col-md-8" id="item-content">
 				<div id="image">
-					<img src="{% static 'files/featured1.jpg' %}"/>
+					<img src="{{MEDIA_ROOT}}{{item.picture.url}}"/>
 				</div>
 				<div id="details">
 					{{item.details}}
 				</div>
 				<div id="reviews">
+					{% for review in reviews %}
+						<h1>{{review.user.first_name}} says</h1>
+						{{review.text}}
+					{% endfor %}
 					<form id="reviewform" action="/item/addRating/" method="POST">
 						{% csrf_token %}
 						<div class="panel panel-default">
