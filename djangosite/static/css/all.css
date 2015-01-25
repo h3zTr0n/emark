@@ -85,6 +85,7 @@
 .btn:hover, .btn:focus, .btn:active{
 	background-color:#E65C00;
 	border: 1px solid #B84A00;
+	border-top-width: 3px;
 	color:white;
 }
 /*.btn:active{
@@ -186,6 +187,9 @@ body{
 }
 .profile {
 	text-align: center;
+}
+.profile a.btn {
+	margin: 5px;
 }
 .profPic {
 	width: 200px;
