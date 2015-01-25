@@ -7,4 +7,5 @@ urlpatterns = patterns('',
 	url(r'^info/$', views.allInfo, name='indexAll'),
 	url(r'^pSendMessage/$', views.sendMessage, name='sendMessage'),
 	url(r'^pViewMessages/$', views.viewMessages, name='viewMessages'),
+	url(r'^pUnreadMessages/$', views.unreadMessages, name='unreadMessages'),
 )

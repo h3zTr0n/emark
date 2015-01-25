@@ -24,6 +24,12 @@
 				{% else %}
 					<div class="well">
 						<h3 class="rowheader">Select a user</h3>
+						{% for obj in msgusers %}
+							{{obj.sender.first_name}} {{obj.sender.last_name}}: {{obj.unread}}<br>
+						{% endfor %}
+						{% for msg in temp %}
+							{{msg.sender.username}}: {{msg.body}}<br>
+						{% endfor %}
 					</div>
 				{% endif %}
 			</div>
