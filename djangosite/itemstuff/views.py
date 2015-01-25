@@ -5,7 +5,7 @@ from django.template import RequestContext, loader
 from django.contrib.auth.models import User
 from accountstuff.models import UserInfo
 import random
-
+import functools
 
 # Create your views here.
 def browseCategory(request, category):
@@ -63,6 +63,7 @@ def createItem(request):
 	context={}
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+'''
 def cmp_to_key(mycmp):
     'Convert a cmp= function into a key= function'
     class K(object):
@@ -81,6 +82,7 @@ def cmp_to_key(mycmp):
         def __ne__(self, other):
             return mycmp(self.obj, other.obj) != 0
     return K
+'''
 
 def comparePrice(a, b):
 	return a.price - b.price

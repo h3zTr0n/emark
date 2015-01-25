@@ -11,25 +11,41 @@
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3 sidebar"></div>
+			<div class="col-md-3 sidebar">
+				{% for obj in msgusers %}
+					<p>
+						<a href="/msg/{{obj.sender.username}}">{{obj.sender.first_name}} {{obj.sender.last_name}}</a>: {{obj.unread}} Unread
+					</p>
+				{% endfor %}
+			</div>
 			<div class="col-md-9">
 				{% if requestedUser and requestedUserInfo %}
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
 						</div>
-						<div class="panel-body"></div>
-						<div class="panel-footer"></div>
+						<div class="panel-body">
+							{{smtemp}}
+							{% for msg in specificmessages %}
+								<p>{{msg.sender.first_name}} {{msg.sender.last_name}}: {{msg.body}} ({{msg.timestamp|date:"F d, Y. h:i:s A"}})</p>
+							{% endfor %}
+						</div>
+						<div class="panel-footer">
+							<form action="/msg/pSendMessage/" method="post">
+								{% csrf_token %}
+								<input type="hidden" name="recipient" value="{{requestedUser.username}}">
+								<div class="input-group">
+							    	<input name="body" type="text" class="form-control" placeholder="Message">
+							    	<span class="input-group-btn">
+							    		<button class="btn btn-default" type="submit">Send</button>
+							    	</span>
+							    </div>
+						    </form>
+						</div>
 					</div>
 				{% else %}
 					<div class="well">
 						<h3 class="rowheader">Select a user</h3>
-						{% for obj in msgusers %}
-							{{obj.sender.first_name}} {{obj.sender.last_name}}: {{obj.unread}}<br>
-						{% endfor %}
-						{% for msg in temp %}
-							{{msg.sender.username}}: {{msg.body}}<br>
-						{% endfor %}
 					</div>
 				{% endif %}
 			</div>
