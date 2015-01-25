@@ -181,8 +181,15 @@ def addRating(request):
 	ratingnumber = request.POST['rating']
 	ratingmessage = request.POST['review-message']
 	itemid = request.POST['itemid']
+	
 	item = Item.objects.filter(itemid = itemid)[0]	
+	numRatings = len(Review.objects.filter(item=item))
+	totalRatings = (item.averagerating)*numRatings
+	newRating = (totalRatings + float(ratingnumber))/(numRatings + 1)
+	item.averagerating = newRating
+	item.save()
 
-	rating = Review(user = user, item = item,rating = ratingnumber, text = ratingmessage)
+	rating = Review(user = user, item = item, rating = ratingnumber, text = ratingmessage)
 	rating.save()
+	
 	return HttpResponse("success, created a review for " + item.title)
