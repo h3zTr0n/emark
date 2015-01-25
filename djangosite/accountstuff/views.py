@@ -17,6 +17,7 @@ def getProfile(request, username):
 		"notFound": False,
 		"self": False,
 		"itemsList": None,
+		"followed": False
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
@@ -25,6 +26,9 @@ def getProfile(request, username):
 		context["requestedUser"] = posUsers[0]
 		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
 		context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
+		for follower in context["requestedUserInfo"].followers.all():
+			if follower == request.user:
+				context["followed"] = True
 	if (len(posUsers) == 0):
 		context["notFound"] = True
 	if (request.user.username == username):
@@ -146,6 +150,11 @@ def follow(request, username):
 		masterInfo.followers.add(slaveInfo.user)
 		slaveInfo.save()
 		masterInfo.save()
-		return HttpResponse("You are now " + username + "'s slave")
-	else:
-		return HttpResponse("Sorry, but you cannot follow yourself!")
+	return HttpResponseRedirect("/user/" + username + "/")
+def unfollow(request, username):
+	masterInfo = UserInfo.objects.filter(user = User.objects.filter(username = username)[0])[0]
+	slaveInfo = UserInfo.objects.filter(user = request.user)[0]
+	if slaveInfo != masterInfo:
+		slaveInfo.following.remove(masterInfo.user)
+		masterInfo.followers.remove(slaveInfo.user)
+	return HttpResponseRedirect("/user/" + username +"/")
