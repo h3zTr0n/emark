@@ -67,9 +67,6 @@ body{
 	width:100%;
 	margin: 0 auto;
 }
-#item_content{
-	backgroun-color:white;
-}
 #details{
 	margin-right:10px;
 	margin-left:10px;
@@ -77,4 +74,8 @@ body{
 }
 #details p{
 	font-size:16px;
+}
+#reviews{
+	width:80%;
+	margin: 0 auto;
 }
