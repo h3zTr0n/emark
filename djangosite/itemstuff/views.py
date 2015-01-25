@@ -152,8 +152,7 @@ def search(request):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 #SERVER
-def saveItem(request, function):
-	itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
+def saveItem(request, itemid):
 	title = request.POST['title']
 	details = request.POST['details']
 	price = request.POST['price']
@@ -162,9 +161,21 @@ def saveItem(request, function):
 	category = request.POST['category']
 	picture = request.FILES['pic']
 
-	item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
+	if(itemid == 'new'):
+		itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
+		item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
+	else:
+		itemid = itemid
+		item = Item.objects.filter(itemid=itemid)[0]
+		item.title = title
+		item.details = details
+		item. price = price
+		item.description = description
+		item.tags = tags
+		item.category = category
+		item.picture = picture
 	item.save()
-	return HttpResponse("Success! Created " + title + " for " + request.user.username)
+	return HttpResponse("Success! editted/Created " + title + " for " + request.user.username)
 def addRating(request):
 	user = request.user
 	ratingnumber = request.POST['rating']

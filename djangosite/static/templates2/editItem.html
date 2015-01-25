@@ -7,7 +7,7 @@
 
 {% block content %}
 	{% if item %}
-		<form id ="itemform" action="/item/saveItem/edit" method="POST" enctype="multipart/form-data">
+		<form id ="itemform" action="/item/saveItem/{{item.itemid}}" method="POST" enctype="multipart/form-data">
 	{% else %}
 		<form id ="itemform" action="/item/saveItem/new" method="POST" enctype="multipart/form-data">
 	{% endif %}
