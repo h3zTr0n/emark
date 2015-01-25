@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-	<title>settings</title>
+	<title>settings - craftnet</title>
 {% endblock %}
 
 {% block page_css %}
@@ -16,7 +16,7 @@
 				<ul class="nav nav-pills nav-stacked" role="tablist">
 					<h1 id="name">{{user.first_name}} {{user.last_name}}</h1>
 					{% if userinfo.profile_picture %}
-						<img src={{MEDIA_ROOT}}{{userinfo.profile_picture.url}} class="profile-picture img-circle"/>
+						<img src="{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}" class="profile-picture img-circle"/>
 					{% else %}
 						<img src="{% static 'files/default-profile.jpg' %}" class="profile-picture img-circle"/>
 					{% endif %}
@@ -27,32 +27,34 @@
 				</ul>
 			</div>
 			<div class="col-md-9" id="settings">
-				<form id="settingsform" action="#" method="POST" enctype="multipart/form-data">
+				<form id="settingsform" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">
 					{% csrf_token %}
 					<div class="option-group">
-						<h3 class="group-name">USER SETTINGS</h3>
+						<h3 class="group-name">GENERAL SETTINGS</h3>
 						<div class="group-options">
+							<p>Profile Picture</p>
+							<input type="file" name="pic">
 							<p>First Name</p>
 							<input class="form-control half-input" name="firstname" value="{{user.first_name}}"/>
 							<p>Last Name</p>
 							<input class="form-control half-input" name="lastname" value="{{user.last_name}}"/>
 							<p>Email</p>
 							<input class="form-control" name="email" value="{{user.email}}"/>
-							<p>Password (encrypted or something)</p>
-							<input class="form-control" name="password" value="{{user.password}}"/>
+							<p>Phone Number</p>
+							<input class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}"/>	
+							<p>Bio</p>
+							<textarea rows="5" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!">{{userinfo.bio}}</textarea>
+							<!-- TODO: birthday, cc and shipping -->
 						</div>
 					</div>
 					<div class="option-group">
-						<h3 class="group-name">USERINFO SETTINGS</h3>
+						<h3 class="group-name">CHANGE PASSWORD</h3>
 						<div class="group-options">
-							<p>Bio</p>
-							<textarea rows="5" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!">{{userinfo.bio}}</textarea>
-							<p>Phone Number</p>
-							<input class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}"/>	
-							{{form}}
+							<p>Password</p>
+							<input class="form-control" name="password" value=""/>
 						</div>
 					</div>
-					<input type="submit" value="UPDATE ACCOUNT INFORMATION" class="btn" />
+					<input type="submit" value="UPDATE ACCOUNT INFORMATION" class="btn" /> <!-- for ea opt group, also change opt group to bootstraps -->
 				</form>
 			</div>	
 		</div>

@@ -12,12 +12,13 @@
 	</head>
 	<body>
 		<div id="signup-information">
+			<h1>craftnet</h1>
 			<div class="row">
-				<h1>craftnet</h1>
-				<fieldset>
-					<form id="registerform" action="register/" method="POST">
-						{% csrf_token %}
-						<div class="col-md-6">
+				<div class="col-md-6">
+					<p>Sign up</p>
+					<fieldset>
+						<form id="registerform" action="register/" method="POST">
+							{% csrf_token %}
 							<input class="form-control half-input" name="firstname" placeholder="First"/>
 							<input class="form-control half-input" name="lastname" placeholder="Last"/>
 							<input class="form-control" name="username" placeholder="Username"/>
@@ -102,17 +103,20 @@
 								<option value="1990">1990</option>
 							</select>
 							<button type="submit" id="register" class="btn">SIGN UP</button>
-						</div>
-						<div class="col-md-6">
-							<textarea rows="10" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!"></textarea>
-							<!-- For testing purposes -->
-							<p>Profile Picture</p>
-							<div class="form-group">
-							    <input type="file" id="exampleInputFile"/>
-							</div>
-						</div>
-					</form>
-				</fieldset>
+						</form>
+					</fieldset>	
+				</div>
+				<div class="col-md-6">
+					<fieldset>
+						<form id="signinform" action="signin/" method="POST">
+							{% csrf_token %}
+							<p>Sign in</p>
+							<input class="form-control" name="username" placeholder="Username"/>
+							<input class="form-control" name="password" placeholder="Password"/>
+							<button type="submit" class="btn">SIGN IN</button>
+						</form>
+					</fieldset>				
+				</div>
 			</div>
 		</div>
 	</body>

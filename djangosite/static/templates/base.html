@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset = "utf-8">
 		{% block title %}
 		{% endblock %}
-		<meta charset = "utf-8">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+		<!--<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>-->
+		<link rel="stylesheet" href="{% static 'css/all.css' %}">
 		{% block page_css %}
 		{% endblock %}
 		<link rel="shortcut icon" href="{% static 'files/craftnet-small-icon.jpg' %}"/>
@@ -16,27 +17,48 @@
 	<body>
 		<div class="navigation">
 			<nav id="main-nav" class="navbar navbar-default" role="navigation">
-				<div class="nav-wrapper">
-					<a class="navbar-brand" href="#"/>craftnet</a>
-					<form class="navbar-form navbar-left" role="search">
+				<div class="container">
+					<a class="navbar-brand col-xs-4 col-md-2" href="/"/>craftnet</a>
+					<form class="navbar-form navbar-left col-xs-8 col-md-5" role="search" method="get" action="/search/">
 				        <div class="form-group">
-				        	<input type="text" class="form-control" placeholder="Search" id="searchInput">
+				        	<input type="text" class="form-control" placeholder="Search" id="searchInput" name="q">
 				        </div>
-				        <button type="button" class="btn btn-default" onclick="window.location='/search/' + encodeURI(document.getElementById('searchInput').value)">Submit</button>
+				        <button type="submit" class="btn btn-default">Search</button>
 			    	</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">
-							<span class="glyphicon glyphicon-pencil"></span>
-							Register
-						</a></li>
-						<li><a href="#">
-							<span class="glyphicon glyphicon-user"></span>
-							Sign In
-						</a></li>
-						<li><a href="#">
-							<span class="glyphicon glyphicon-shopping-cart"></span>
-							Shopping Cart
-						</a></li>
+					<ul class="nav navbar-nav navbar-right col-xs-12 col-md-5">
+						{% if user and userinfo %}
+							<li class="navbar-right-item">
+								<a href="/acc/signout/">
+									<span class="glyphicon glyphicon-pencil"></span>
+									Sign Out
+								</a>
+							</li>
+							<li class="navbar-right-item">
+								<a href="/acc/#register">
+									<span class="glyphicon glyphicon-user"></span>
+									Profile
+								</a>
+							</li>
+						{% else %}
+							<li class="navbar-right-item">
+								<a href="/acc/#signin">
+									<span class="glyphicon glyphicon-user"></span>
+									Sign In
+								</a>
+							</li>
+							<li class="navbar-right-item">
+								<a href="/acc/#register">
+									<span class="glyphicon glyphicon-pencil"></span>
+									Register
+								</a>
+							</li>
+						{% endif %}
+						<li class="navbar-right-item">
+							<a href="/cart/">
+								<span class="glyphicon glyphicon-shopping-cart"></span>
+								Shopping Cart
+							</a>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -53,56 +75,65 @@
 		{% block content %}
 		{% endblock %}
 		<footer class="footer">
-			<div id="footer-wrapper">
-					<div class="row">
-						<div class="col-md-4" id="site-information">
-							<p>About Us</p>
-							<ul>
-								<li><a href="#">Support</a></li>
-								<li><a href="#">FAQ</a></li>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">About Us</a></li>
-							</ul>
-						</div>
-						<div class="col-md-4" id="site-information">
-							<p>Let Us Help You</p>
-							<ul>
-								<li><a href="#">Your Account</a></li>
-								<li><a href="#">Shipping Rates & Policies</a></li>
-								<li><a href="#">Returns & Replacements</a></li>
-								<li><a href="#">Help</a></li>
-							</ul>
-						</div>
-						<div class="col-md-4" id="social-media">
-							<p>Follow craftnet</p>
-							<ul>
-								<li><a href="#">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 col-md-offset-2" id="site-information">
+						<p class="footer-title">About Us</p>
+						<ul>
+							<li><a href="#">Support</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Terms of Use</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">About Us</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-md-offset-1" id="site-information">
+						<p class="footer-title">Let Us Help You</p>
+						<ul>
+							<li><a href="#">Your Account</a></li>
+							<li><a href="#">Shipping Rates & Policies</a></li>
+							<li><a href="#">Returns & Replacements</a></li>
+							<li><a href="#">Help</a></li>
+						</ul>
+					</div>
+					<div class="col-md-2 col-md-offset-1" id="social-media">
+						<p class="footer-title">Follow craftnet</p>
+						<ul>
+							<li class="social-media-item">
+								<a class="social-media-link" href="#">
 									<img src="{% static 'files/facebook-icon.png' %}" class="social-media-icon" />
-									<p>Facebook</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'files/twitter-icon.png' %}" class="social-media-icon"/>
-									<p>Twitter</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'files/pinterest-icon.png' %}" class="social-media-icon"/>
-									<p>Pinterest</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'files/instagram-icon.png' %}" class="social-media-icon"/>
-									<p>Instagram</p>
-								</a></li>
-								<li><a href="#">
-									<img src="{% static 'files/snapchat-icon.png' %}" class="social-media-icon"/>
-									<p>Snapchat</p>
-								</a></li>
-							</ul>
-						</div>
+									Facebook
+								</a>
+							</li>
+							<li class="social-media-item">
+								<a class="social-media-link" href="#">
+									<img src="{% static 'files/twitter-icon.png' %}" class="social-media-icon" />
+									Twitter
+								</a>
+							</li>
+							<li class="social-media-item">
+								<a class="social-media-link" href="#">
+									<img src="{% static 'files/pinterest-icon.png' %}" class="social-media-icon" />
+									Pinterest
+								</a>
+							</li>
+							<li class="social-media-item">
+								<a class="social-media-link" href="#">
+									<img src="{% static 'files/instagram-icon.png' %}" class="social-media-icon" />
+									Instagram
+								</a>
+							</li>
+							<li class="social-media-item">
+								<a class="social-media-link" href="#">
+									<img src="{% static 'files/snapchat-icon.png' %}" class="social-media-icon" />
+									Snapchat
+								</a>
+							</li>
+						</ul>
 					</div>
-					<div id="copyright">
-						<p>&copy; 2015 craftnet, Inc.</p>	
-					</div>
+				</div>
+				<div class="copyright">
+					<p>&copy; 2015 craftnet, inc.</p>	
 				</div>
 			</div>
 		</footer>	

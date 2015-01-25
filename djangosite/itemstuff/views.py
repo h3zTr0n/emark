@@ -3,6 +3,7 @@ from itemstuff.models import Item, Review
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
+import random
 
 
 # Create your views here.
@@ -19,6 +20,7 @@ def browseCategory(request, category):
 	items = Item.objects.filter(category=categories[category.strip("/").lower()])
 
 	context = {
+		"category": category.strip("/").lower(),
 		"items": items,
 	}
 	template = loader.get_template('DbrowseCategory.html')
@@ -60,12 +62,12 @@ def comparePrice(a, b):
 def compareTime(a,b):
 	return (a.time - b.time).total_seconds()
 
-def search(request, input):
+def search(request):
 	items = []
-	terms = input.split(' ')
+	terms = request.GET["q"].split(' ')
 	sortby = "relevancy"
-	if "sortby" in request.POST:
-		sortby = request.POST['sortby'] 
+	if "sort" in request.GET:
+		sortby = request.GET['sort'] 
 	for term in terms:
 		for item in Item.objects.filter(title__icontains=term):
 			if item not in items:
@@ -122,7 +124,7 @@ def search(request, input):
 
 #SERVER
 def createItem(request):
-	itemid = request.POST['title'].replace(" ", "").lower() + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9)
+	itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 	title = request.POST['title']
 	details = request.POST['details']
 	price = request.POST['price']

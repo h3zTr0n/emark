@@ -4,70 +4,69 @@
 
 {% block title %}
 	<title>{% if notFound %}
-		{{user.first_name}} {{user.last_name}}
+		profile not found - craftnet
 	{% else %}
-		Profile Not Found
+		{{requestedUser.first_name}} {{requestedUser.last_name}} - craftnet
 	{% endif %}</title>
 {% endblock %}
 
 {% block page_css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>-->
 {% endblock %}
 
 {% block content %}
 	{% if notFound %}
-		<body>Profile Not Found</body>
-	{% elif self %}
-		<body>Your own profile, editable</body>
+		<div class="container blockbg">
+			<h1>Profile Not Found</h1>
+		</div>
 	{% else %}
-		<body>
-			<div id="wrapper">
-				<div id="profile">
-					<img class="img-circle" src="/static/files/harrison_profile.jpg"/>
-					<h1>{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
-					<p>7,324 Followers</p>
-					<div id="personal-information">
-						<div id="bio">
-							<h1>A little bit about myself</h1>
-							<p>EMAIL: {{ requestedUser.email }}</p>
-							<p>BIO: {{ requestedUserInfo.bio }}</p>
-							<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
-							<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>
-							<p>PHONE NUMBER: {{ requestedUserInfo.phonenumber }}</p>
-							<br/>	
-							<h1>My Work</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						</div>			
-					</div>
-				</div>
-				<div class="row" id="sale-items">
-					<h3>Items by Harrison Ding</h3>
-					{% for x in "xxxxxx" %}
-						<div class="col-md-2">
-							<a href="#"><img src="/static/files/featured5.jpg" class="img-thumbnail"/></a>
-						</div>
-					{%endfor%}
-				</div>
-				<div class="row" id="featured-profiles">
-					<h3>People also bought from</h3	>
-					{% for x in "xxxx" %}
-						<div class="col-md-3">
-							<div class="featured-item">
-								<div class="crop"><img src="/static/files/featured1.jpg"/></div>
-								<div class="caption">
-									<p>Item Title 1</p>
-								</div>
-								<div class="featured-profile">
-									<img id="profile-picture" class="img-circle" src="/static/files/william_profile.jpg"/>
-									<h3 class="name">William Hsu</h3>
-									<p>4,123 Connections</p>
-									<button type="button" class="btn btn-primary">Follow</button>
-								</div>
-							</div>
-						</div>
-					{% endfor %}
+		<div class="container">
+			<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+			<div class="row tallrow profile">
+				<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
+				<p>7,324 Followers</p>
+				{% if not self %}
+					<button type="button" class="btn btn-primary btn-lg">Follow</button>
+					<button type="button" class="btn btn-primary btn-lg btn-msg">Message</button>
+				{% endif %}
+				<div class="profile-information blockbg">
+					<h2>A little bit about myself</h2>
+					<p>EMAIL: {{ requestedUser.email }}</p>
+					<p>BIO: {{ requestedUserInfo.bio }}</p>
+					<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
+					<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>
+					<p>PHONE NUMBER: {{ requestedUserInfo.phonenumber }}</p>
+					<br/>	
+					<h2>My Work</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>		
 				</div>
 			</div>
-		</body>
+			<div class="row tallrow blockbg">
+				<h3 class="rowheader">Items by {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
+				{% for x in "xxxxxx" %}
+					<div class="col-md-2">
+						<a href="#"><img src="/static/files/featured5.jpg" class="img-thumbnail"/></a>
+					</div>
+				{%endfor%}
+			</div>
+			<div class="row tallrow blockbg">
+				<h3 class="rowheader">People also bought from</h3	>
+				{% for x in "xxxxxx" %}
+					<div class="col-md-2 browseProfile"> <!-- item img -->
+						<!--
+						<div class="img" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
+						<div class="caption">-->
+							<a href="#">
+								<div class="profPicSmall" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
+								<p class="name">William Hsu</p>
+							</a>
+							<p class="followers">4,123 Followers</p>
+							<button type="button" class="btn btn-primary">Follow</button>
+							<button type="button" class="btn btn-primary btn-msg">Message</button>
+						<!--</div>-->
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 	{% endif %}
 {% endblock %}

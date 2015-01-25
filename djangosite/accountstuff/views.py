@@ -1,13 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
+from uploader.forms import UploadFileForm
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
 import random
 
-# Create your views here.
+#CLIENT
 def getProfile(request, username):
 	posUsers = User.objects.filter(username=username)
 	context = {
@@ -28,12 +29,61 @@ def getProfile(request, username):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def settings(request):
-	template = loader.get_template('DaccountSettings.html')
-	return HttpResponse(template.render(RequestContext(request)))
+	context = {}
+	user=request.user
+	userinfo = UserInfo.objects.filter(user=request.user)[0]
+	if (user.is_authenticated()):
+		if(request.method=="POST"):
+			user.first_name = request.POST['firstname']
+			user.last_name = request.POST['lastname']
+			user.email = request.POST['email']
+			user.password = request.POST['password']
+			user.save()
 
-def signup(request):
+			userinfo.bio=request.POST['bio']
+			userinfo.phonenumber=request.POST['phonenumber']
+			
+			form = UploadFileForm(request.POST,request.FILES)
+			if form.is_valid():
+				userinfo.profile_picture = request.FILES['Avatar	']
+		else:
+			form=UploadFileForm()
+		context = {
+			"user": request.user,
+			"userinfo": userinfo,
+			'form':form,
+		}
+	else:
+		return HttpResponse("Not Signed in")
+	userinfo.save()
+	template = loader.get_template('DaccountSettings.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
+
+def settings2(request):
+	if (not request.user.is_authenticated()):
+		return HttpResponseRedirect("/acc/#signin")
+	context = {
+		"user": request.user,
+		"userinfo": UserInfo.objects.filter(user=request.user)[0]
+	}
+	template = loader.get_template('Dsettings.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
+
+'''
+def signup(request): #gone
 	template = loader.get_template('signup.html')
 	return HttpResponse(template.render(RequestContext(request)))
+'''
+
+def main(request):
+	if (request.user.is_authenticated()):
+		return HttpResponseRedirect("/user/"+request.user.username+"/")
+	template = loader.get_template('Dloginsignup.html')
+	return HttpResponse(template.render(RequestContext(request)))
+
+def signout(request):
+	logout(request)
+	return HttpResponseRedirect("/")
 
 #SERVER
 def info(request):
@@ -47,38 +97,69 @@ def info(request):
 	template = loader.get_template('Sinfo.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def signin(request):
-	username = request.POST['username']
-	password = request.POST['password']
-	user = authenticate(username=username, password=password)
-	if user is not None:
-		login(request, user)
-		return HttpResponse("Signed in as " + user.username)
-	else:
-		return HttpResponse("Unable to sign in.")
-def signout(request):
-	logout(request)
-	return HttpResponse("Success! Logged out.")
-def register(request):
-	username = request.POST['username']
-	if (not username):
-		username = request.POST['firstname'] + request.POST['lastname']
-		username = username.replace(" ", "").lower() + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9)
-	if len(User.objects.filter(username=username)) is not 0:
-		return HttpResponse("Error: Username taken.")
+	#username = request.POST['username']
 	email = request.POST['email']
 	password = request.POST['password']
-	fname = request.POST['firstname']
-	lname = request.POST['lastname']
+	pos = User.objects.filter(email=email)
+	if (len(pos) == 0):
+		return HttpResponse("User does not exist.")
+	else:
+		pos = pos[0]
+	user = authenticate(username=pos.username, password=password)
+	if user is not None:
+		login(request, user)
+		return HttpResponse("Signed in as " + user.username) #TODO redirect?
+	else:
+		return HttpResponse("Password wrong.")
+def register(request):
+	name = request.POST['name'].split(" ")
+	fname = name.pop(0)
+	lname = " ".join(name)
+	'''
+	if (not username in request.POST):
+		username = request.POST['firstname'] + request.POST['lastname']
+		username = username.replace(" ", "").lower() + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9)
+	else:
+		username = request.POST['username']
+	if len(User.objects.filter(username=username)) is not 0:
+		return HttpResponse("Error: Username taken.")
+	'''
+	username = request.POST["name"].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
+	email = request.POST['email']
+	password = request.POST['password']
+	#fname = request.POST['firstname']
+	#lname = request.POST['lastname']
 	user = User.objects.create_user(username, email, password, first_name=fname, last_name=lname)
 	
-	bio = request.POST['bio']
 	gender = request.POST['gender']
 	birthday = date(int(request.POST['year']), int(request.POST['month']), int(request.POST['day']))
-	phonenumber = request.POST['phonenumber']
-	userinfo = UserInfo(user=user, bio=bio, gender=gender, birthday=birthday, phonenumber=phonenumber)
+	
+	userinfo = UserInfo(user=user, gender=gender, birthday=birthday)
 	
 	user.save()
 	userinfo.save()
-	return HttpResponse("Success! Registered user " + username)
+	return HttpResponse("Success! Registered user " + username) #TODO redirect? 
+
 def updateSettings(request):
-	return HttpResponse("TODO")
+	user=request.user
+	userinfo = UserInfo.objects.filter(user=user)[0]
+
+	if ('firstname' in request.POST and request.POST['firstname']):
+		user.first_name = request.POST['firstname']
+	if ('lastname' in request.POST and request.POST['lastname']):
+		user.last_name = request.POST['lastname']
+	if ('email' in request.POST and request.POST['email']):
+		user.email = request.POST['email']
+	if ('password' in request.POST and request.POST['password']):
+		user.set_password(request.POST['password'])
+
+	if ('bio' in request.POST and request.POST['bio']):
+		userinfo.bio=request.POST['bio']
+	if ('phonenumber' in request.POST and request.POST['phonenumber']):
+		userinfo.phonenumber=request.POST['phonenumber']
+	if ('pic' in request.FILES and request.FILES['pic']):
+		userinfo.profile_picture = request.FILES['pic']
+
+	user.save()
+	userinfo.save()
+	return HttpResponse("Success! Settings were changed") #TODO redirect?
