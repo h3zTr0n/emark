@@ -197,7 +197,7 @@ body{
 	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 100%;
-	margin: auto;
+	margin: 0 auto 15px;
 }
 .profPicSmall {
 	width: 100px;
@@ -247,6 +247,7 @@ body{
 }
 .sidebar {
 	margin-bottom: 15px;
+	border-radius: 5px;
 }
 .sidebar h3 {
 	margin: 5px 0 10px;
