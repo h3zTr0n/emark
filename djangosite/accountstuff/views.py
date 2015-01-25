@@ -31,7 +31,7 @@ def getProfile(request, username):
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
-def settings(request):
+def settingsOld(request):
 	context = {}
 	user=request.user
 	userinfo = UserInfo.objects.filter(user=request.user)[0]
@@ -62,7 +62,7 @@ def settings(request):
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
-def settings2(request):
+def settings(request):
 	if (not request.user.is_authenticated()):
 		return HttpResponseRedirect("/acc/#signin")
 	context = {
