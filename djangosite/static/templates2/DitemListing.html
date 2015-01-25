@@ -18,9 +18,12 @@
 					<h4>Item Details</h4>
 					{{item.details}}
 					<h3 id="price">${{item.price}} USD</h3>
-					<input id = "quantity" type = "number" min = 1 max = 200000000>
+					<div class="form-group">
+						<label for="quantity">Quantity</label>
+						<input class="form-control" id = "quantity" type = "number" min = 1 max = 200000000 value=0>
+					</div>
 					{% if seller == user %}
-						<button type="button" class="btn btn-default">Edit this Item</button>
+						<button type="button" class="btn btn-default" onclick="window.location='/item/editItem/{{item.itemid}}'">Edit Item</button>
 					{% else %}
 						<button type="button" class="btn btn-default" onclick="window.location='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>		
 					{% endif %}
@@ -52,7 +55,7 @@
 					{% if item.picture %}
 						<img src="{{MEDIA_ROOT}}{{item.picture.url}}"/>
 					{% else %}
-						<img src={% static 'files/default-picture.jpg' %}
+						<img src={% static 'files/default-picture.jpg' %}/>
 					{% endif %}
 				</div>
 				<div id="details">	

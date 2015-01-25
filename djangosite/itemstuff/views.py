@@ -50,8 +50,16 @@ def getItem(request, username, itemid):
 	template = loader.get_template('DitemListing.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+def editItem(request, itemid):
+	item = Item.objects.filter(itemid=itemid)[0]
+	context={
+		"item":item,
+	}
+	template = loader.get_template('editItem.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
+
 def createItem(request):
-	template = loader.get_template('createItem.html')
+	template = loader.get_template('editItem.html')
 	context={}
 	return HttpResponse(template.render(RequestContext(request, context)))
 
@@ -144,7 +152,7 @@ def search(request):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 #SERVER
-def saveItem(request):
+def saveItem(request, function):
 	itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 	title = request.POST['title']
 	details = request.POST['details']
@@ -157,8 +165,6 @@ def saveItem(request):
 	item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
 	item.save()
 	return HttpResponse("Success! Created " + title + " for " + request.user.username)
-def editItem(request):
-	return HttpResponse("TODO")
 def addRating(request):
 	user = request.user
 	ratingnumber = request.POST['rating']
