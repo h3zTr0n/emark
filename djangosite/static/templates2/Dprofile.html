@@ -27,7 +27,7 @@
 				<p>7,324 Followers</p>
 				{% if not self %}
 					{% if user and userinfo %}
-						<a type="button" class="btn btn-primary btn-lg" href="/user/{{requestedUser.username}}/follow">Follow</button>
+						<a type="button" class="btn btn-primary btn-lg" href="/user/follow/{{requestedUser.username}}">Follow</button>
 						<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
 					{% else %}
 						<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</button>
