@@ -17,6 +17,9 @@ def getProfile(request, username):
 		"notFound": False,
 		"self": False,
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	if (len(posUsers) > 0):
 		context["requestedUser"] = posUsers[0]
 		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
@@ -108,7 +111,7 @@ def signin(request):
 	user = authenticate(username=pos.username, password=password)
 	if user is not None:
 		login(request, user)
-		return HttpResponse("Signed in as " + user.username) #TODO redirect?
+		return HttpResponse("Signed in as " + user.username) #TODO redirect? nah brah
 	else:
 		return HttpResponse("Password wrong.")
 def register(request):

@@ -2,7 +2,9 @@ from django.conf.urls import patterns, url
 from messagestuff import views
 
 urlpatterns = patterns('',
-	url(r'^$', views.allInfo, name='indexAll'),
-	url(r'^sendMessage/$', views.sendMessage, name='sendMessage'),
-	url(r'^viewMessages/$', views.viewMessages, name='viewMessages'),
+	url(r'^$', views.main, name='main'),
+	url(r'^/(?P<username>[A-Za-z0-9]+)/$', views.mainWithUser, name='mainWithUser'),
+	url(r'^info/$', views.allInfo, name='indexAll'),
+	url(r'^pSendMessage/$', views.sendMessage, name='sendMessage'),
+	url(r'^pViewMessages/$', views.viewMessages, name='viewMessages'),
 )

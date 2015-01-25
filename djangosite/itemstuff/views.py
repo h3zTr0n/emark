@@ -114,6 +114,7 @@ def search(request):
 		items = sorted(items, key=cmp_to_key(compareRelevancy))
 		items.reverse()
 	context = {
+		"search": request.GET["q"],
 		"items": items,	
 		"sortby": sortby,
 	}
