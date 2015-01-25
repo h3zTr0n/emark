@@ -48,11 +48,13 @@
 			</div>
 			<div class="row tallrow blockbg">
 				<h3 class="rowheader">Items by {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
-				{% for x in "xxxxxx" %}
+				{% for item in itemsList %}
 					<div class="col-md-2">
-						<a href="#"><img src="/static/files/featured5.jpg" class="img-thumbnail"/></a>
+						<div class="profPicSmall" style="background-image:url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+						<a href="/user/{{item.user.username}}/{{item.itemid}}">{{item.title}}</a>
 					</div>
 				{%endfor%}
+
 			</div>
 			<div class="row tallrow blockbg">
 				<h3 class="rowheader">People also bought from</h3	>

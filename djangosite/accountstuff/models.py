@@ -10,5 +10,7 @@ class UserInfo(models.Model):
 	gender = models.NullBooleanField()
 	birthday = models.DateField()
 	phonenumber = models.CharField(max_length=20)
+	followers = models.ManyToManyField(User)
+	following = models.ManyToManyField(User)
 	def __str__(self):
 		return self.user.username
