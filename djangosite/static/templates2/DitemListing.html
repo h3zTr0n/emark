@@ -45,7 +45,11 @@
 			</div>
 			<div class="col-md-8" id="item-content">
 				<div id="image">
-					<img src="{{MEDIA_ROOT}}{{item.picture.url}}"/>
+					{% if item.picture %}
+						<img src="{{MEDIA_ROOT}}{{item.picture.url}}"/>
+					{% else %}
+						<img src={% static 'files/default-picture.jpg' %}
+					{% endif %}
 				</div>
 				<div id="details">	
 					<h3>Item Description</h3>
