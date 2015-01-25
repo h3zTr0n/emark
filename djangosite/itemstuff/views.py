@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from itemstuff.models import Item
+from itemstuff.models import Item, Review
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
 import random
+
 
 # Create your views here.
 def browseCategory(request, category):
@@ -137,3 +138,7 @@ def createItem(request):
 	return HttpResponse("Success! Created " + title + " for " + request.user.username)
 def editItem(request):
 	return HttpResponse("TODO")
+def addRating(request, item, rating, message):
+	newRating = Review(user = request.user, item = item, rating= rating, text = message)
+	newRating.save()
+	return HttpResponse("Success!!! You created a review!")

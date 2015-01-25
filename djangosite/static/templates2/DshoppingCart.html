@@ -13,37 +13,22 @@
 	<div id="wrapper">
 		<div class = "row">
 			<div class="col-md-3" id="checkout">
-				<p>Subtotal (7 Items):</p>
-				<p class="price">$239.24 USD</p>
+				<p>Subtotal ({{CartList|length}} Items):</p>
+				<p class="price">${{cartListSum}} USD</p>
 				<button type = "button" class = "btn btn-default">PROCEED TO CHECKOUT</button>
 			</div>
 			<div class = "col-md-9" id="cart-items"> 
 				<div class="item-group">
-					<h4>Items from: Harrison Ding</h4>
-					{% for 'x' in 'xxx' %}
-						<div class = "item">
-							<img src = "{% static 'files/harrison_profile.jpg' %}" class = "img-thumbnail shopping-cart-images" alt = ""></img>
-							<div class="item-description">
-								<p class="item-title">INTERESTING ITEM TITLE</p>
-								<p>In Stock</p>
-								<p>Quantity: 3</p>
-								<p class="price">$34.52 USD</p>
-								<button type = "button" class = "item-btn btn">Remove Item</button>
-							</div>
-						</div>
-					{% endfor %}
-				</div>
-				<div class="item-group">
-					<h4>Items from: Young Guo</h4>
-					{% for 'x' in 'xxxx' %}
+					<h4>Items from: {{user.first_name}} {{user.last_name}}</h4>
+					{% for item in CartList %}
 						<div class = "item">
 							<img src = {% static 'files/young_profile.jpg' %} class = "img-thumbnail shopping-cart-images" alt = ""></img>
 							<div class="item-description">
-								<p class="item-title">INTERESTING ITEM TITLE</p>
-								<p>In Stock</p>
-								<p>Quantity: 3</p>
-								<p class="price">$34.52 USD</p>	
-								<button type = "button" class = "item-btn btn btn-danger">Remove Item</button>
+								<p class="item-title">{{item.item.title}}</p>
+								<p>Available</p>
+								<p class="price">${{item.item.price}} USD</p>	
+								<p>Bought from : {{item.item.user.first_name}} {{item.item.user.last_name}}</p>
+								<button type = "button" class = "item-btn btn btn-danger" onclick = {{item.delete}}>Remove Item</button>
 							</div>
 						</div>
 					{% endfor %}
