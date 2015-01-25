@@ -26,8 +26,13 @@
 				<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
 				<p>7,324 Followers</p>
 				{% if not self %}
-					<button type="button" class="btn btn-primary btn-lg">Follow</button>
-					<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
+					{% if user and userinfo %}
+						<a type="button" class="btn btn-primary btn-lg" href="/user/{{requestedUser.username}}/follow">Follow</button>
+						<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
+					{% else %}
+						<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</button>
+						<a type="button" class="btn btn-primary btn-lg btn-msg" href="/acc/#signin">Message</a>
+					{% endif %}
 				{% endif %}
 				<div class="profile-information blockbg">
 					<h2>A little bit about myself</h2>

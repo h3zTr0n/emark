@@ -21,6 +21,7 @@ def browseCategory(request, category):
 	items = Item.objects.filter(category=categories[category.strip("/").lower()])
 
 	context = {
+		"cnum": categories[category.strip("/").lower()],
 		"category": category.strip("/").lower(),
 		"items": items,
 	}
@@ -32,11 +33,16 @@ def browseCategory(request, category):
 
 def getItem(request, username, itemid):
 	seller = User.objects.filter(username=username)[0]
+	sellerinfo = UserInfo.objects.filter(user = seller)[0]
 	item = Item.objects.filter(itemid=itemid)[0]
+
+	reviews = Review.objects.filter(item=item)
 
 	context = {
 		"seller":seller,
+		"sellerinfo":sellerinfo,
 		"item":item,
+		"reviews":reviews,
 	}
 	template = loader.get_template('DitemListing.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
@@ -150,7 +156,13 @@ def saveItem(request):
 	return HttpResponse("Success! Created " + title + " for " + request.user.username)
 def editItem(request):
 	return HttpResponse("TODO")
-def addRating(request, item, rating, message):
-	newRating = Review(user = request.user, item = item, rating= rating, text = message)
-	newRating.save()
-	return HttpResponse("Success!!! You created a review!")
+def addRating(request):
+	user = request.user
+	ratingnumber = request.POST['rating']
+	ratingmessage = request.POST['review-message']
+	itemid = request.POST['itemid']
+	item = Item.objects.filter(itemid = itemid)[0]	
+
+	rating = Review(user = user, item = item,rating = ratingnumber, text = ratingmessage)
+	rating.save()
+	return HttpResponse("success, created a review for " + item.title)

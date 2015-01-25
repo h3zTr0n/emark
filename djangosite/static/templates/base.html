@@ -78,11 +78,11 @@
 			</nav>
 			<nav id="category-nav" class="navbar navbar-default" role="navigation">
 				<ul class="nav navbar-nav">
-					<li><a href="/browse/jewelery">JEWELERY</a></li>
-					<li><a href="/browse/pottery">POTTERY</a></li>
-					<li><a href="/browse/sewingweaving">SEWING & WEAVING</a></li>
-					<li><a href="/browse/clothing">CLOTHING</a></li>
-					<li><a href="/browse/art">ART</a></li>
+					<li {% if cnum == 1 %}class="active"{% endif %}><a href="/browse/jewelery">JEWELERY</a></li>
+					<li {% if cnum == 2 %}class="active"{% endif %}><a href="/browse/pottery">POTTERY</a></li>
+					<li {% if cnum == 3 %}class="active"{% endif %}><a href="/browse/sewingweaving">SEWING & WEAVING</a></li>
+					<li {% if cnum == 4 %}class="active"{% endif %}><a href="/browse/clothing">CLOTHING</a></li>
+					<li {% if cnum == 5 %}class="active"{% endif %}><a href="/browse/art">ART</a></li>
 				</ul>
 			</nav>			
 		</div>

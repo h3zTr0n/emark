@@ -3,16 +3,27 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from messagestuff.models import Message
 from django.contrib.auth.models import User
+from accountstuff.models import UserInfo
 import json
 
 # Create your views here.
 #client
-def main(request):
-	return HttpResponse("todo")
+def main(request, username):
+	context = {}
+	if (username):
+		context["requestedUser"] = User.objects.filter(username=username)[0]
+	if (len(User.objects.filter(username=username))):
+		context["requestedUserInfo"] = UserInfo.objects.filter(user=context["requestedUser"])
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+	template = loader.get_template('Dmessages.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
 
+'''
 def mainWithUser(request, username):
 	return HttpResponse("todo")
-
+'''
 #SERVER
 def allInfo(request):
 	context = {
