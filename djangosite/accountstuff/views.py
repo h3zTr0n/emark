@@ -150,15 +150,11 @@ def follow(request, username):
 		masterInfo.followers.add(slaveInfo.user)
 		slaveInfo.save()
 		masterInfo.save()
-		return HttpResponse("You are now " + username + "'s slave")
-	else:
-		return HttpResponse("Sorry, but you cannot follow yourself!")
+	return HttpResponseRedirect("/user/" + username + "/")
 def unfollow(request, username):
 	masterInfo = UserInfo.objects.filter(user = User.objects.filter(username = username)[0])[0]
 	slaveInfo = UserInfo.objects.filter(user = request.user)[0]
 	if slaveInfo != masterInfo:
 		slaveInfo.following.remove(masterInfo.user)
 		masterInfo.followers.remove(slaveInfo.user)
-		return HttpResponse("Dobby is free!")
-	else:
-		return HttpResponse("Sorry, but you cannot follow yourself!")
+	return HttpResponseRedirect("/user/" + username +"/")
