@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block page_css %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/createItem.css' %}"
+{% endblock %}
+
+{% block content %}
+	{% if item %}
+		<form id ="itemform" action="/item/saveItem/{{item.itemid}}" method="POST" enctype="multipart/form-data">
+	{% else %}
+		<form id ="itemform" action="/item/saveItem/new" method="POST" enctype="multipart/form-data">
+	{% endif %}
+		{% csrf_token %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">GENERAL SETTINGS</h3>
+			</div>
+			<div class="panel-body">
+				{% csrf_token %}
+				<div class="form-group">
+				    <label for="pic">Item Picture</label>
+				    <input type="file" name="pic" id="pic">
+				</div>
+				<div class="form-group">
+				    <label for="title">Title</label>
+				    <input class="form-control" id="title" name="title" value="{{item.title}}"/>
+				</div>
+				<div class="form-group">
+				    <label for="details">Details</label>
+				    <input class="form-control" id="details" name="details" value="{{item.details}}"/>
+				</div>
+				<div class="form-group">
+				    <label for="price">Price</label>
+				    <input type="number" class="form-control" id="price" name="price" value="{{item.price}}"/>
+				</div>
+				<div class="form-group">
+				    <label for="description">Description</label>
+				    <textarea class="form-control" id="description" rows="5" name="description" placeholder="Describe your item">{{item.description}}</textarea>
+				</div>
+				<div class="form-group">
+					<label for="category">Category</label>
+					<select name="category">
+						<option value="1" {% if item.category == 1 %}selected{% endif %}>Jewelery</option>
+						<option value="2" {% if item.category == 2 %}selected{% endif %}>Pottery</option>
+						<option value="3" {% if item.category == 3 %}selected{% endif %}>Sewing & Weaving</option>
+						<option value="4" {% if item.category == 4 %}selected{% endif %}>Clothing</option>
+						<option value="5" {% if item.category == 5 %}selected{% endif %}>Art</option>
+					</select>
+				</div>
+				<div class="form-group">
+				    <label for="tags">Tags</label>
+				    <input class="form-control" id="tags" name="tags" value="{{item.tags}}"/>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<input type="submit" value="{% if item %}Edit Item{% else %}Create Item{% endif %}" class="btn" />
+			</div>
+		</div>	
+	</form>
+{% endblock %}

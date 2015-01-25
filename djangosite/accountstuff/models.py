@@ -10,7 +10,7 @@ class UserInfo(models.Model):
 	gender = models.NullBooleanField()
 	birthday = models.DateField()
 	phonenumber = models.CharField(max_length=20)
-	followers = models.ManyToManyField(User, related_name="followers")
-	following = models.ManyToManyField(User, related_name="following")
+	followers = models.ManyToManyField(User, related_name = "slaves")
+	following = models.ManyToManyField(User, related_name = "masters")
 	def __str__(self):
 		return self.user.username

@@ -18,8 +18,15 @@
 					<h4>Item Details</h4>
 					{{item.details}}
 					<h3 id="price">${{item.price}} USD</h3>
-					<input id = "quantity" type = "number" min = 1 max = 200000000>
-					 <button type="button" class="btn btn-default" onclick="window.location='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>		
+					<div class="form-group">
+						<label for="quantity">Quantity</label>
+						<input class="form-control" id = "quantity" type = "number" min = 1 max = 200000000 value=0>
+					</div>
+					{% if seller == user %}
+						<button type="button" class="btn btn-default" onclick="window.location='/item/editItem/{{item.itemid}}'">Edit Item</button>
+					{% else %}
+						<button type="button" class="btn btn-default" onclick="window.location='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>		
+					{% endif %}
 				</div>
 				<div id="seller-information">
 					<h3>More from</h3>
@@ -45,7 +52,11 @@
 			</div>
 			<div class="col-md-8" id="item-content">
 				<div id="image">
-					<img src="{{MEDIA_ROOT}}{{item.picture.url}}"/>
+					{% if item.picture %}
+						<img src="{{MEDIA_ROOT}}{{item.picture.url}}"/>
+					{% else %}
+						<img src={% static 'files/default-picture.jpg' %}/>
+					{% endif %}
 				</div>
 				<div id="details">	
 					<h3>Item Description</h3>

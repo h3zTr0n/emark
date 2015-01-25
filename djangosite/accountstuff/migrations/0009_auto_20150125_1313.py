@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='userinfo',
             name='following',
-            field=models.ManyToManyField(related_name='following', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='masters'),
             preserve_default=True,
         ),
     ]
