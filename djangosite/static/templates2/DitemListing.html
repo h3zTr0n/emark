@@ -51,9 +51,17 @@
 					{{item.details}}
 				</div>
 				<div id="reviews">
+					<h1>Reviews by valuable customers!</h1>
 					{% for review in reviews %}
-						<h1>{{review.user.first_name}} says</h1>
-						{{review.text}}
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">{{review.user.first_name}} {{review.user.last_name}} says</h3>
+							</div>
+							<div class="panel-body">	
+								<p>Rating: {{review.rating}}</p>
+								<p>{{review.text}}</p>
+							</div>
+						</div>
 					{% endfor %}
 					<form id="reviewform" action="/item/addRating/" method="POST">
 						{% csrf_token %}
