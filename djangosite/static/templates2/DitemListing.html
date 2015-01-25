@@ -47,11 +47,11 @@
 				<div id="image">
 					<img src="{{MEDIA_ROOT}}{{item.picture.url}}"/>
 				</div>
-				<div id="details">
+				<div id="details">	
+					<h3>Item Description</h3>
 					{{item.details}}
 				</div>
 				<div id="reviews">
-					<h1>Reviews by valuable customers!</h1>
 					{% for review in reviews %}
 						<div class="panel panel-default">
 							<div class="panel-heading">
