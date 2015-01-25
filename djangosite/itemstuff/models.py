@@ -16,7 +16,12 @@ class Item(models.Model):
 	itemid = models.TextField()
 	def __str__(self):
 		return self.title
+
 class Review(models.Model):
 	user = models.ForeignKey(User)
+	item = models.ForeignKey(Item, default=0)
 	rating = models.IntegerField()
 	text = models.TextField(blank = True, null = True)
+
+	def __str__(self):
+		return self.text

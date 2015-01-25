@@ -51,22 +51,25 @@
 					{{item.details}}
 				</div>
 				<div id="reviews">
-					<form id="reviewform" action="item/createReview/" method="POST">
+					<form id="reviewform" action="/item/addRating/" method="POST">
 						{% csrf_token %}
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3>POST A REVIEW</h3>
+								<h3 class="panel-title">POST A REVIEW</h3>
 							</div>
-							<div class="form-group">
-								<label for="rating">Rating out of 5 (Format of this to change)</label>
-								<input type="number" class="form-control" id="rating" name="rating"/>
-							</div>
-							<div class="form-group">
-							    <label for="review-message">Your Review</label>
-							    <textarea class="form-control" id="review-message" rows="5" name="review-message" placeholder="What do you have to say?"></textarea>
-							</div>
-							<div class="panel-footer">
-								<input type="submit" value="POST REVIEW" class="btn" />
+							<div class="panel-body">
+								<div class="form-group">
+									<label for="rating">Rating out of 5 (Format of this to change)</label>
+									<input type="number" class="form-control" id="rating" name="rating"/>
+								</div>
+								<div class="form-group">
+								    <label for="review-message">Your Review</label>
+								    <textarea class="form-control" id="review-message" rows="5" name="review-message" placeholder="What do you have to say?"></textarea>
+								</div>
+								<input type="hidden" value={{item.itemid}} id="itemid" name="itemid" />	
+								<div class="panel-footer">
+									<input type="submit" value="POST REVIEW" class="btn" />
+								</div>
 							</div>
 						</div>
 					</form>

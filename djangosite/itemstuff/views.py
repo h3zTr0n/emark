@@ -150,7 +150,13 @@ def saveItem(request):
 	return HttpResponse("Success! Created " + title + " for " + request.user.username)
 def editItem(request):
 	return HttpResponse("TODO")
-def addRating(request, item, rating, message):
-	newRating = Review(user = request.user, item = item, rating= rating, text = message)
-	newRating.save()
-	return HttpResponse("Success!!! You created a review!")
+def addRating(request):
+	user = request.user
+	ratingnumber = request.POST['rating']
+	ratingmessage = request.POST['review-message']
+	itemid = request.POST['itemid']
+	item = Item.objects.filter(itemid = itemid)[0]	
+
+	rating = Review(user = user, item = item,rating = ratingnumber, text = ratingmessage)
+	rating.save()
+	return HttpResponse("success, created a review for " + item.title)
