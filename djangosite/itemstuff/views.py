@@ -3,6 +3,7 @@ from itemstuff.models import Item, Review
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
+from accountstuff.models import UserInfo
 import random
 
 
@@ -23,6 +24,9 @@ def browseCategory(request, category):
 		"category": category.strip("/").lower(),
 		"items": items,
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	template = loader.get_template('DbrowseCategory.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
@@ -119,7 +123,9 @@ def search(request):
 		"items": items,	
 		"sortby": sortby,
 	}
-	
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	template = loader.get_template('Dsearch.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
