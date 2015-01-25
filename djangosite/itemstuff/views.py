@@ -44,6 +44,9 @@ def getItem(request, username, itemid):
 		"item":item,
 		"reviews":reviews,
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	template = loader.get_template('DitemListing.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
