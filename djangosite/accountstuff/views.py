@@ -29,38 +29,6 @@ def getProfile(request, username):
 	
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
-'''
-def settingsOld(request):
-	context = {}
-	user=request.user
-	userinfo = UserInfo.objects.filter(user=request.user)[0]
-	if (user.is_authenticated()):
-		if(request.method=="POST"):
-			user.first_name = request.POST['firstname']
-			user.last_name = request.POST['lastname']
-			user.email = request.POST['email']
-			user.password = request.POST['password']
-			user.save()
-
-			userinfo.bio=request.POST['bio']
-			userinfo.phonenumber=request.POST['phonenumber']
-			
-			form = UploadFileForm(request.POST,request.FILES)
-			if form.is_valid():
-				userinfo.profile_picture = request.FILES['Avatar	']
-		else:
-			form=UploadFileForm()
-		context = {
-			"user": request.user,
-			"userinfo": userinfo,
-			'form':form,
-		}
-	else:
-		return HttpResponse("Not Signed in")
-	userinfo.save()
-	template = loader.get_template('DaccountSettings.html')
-	return HttpResponse(template.render(RequestContext(request, context)))
-'''
 def settings(request):
 	if (not request.user.is_authenticated()):
 		return HttpResponseRedirect("/acc/#signin")
