@@ -29,8 +29,9 @@
 						{% if user and userinfo %}
 							<li class="navbar-right-item">
 								<a href="/user/{{user.username}}/">
-									<span class="glyphicon glyphicon-user"></span>
-									Profile
+									<!--<span class="glyphicon glyphicon-user"></span>-->
+									<div class="profPicTiny" style="background-image:url({{MEDIA_ROOT}}{{userinfo.profile_picture.url}})"></div> 
+									{{user.first_name}} {{user.last_name}}
 								</a>
 								<ul class="dropdown-menu" role="menu">
 									<li>
