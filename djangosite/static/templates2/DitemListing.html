@@ -23,7 +23,7 @@
 				</div>
 				<div id="seller-information">
 					<h3>More from</h3>
-					<img id="profile-picture" class="img-circle" src="{% static 'files/harrison_profile.jpg' %}"/>
+					<img id="profile-picture" class="img-circle" src={{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}/>
 					<h3>{{seller.first_name}} {{seller.last_name}}</h3>
 					<p>223 Followers</p>
 					<div id="featured-items">
