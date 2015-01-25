@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'itemstuff',
     'messagestuff',
     'shoppingcart',
-    'uploader',
 )
 
 MIDDLEWARE_CLASSES = (

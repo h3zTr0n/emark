@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
-from uploader.forms import UploadFileForm
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
 import random
@@ -30,7 +29,7 @@ def getProfile(request, username):
 	
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
-
+'''
 def settingsOld(request):
 	context = {}
 	user=request.user
@@ -61,7 +60,7 @@ def settingsOld(request):
 	userinfo.save()
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
-
+'''
 def settings(request):
 	if (not request.user.is_authenticated()):
 		return HttpResponseRedirect("/acc/#signin")
