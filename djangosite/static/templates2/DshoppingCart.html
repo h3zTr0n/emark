@@ -28,7 +28,7 @@
 								<p>Available</p>
 								<p class="price">${{item.item.price}} USD</p>	
 								<p>Bought from : {{item.item.user.first_name}} {{item.item.user.last_name}}</p>
-								<button type = "button" class = "item-btn btn btn-danger" onclick = {{item.delete}}>Remove Item</button>
+								<a href = "/cart/remove/{{item.uniqueid}}"><button type = "button" class = "item-btn btn btn-danger">Remove Item</button></a>
 							</div>
 						</div>
 					{% endfor %}
