@@ -17,6 +17,9 @@ def getProfile(request, username):
 		"notFound": False,
 		"self": False,
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	if (len(posUsers) > 0):
 		context["requestedUser"] = posUsers[0]
 		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
@@ -28,7 +31,7 @@ def getProfile(request, username):
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
-def settings(request):
+def settingsOld(request):
 	context = {}
 	user=request.user
 	userinfo = UserInfo.objects.filter(user=request.user)[0]
@@ -59,7 +62,7 @@ def settings(request):
 	template = loader.get_template('DaccountSettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
-def settings2(request):
+def settings(request):
 	if (not request.user.is_authenticated()):
 		return HttpResponseRedirect("/acc/#signin")
 	context = {
@@ -108,7 +111,7 @@ def signin(request):
 	user = authenticate(username=pos.username, password=password)
 	if user is not None:
 		login(request, user)
-		return HttpResponse("Signed in as " + user.username) #TODO redirect?
+		return HttpResponse("Signed in as " + user.username) #TODO redirect? nah brah
 	else:
 		return HttpResponse("Password wrong.")
 def register(request):

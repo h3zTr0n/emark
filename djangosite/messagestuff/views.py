@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 import json
 
 # Create your views here.
+#client
+def main(request):
+	return HttpResponse("todo")
+
+def mainWithUser(request, username):
+	return HttpResponse("todo")
+
 #SERVER
 def allInfo(request):
 	context = {

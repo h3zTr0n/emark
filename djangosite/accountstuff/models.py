@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class UserInfo(models.Model):
 	user = models.OneToOneField(User)
 	#user = models.TextField()
-	profile_picture = models.FileField(upload_to="media/",null=True,blank=True)
+	profile_picture = models.FileField(upload_to="users/",null=True,blank=True)
 	bio = models.TextField(null=True,blank=True)
 	gender = models.NullBooleanField()
 	birthday = models.DateField()

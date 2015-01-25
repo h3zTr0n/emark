@@ -25,7 +25,7 @@
 	color:#222; //TODO
 }
 #main-nav .navbar-form{
-	min-width: 41.66666667%%;
+	min-width: 41.66666667%;
 	margin: 0;
 	padding: 6px 0;
 	height: 48px;
@@ -45,6 +45,9 @@
 }
 #main-nav .navbar-right-item{
 	float:right;
+}
+#main-nav .navbar-right-item:hover .dropdown-menu {
+	display: block;
 }
 #category-nav{
 	background-color:white;
@@ -155,7 +158,7 @@ body{
 	margin-bottom:0px;
 	padding:5px;
 	width:100%;
-	background-color:#CCC;
+	background-color:rgba(196,196,196,0.8);
 	color:black;
 }
 .browseItem .caption p{
@@ -194,7 +197,7 @@ body{
 	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 100%;
-	margin: auto;
+	margin: 0 auto 15px;
 }
 .profPicSmall {
 	width: 100px;
@@ -241,6 +244,10 @@ body{
 	background-color: #e6e6e6;
 	border-color: #adadad;
 	color: #333;
+}
+.sidebar {
+	margin-bottom: 15px;
+	border-radius: 5px;
 }
 .sidebar h3 {
 	margin: 5px 0 10px;
