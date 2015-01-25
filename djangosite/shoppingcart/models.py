@@ -7,5 +7,6 @@ class ShoppingCartItem(models.Model):
 	user = models.ForeignKey(User)
 	item = models.ForeignKey(Item)
 	quantity = models.IntegerField()
+	uniqueid = models.TextField(default = "temp")
 	def __str__(self):
 		return self.item.title
