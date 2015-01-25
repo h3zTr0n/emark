@@ -21,6 +21,7 @@ def browseCategory(request, category):
 	items = Item.objects.filter(category=categories[category.strip("/").lower()])
 
 	context = {
+		"cnum": categories[category.strip("/").lower()],
 		"category": category.strip("/").lower(),
 		"items": items,
 	}
