@@ -6,6 +6,16 @@ from django.contrib.auth.models import User
 from accountstuff.models import UserInfo
 import json
 
+def getMessages(howmany, page, kindof, targetusername):
+	target = User.objects.filter(username=targetusername)
+	if (len(target) == 0):
+		return {"error": "user does not exist"}
+	messages = None
+	if (kindof == "to"):
+		messages = Message.objects.filter(recipient=target).order_by('timestamp')[(page*howmany):(page*howmany)+howmany]
+	elif (kindof == "from"): #oldest first all over! not "-timestamp"
+		messages = Message.objects.filter(sender=target).order_by('timestamp')[(page*howmany):(page*howmany)+howmany]
+
 # Create your views here.
 #client
 def main(request, username):
