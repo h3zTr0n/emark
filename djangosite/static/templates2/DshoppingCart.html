@@ -25,7 +25,7 @@
 							<img src = {% static 'files/young_profile.jpg' %} class = "img-thumbnail shopping-cart-images" alt = ""></img>
 							<div class="item-description">
 								<p class="item-title">{{item.item.title}}</p>
-								<p>Available</p>
+								<p>Quantity : {{item.quantity}}</p>
 								<p class="price">${{item.item.price|floatformat:2}} USD</p>	
 								<p>Bought from : {{item.item.user.first_name}} {{item.item.user.last_name}}</p>
 								<a href = "/cart/remove/{{item.uniqueid}}"><button type = "button" class = "item-btn btn btn-danger">Remove Item</button></a>

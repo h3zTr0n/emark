@@ -43,9 +43,9 @@
 			</div>
 			<div class="row tallrow blockbg">
 				<h3 class="rowheader">Items by {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
-				{% for x in "xxxxxx" %}
+				{% for item in itemsList %}
 					<div class="col-md-2">
-						<a href="#"><img src="/static/files/featured5.jpg" class="img-thumbnail"/></a>
+						<a href="#">{{item.title}}</a>
 					</div>
 				{%endfor%}
 			</div>

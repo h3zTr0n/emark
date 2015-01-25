@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from shoppingcart.models import ShoppingCartItem
 from itemstuff.models import Item
 from django.template import RequestContext, loader
@@ -20,9 +20,9 @@ def addItemToUser(request, itemid, quantity):
 		newItem = ShoppingCartItem(user = request.user, item = Item.objects.filter(itemid = itemid)[0], quantity = quantity, uniqueid = "sci" + Item.objects.filter(itemid = itemid)[0].title.replace(" ", "").lower() +  str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)))
 	else :
 		newItem = ShoppingCartItem.objects.filter(user = request.user, item = Item.objects.filter(itemid = itemid)[0])[0]
-		newItem.quantity += quantity
+		newItem.quantity += int(quantity)
 	newItem.save()
-	return HttpResponse("Success!!!!!!!!!")
+	return HttpResponseRedirect("/cart/")
 def sumCartPrices(request, cartlist):
 	sum = 0.0
 	for cartitem in cartlist:
@@ -31,4 +31,5 @@ def sumCartPrices(request, cartlist):
 def removeItem(request, scitemid):
 	removedItem = ShoppingCartItem.objects.filter(uniqueid = scitemid)
 	removedItem.delete()
-	return displayCart(request)
+	#return displayCart(request)
+	return HttpResponseRedirect("/cart/")

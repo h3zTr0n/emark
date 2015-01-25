@@ -5,6 +5,7 @@ from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
+from itemstuff.models import Item
 import random
 
 #CLIENT
@@ -15,6 +16,7 @@ def getProfile(request, username):
 		"requestedUserInfo": None,
 		"notFound": False,
 		"self": False,
+		"itemsList": None,
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
@@ -22,11 +24,13 @@ def getProfile(request, username):
 	if (len(posUsers) > 0):
 		context["requestedUser"] = posUsers[0]
 		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
+		context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
 	if (len(posUsers) == 0):
 		context["notFound"] = True
 	if (request.user.username == username):
 		context["self"] = True
 	
+
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def settings(request):

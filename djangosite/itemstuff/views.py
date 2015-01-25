@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from itemstuff.models import Item, Review
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.contrib.auth.models import User
 from accountstuff.models import UserInfo
