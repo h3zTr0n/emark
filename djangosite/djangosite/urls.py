@@ -25,8 +25,8 @@ urlpatterns = patterns('',
     url(r'^browse/(?P<category>.+)/$', 'itemstuff.views.browseCategory', name="browseCategory"),
     #url(r'^user/settings/$', 'accountstuff.views.settings2', name="getSettings"),
     url(r'^user/(?P<username>[A-Za-z0-9]+)/$', 'accountstuff.views.getProfile', name="getProfile"),
+    url(r'^user/follow/(?P<username>[A-Za-z0-9]+)/$', 'accountstuff.views.follow', name = "follow"),
     url(r'^user/(?P<username>[A-Za-z0-9]+)/(?P<itemid>.+)$', 'itemstuff.views.getItem', name="getItem"),
-    url(r'^user/follow/(?P<username>[A-Za-z0-9]+)$', 'accountstuff.views.follow', name = "follow"),
 
     url(r'^search/$', 'itemstuff.views.search', name="search"),
 )+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

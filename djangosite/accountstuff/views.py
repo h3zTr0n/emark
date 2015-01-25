@@ -139,11 +139,11 @@ def updateSettings(request):
 	return HttpResponse("Success! Settings were changed") #TODO redirect?
 
 def follow(request, username):
-	masterInfo = UserInfo.objects.filter(user = User.objects.filter(username = username)[0])
-	slaveInfo = UserInfo.objects.filter(user = request.user)
+	masterInfo = UserInfo.objects.filter(user = User.objects.filter(username = username)[0])[0]
+	slaveInfo = UserInfo.objects.filter(user = request.user)[0]
 	if slaveInfo != masterInfo:
-		slaveInfo.following.add(masterInfo)
-		masterInfo.followed.add(slaveInfo)
+		slaveInfo.following.add(masterInfo.user)
+		masterInfo.followers.add(slaveInfo.user)
 		slaveInfo.save()
 		masterInfo.save()
 		return HttpResponse("You are now " + username + "'s slave")
