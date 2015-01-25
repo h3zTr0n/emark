@@ -141,8 +141,11 @@ def updateSettings(request):
 def follow(request, username):
 	masterInfo = UserInfo.objects.filter(user = User.objects.filter(username = username)[0])
 	slaveInfo = UserInfo.objects.filter(user = request.user)
-	slaveInfo.following.add(masterInfo)
-	masterInfo.followed.add(slaveInfo)
-	slaveInfo.save()
-	masterInfo.save()
-	return HttpResponse("You are now " + username + "'s slave")
+	if slaveInfo != masterInfo:
+		slaveInfo.following.add(masterInfo)
+		masterInfo.followed.add(slaveInfo)
+		slaveInfo.save()
+		masterInfo.save()
+		return HttpResponse("You are now " + username + "'s slave")
+	else:
+		return HttpResponse("Sorry, but you cannot follow yourself!")
