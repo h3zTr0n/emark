@@ -37,6 +37,11 @@ def getItem(request, username, itemid):
 	template = loader.get_template('DitemListing.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+def createItem(request):
+	template = loader.get_template('createItem.html')
+	context={}
+	return HttpResponse(template.render(RequestContext(request, context)))
+
 def cmp_to_key(mycmp):
     'Convert a cmp= function into a key= function'
     class K(object):
@@ -124,7 +129,7 @@ def search(request):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 #SERVER
-def createItem(request):
+def saveItem(request):
 	itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 	title = request.POST['title']
 	details = request.POST['details']
@@ -132,8 +137,9 @@ def createItem(request):
 	description = request.POST['description']
 	tags = request.POST['tags']
 	category = request.POST['category']
+	picture = request.FILES['pic']
 
-	item = Item(user=request.user,title=title, details=details, price=price, description=description,tags=tags,category=category, itemid = itemid)
+	item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
 	item.save()
 	return HttpResponse("Success! Created " + title + " for " + request.user.username)
 def editItem(request):
