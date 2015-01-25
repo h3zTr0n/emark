@@ -65,8 +65,8 @@ def search(request):
 	items = []
 	terms = request.GET["q"].split(' ')
 	sortby = "relevancy"
-	if "sortby" in request.POST:
-		sortby = request.POST['sortby'] 
+	if "sort" in request.GET:
+		sortby = request.GET['sort'] 
 	for term in terms:
 		for item in Item.objects.filter(title__icontains=term):
 			if item not in items:

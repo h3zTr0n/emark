@@ -6,27 +6,28 @@
 {% endblock %}
 
 {% block page_css %}
+<!--
 	<link rel="stylesheet" href="{% static 'css/grid.css' %}">
 	<link rel="stylesheet" href="{% static 'css/search.css' %}">
+-->
 {% endblock %}
 
 {% block content %}
-	<main class="main">
+	<div class="container">
 		<div class="row">
-			<div class="col-md-2 sidebar">
-				<div id="category-filter">
-					<h2>SORT BY</h2>
-					<FORM id="sORT" aCTION ="#" method=	"posT">
-						{% csrf_token %}
-						<select class="form-control" name="sortby" onchange="document.getElementById('sORT').submit()">
-							<option {% if sortby == "relevancy" %}selected{% endif %} value="relevancy">RELEVANCY</option>
-							<option {% if sortby == "recent" %}selected{% endif %} value="recent">RECENT</option>
-							<option {% if sortby == "lowtohigh" %}selected{% endif %} value="lowtohigh">PRICE LOW TO HIGH</option>
-							<option {% if sortby == "hightolow" %}selected{% endif %} value="hightolow">PRICE HIGH TO LOW</option>
-							<option {% if sortby == "rating" %}selected{% endif %} value="rating">RATING</option>
-						</select>
-					</FORM>
-					<h2>CATEGORIES</h2>
+			<div class="col-md-3 blockbg sidebar">
+				<h3>SORT BY</h3>
+				<form id="sortf" action="#" method="get" class="sbelem">
+					<select class="form-control" name="sort" onchange="document.getElementById('sortf').submit()">
+						<option {% if sortby == "relevancy" %}selected{% endif %} value="relevancy">RELEVANCY</option>
+						<option {% if sortby == "recent" %}selected{% endif %} value="recent">RECENT</option>
+						<option {% if sortby == "lowtohigh" %}selected{% endif %} value="lowtohigh">PRICE LOW TO HIGH</option>
+						<option {% if sortby == "hightolow" %}selected{% endif %} value="hightolow">PRICE HIGH TO LOW</option>
+						<option {% if sortby == "rating" %}selected{% endif %} value="rating">RATING</option>
+					</select>
+				</form>
+				<h3>CATEGORIES</h3>
+				<div id="cataf" class="sbelem">
 					<ul>
 						<li><a href="#">JEWELERY</a></li>
 						<li><a href="#">POTTERY</a></li>
@@ -35,55 +36,26 @@
 						<li><a href="#">ART</a></li>
 					</ul>
 				</div>
-				<div id="price-filter">
-					<h2>FILTER BY PRICE</h2>
-					<div class="input-group">
-			 			<input type="number" class="form-control" placeholder="$MIN">
-					</div>
-					<p>to</p>
-					<div class="input-group">
-			 			<input type="text" class="form-control" placeholder="$MAX">
-					</div>
-				</div>
-				<div id="color-filter">
-					<h2>FILTER BY COLOR</h2>                        
-					<div id="color-buttons">
-						<div class="color" id="red"></div>
-						<div class="color" id="blue"></div>
-						<div class="color" id="green"></div>
-						<div class="color" id="yellow"></div>
-						<div class="color" id="orange"></div>
-						<div class="color" id="purple"></div>
-						<div class="color" id="black"></div>
-						<div class="color" id="white"></div>
-					</div>
-				</div>
-				<div id="location-filter">
-					<h2>FILTER BY LOCATION</h2>
-					<div class="radio"><label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						ANYWHERE
-					</label></div>
-					<div class="radio"><label>
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-						UNITED STATES ONLY
-					</label></div>
+				<h3>FILTER BY PRICE</h3>
+				<div id="pricef" class="sbelem">
+			 		$<input type="number" class="form-control" placeholder="MIN"> to $<input type="number" class="form-control" placeholder="MAX">
+			 		<button class="btn btn-default btn-sm">FILTER</button>
 				</div>
 			</div>
-			<div class="col-md-10 search-items grid">
+			<div class="col-md-9">
 				{% for item in items %}
-					<div class="item r1 c1">
-						<a href="#">
-							<img src="{% static 'files/featured1.jpg' %}"/>
+					<div class="browseItem three">
+						<a href="/user/{{item.user.username}}/{{item.itemid}}">
+							<div class="img" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
 							<div class="caption">
 								<p class="title">{{item.title}}</p>
-								<p class="price">${{item.price}} USD</p>
-								<p class="seller">{{item.user.first_name}} {{item.user.last_name}}</p>
+								<p class="price">${{item.price|floatformat:2}}</p>
+								<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
 							</div>
 						</a>
 					</div>
 				{% endfor %}
 			</div>
 		</div>
-	</main>
+	</div>
 {% endblock %}

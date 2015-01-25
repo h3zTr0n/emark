@@ -14,12 +14,12 @@
 {% block content %}
 <div class="container">
 	{% for item in items %}
-		<div class="browseItem">
+		<div class="browseItem four">
 			<a href="/user/{{item.user.username}}/{{item.itemid}}">
 				<div class="img" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
 				<div class="caption">
 					<p class="title">{{item.title}}</p>
-					<p class="price">${{item.price}}</p>
+					<p class="price">${{item.price|floatformat:2}}</p>
 					<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
 				</div>
 			</a>
