@@ -1,0 +1,12 @@
+#itemform{
+	width:40%;
+	margin:0 auto;
+}
+#current-picture{
+	margin: 0 auto;
+	text-align:center;
+}
+#current-picture img{
+	width:40%;
+	margin-bottom:5%;
+}
