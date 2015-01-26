@@ -138,6 +138,15 @@ def updateSettings(request):
 	if ('pic' in request.FILES and request.FILES['pic']):
 		userinfo.profile_picture = request.FILES['pic']
 
+	if('oldpassword' in request.POST and request.POST['oldpassword']
+		and 'password' in request.POST and request.POST['password']
+		and 'passwordagain' in request.POST and request.POST['passwordagain']):
+		oldpassword = request.POST['oldpassword']
+		password = request.POST['password']
+		newpassword = request.POST['passwordagain']
+		if(oldpassword == user.password and password == newpassword):
+			user.password = newpassword
+
 	user.save()
 	userinfo.save()
 	return HttpResponse("Success! Settings were changed") #TODO redirect?
