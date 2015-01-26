@@ -155,15 +155,23 @@ def search(request):
 
 #SERVER
 def saveItem(request, itemid):
-	title = request.POST['title']
-	details = request.POST['details']
-	price = request.POST['price']
-	description = request.POST['description']
-	tags = request.POST['tags']
-	category = request.POST['category']
-	picture = request.FILES['pic']
+	title = details = price = desciprtion = tags = category = None
+
+	if('title' in request.POST and request.POST['title']):
+		title = request.POST['title']
+	if('details' in request.POST and request.POST['details']):
+		details = request.POST['details']
+	if('price' in request.POST and request.POST['price']):
+		price = request.POST['price']
+	if('description' in request.POST and request.POST['description']):
+		description = request.POST['description']
+	if('tags' in request.POST and request.POST['tags']):
+		tags = request.POST['tags']
+	if('category' in request.POST and request.POST['category']):
+		category = request.POST['category']
 
 	if(itemid == 'new'):
+		picture = None
 		itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 		item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
 	else:
@@ -175,7 +183,9 @@ def saveItem(request, itemid):
 		item.description = description
 		item.tags = tags
 		item.category = category
-		item.picture = picture
+		if('pic' in request.FILES and request.FILES['pic']):
+			item.picture = request.FILES['pic']
+
 	item.save()
 	return HttpResponse("Success! editted/Created " + title + " for " + request.user.username)
 def addRating(request):
