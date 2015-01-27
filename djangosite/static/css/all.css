@@ -147,12 +147,14 @@ body{
 .browseItem a {
 	color: #333;
 }
-.browseItem .img {
-	width: 100%;
-	height: 100%;
+.img {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+}
+.browseItem .img {
+	width: 100%;
+	height: 100%;
 }
 .browseItem .caption {
 	position:absolute;
@@ -297,6 +299,52 @@ body{
 .msgs .name {
 	font-weight: bold;
 	max-width: 50px;
+}
+.imageholder {
+	width: 100%;
+}
+.autoimg {
+	width: 100%;
+	height: 400px;
+}
+.qfg label {
+	width: 20%;
+}
+.qfg input {
+	display: inline-block;
+	width: 70%;
+	margin-left: 8%;
+}
+.cmer {
+	text-align: right;
+}
+.item-information h1, .item-information h4 {
+	text-align: center;
+	margin-top: 5px;
+}
+.details {
+	margin-top: 10px;
+}
+.details h3, .details p{
+	margin-top: 5px;
+}
+.reviewholder {
+	max-height: 800px;
+	overflow-y: auto;
+}
+.seller-information h3 {
+	margin-top: 5px;
+}
+.seller-information h4 {
+	text-align: center;
+}
+.featured-items .featureItem {
+	width: 47%;
+	margin: 5px 1%;
+}
+.featured-items .featureItem .img {
+	width: 100%;
+	height: 150px;
 }
 @media (max-width: 768px) {
 	#main-nav, #main-nav input, #main-nav .btn {

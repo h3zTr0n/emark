@@ -18,7 +18,9 @@ function checkMessages(firstTime) {
 		//console.log("Checked unread messages: Originally " + unread + ", Now " + data);
 		if (data != unread) {
 			unread = Number(data);
-			document.getElementById("unreadMessages").innerHTML = unread;
+			if (unread > 0) {
+				document.getElementById("unreadMessages").innerHTML = unread;
+			}
 			if (window.location.pathname.indexOf("/msg/") != -1 && !firstTime) {
 				window.location = window.location.href;
 			}
