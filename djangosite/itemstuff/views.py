@@ -34,6 +34,8 @@ def browseCategory(request, category):
 def getItem(request, username, itemid):
 	seller = User.objects.filter(username=username)[0]
 	sellerinfo = UserInfo.objects.filter(user = seller)[0]
+	selleritems = Item.objects.filter(user=seller)
+
 	item = Item.objects.filter(itemid=itemid)[0]
 
 	reviews = Review.objects.filter(item=item)
@@ -41,6 +43,7 @@ def getItem(request, username, itemid):
 	context = {
 		"seller":seller,
 		"sellerinfo":sellerinfo,
+		"selleritems":selleritems,
 		"item":item,
 		"reviews":reviews,
 	}
