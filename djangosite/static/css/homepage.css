@@ -108,6 +108,14 @@ NEWSFEED
 	margin: 0 auto;
 	padding:5%;
 }
+.profile .user-bio{
+	margin-top:10px;
+}
+.profile .profile-link{
+	color:#333;
+	font-weight:bold;
+	font-size:24px;
+}
 .profile-image{
 	margin: 0 auto;
 	width:150px;
