@@ -14,6 +14,8 @@ class Item(models.Model):
 	tags = models.TextField(blank=True, null=True)
 	time = models.DateTimeField(auto_now=True)
 	itemid = models.TextField()
+	averagerating = models.FloatField(default=0)
+
 	def __str__(self):
 		return self.title
 

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block page_css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/createItem.css' %}"
+	<link rel="stylesheet" type="text/css" href="{% static 'css/editItem.css' %}"
 {% endblock %}
 
 {% block content %}
@@ -18,8 +18,15 @@
 			</div>
 			<div class="panel-body">
 				{% csrf_token %}
+				<div id="current-picture">
+					{% if item.picture %}
+						<img src={{MEDIA_ROOT}}{{item.picture.url}}/>
+					{% else %}
+						<img src="{% static 'files/default-picture.jpg' %}"/>
+					{% endif %}
+				</div>
 				<div class="form-group">
-				    <label for="pic">Item Picture</label>
+				    <label for="pic">Change Current Picture</label>
 				    <input type="file" name="pic" id="pic">
 				</div>
 				<div class="form-group">

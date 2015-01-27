@@ -24,20 +24,25 @@ def getMessages(howmany, page, kindof, targetusername, mark=True):
 			if (mess.status == 1):
 				mess.status = 2
 				mess.save()
-	return list(messages)
+	return messages
 
 def getMessagesSpecific(howmany, page, user1, user2, mark=True):
-	user1 = User.objects.filter(username=user1)
-	user2 = User.objects.filter(username=user2)
+	user1 = User.objects.filter(username=user1)[0] #who you're talking to
+	user2 = User.objects.filter(username=user2)[0] #you
 	messages1 = Message.objects.filter(sender=user1, recipient=user2)
 	messages2 = Message.objects.filter(sender=user2, recipient=user1)
 	#result_list = list(chain(messages1, messages2))
-	allmessages = chain(messages1, messages2)
 	if (mark):
-		for mess in allmessages:
+		for mess in messages1:
 			if (mess.status == 1):
 				mess.status = 2
 				mess.save()
+		# for mess in messages2:
+		# 	if (mess.status == 1):
+		# 		mess.status = 2
+		# 		mess.save()
+	allmessages = chain(messages1, messages2)
+	#return sorted(allmessages,key=attrgetter('timestamp'))[(page*howmany):(page*howmany)+howmany]
 	return sorted(allmessages,key=attrgetter('timestamp'))[(page*howmany):(page*howmany)+howmany]
 
 def getUnreadMessages(touser, fromuser):
@@ -52,19 +57,22 @@ def getUnreadMessages(touser, fromuser):
 
 def main(request, username):
 	context = {}
-	if (username):
+	if (username != ""):
 		context["requestedUser"] = User.objects.filter(username=username)[0]
 	if (len(User.objects.filter(username=username))):
 		context["requestedUserInfo"] = UserInfo.objects.filter(user=context["requestedUser"])
 		context["specificmessages"] = getMessagesSpecific(100,0,username,request.user.username)
 	recmes = getMessages(100,0,"to",request.user.username,False)
-	context["msgusers"] = [];
+	#context["temptome"] = recmes
+	seen = []
+	context["msgusers"] = []
 	for msgg in recmes:
-		if (not msgg.sender in context["msgusers"]):
+		if (not msgg.sender in seen):
 			context["msgusers"].append({
 				"sender": msgg.sender,
 				"unread": getUnreadMessages(request.user, msgg.sender)
 			})
+			seen.append(msgg.sender)
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
@@ -105,7 +113,7 @@ def viewMessages(request):
 		page = request.POST["page"]
 		kindof = request.POST["specification"] #"from" or "to"
 		target = request.POST["target"]
-	msgs = getMessages(howmany, page, kindof, target)
+	msgs = list(getMessages(howmany, page, kindof, target))
 	for msg in msgs:
 		msg['sender'] = msg['sender'].username;
 		msg['recipient'] = msg['recipient'].username;
@@ -113,7 +121,7 @@ def viewMessages(request):
 	return HttpResponse(json.dumps(msgs))
 
 def unreadMessages(request):
-	msgs = getMessages(100,0,"to",request.user.username,False)
+	msgs = list(getMessages(100,0,"to",request.user.username,False))
 	count = 0
 	for msg in msgs:
 		if (msg.status < 2):

@@ -75,6 +75,9 @@ body{
 	background-color:white;
 	padding:3%;
 }
+#rating{
+	font-weight:bold;
+}
 #details p{
 	font-size:16px;
 }

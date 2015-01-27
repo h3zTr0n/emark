@@ -18,6 +18,7 @@
 			<div class="col-md-3 blockbg sidebar">
 				<h3>SORT BY</h3>
 				<form id="sortf" action="#" method="get" class="sbelem">
+					<input type="hidden" name="q" value="{{search}}">
 					<select class="form-control" name="sort" onchange="document.getElementById('sortf').submit()">
 						<option {% if sortby == "relevancy" %}selected{% endif %} value="relevancy">RELEVANCY</option>
 						<option {% if sortby == "recent" %}selected{% endif %} value="recent">RECENT</option>

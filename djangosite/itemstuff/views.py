@@ -5,7 +5,7 @@ from django.template import RequestContext, loader
 from django.contrib.auth.models import User
 from accountstuff.models import UserInfo
 import random
-
+import functools
 
 # Create your views here.
 def browseCategory(request, category):
@@ -63,6 +63,7 @@ def createItem(request):
 	context={}
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+'''
 def cmp_to_key(mycmp):
     'Convert a cmp= function into a key= function'
     class K(object):
@@ -81,6 +82,7 @@ def cmp_to_key(mycmp):
         def __ne__(self, other):
             return mycmp(self.obj, other.obj) != 0
     return K
+'''
 
 def comparePrice(a, b):
 	return a.price - b.price
@@ -153,15 +155,23 @@ def search(request):
 
 #SERVER
 def saveItem(request, itemid):
-	title = request.POST['title']
-	details = request.POST['details']
-	price = request.POST['price']
-	description = request.POST['description']
-	tags = request.POST['tags']
-	category = request.POST['category']
-	picture = request.FILES['pic']
+	title = details = price = desciprtion = tags = category = None
+
+	if('title' in request.POST and request.POST['title']):
+		title = request.POST['title']
+	if('details' in request.POST and request.POST['details']):
+		details = request.POST['details']
+	if('price' in request.POST and request.POST['price']):
+		price = request.POST['price']
+	if('description' in request.POST and request.POST['description']):
+		description = request.POST['description']
+	if('tags' in request.POST and request.POST['tags']):
+		tags = request.POST['tags']
+	if('category' in request.POST and request.POST['category']):
+		category = request.POST['category']
 
 	if(itemid == 'new'):
+		picture = None
 		itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 		item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
 	else:
@@ -173,7 +183,9 @@ def saveItem(request, itemid):
 		item.description = description
 		item.tags = tags
 		item.category = category
-		item.picture = picture
+		if('pic' in request.FILES and request.FILES['pic']):
+			item.picture = request.FILES['pic']
+
 	item.save()
 	return HttpResponse("Success! editted/Created " + title + " for " + request.user.username)
 def addRating(request):
@@ -181,8 +193,15 @@ def addRating(request):
 	ratingnumber = request.POST['rating']
 	ratingmessage = request.POST['review-message']
 	itemid = request.POST['itemid']
+	
 	item = Item.objects.filter(itemid = itemid)[0]	
+	numRatings = len(Review.objects.filter(item=item))
+	totalRatings = (item.averagerating)*numRatings
+	newRating = (totalRatings + float(ratingnumber))/(numRatings + 1)
+	item.averagerating = newRating
+	item.save()
 
-	rating = Review(user = user, item = item,rating = ratingnumber, text = ratingmessage)
+	rating = Review(user = user, item = item, rating = ratingnumber, text = ratingmessage)
 	rating.save()
+	
 	return HttpResponse("success, created a review for " + item.title)

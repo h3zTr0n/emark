@@ -209,6 +209,16 @@ body{
 	border-radius: 100%;
 	margin: auto;
 }
+.profPicTiny {
+	width: 20px;
+	height: 20px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 100%;
+	display: inline-block;
+	margin: 0 3px -5px 0;
+}
 .tallrow, .profile-information {
 	margin: 10px 0;
 }
