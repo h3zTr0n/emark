@@ -188,6 +188,12 @@ def saveItem(request, itemid):
 
 	item.save()
 	return HttpResponse("Success! editted/Created " + title + " for " + request.user.username)
+
+def deleteItem(request, itemid):
+	item = Item.objects.filter(itemid=itemid)[0]
+	item.delete()
+	return HttpResponse("deleted this item")
+
 def addRating(request):
 	user = request.user
 	ratingnumber = request.POST['rating']

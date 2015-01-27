@@ -192,6 +192,14 @@ body{
 .profile {
 	text-align: center;
 }
+.no-profile{
+	padding:5%;
+	text-align:center;
+}
+.no-profile img{
+	width:200px;
+	height:200px;
+}
 .profile a.btn {
 	margin: 5px;
 }

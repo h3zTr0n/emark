@@ -16,8 +16,9 @@
 
 {% block content %}
 	{% if notFound %}
-		<div class="container blockbg">
-			<h1>Profile Not Found</h1>
+		<div class="no-profile">
+			<img class="img-circle" src="{% static 'files/default-profile.jpg' %}"/>
+			<h1>Sorry! We couldn't find the user you were looking for.</h1>
 		</div>
 	{% else %}
 		<div class="container">
