@@ -30,18 +30,19 @@
 							<li class="navbar-right-item">
 								<a href="/user/{{user.username}}/">
 									<!--<span class="glyphicon glyphicon-user"></span>-->
-									<div class="profPicTiny" style="background-image:url({{MEDIA_ROOT}}{{userinfo.profile_picture.url}})"></div> 
+									<div class="profPicTiny" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div> 
 									{{user.first_name}} {{user.last_name}}
 								</a>
 								<ul class="dropdown-menu" role="menu">
 									<li>
-										<a href="/msg/" class="text-danger">
+										<a href="/msg/">
+											<span class="badge pull-right" id="unreadMessages"></span>
 											<span class="glyphicon glyphicon-comment"></span>
 											Messages
 										</a>
 									</li>
 									<li>
-										<a href="/acc/settings/" class="text-danger">
+										<a href="/acc/settings/">
 											<span class="glyphicon glyphicon-asterisk"></span>
 											Settings
 										</a>
@@ -151,6 +152,7 @@
 					<p>&copy; 2015 craftnet, inc.</p>	
 				</div>
 			</div>
-		</footer>	
+		</footer>
+		<script src="{% static 'css/js.js' %}"></script>	
 	</body>
 </html>
