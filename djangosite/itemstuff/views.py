@@ -5,7 +5,7 @@ from django.template import RequestContext, loader
 from django.contrib.auth.models import User
 from accountstuff.models import UserInfo
 import random
-import functools
+from functools import cmp_to_key
 
 # Create your views here.
 def browseCategory(request, category):
