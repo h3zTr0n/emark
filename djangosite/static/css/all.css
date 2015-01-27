@@ -92,6 +92,10 @@
 	border-bottom-width:1px;
 	border-top-width:3px;
 }*/
+.btn.btn-no-border {
+	border-bottom-width: 1px !important;
+	border-top-width: 1px !important;
+}
 body{
 	font-family: 'Open Sans', sans-serif;
 }
@@ -274,6 +278,17 @@ body{
 }
 .sidebar .sbelem:last-child {
 	margin-bottom: 5px;
+}
+.msgsBody {
+	max-height: 500px;
+	overflow-y: auto;
+}
+.msgs {
+	margin-bottom: 0;
+}
+.msgs .name {
+	font-weight: bold;
+	max-width: 50px;
 }
 @media (max-width: 768px) {
 	#main-nav, #main-nav input, #main-nav .btn {

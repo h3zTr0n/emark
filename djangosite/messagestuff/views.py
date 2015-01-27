@@ -70,7 +70,8 @@ def main(request, username):
 		if (not msgg.sender in seen):
 			context["msgusers"].append({
 				"sender": msgg.sender,
-				"unread": getUnreadMessages(request.user, msgg.sender)
+				"userinfo": UserInfo.objects.filter(user=msgg.sender)[0],
+				"unread": getUnreadMessages(request.user, msgg.sender),
 			})
 			seen.append(msgg.sender)
 	if (request.user.is_authenticated()):
