@@ -18,19 +18,23 @@
 					<h4>Item Details</h4>
 					{{item.details}}
 					<h3 id="price">${{item.price}} USD</h3>
-					<div class="form-group">
-						<label for="quantity">Quantity</label>
-						<input class="form-control" id = "quantity" type = "number" min = 1 max = 200000000 value=0>
-					</div>
 					{% if seller == user %}
 						<button type="button" class="btn btn-default" onclick="window.location='/item/editItem/{{item.itemid}}'">Edit Item</button>
 					{% else %}
+						<div class="form-group">
+							<label for="quantity">Quantity</label>
+							<input class="form-control" id = "quantity" type = "number" min = 1 max = 200000000 value=0>
+						</div>
 						<button type="button" class="btn btn-default" onclick="window.location='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>		
 					{% endif %}
 				</div>
 				<div id="seller-information">
 					<h3>More from</h3>
-					<img id="profile-picture" class="img-circle" src={{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}/>
+					{% if sellerinfo.profile_picture %}
+						<img id="profile-picture" class="img-circle" src={{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}/>
+					{% else %}
+						<img id="profile-picture" class="img-circle" src="{% static 'files/default-profile.jpg' %}"/>
+					{% endif %}
 					<h3>{{seller.first_name}} {{seller.last_name}}</h3>
 					<p>223 Followers</p>
 					<div id="featured-items">
