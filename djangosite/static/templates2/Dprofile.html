@@ -58,14 +58,13 @@
 				</div>
 			</div>
 			<div class="row tallrow blockbg">
-				<h3 class="rowheader">Items by {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
+				<h3 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
 				{% for item in itemsList %}
-					<div class="col-md-2">
+					<div class="col-md-2 browseProfile">
 						<div class="profPicSmall" style="background-image:url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 						<a href="/user/{{item.user.username}}/{{item.itemid}}">{{item.title}}</a>
 					</div>
 				{%endfor%}
-
 			</div>
 			<div class="row tallrow blockbg">
 				<h3 class="rowheader">People also bought from</h3	>

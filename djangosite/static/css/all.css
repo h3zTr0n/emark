@@ -76,6 +76,9 @@
 #category-nav li:hover, #category-nav li.active{
 	border-bottom:6px solid #FF6600;
 }
+.container{
+	width:65%;
+}
 .btn {
 	border: 1px solid #CC5200;
 	border-bottom-width:3px;
@@ -135,6 +138,10 @@ body{
 	height: 200px;
 	margin-left: 1%;
 	margin-bottom: 10px;
+}
+.browseItem.five {
+	width: 19%;
+	//margin-left: 1%;
 }
 .browseItem.four {
 	width: 24%;
@@ -245,7 +252,8 @@ body{
 }
 .rowheader {
 	margin-top: 5px;
-	margin-left: 15px;
+	text-align:center;
+	font-weight:bold;
 }
 .browseProfile {
 	height: 200px;
@@ -344,7 +352,9 @@ body{
 	overflow-y: auto;
 }
 .seller-information h3 {
-	margin-top: 5px;
+	text-align:center;
+	font-weight:bold;
+	margin-top: 0px;
 }
 .seller-information h4 {
 	text-align: center;
