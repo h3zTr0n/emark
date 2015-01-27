@@ -4,6 +4,7 @@ from django.template import RequestContext, loader
 from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
 from itemstuff.models import Item
+import random
 
 def home(request):
 	context = {}
@@ -12,6 +13,23 @@ def home(request):
 		context = {
 			"user": request.user,
 			"userinfo": posInfos[0] if posInfos else None
+		}
+	else:
+		userinfos = UserInfo.objects.all()
+		randInts3 = random.sample(range(len(userinfos)),3)
+		featureduserinfos = []
+		for rand in randInts3:
+			featureduserinfos.append(userinfos[rand])
+
+		items = Item.objects.all()
+		randInts4 = random.sample(range(len(items)),4)
+		featureditems = []
+
+		for rand in randInts4:
+			featureditems.append(items[rand])
+		context={
+			"featureduserinfos":featureduserinfos,
+			"featureditems":featureditems,
 		}
 	template = loader.get_template('Dhomepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
