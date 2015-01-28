@@ -164,13 +164,29 @@ def searchnew(request):
 		items = sorted(items, key=cmp_to_key(compareRelevancy))
 		items.reverse()
 	items = list(items)
+
+	#filtering options
+	categoryFilteredItems = []
+	categoryPriceFilteredItems = []
+
 	for item in items:
-		if (cata[item.category-1] == False):
-			items.remove(item)
-		if (minPrice and item.price < minPrice):
-			items.remove(item)
-		if (maxPrice and item.price > maxPrice):
-			items.remote(item)
+		if (cata[item.category-1] == True):
+			categoryFilteredItems.append(item)
+	for item in categoryFilteredItems:
+		if(minPrice == None and maxPrice == None):
+			categoryPriceFilteredItems.append(item)
+		if(minPrice and maxPrice == None):
+			if(item.price > minPrice):
+				categoryPriceFilteredItems.append(item)
+		if(maxPrice and minPrice == None):
+			if(item.price < maxPrice):
+				categoryPriceFilteredItems.append(item)
+		if(minPrice and maxPrice):
+			if(item.price > minPrice and item.price < maxPrice):
+				categoryPriceFilteredItems.append(item)
+
+	items = categoryPriceFilteredItems
+
 	context = {
 		"search": request.GET["q"],
 		"items": items,	
