@@ -115,6 +115,7 @@ body{
 	font-family: 'Open Sans', sans-serif;
 }
 .footer{
+	padding-top:15px;
 	width:100%;
 	position:absolute;
 	min-height:150px;
@@ -269,8 +270,11 @@ body{
 	display: inline-block;
 	margin: 0 3px -5px 0;
 }
-.tallrow, .profile-information {
+.tallrow {
 	margin: 10px 0;
+}
+.profile-information{
+	padding:1%;
 }
 .rowheader {
 	margin-top: 5px;
@@ -308,6 +312,8 @@ body{
 	color: #333;
 }
 .sidebar {
+	text-align:center;
+	padding:1%;
 	margin-bottom: 15px;
 	border-radius: 5px;
 }
