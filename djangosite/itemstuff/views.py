@@ -103,8 +103,7 @@ def compareTime(a,b):
 	return (a.time - b.time).total_seconds()
 
 def searchnew(request):
-	categories = ["jewelry","pottery","sewingweaving","clothing","art"]
-	#
+	#categories = ["jewelry","pottery","sewingweaving","clothing","art"]
 	terms = request.GET["q"].split(' ')
 	sortby = "relevancy"
 	if "sort" in request.GET:
@@ -112,8 +111,85 @@ def searchnew(request):
 	cata = [True, True, True, True, True]
 	if (len(request.GET) > 1):
 		cata = ["cjewelry" in request.GET, "cpottery" in request.GET, "csewingweaving" in request.GET, "cclothing" in request.GET, "cart" in request.GET]
-	minPrice
-	maxPrice
+	minPrice = None
+	maxPrice = None
+	if ("minPrice" in request.GET and request.GET["minPrice"]):
+		minPrice = float(request.GET["minPrice"])
+	if ("maxPrice" in request.GET and request.GET["maxPrice"]):
+		maxPrice = float(request.GET["maxPrice"])
+	#
+	items = []
+	for term in terms:
+		for item in Item.objects.filter(title__icontains=term):
+			if item not in items:
+				items.append(item)
+		for item in Item.objects.filter(details__icontains=term):
+			if item not in items:
+				items.append(item) 
+		for item in Item.objects.filter(description__icontains=term):
+			if item not in items:
+				items.append(item)
+		for item in Item.objects.filter(tags__icontains=term):
+			if item not in items:
+				items.append(item)
+	def compareRelevancy(a,b):
+		acount = bcount = 0
+		for term in terms:
+			if term in a.title:
+				acount+=1
+			if term in a.details:
+				acount+=1
+			if term in a.description:
+				acount+=1
+			if term in a.tags:
+				acount+=1
+			if term in b.title:
+				bcount+=1
+			if term in b.details:
+				bcount+=1
+			if term in b.description:
+				bcount+=1
+			if term in b.tags:
+				bcount+=1
+		return acount - bcount
+	if sortby == "lowtohigh":
+		items = sorted(items, key=cmp_to_key(comparePrice))
+	if sortby == "hightolow":
+		items = sorted(items, key=cmp_to_key(comparePrice))
+		items.reverse()
+	if sortby == "recent":
+		items = sorted(items, key=cmp_to_key(compareTime))
+		items.reverse()
+	if sortby == "relevancy":
+		items = sorted(items, key=cmp_to_key(compareRelevancy))
+		items.reverse()
+	items = list(items)
+	for item in items:
+		if (cata[item.category-1] == False):
+			items.remove(item)
+		if (minPrice and item.price < minPrice):
+			items.remove(item)
+		if (maxPrice and item.price > maxPrice):
+			items.remote(item)
+	context = {
+		"search": request.GET["q"],
+		"items": items,	
+		"sortby": sortby,
+		"cata": {
+			"jewelry": cata[0],
+			"pottery": cata[1],
+			"sewingweaving": cata[2],
+			"clothing": cata[3],
+			"art": cata[4],
+		},
+		"minPrice": minPrice,
+		"maxPrice": maxPrice,
+	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+	template = loader.get_template('Dsearch.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
 
 def search(request):
 	categories = [
