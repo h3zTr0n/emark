@@ -26,7 +26,8 @@ def getProfile(request, username):
 	if (len(posUsers) > 0):
 		context["requestedUser"] = posUsers[0]
 		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
-		context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
+		if(len(Item.objects.filter(user = context["requestedUser"])) > 0):
+			context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
 		requestedUserFollowers = context["requestedUserInfo"].followers.all()
 		requestedUserFollowerInfos = []
 		for follower in requestedUserFollowers:
