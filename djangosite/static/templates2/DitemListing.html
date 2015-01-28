@@ -17,6 +17,7 @@
 					<h1>{{item.title}}</h1>
 					<h4>{{item.averagerating}}</h4>
 					<h3>Details</h3>
+					<p id="category">Category: {{itemCategory}}</p>
 					<p>{{item.details}}</p>
 					<h3 class="cmer">${{item.price|floatformat:2}}</h3>
 					{% if seller == user %}
@@ -34,12 +35,14 @@
 					{% endif %}
 				</div>
 				<div class="well seller-information">
-					<h3>Item by {{seller.first_name}} {{seller.last_name}}</h3>
-					<div class="profPic" style="background-image:url('{% if sellerinfo.profile_picture %}{{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+					<a id="seller-link" href="/user/{{seller.username}}">
+						<h3>Item by {{seller.first_name}} {{seller.last_name}}<h3>
+						<div class="profPic" style="background-image:url('{% if sellerinfo.profile_picture %}{{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+					</a>
 					<h4>{{sellerinfo.followers.all|length}} Followers</h4>
 					<div class="featured-items">
 						{% for item in selleritems %}
-							<div class="browseItem one">
+							<div class="browseItem two">
 								<a href="/user/{{item.user.username}}/{{item.itemid}}">
 									<div class="img" style="background-image: url(
 										{% if item.picture %}
@@ -47,11 +50,6 @@
 										{% else %}
 											{% static 'files/default-picture.jpg' %}
 										{% endif %})"/>
-									</div>
-									<div class="caption">
-										<p class="title">{{item.title}}</p>
-										<p class="price">${{item.price|floatformat:2}}</p>
-										<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
 									</div>
 								</a>
 							</div>

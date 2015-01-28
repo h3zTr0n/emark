@@ -337,6 +337,10 @@ body{
 .item-information h1{
 	font-weight:bold;
 }
+.item-information #category{
+	font-size:14px;
+	font-style:italic;
+}
 .item-information h1, .item-information h4 {
 	text-align: center;
 	margin-top: 5px;
@@ -350,6 +354,18 @@ body{
 .reviewholder {
 	max-height: 800px;
 	overflow-y: auto;
+}
+.seller-information{
+	text-align:center;
+}
+.seller-information .browseItem{
+	height:150px;
+}
+.seller-information #seller-link{
+	color:#333;
+}
+.seller-information a:hover{
+	text-decoration:none;
 }
 .seller-information h3 {
 	text-align:center;

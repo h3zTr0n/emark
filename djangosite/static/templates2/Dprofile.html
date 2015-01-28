@@ -25,7 +25,7 @@
 			<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 			<div class="row tallrow profile">
 				<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
-				<p>7,324 Followers</p>
+				<p>{{requestedUserInfo.followers.all|length}} Followers</p>
 				{% if not followed %}
 					{% if not self %}
 						{% if user and userinfo %}
@@ -66,24 +66,22 @@
 					</div>
 				{%endfor%}
 			</div>
-			<div class="row tallrow blockbg">
-				<h3 class="rowheader">People also bought from</h3	>
-				{% for x in "xxxxxx" %}
-					<div class="col-md-2 browseProfile"> <!-- item img -->
-						<!--
-						<div class="img" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
-						<div class="caption">-->
+			{% if requestedUserFollowers %}
+				<div class="row tallrow blockbg">
+					<h3 class="rowheader">People who follow {{requestedUser.first_name}}</h3>
+					{% for follower in requestedUserFollowers %}
+						<div class="browseItem four">
 							<a href="#">
 								<div class="profPicSmall" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
-								<p class="name">William Hsu</p>
+								<p class="name">{{follower.first_name}} {{follower.last_name}}</p>
 							</a>
-							<p class="followers">4,123 Followers</p>
+							<p class="followers">{{follower.followers.all|length}} Followers</p>
 							<button type="button" class="btn btn-primary">Follow</button>
 							<button type="button" class="btn btn-primary btn-msg">Message</button>
-						<!--</div>-->
-					</div>
-				{% endfor %}
-			</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 	{% endif %}
 {% endblock %}

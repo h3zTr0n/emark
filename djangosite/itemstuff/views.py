@@ -37,6 +37,14 @@ def getItem(request, username, itemid):
 	selleritems = Item.objects.filter(user=seller)
 
 	item = Item.objects.filter(itemid=itemid)[0]
+	categories = [
+		"Jewelry",
+		"Pottery",
+		"Sewing & Weaving",
+		"Clothing",
+		"Art",
+	]
+	itemCategory = categories[item.category]
 
 	reviews = Review.objects.filter(item=item)
 
@@ -45,6 +53,7 @@ def getItem(request, username, itemid):
 		"sellerinfo":sellerinfo,
 		"selleritems":selleritems,
 		"item":item,
+		"itemCategory":itemCategory,
 		"reviews":reviews,
 	}
 	if (request.user.is_authenticated()):
