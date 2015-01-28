@@ -113,6 +113,8 @@ def register(request):
 	password = request.POST['password']
 	#fname = request.POST['firstname']
 	#lname = request.POST['lastname']
+	if len(User.objects.filter(email=email)) is not 0:
+		return HttpResponse("Error: Email taken.")
 	user = User.objects.create_user(username, email, password, first_name=fname, last_name=lname)
 	
 	gender = request.POST['gender']

@@ -122,11 +122,12 @@ def viewMessages(request):
 	return HttpResponse(json.dumps(msgs))
 
 def unreadMessages(request):
-	msgs = list(getMessages(100,0,"to",request.user.username,False))
 	count = 0
-	for msg in msgs:
-		if (msg.status < 2):
-			count += 1
+	if (request.user.is_authenticated()):
+		msgs = list(getMessages(100,0,"to",request.user.username,False))
+		for msg in msgs:
+			if (msg.status < 2):
+				count += 1
 	return HttpResponse(count)
 '''
 def viewMessagesOld(request):
