@@ -205,7 +205,7 @@ body{
 	background: #f5f5f5;
 	text-align:;
 }
-.followers .col-md-2{
+.followers .col-md-2	{
 	padding:5px;
 }
 .profile {
@@ -301,7 +301,7 @@ body{
 .sidebar select, .sidebar input {
 	display: inline-block;
 }
-.sidebar input {
+.sidebar .price-input {
 	width: 80px;
 }
 .sidebar .sbelem {
