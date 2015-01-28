@@ -15,11 +15,11 @@
 			<div class="col-md-3" id="checkout">
 				<p>Subtotal ({{CartList|length}} Items):</p>
 				<p class="price">${{cartListSum|floatformat:2}} USD</p>
-				<button type = "button" class = "btn btn-default">PROCEED TO CHECKOUT</button>
+				<a href = "/cart/checkout/pShipping"><button type = "button" class = "btn btn-default">PROCEED TO CHECKOUT</button></a>
 			</div>
 			<div class = "col-md-9" id="cart-items"> 
 				<div class="item-group">
-					<h4>Items from: {{user.first_name}} {{user.last_name}}</h4>
+					<h4>Items In Your Cart</h4>
 					{% for item in CartList %}
 						<div class = "item">
 							<img src = {% static 'files/young_profile.jpg' %} class = "img-thumbnail shopping-cart-images" alt = ""></img>

@@ -10,3 +10,4 @@ class ShoppingCartItem(models.Model):
 	uniqueid = models.TextField(default = "temp")
 	def __str__(self):
 		return self.item.title
+

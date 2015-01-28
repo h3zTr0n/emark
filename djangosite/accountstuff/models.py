@@ -14,3 +14,19 @@ class UserInfo(models.Model):
 	following = models.ManyToManyField(User, related_name = "masters", blank = True, null = True)
 	def __str__(self):
 		return self.user.username
+
+class Address(models.Model):
+	user = models.ForeignKey(User)
+	country = models.TextField()
+	street = models.TextField()
+	aptsuiteother = models.TextField(blank = True)
+	zipcode = models.TextField()
+	city = models.TextField()
+	state = models.TextField()
+
+class CreditCards(models.Model):
+	user = models.ForeignKey(User)
+	cardNumber = models.TextField()
+	monthExp = models.IntegerField()
+	yearExp = models.IntegerField()
+	securityCode = models.IntegerField()
