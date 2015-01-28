@@ -16,36 +16,61 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3 blockbg sidebar">
-				<h3>SORT BY</h3>
 				<form id="sortf" action="#" method="get" class="sbelem">
-					<input type="hidden" name="q" value="{{search}}">
-					<select class="form-control" name="sort" onchange="document.getElementById('sortf').submit()">
-						<option {% if sortby == "relevancy" %}selected{% endif %} value="relevancy">RELEVANCY</option>
-						<option {% if sortby == "recent" %}selected{% endif %} value="recent">RECENT</option>
-						<option {% if sortby == "lowtohigh" %}selected{% endif %} value="lowtohigh">PRICE LOW TO HIGH</option>
-						<option {% if sortby == "hightolow" %}selected{% endif %} value="hightolow">PRICE HIGH TO LOW</option>
-						<option {% if sortby == "rating" %}selected{% endif %} value="rating">RATING</option>
-					</select>
+					<h3>SORT BY</h3>
+						<input type="hidden" name="q" value="{{search}}">
+						<select class="form-control" name="sort" onchange="document.getElementById('sortf').submit()">
+							<option {% if sortby == "relevancy" %}selected{% endif %} value="relevancy">RELEVANCY</option>
+							<option {% if sortby == "recent" %}selected{% endif %} value="recent">RECENT</option>
+							<option {% if sortby == "lowtohigh" %}selected{% endif %} value="lowtohigh">PRICE LOW TO HIGH</option>
+							<option {% if sortby == "hightolow" %}selected{% endif %} value="hightolow">PRICE HIGH TO LOW</option>
+							<option {% if sortby == "rating" %}selected{% endif %} value="rating">RATING</option>
+						</select>
+					<h3>CATEGORIES</h3>
+					<div id="cataf" class="sbelem">
+						<div class="checkbox">
+							<label>
+								<input name="cjewelry" type="checkbox" value="" {% if cata.jewelry %}checked{% endif %}>
+								Jewelry
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input name="cpottery" type="checkbox" value="" {% if cata.pottery %}checked{% endif %}>
+								Pottery
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input name="csewingweaving" type="checkbox" value="" {% if cata.sewingweaving %}checked{% endif %}>
+								Sewing & Weaving
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input name="cclothing" type="checkbox" value="" {% if cata.clothing %}checked{% endif %}>
+								Clothing
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input name="cart" type="checkbox" value="" {% if cata.art %}checked{% endif %}>
+								Art
+							</label>
+						</div>
+					</div>
+					<h3>FILTER BY PRICE</h3>
+					<div id="pricef" class="sbelem">
+				 		$<input type="number" name="minPrice" class="form-control" placeholder="MIN" value="{{minPrice|floatformat:2}}"> to $<input type="number"  name="maxPrice" class="form-control" placeholder="MAX" value="{{maxPrice|floatformat:2}}">
+				 		<button type="submit" class="btn btn-default btn-sm">FILTER</button>
+					</div>
 				</form>
-				<h3>CATEGORIES</h3>
-				<div id="cataf" class="sbelem">
-					<ul>
-						<li><a href="#">JEWELERY</a></li>
-						<li><a href="#">POTTERY</a></li>
-						<li><a href="#">SEWING & WEAVING</a></li>
-						<li><a href="#">CLOTHING</a></li>
-						<li><a href="#">ART</a></li>
-					</ul>
-				</div>
-				<h3>FILTER BY PRICE</h3>
-				<div id="pricef" class="sbelem">
-			 		$<input type="number" class="form-control" placeholder="MIN"> to $<input type="number" class="form-control" placeholder="MAX">
-			 		<button class="btn btn-default btn-sm">FILTER</button>
-				</div>
 			</div>
+			{{cata.jewelry}}{{cata.pottery}}{{cata.sewingweaving}}{{cata.clothing}}{{cata.art}} {{items|length}}
 			<div class="col-md-9">
 				{% for item in items %}
 					<div class="browseItem three">
+						{{item.category}}
 						<a href="/user/{{item.user.username}}/{{item.itemid}}">
 							<div class="img" style="background-image: url(
 								{% if item.picture %}
