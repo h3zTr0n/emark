@@ -1,9 +1,7 @@
 todo
 
 checkout stuff
-listings of profiles on profile page
-listings of items on itemlisting page
 search filtering
 homepage listings
 AJAX EVERYWHERE
-UI STUFF
+UI STUFF - HELLA FORMATTING
