@@ -66,14 +66,15 @@
 					</div>
 				{%endfor%}
 			</div>
-			{% if requestedUserFollowers %}
+			{% if requestedUserFollowerInfos %}
 				<div class="row tallrow blockbg">
 					<h3 class="rowheader">People who follow {{requestedUser.first_name}}</h3>
-					{% for follower in requestedUserFollowers %}
+					{% for followerinfo in requestedUserFollowerInfos %}
+						{{followerinfo.user.user}}
 						<div class="browseItem four">
-							<a href="#">
-								<div class="profPicSmall" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
-								<p class="name">{{follower.first_name}} {{follower.last_name}}</p>
+							<a href="/user/{{followerinfo.user.username}}">
+								<div class="profPicSmall" style="background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
+								<p class="name">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</p>
 							</a>
 							<p class="followers">{{follower.followers.all|length}} Followers</p>
 							<button type="button" class="btn btn-primary">Follow</button>

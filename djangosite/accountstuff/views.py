@@ -14,7 +14,7 @@ def getProfile(request, username):
 	context = {
 		"requestedUser": None,
 		"requestedUserInfo": None,
-		"requestedUserFollowers": None,
+		"requestedUserFollowerInfos": None,
 		"notFound": False,
 		"self": False,
 		"itemsList": None,
@@ -28,11 +28,13 @@ def getProfile(request, username):
 		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
 		context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
 		requestedUserFollowers = context["requestedUserInfo"].followers.all()
+		requestedUserFollowerInfos = []
 		for follower in requestedUserFollowers:
 			if follower == request.user:
 				context["followed"] = True
+			requestedUserFollowerInfos.append(UserInfo.objects.filter(user=follower)[0])
 		if(len(requestedUserFollowers) > 0):
-			context["requestedUserFollowers"] = requestedUserFollowers
+			context["requestedUserFollowerInfos"] = requestedUserFollowerInfos
 	if (len(posUsers) == 0):
 		context["notFound"] = True
 	if (request.user.username == username):
