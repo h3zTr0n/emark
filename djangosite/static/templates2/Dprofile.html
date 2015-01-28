@@ -23,43 +23,65 @@
 	{% else %}
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 blockbg sidebar">
-					<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
-					<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
-					<p>EMAIL: {{ requestedUser.email }}</p>
-					<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
-					<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>
-					<p>PHONE NUMBER: {{ requestedUserInfo.phonenumber }}</p>
-					<p>{{requestedUserInfo.followers.all|length}} Followers</p>
-					{% if not followed %}
-						{% if not self %}
-							{% if user and userinfo %}
-								<a type="button" class="btn btn-primary btn-lg" href="/user/follow/{{requestedUser.username}}/">Follow</a>
-								<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
-							{% else %}
-								<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
-								<a type="button" class="btn btn-primary btn-lg btn-msg" href="/acc/#signin">Message</a>
+				<div class="col-md-3 sidebar">
+					<div class="profile-information blockbg">
+						<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
+						<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+						<p>EMAIL: {{ requestedUser.email }}</p>
+						<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
+						<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>
+						<p>PHONE NUMBER: {{ requestedUserInfo.phonenumber }}</p>
+						<div id="social-links">
+							{% if not followed %}
+								{% if not self %}
+									{% if user and userinfo %}
+										<a type="button" class="btn btn-primary btn-lg" href="/user/follow/{{requestedUser.username}}/">Follow</a>
+										<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
+									{% else %}
+										<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
+										<a type="button" class="btn btn-primary btn-lg btn-msg" href="/acc/#signin">Message</a>
+									{% endif %}
+								{% endif %}
+							{% else %}	
+								{% if not self %}
+									{% if user and userinfo %}
+										<a type="button" class="btn btn-primary btn-lg" href="/user/unfollow/{{requestedUser.username}}/">Unfollow</a>
+										<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
+									{% endif %}
+								{% endif %}
 							{% endif %}
+						</div>
+					</div>
+					<div class="followlist blockbg">
+						{% if requestedUserFollowerInfos %}
+							<h4 class="rowheader">People who follow {{requestedUser.first_name}}</h4>
+							{% for followerinfo in requestedUserFollowerInfos %}
+								{{followerinfo.user.user}}
+								<div class="followlist-item" style="margin-bottom:5px;">
+									<div class="followlist-img img-circle" style="width:35px; height:35px; background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
+									<a class="follower-name" href="/user/{{followerinfo.user.username}}">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</a>
+								</div>
+									<!-- <div class="profile">
+										<a href="/user/{{followerinfo.user.username}}">
+											<div class="profPicSmall" style="background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
+											<p class="name">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</p>
+										</a>
+										<p class="followers">{{follower.followers.all|length}} Followers</p>
+									</div> -->
+							{% endfor %}
 						{% endif %}
-					{% else %}	
-						{% if not self %}
-							{% if user and userinfo %}
-								<a type="button" class="btn btn-primary btn-lg" href="/user/unfollow/{{requestedUser.username}}/">Unfollow</a>
-								<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
-							{% endif %}
-						{% endif %}
-					{% endif %}
+					</div>
 				</div>	
 				<div class="col-md-9">
-					<div class="profile-information blockbg">
-						<h1 class="rowheader">A little bit about {{requestedUser.first_name}}</h1>
-						<p>{{requestedUserInfo.bio}}</p>		
+					<div class="profile-content blockbg">
+						<h3 class="rowheader">A little bit about {{requestedUser.first_name}}</h3>
+						<p id="bio">{{requestedUserInfo.bio}}</p>		
 					</div>
 					{% if itemsList %}
 						<div class="row tallrow">
 							<h3 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
 							{% for item in itemsList %}
-								<div class="browseItem four">
+								<div class="browseItem three">
 									<a href="/user/{{item.user.username}}/{{item.itemid}}">
 										<div class="img" style="background-image: url(
 											{% if item.picture %}
@@ -76,23 +98,6 @@
 									</a>
 								</div>
 							{%endfor%}
-						</div>
-					{% endif %}
-					{% if requestedUserFollowerInfos %}
-						<div class="row tallrow followers">
-							<h3 class="rowheader">People who follow {{requestedUser.first_name}}</h3>
-							{% for followerinfo in requestedUserFollowerInfos %}
-								{{followerinfo.user.user}}
-								<div class="col-md-2">
-									<div class="profile">
-										<a href="/user/{{followerinfo.user.username}}">
-											<div class="profPicSmall" style="background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
-											<p class="name">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</p>
-										</a>
-										<p class="followers">{{follower.followers.all|length}} Followers</p>
-									</div>
-								</div>
-							{% endfor %}
 						</div>
 					{% endif %}
 				</div>

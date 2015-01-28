@@ -14,15 +14,17 @@
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3 blockbg sidebar">
-				<h1 class="rowheader">{{user.first_name}} {{user.last_name}}</h1>
-				<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
-				<ul class="nav nav-pills nav-stacked" role="tablist">
-					<li role="presentation" class="active"><a href="#">Account</a></li>
-		  			<li role="presentation"><a href="#">Preferences</a></li>
-		  			<li role="presentation"><a href="#">Privacy & Security</a></li>
-		  			<li role="presentation"><a href="#">Payment Options</a></li>
-				</ul>
+			<div class="col-md-3 sidebar">
+				<div class="profile-information blockbg">
+					<h1 class="rowheader">{{user.first_name}} {{user.last_name}}</h1>
+					<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+					<ul class="nav nav-pills nav-stacked" role="tablist">
+						<li role="presentation" class="active"><a href="#">Account</a></li>
+			  			<li role="presentation"><a href="#">Preferences</a></li>
+			  			<li role="presentation"><a href="#">Privacy & Security</a></li>
+			  			<li role="presentation"><a href="#">Payment Options</a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="col-md-9">
 				<form id="generalform" class="" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">

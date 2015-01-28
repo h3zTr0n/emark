@@ -220,9 +220,8 @@ body{
 }
 .blockbg {
 	background: #f5f5f5;
-	text-align:;
 }
-.followers .col-md-2	{
+.followers .col-md-3 {
 	padding:5px;
 }
 .profile {
@@ -252,8 +251,8 @@ body{
 	margin: 0 auto 15px;
 }
 .profPicSmall {
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -273,8 +272,11 @@ body{
 .tallrow {
 	margin: 10px 0;
 }
-.profile-information{
+.profile-content{
 	padding:1%;
+}
+.profile-content #bio{
+	font-size:18px;
 }
 .rowheader {
 	margin-top: 5px;
@@ -312,8 +314,6 @@ body{
 	color: #333;
 }
 .sidebar {
-	text-align:center;
-	padding:1%;
 	margin-bottom: 15px;
 	border-radius: 5px;
 }
@@ -323,6 +323,20 @@ body{
 .sidebar select, .sidebar input {
 	display: inline-block;
 }
+.sidebar .profile-information, .followlist{
+	padding:4%;
+}
+.sidebar .followlist .followlist-img{
+
+}
+.sidebar .followlist .follower-name{
+	float:right;
+	margin-top:-30px;
+	padding-right:10%;
+}
+.sidebar .followlist .follower-name:after{
+	clear:both;
+}
 .sidebar .price-input {
 	width: 80px;
 }
@@ -331,6 +345,25 @@ body{
 }
 .sidebar .sbelem:last-child {
 	margin-bottom: 5px;
+}
+.sidebar p{
+	font-size:16px;
+	margin-bottom:0px;
+}
+.sidebar #num-followers{
+	text-align:center;
+	font-weight:bold;
+	margin-top:10px;
+}
+.sidebar #social-links{
+	margin-top:10px;
+	text-align:center;
+}
+.sidebar .followlist{
+	margin-top:10px;
+}
+.sidebar .followlist-item{
+
 }
 .msgsBody {
 	max-height: 500px;
