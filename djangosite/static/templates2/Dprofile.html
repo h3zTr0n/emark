@@ -84,15 +84,13 @@
 					<h3 class="rowheader">People who follow {{requestedUser.first_name}}</h3>
 					{% for followerinfo in requestedUserFollowerInfos %}
 						{{followerinfo.user.user}}
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<div class="profile">
 								<a href="/user/{{followerinfo.user.username}}">
 									<div class="profPicSmall" style="background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
 									<p class="name">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</p>
 								</a>
 								<p class="followers">{{follower.followers.all|length}} Followers</p>
-								<button type="button" class="btn btn-primary">Follow</button>
-								<button type="button" class="btn btn-primary btn-msg">Message</button>
 							</div>
 						</div>
 					{% endfor %}
