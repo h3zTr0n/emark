@@ -11,56 +11,60 @@
 {% endblock %}
 
 {% block content %}
-	<div id="wrapper">
+	<div class="container">
 		{% if user and userinfo %}
-			<div id="in">
-					<div class="profile-banner">
-						<img src="{% static 'files/young_profile.jpg' %}" class="img-circle profile-image"/>
-						<p id="user">{{user.first_name}} {{user.last_name}}</p>
-						<ul>
-							<li><a href="#">Profile</a></li> /
-							<li><a href="#">Your Shop</a></li> /
-							<li><a href="#">Connections</a></li>
-						</ul>
+			<div class="jumbotron hm">
+				<div class="profPic" style="background-image:url('{% if sellerinfo.profile_picture %}{{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+				<p id="user">{{user.first_name}} {{user.last_name}}</p>
+				<ul>
+					<li><a href="#">Profile</a></li> /
+					<li><a href="#">Your Shop</a></li> /
+					<li><a href="#">Connections</a></li>
+				</ul>
+			</div>
+			<div class="row">
+				<!-- TEMPORARY -->
+				<div class="sidebar col-md-3">
+					<h1>CHAT?</h1>
+					{% for 'x' in 'xxxxxx' %}
+						<div class="chat-user" style="margin-bottom:5px;">
+							<img src="{% static 'files/harrison_profile.jpg' %}" class="img-circle" style="width:50px; height:50px;"/>
+							<p style="float:right; font-size:18px; padding-right:20%; padding-top:10px">Harrison Ding</p>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="col-md-9">
+					<div class="section-title">
+						<h2>RECOMMENDED FOR YOU</h2>
+						<p>Based off your previous purchases/interactions</p>
 					</div>
 					<div class="grid">
-						<!-- TEMPORARY -->
-						<div class="sidebar item r1 c3">							<h1>CHAT?</h1>
-							{% for 'x' in 'xxxxxx' %}
-								<div class="chat-user" style="margin-bottom:5px;">
-									<img src="{% static 'files/harrison_profile.jpg' %}" class="img-circle" style="width:50px; height:50px;"/>
-									<p style="float:right; font-size:18px; padding-right:20%; padding-top:10px">Harrison Ding</p>
-								</div>
-							{% endfor %}
-						</div>
-						<div class="item r3">
-							<div class="section-title">
-								<h2>RECOMMENDED FOR YOU</h2>
-								<p>Based off your previous purchases/interactions</p>
+						{% for item in featureditems2 %}
+							<div class="browseItem two">
+								<a href="/user/{{item.user.username}}/{{item.itemid}}">
+									<div class="img" style="background-image: url(
+										{% if item.picture %}
+											{{MEDIA_ROOT}}{{item.picture.url}}
+										{% else %}
+											{% static 'files/default-picture.jpg' %}
+										{% endif %})"/>
+									</div>
+									<div class="caption">
+										<p class="title">{{item.title}}</p>
+										<p class="price">${{item.price|floatformat:2}}</p>
+										<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
+									</div>
+								</a>
 							</div>
-							<div class="grid">
-								{% for 'x' in 'xxxxxxxxx' %}
-								<div class="item r2 c1">
-									<a href="#">
-										<img src="{% static 'files/featured1.jpg' %}"/>
-										<div class="caption">
-											<p class="title">TITLE</p>
-											<p class="price">$45.78 USD</p>
-											<p class="seller">Harrison Ding</p>
-										</div>
-									</a>
-								</div>
-								{% endfor %}
-							</div>
-						</div>
+						{% endfor %}
 					</div>
 				</div>
 			</div>
 		{% else %}		
-			<div class = "jumbotron">
+			<div class = "jumbotron hm">
 				<h1>Welcome to Craftnet</h1>
 				<p>Where you socialize and spread your new arts and crafts through the net</p>
-				<a href="#" class="btn btn-lg">JOIN US</a>
+				<a href="/acc/#register" class="btn btn-lg">JOIN US</a>
 			</div>
 			<div class = "row featured-profiles">
 				<div class="section-title">		
@@ -68,16 +72,22 @@
 					<p>Meet some of our featured crafters</p>
 				</div>
 				<div class="row">
-					{% for 'x' in 'xxx' %}
+					{% for userinfo in featureduserinfos %}
 						<div class = "col-sm-6 col-md-4">
 							<div class="profile">
-								<img src = "{% static 'files/sheu_profile.jpg' %}" class="img-circle profile-image"/>
+								<img src="
+								{% if userinfo.profile_picture %}
+									{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}	
+								{% else %}
+									{% static 'files/default-profile.jpg' %}
+								{% endif %}
+								" class="img-circle profile-image"/>
+								
 								<div class = "caption">
-									<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-									<h3>William Sheu</h3>
-									<p>2,341 Connections</p>
+									<a class="profile-link" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
+									<p>{{userinfo.followers.all|length}} Followers</p>
 								</div>
-								<a href="#" class="btn btn-lg">FOLLOW</a>
+								<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
 							</div>
 						</div>
 					{% endfor %}
@@ -88,20 +98,24 @@
 					<h2>FEATURED ITEMS</h2>
 					<p>Check out some recent hot items</p>
 				</div>
-				<div class="grid">
-					{% for 'x' in 'xxxxxxxx' %}
-						<div class="item r1 c1">
-							<a href="#">
-								<img src="{% static 'files/featured1.jpg' %}"/>
-								<div class="caption">
-									<p class="title">TITLE</p>
-									<p class="price">$45.78 USD</p>
-									<p class="seller">Harrison Ding</p>
-								</div>
-							</a>
-						</div>
-					{% endfor %}
-				</div>
+				{% for item in featureditems %}
+					<div class="browseItem four">
+						<a href="/user/{{item.user.username}}/{{item.itemid}}">
+							<div class="img" style="background-image: url(
+								{% if item.picture %}
+									{{MEDIA_ROOT}}{{item.picture.url}}
+								{% else %}
+									{% static 'files/default-picture.jpg' %}
+								{% endif %})"/>
+							</div>
+							<div class="caption">
+								<p class="title">{{item.title}}</p>
+								<p class="price">${{item.price|floatformat:2}}</p>
+								<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
 			</div>
 		{% endif %}
 	</div>

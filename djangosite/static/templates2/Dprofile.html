@@ -16,15 +16,16 @@
 
 {% block content %}
 	{% if notFound %}
-		<div class="container blockbg">
-			<h1>Profile Not Found</h1>
+		<div class="no-profile">
+			<img class="img-circle" src="{% static 'files/default-profile.jpg' %}"/>
+			<h1>Sorry! We couldn't find the user you were looking for.</h1>
 		</div>
 	{% else %}
 		<div class="container">
 			<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 			<div class="row tallrow profile">
 				<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
-				<p>7,324 Followers</p>
+				<p>{{requestedUserInfo.followers.all|length}} Followers</p>
 				{% if not followed %}
 					{% if not self %}
 						{% if user and userinfo %}
@@ -43,7 +44,6 @@
 						{% endif %}
 					{% endif %}
 				{% endif %}
-
 				<div class="profile-information blockbg">
 					<h2>A little bit about myself</h2>
 					<p>EMAIL: {{ requestedUser.email }}</p>
@@ -56,34 +56,46 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>		
 				</div>
 			</div>
-			<div class="row tallrow blockbg">
-				<h3 class="rowheader">Items by {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
-				{% for item in itemsList %}
-					<div class="col-md-2">
-						<div class="profPicSmall" style="background-image:url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
-						<a href="/user/{{item.user.username}}/{{item.itemid}}">{{item.title}}</a>
-					</div>
-				{%endfor%}
-
-			</div>
-			<div class="row tallrow blockbg">
-				<h3 class="rowheader">People also bought from</h3	>
-				{% for x in "xxxxxx" %}
-					<div class="col-md-2 browseProfile"> <!-- item img -->
-						<!--
-						<div class="img" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
-						<div class="caption">-->
-							<a href="#">
-								<div class="profPicSmall" style="background-image: url('{% static 'files/featured1.jpg' %}')"/></div>
-								<p class="name">William Hsu</p>
+			{% if itemsList %}
+				<div class="row tallrow">
+					<h3 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
+					{% for item in itemsList %}
+						<div class="browseItem four">
+							<a href="/user/{{item.user.username}}/{{item.itemid}}">
+								<div class="img" style="background-image: url(
+									{% if item.picture %}
+										{{MEDIA_ROOT}}{{item.picture.url}}
+									{% else %}
+										{% static 'files/default-picture.jpg' %}
+									{% endif %})"/>
+								</div>
+								<div class="caption">
+									<p class="title">{{item.title}}</p>
+									<p class="price">${{item.price|floatformat:2}}</p>
+									<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
+								</div>
 							</a>
-							<p class="followers">4,123 Followers</p>
-							<button type="button" class="btn btn-primary">Follow</button>
-							<button type="button" class="btn btn-primary btn-msg">Message</button>
-						<!--</div>-->
-					</div>
-				{% endfor %}
-			</div>
+						</div>
+					{%endfor%}
+				</div>
+			{% endif %}
+			{% if requestedUserFollowerInfos %}
+				<div class="row tallrow followers">
+					<h3 class="rowheader">People who follow {{requestedUser.first_name}}</h3>
+					{% for followerinfo in requestedUserFollowerInfos %}
+						{{followerinfo.user.user}}
+						<div class="col-md-2">
+							<div class="profile">
+								<a href="/user/{{followerinfo.user.username}}">
+									<div class="profPicSmall" style="background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
+									<p class="name">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</p>
+								</a>
+								<p class="followers">{{follower.followers.all|length}} Followers</p>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 	{% endif %}
 {% endblock %}

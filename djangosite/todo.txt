@@ -1,14 +1,7 @@
 todo
 
+checkout stuff
+search filtering
+homepage listings
 AJAX EVERYWHERE
-follow/unfollow functionality
-functionality on profile page
-functionality on search page
-functionality for messages
-more settings & functionality with it
-item listing
-	page layout
-item editing
-	view error checks
-checkout
-home page
+UI STUFF - HELLA FORMATTING

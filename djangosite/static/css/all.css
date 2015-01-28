@@ -76,6 +76,9 @@
 #category-nav li:hover, #category-nav li.active{
 	border-bottom:6px solid #FF6600;
 }
+.container{
+	width:65%;
+}
 .btn {
 	border: 1px solid #CC5200;
 	border-bottom-width:3px;
@@ -92,6 +95,10 @@
 	border-bottom-width:1px;
 	border-top-width:3px;
 }*/
+.btn.btn-no-border {
+	border-bottom-width: 1px !important;
+	border-top-width: 1px !important;
+}
 body{
 	font-family: 'Open Sans', sans-serif;
 }
@@ -132,6 +139,10 @@ body{
 	margin-left: 1%;
 	margin-bottom: 10px;
 }
+.browseItem.five {
+	width: 19%;
+	//margin-left: 1%;
+}
 .browseItem.four {
 	width: 24%;
 	//margin-left: 1%;
@@ -140,15 +151,24 @@ body{
 	width: 32%;
 	//margin-left: 1%;
 }
+.browseItem.two {
+	width: 49%;
+	//margin-left: 1%;
+}
+.browseItem.one {
+	width: 100%;
+}
 .browseItem a {
 	color: #333;
+}
+.img {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 .browseItem .img {
 	width: 100%;
 	height: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 .browseItem .caption {
 	position:absolute;
@@ -183,10 +203,24 @@ body{
 }
 .blockbg {
 	background: #f5f5f5;
-	padding: 10px;
+	text-align:;
+}
+.followers .col-md-2	{
+	padding:5px;
 }
 .profile {
 	text-align: center;
+	background-color:#f5f5f5;
+	padding:10%;
+	margin-top:5px;
+}
+.no-profile{
+	padding:5%;
+	text-align:center;
+}
+.no-profile img{
+	width:200px;
+	height:200px;
 }
 .profile a.btn {
 	margin: 5px;
@@ -224,7 +258,8 @@ body{
 }
 .rowheader {
 	margin-top: 5px;
-	margin-left: 15px;
+	text-align:center;
+	font-weight:bold;
 }
 .browseProfile {
 	height: 200px;
@@ -266,7 +301,7 @@ body{
 .sidebar select, .sidebar input {
 	display: inline-block;
 }
-.sidebar input {
+.sidebar .price-input {
 	width: 80px;
 }
 .sidebar .sbelem {
@@ -274,6 +309,92 @@ body{
 }
 .sidebar .sbelem:last-child {
 	margin-bottom: 5px;
+}
+.msgsBody {
+	max-height: 500px;
+	overflow-y: auto;
+}
+.msgs {
+	margin-bottom: 0;
+}
+.msgs .name {
+	font-weight: bold;
+	max-width: 50px;
+}
+.imageholder {
+	width: 100%;
+}
+.autoimg {
+	width: 100%;
+	height: 400px;
+}
+.qfg label {
+	width: 20%;
+}
+.qfg input {
+	display: inline-block;
+	width: 70%;
+	margin-left: 8%;
+}
+.cmer {
+	text-align: right;
+	color:green;
+}
+.item-information h1{
+	font-weight:bold;
+}
+.item-information #category{
+	font-size:14px;
+	font-style:italic;
+}
+.item-information h1, .item-information h4 {
+	text-align: center;
+	margin-top: 5px;
+}
+.details {
+	margin-top: 10px;
+}
+.details h3, .details p{
+	margin-top: 5px;
+}
+.reviewholder {
+	max-height: 800px;
+	overflow-y: auto;
+}
+.seller-information{
+	text-align:center;
+}
+.seller-information .browseItem{
+	height:150px;
+}
+.seller-information #seller-link{
+	color:#333;
+}
+.seller-information a:hover{
+	text-decoration:none;
+}
+.seller-information h3 {
+	text-align:center;
+	font-weight:bold;
+	margin-top: 0px;
+}
+.seller-information h4 {
+	text-align: center;
+}
+.featured-items .featureItem {
+	width: 47%;
+	margin: 5px 1%;
+}
+.featured-items .featureItem .img {
+	width: 100%;
+	height: 150px;
+}
+.jumbotron.hm {
+	text-align: center;
+	margin-top: 3%;
+	padding: 0;
+	background-image: url(/static/files/pie.jpg);
+	background-size: cover;
 }
 @media (max-width: 768px) {
 	#main-nav, #main-nav input, #main-nav .btn {

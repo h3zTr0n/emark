@@ -24,20 +24,29 @@
 						<div class="panel-heading">
 							<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
 						</div>
-						<div class="panel-body">
-							{{smtemp}}
+						<div class="panel-body msgsBody">
+							<table class="table table-condensed msgs">
+								{% for msg in specificmessages %}
+									<tr>
+										<td class="name">{{msg.sender.first_name}} {{msg.sender.last_name}}</td>
+										<td>{{msg.body}}</td>
+									</tr>
+								{% endfor %}
+							</table>
+							<!--
 							{% for msg in specificmessages %}
 								<p>{{msg.sender.first_name}} {{msg.sender.last_name}}: {{msg.body}} ({{msg.timestamp|date:"F d, Y. h:i:s A"}})</p>
 							{% endfor %}
+							-->
 						</div>
 						<div class="panel-footer">
-							<form action="/msg/pSendMessage/" method="post">
+							<form id="formsendmsg" action="/msg/pSendMessage/" method="post">
 								{% csrf_token %}
 								<input type="hidden" name="recipient" value="{{requestedUser.username}}">
 								<div class="input-group">
-									<input name="body" type="text" class="form-control" placeholder="Message">
+									<input id="msgin" name="body" type="text" class="form-control" placeholder="Message">
 									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit">Send</button>
+										<button class="btn btn-default btn-no-border" type="submit">Send</button>
 									</span>
 								</div>
 						    </form>

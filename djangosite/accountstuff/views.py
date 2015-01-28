@@ -14,6 +14,7 @@ def getProfile(request, username):
 	context = {
 		"requestedUser": None,
 		"requestedUserInfo": None,
+		"requestedUserFollowerInfos": None,
 		"notFound": False,
 		"self": False,
 		"itemsList": None,
@@ -25,10 +26,16 @@ def getProfile(request, username):
 	if (len(posUsers) > 0):
 		context["requestedUser"] = posUsers[0]
 		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
-		context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
-		for follower in context["requestedUserInfo"].followers.all():
+		if(len(Item.objects.filter(user = context["requestedUser"])) > 0):
+			context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
+		requestedUserFollowers = context["requestedUserInfo"].followers.all()
+		requestedUserFollowerInfos = []
+		for follower in requestedUserFollowers:
 			if follower == request.user:
 				context["followed"] = True
+			requestedUserFollowerInfos.append(UserInfo.objects.filter(user=follower)[0])
+		if(len(requestedUserFollowers) > 0):
+			context["requestedUserFollowerInfos"] = requestedUserFollowerInfos
 	if (len(posUsers) == 0):
 		context["notFound"] = True
 	if (request.user.username == username):
@@ -107,6 +114,8 @@ def register(request):
 	password = request.POST['password']
 	#fname = request.POST['firstname']
 	#lname = request.POST['lastname']
+	if len(User.objects.filter(email=email)) is not 0:
+		return HttpResponse("Error: Email taken.")
 	user = User.objects.create_user(username, email, password, first_name=fname, last_name=lname)
 	
 	gender = request.POST['gender']
