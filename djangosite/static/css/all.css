@@ -362,6 +362,12 @@ body{
 .profile-information p {
 	text-align: center;
 }
+.item-creation{
+	text-align:center;
+}
+.feed{
+	margin-top:20px;
+}
 .msgsBody {
 	max-height: 500px;
 	overflow-y: auto;
