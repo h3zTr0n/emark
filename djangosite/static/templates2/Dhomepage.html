@@ -15,8 +15,15 @@
 			<div class="row">
 				<!-- TEMPORARY -->
 				<div class="sidebar col-md-3">
-					<div class="followinglist blockbg">
-						<h4 class="rowheader">People you follow {{requestedUser.first_name}}</h4>
+					<div class="profile-information blockbg">
+						<h1 class="rowheader">{{user.first_name}} {{user.last_name}}</h1>
+						<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+						<p><a href="mailto:{{user.email}}" target="new">{{user.email}}</a></p>
+						<p><a href="tel:{{userinfo.phonenumber}}" target="new">{{userinfo.phonenumber }}</a></p>
+						<a id="links" href="/acc/settings/" type="button" class="btn btn-primary btn-block">Edit Profile</a>
+					</div>
+					<div class="followlist blockbg">
+						<h4 class="rowheader">People you follow</h4>
 						{% for followingInfo in followingInfos %}
 							<div class="followlist-item" style="margin-bottom:5px;">
 								<div class="followlist-img img-circle" style="width:35px; height:35px; background-image: url({% if followingInfo.profile_picture %}{{MEDIA_ROOT}}{{followingInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
@@ -60,7 +67,7 @@
 				<a href="/acc/#register" class="btn btn-lg">JOIN US</a>
 			</div>
 			<div class = "row featured-profiles">
-				<div class="section-title">		
+				<div class="rowheader">		
 					<h2>FEATURED PROFILES</h2>
 					<p>Meet some of our featured crafters</p>
 				</div>
@@ -68,7 +75,7 @@
 					{% for userinfo in featureduserinfos %}
 						<div class = "col-sm-6 col-md-3">
 							<div class="profile">
-								<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
+								<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
 								<div class = "caption">
 									<a class="profile-link" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
 									<p>{{userinfo.followers.all|length}} Followers</p>
@@ -80,7 +87,7 @@
 				</div>
 			</div>
 			<div class = "row featured-items">
-				<div class="section-title">		
+				<div class="rowheader">		
 					<h2>FEATURED ITEMS</h2>
 					<p>Check out some recent hot items</p>
 				</div>

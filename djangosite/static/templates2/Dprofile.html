@@ -31,7 +31,7 @@
 						<!--<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
 						<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>-->
 						<p><a href="tel:{{requestedUserInfo.phonenumber}}" target="new">{{ requestedUserInfo.phonenumber }}</a></p>
-						<div id="social-links">
+						<div id="links">
 							{% if not followed %}
 								{% if not self %}
 									{% if user and userinfo %}
