@@ -97,7 +97,7 @@ def signin(request):
 	else:
 		return HttpResponse("Error: Password wrong.")
 def register(request):
-	if not ("name" in request.POST and "email" in request.POST and "password" in request.POST):
+	if not ("name" in request.POST and "email" in request.POST and "password" in request.POST and request.POST['name'] and request.POST['email'] request.POST['password']):
 		return HttpResponse("Error: Missing Fields.")
 	name = request.POST['name'].split(" ")
 	fname = name.pop(0)
@@ -149,14 +149,16 @@ def updateSettings(request):
 	if ('pic' in request.FILES and request.FILES['pic']):
 		userinfo.profile_picture = request.FILES['pic']
 
+	'''
 	if('oldpassword' in request.POST and request.POST['oldpassword']
 		and 'password' in request.POST and request.POST['password']
 		and 'passwordagain' in request.POST and request.POST['passwordagain']):
 		oldpassword = request.POST['oldpassword']
 		password = request.POST['password']
 		newpassword = request.POST['passwordagain']
-		if(oldpassword == user.password and password == newpassword):
+		if (oldpassword == user.password and password == newpassword):
 			user.password = newpassword
+	'''
 
 	user.save()
 	userinfo.save()
