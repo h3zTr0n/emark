@@ -83,3 +83,15 @@ if (window.location.pathname == "/acc/") {
 		return 0;
 	}
 }
+
+if (window.location.pathname == "/acc/settings/") {
+	document.getElementById("generalform").onsubmit = function (e) {
+		if (document.getElementById("password").value != document.getElementById("passwordagain").value) {
+			document.getElementById("password").parentElement.className += " has-error";
+			document.getElementById("passwordagain").parentElement.className += " has-error";
+			e.stopPropagation();
+			e.preventDefault();
+			return 0;
+		}
+	}
+}

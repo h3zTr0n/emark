@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from shoppingcart.models import ShoppingCartItem
 from itemstuff.models import Item
 from django.template import RequestContext, loader
-from accountstuff.models import Address, CreditCards
+from accountstuff.models import Address, CreditCards, UserInfo
 import random
 
 # Create your views here.
