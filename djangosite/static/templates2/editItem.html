@@ -59,10 +59,12 @@
 				    <label for="tags">Tags</label>
 				    <input class="form-control" id="tags" name="tags" value="{{item.tags}}"/>
 				</div>
-				<a style="color:red" href="/item/deleteItem/{{item.itemid}}">
-					<span class="glyphicon glyphicon-remove"></span>
-					Remove This Item
-				</a>
+				{% if item %}
+					<a style="color:red" href="/item/deleteItem/{{item.itemid}}">
+						<span class="glyphicon glyphicon-remove"></span>
+						Remove This Item
+					</a>
+				{% endif %}
 			</div>
 			<div class="panel-footer">
 				<input type="submit" value="{% if item %}Edit Item{% else %}Create Item{% endif %}" class="btn" />

@@ -40,7 +40,9 @@ def getProfile(request, username):
 		context["notFound"] = True
 	if (request.user.username == username):
 		context["self"] = True
-	
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
@@ -97,7 +99,7 @@ def signin(request):
 	else:
 		return HttpResponse("Error: Password wrong.")
 def register(request):
-	if not ("name" in request.POST and "email" in request.POST and "password" in request.POST and request.POST['name'] and request.POST['email'] request.POST['password']):
+	if not ("name" in request.POST and "email" in request.POST and "password" in request.POST and request.POST['name'] and request.POST['email'] and request.POST['password']):
 		return HttpResponse("Error: Missing Fields.")
 	name = request.POST['name'].split(" ")
 	fname = name.pop(0)

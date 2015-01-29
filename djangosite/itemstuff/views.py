@@ -67,12 +67,18 @@ def editItem(request, itemid):
 	context={
 		"item":item,
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	template = loader.get_template('editItem.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def createItem(request):
 	template = loader.get_template('editItem.html')
 	context={}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 '''

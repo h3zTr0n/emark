@@ -35,34 +35,38 @@
 							{% if not followed %}
 								{% if not self %}
 									{% if user and userinfo %}
-										<a type="button" class="btn btn-primary btn-lg" href="/user/follow/{{requestedUser.username}}/">Follow</a>
-										<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
+										<a type="button" class="btn btn-primary btn-block" href="/user/follow/{{requestedUser.username}}/">Follow</a>
+										<a type="button" class="btn btn-primary btn-block btn-msg" href="/msg/{{requestedUser.username}}">Message</a>
 									{% else %}
-										<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
-										<a type="button" class="btn btn-primary btn-lg btn-msg" href="/acc/#signin">Message</a>
+										<a type="button" class="btn btn-primary btn-block" href="/acc/#signin">Follow</a>
+										<a type="button" class="btn btn-primary btn-block btn-msg" href="/acc/#signin">Message</a>
 									{% endif %}
+								{% else %}
+									<a href="/acc/settings/" type="button" class="btn btn-primary btn-block">Edit Profile</a>
 								{% endif %}
 							{% else %}	
 								{% if not self %}
 									{% if user and userinfo %}
-										<a type="button" class="btn btn-primary btn-lg" href="/user/unfollow/{{requestedUser.username}}/">Unfollow</a>
-										<a type="button" class="btn btn-primary btn-lg btn-msg" href="/msg/{{requestedUser.username}}/">Message</a>
+										<a type="button" class="btn btn-primary btn-block" href="/user/unfollow/{{requestedUser.username}}/">Unfollow</a>
+										<a type="button" class="btn btn-primary btn-block btn-msg" href="/msg/{{requestedUser.username}}">Message</a>
 									{% endif %}
 								{% endif %}
 							{% endif %}
 						</div>
 					</div>
-					<div class="followlist blockbg">
-						{% if requestedUserFollowerInfos %}
-							<h4 class="rowheader">People who follow {{requestedUser.first_name}}</h4>
-							{% for followerinfo in requestedUserFollowerInfos %}
-								<div class="followlist-item" style="margin-bottom:5px;">
-									<div class="followlist-img img-circle" style="width:35px; height:35px; background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
-									<a class="follower-name" href="/user/{{followerinfo.user.username}}">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</a>
-								</div>
-							{% endfor %}
-						{% endif %}
-					</div>
+					{% if requestedUserFollowerInfos|length > 0 %}
+						<div class="followlist blockbg">
+							{% if requestedUserFollowerInfos %}
+								<h4 class="rowheader">People who follow {{requestedUser.first_name}}</h4>
+								{% for followerinfo in requestedUserFollowerInfos %}
+									<div class="followlist-item" style="margin-bottom:5px;">
+										<div class="followlist-img img-circle" style="width:35px; height:35px; background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
+										<a class="follower-name" href="/user/{{followerinfo.user.username}}">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</a>
+									</div>
+								{% endfor %}
+							{% endif %}
+						</div>
+					{% endif %}
 				</div>	
 				<div class="col-md-9">
 					<div class="profile-content blockbg">

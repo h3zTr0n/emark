@@ -326,10 +326,7 @@ body{
 .sidebar .profile-information, .followlist, .followinglist{
 	padding:4%;
 }
-.sidebar .followlist .followlist-img{
-
-}
-.sidebar .followlist .follower-name{
+.sidebar .follower-name{
 	float:right;
 	margin-top:-30px;
 	padding-right:10%;
