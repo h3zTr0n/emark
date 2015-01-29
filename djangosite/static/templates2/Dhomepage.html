@@ -6,40 +6,29 @@
 {% endblock %}
 
 {% block page_css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/homepage.css' %}"/>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/grid.css' %}"/>
 {% endblock %}
 
 {% block content %}
 	<div class="container">
 		{% if user and userinfo %}
-			<div class="jumbotron hm">
-				<div class="profPic" style="background-image:url('{% if sellerinfo.profile_picture %}{{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
-				<p id="user">{{user.first_name}} {{user.last_name}}</p>
-				<ul>
-					<li><a href="#">Profile</a></li> /
-					<li><a href="#">Your Shop</a></li> /
-					<li><a href="#">Connections</a></li>
-				</ul>
-			</div>
+			<!-- Logged In -->
 			<div class="row">
 				<!-- TEMPORARY -->
 				<div class="sidebar col-md-3">
-					<h1>CHAT?</h1>
-					{% for 'x' in 'xxxxxx' %}
-						<div class="chat-user" style="margin-bottom:5px;">
-							<img src="{% static 'files/harrison_profile.jpg' %}" class="img-circle" style="width:50px; height:50px;"/>
-							<p style="float:right; font-size:18px; padding-right:20%; padding-top:10px">Harrison Ding</p>
-						</div>
-					{% endfor %}
+					<div class="followlist blockbg">
+						<h4 class="rowheader">People you follow {{requestedUser.first_name}}</h4>
+						{% for followingInfo in followingInfos %}
+							<div class="followlist-item" style="margin-bottom:5px;">
+								<div class="followlist-img img-circle" style="width:35px; height:35px; background-image: url({% if followingInfo.profile_picture %}{{MEDIA_ROOT}}{{followingInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
+								<a class="follower-name" href="/user/{{followingInfo.user.username}}">{{followingInfo.user.first_name}} {{followingInfo.user.last_name}}</a>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 				<div class="col-md-9">
-					<div class="section-title">
-						<h2>RECOMMENDED FOR YOU</h2>
-						<p>Based off your previous purchases/interactions</p>
-					</div>
+					<h1 class="rowheader">RECOMMENDED FOR YOU</h1>
 					<div class="grid">
-						{% for item in featureditems2 %}
+						{% for item in feedItems %}
 							<div class="browseItem two">
 								<a href="/user/{{item.user.username}}/{{item.itemid}}">
 									<div class="img" style="background-image: url(
@@ -61,6 +50,7 @@
 				</div>
 			</div>
 		{% else %}		
+			<!-- Logged Out -->
 			<div class = "jumbotron hm">
 				<h1>Welcome to Craftnet</h1>
 				<p>Where you socialize and spread your new arts and crafts through the net</p>
@@ -73,16 +63,9 @@
 				</div>
 				<div class="row">
 					{% for userinfo in featureduserinfos %}
-						<div class = "col-sm-6 col-md-4">
+						<div class = "col-sm-6 col-md-3">
 							<div class="profile">
-								<img src="
-								{% if userinfo.profile_picture %}
-									{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}	
-								{% else %}
-									{% static 'files/default-profile.jpg' %}
-								{% endif %}
-								" class="img-circle profile-image"/>
-								
+								<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
 								<div class = "caption">
 									<a class="profile-link" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
 									<p>{{userinfo.followers.all|length}} Followers</p>
@@ -99,7 +82,7 @@
 					<p>Check out some recent hot items</p>
 				</div>
 				{% for item in featureditems %}
-					<div class="browseItem four">
+					<div class="browseItem three">
 						<a href="/user/{{item.user.username}}/{{item.itemid}}">
 							<div class="img" style="background-image: url(
 								{% if item.picture %}

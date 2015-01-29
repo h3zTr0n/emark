@@ -56,18 +56,10 @@
 						{% if requestedUserFollowerInfos %}
 							<h4 class="rowheader">People who follow {{requestedUser.first_name}}</h4>
 							{% for followerinfo in requestedUserFollowerInfos %}
-								{{followerinfo.user.user}}
 								<div class="followlist-item" style="margin-bottom:5px;">
 									<div class="followlist-img img-circle" style="width:35px; height:35px; background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
 									<a class="follower-name" href="/user/{{followerinfo.user.username}}">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</a>
 								</div>
-									<!-- <div class="profile">
-										<a href="/user/{{followerinfo.user.username}}">
-											<div class="profPicSmall" style="background-image: url({% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %})"/></div>
-											<p class="name">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</p>
-										</a>
-										<p class="followers">{{follower.followers.all|length}} Followers</p>
-									</div> -->
 							{% endfor %}
 						{% endif %}
 					</div>

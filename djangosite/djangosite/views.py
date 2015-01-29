@@ -11,18 +11,30 @@ def home(request):
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
-	
+		followings = context["userinfo"].following.all()
+		followingInfos = []
+		for following in followings:
+			followingInfos.append(UserInfo.objects.filter(user=following)[0])
+		context["followingInfos"] = followingInfos
+		feedItems = []
+		for item in Item.objects.all():
+			for following in followings:
+				if item.user == following:
+					feedItems.append(item)
+		context["feedItems"] = feedItems
+
 	userinfos = UserInfo.objects.all()
-	randInts3 = random.sample(range(len(userinfos)),3)
+	randInts4 = random.sample(range(len(userinfos)),4)
 	featureduserinfos = []
-	for rand in randInts3:
+	for rand in randInts4:
 		featureduserinfos.append(userinfos[rand])
 
 	items = Item.objects.all()
-	randInts4 = random.sample(range(len(items)),4)
+	randInts3 = random.sample(range(len(items)),3)
 	featureditems = []
-	for rand in randInts4:
+	for rand in randInts3:
 		featureditems.append(items[rand])
+		
 	randInts6 = random.sample(range(len(items)),6)
 	featureditems2 = []
 	for rand in randInts6:
