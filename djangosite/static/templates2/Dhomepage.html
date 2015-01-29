@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="container">
+	<div class="container" style="width:100%;">
 		{% if user and userinfo %}
 			<!-- Logged In -->
 			<div class="row">
@@ -61,34 +61,12 @@
 					</div>
 				</div>
 			</div>
-		{% else %}		
-			<!-- Logged Out -->
-			<div class = "jumbotron hm">
-				<h1>Welcome to Craftnet</h1>
-				<p>Where you socialize and spread your new arts and crafts through the net</p>
-				<a href="/acc/#register" class="btn btn-lg">JOIN US</a>
-			</div>
-			<div class = "row featured-profiles">
-				<div class="rowheader">		
-					<h2>FEATURED PROFILES</h2>
-					<p>Meet some of our featured crafters</p>
+		{% else %}
+				<div class="banner" style="background-image:url('{% static 'files/craft-banner.jpg' %}')">
+					<h1>WELCOME TO CRAFTNET</h1>
 				</div>
-				<div class="row">
-					{% for userinfo in featureduserinfos %}
-						<div class = "col-sm-6 col-md-3">
-							<div class="profile">
-								<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
-								<div class = "caption">
-									<a class="profile-link" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
-									<p>{{userinfo.followers.all|length}} Followers</p>
-								</div>
-								<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
-							</div>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
-			<div class = "row featured-items">
+				<a href="/acc/#register/" class="btn btn-default">JOIN US</a>
+				<div class = "row featured-items">
 				<div class="rowheader">		
 					<h2>FEATURED ITEMS</h2>
 					<p>Check out some recent hot items</p>
@@ -111,6 +89,26 @@
 						</a>
 					</div>
 				{% endfor %}
+			</div>
+			<div class = "row featured-profiles">
+				<div class="rowheader">		
+					<h2>FEATURED PROFILES</h2>
+					<p>Meet some of our featured crafters</p>
+				</div>
+				<div class="row">
+					{% for userinfo in featureduserinfos %}
+						<div class = "col-sm-6 col-md-3">
+							<div class="profile">
+								<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
+								<div class = "caption">
+									<a class="profile-link" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
+									<p>{{userinfo.followers.all|length}} Followers</p>
+								</div>
+								<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
 			</div>
 		{% endif %}
 	</div>
