@@ -365,6 +365,9 @@ body{
 .sidebar .followlist-item{
 
 }
+.profile-information p {
+	text-align: center;
+}
 .msgsBody {
 	max-height: 500px;
 	overflow-y: auto;

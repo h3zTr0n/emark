@@ -27,10 +27,10 @@
 					<div class="profile-information blockbg">
 						<h1 class="rowheader">{{requestedUser.first_name}} {{requestedUser.last_name}}</h1>
 						<div class="profPic" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
-						<p>EMAIL: {{ requestedUser.email }}</p>
-						<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
-						<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>
-						<p>PHONE NUMBER: {{ requestedUserInfo.phonenumber }}</p>
+						<p><a href="mailto:{{requestedUser.email}}" target="new">{{requestedUser.email}}</a></p>
+						<!--<p>GENDER: {% if requestedUser.gender == True %}Male{% elif requestedUser.gender == False %}Female{% else %}Other{% endif %}</p>
+						<p>BIRTHDAY: {{ requestedUserInfo.birthday|date:"F d, Y" }}</p>-->
+						<p><a href="tel:{{requestedUserInfo.phonenumber}}" target="new">{{ requestedUserInfo.phonenumber }}</a></p>
 						<div id="social-links">
 							{% if not followed %}
 								{% if not self %}
