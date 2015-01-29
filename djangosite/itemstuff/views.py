@@ -330,7 +330,7 @@ def saveItem(request, itemid):
 		category = request.POST['category']
 
 	if(itemid == 'new'):
-		picture = None
+		picture = request.FILES['pic']
 		itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 		item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
 	else:
