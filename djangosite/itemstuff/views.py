@@ -44,7 +44,7 @@ def getItem(request, username, itemid):
 		"Clothing",
 		"Art",
 	]
-	itemCategory = categories[item.category]
+	itemCategory = categories[item.category-1]
 
 	reviews = Review.objects.filter(item=item)
 

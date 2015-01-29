@@ -87,7 +87,7 @@ def signin(request):
 	password = request.POST['password']
 	pos = User.objects.filter(email=email)
 	if (len(pos) == 0):
-		return HttpResponse("User does not exist.")
+		return HttpResponse("Error: User does not exist.")
 	else:
 		pos = pos[0]
 	user = authenticate(username=pos.username, password=password)
@@ -95,8 +95,10 @@ def signin(request):
 		login(request, user)
 		return HttpResponse("Signed in as " + user.username) #TODO redirect? nah brah
 	else:
-		return HttpResponse("Password wrong.")
+		return HttpResponse("Error: Password wrong.")
 def register(request):
+	if not ("name" in request.POST and "email" in request.POST and "password" in request.POST):
+		return HttpResponse("Error: Missing Fields.")
 	name = request.POST['name'].split(" ")
 	fname = name.pop(0)
 	lname = " ".join(name)

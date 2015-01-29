@@ -14,6 +14,9 @@ def displayCart(request):
 		"user" : request.user,
 		"cartListSum": sumCartPrices(request, shoppingCart)
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	template = loader.get_template('DshoppingCart.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def addItemToUser(request, itemid, quantity):
@@ -57,6 +60,9 @@ def checkout(request):
 		"address" : None,
 		"creditcard": None,
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	if len(Address.objects.filter(user = request.user)) > 0:
 		context['address'] = Address.objects.filter(user = request.user)[0]
 	if len(CreditCards.objects.filter(user=request.user)) > 0:
