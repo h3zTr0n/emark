@@ -15,19 +15,18 @@
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3 blockbg sidebar">
-				<form id="sortf" action="#" method="get" class="sbelem">
-					<h3>SORT BY</h3>
+			<div class="col-md-3 sidebar">
+				<form id="sortf" action="#" method="get">
+					<h3>Sort By</h3>
 						<input type="hidden" name="q" value="{{search}}">
 						<select class="form-control" name="sort" onchange="document.getElementById('sortf').submit()">
-							<option {% if sortby == "relevancy" %}selected{% endif %} value="relevancy">RELEVANCY</option>
-							<option {% if sortby == "recent" %}selected{% endif %} value="recent">RECENT</option>
-							<option {% if sortby == "lowtohigh" %}selected{% endif %} value="lowtohigh">PRICE LOW TO HIGH</option>
-							<option {% if sortby == "hightolow" %}selected{% endif %} value="hightolow">PRICE HIGH TO LOW</option>
-							<option {% if sortby == "rating" %}selected{% endif %} value="rating">RATING</option>
+							<option {% if sortby == "relevancy" %}selected{% endif %} value="relevancy">Relevancy</option>
+							<option {% if sortby == "recent" %}selected{% endif %} value="recent">Recent</option>
+							<option {% if sortby == "lowtohigh" %}selected{% endif %} value="lowtohigh">Price Low To High</option>
+							<option {% if sortby == "hightolow" %}selected{% endif %} value="hightolow">Price High To Low</option>
+							<option {% if sortby == "rating" %}selected{% endif %} value="rating">Rating</option>
 						</select>
-					<h3>CATEGORIES</h3>
-					<div id="cataf" class="sbelem">
+					<h3>Categories</h3>
 						<div class="checkbox">
 							<label>
 								<input name="cjewelry" type="checkbox" value="" {% if cata.jewelry %}checked{% endif %}>
@@ -58,34 +57,28 @@
 								Art
 							</label>
 						</div>
-					</div>
-					<h3>FILTER BY PRICE</h3>
-					<div id="pricef" class="sbelem">
-				 		$<input type="number" name="minPrice" class="form-control price-input" placeholder="MIN" value="{{minPrice|floatformat:2}}"> to $<input  type="number" name="maxPrice" class="form-control price-input" placeholder="MAX" value="{{maxPrice|floatformat:2}}">
-				 		<button type="submit" class="btn btn-default btn-sm">FILTER</button>
-					</div>
+					<h3>Filter By Price</h3>
+						<div class="form-group">
+					 		$<input type="number" name="minPrice" class="form-control price-input" placeholder="MIN" value="{{minPrice|floatformat:2}}"> to $<input  type="number" name="maxPrice" class="form-control price-input" placeholder="MAX" value="{{maxPrice|floatformat:2}}">
+				 		</div>
+			 		<button type="submit" class="btn btn-primary btn-block">Filter</button>
 				</form>
 			</div>
 			<div class="col-md-9">
 				{% for item in items %}
 					<div class="browseItem three">
 						<a href="/user/{{item.user.username}}/{{item.itemid}}">
-							<div class="img" style="background-image: url(
-								{% if item.picture %}
-									{{MEDIA_ROOT}}{{item.picture.url}}
-								{% else %}
-									{% static 'files/default-picture.jpg' %}
-								{% endif %})"/>
+							<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/>
 							</div>
 							<div class="caption">
-								<p class="title">{{item.title}}</p>
-								<p class="price">${{item.price|floatformat:2}}</p>
-								<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
+								<h4 class="title">{{item.title}}</h4>
+								<h5 class="price">${{item.price|floatformat:2}}</h5>
+								<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
 							</div>
 						</a>
 					</div>
 				{% empty %}
-					<p>No items to display!</p>
+					<h4>No items to display!</h4>
 				{% endfor %}
 			</div>
 		</div>

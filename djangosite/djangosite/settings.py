@@ -89,10 +89,10 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR,'static2/')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,"static"),
+    os.path.join(BASE_DIR, "static"),
 )
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "static", "templates"), os.path.join(BASE_DIR, "accountstuff","templates"), os.path.join(BASE_DIR, "static","templates2"),
+    os.path.join(BASE_DIR, "static", "templates2"),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') #"/var/www/example.com/media/"
