@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block content %}
-	<div class="container" style="width:100%;">
-		{% if user and userinfo %}
-			<!-- Logged In -->
-			<div class="row">
+	{% if user and userinfo %}
+		<!-- Logged In -->
+		<div class="row">
+			<div class="container">
 				<!-- TEMPORARY -->
 				<div class="sidebar col-md-3">
 					<div class="profile-information blockbg">
@@ -61,55 +61,64 @@
 					</div>
 				</div>
 			</div>
-		{% else %}
-				<div class="banner" style="background-image:url('{% static 'files/craft-banner.jpg' %}')">
-					<h1>WELCOME TO CRAFTNET</h1>
-				</div>
-				<a href="/acc/#register/" class="btn btn-default">JOIN US</a>
-				<div class = "row featured-items">
-				<div class="rowheader">		
-					<h2>FEATURED ITEMS</h2>
-					<p>Check out some recent hot items</p>
-				</div>
-				{% for item in featureditems %}
-					<div class="browseItem three">
-						<a href="/user/{{item.user.username}}/{{item.itemid}}">
-							<div class="img" style="background-image: url(
-								{% if item.picture %}
-									{{MEDIA_ROOT}}{{item.picture.url}}
-								{% else %}
-									{% static 'files/default-picture.jpg' %}
-								{% endif %})"/>
-							</div>
-							<div class="caption">
-								<p class="title">{{item.title}}</p>
-								<p class="price">${{item.price|floatformat:2}}</p>
-								<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
-							</div>
-						</a>
-					</div>
-				{% endfor %}
+		</div>
+	{% else %}
+		<div class="container" style="width:100%;">
+			<div class="banner" style="background-image:url('{% static 'files/craft-banner.jpg' %}')">
+				<h1>WELCOME TO CRAFTNET</h1>
+				<p>Where arts and crafts meet business</p>
+				<a href="/acc/#register/" class="btn btn-default btn-lg">JOIN US</a>
 			</div>
-			<div class = "row featured-profiles">
-				<div class="rowheader">		
-					<h2>FEATURED PROFILES</h2>
-					<p>Meet some of our featured crafters</p>
-				</div>
-				<div class="row">
-					{% for userinfo in featureduserinfos %}
-						<div class = "col-sm-6 col-md-3">
-							<div class="profile">
-								<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
-								<div class = "caption">
-									<a class="profile-link" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
-									<p>{{userinfo.followers.all|length}} Followers</p>
+			<div class="homepage-narrow">
+				<div class = "row featured-items">
+					<div class="section-title">
+						<h2>Check out some user creations</h2>
+						<p>Artistic entrepreneurs, unite!</p>
+ 					</div>
+					{% for item in featureditems %}
+						<div class="browseItem three">
+							<a href="/user/{{item.user.username}}/{{item.itemid}}">
+								<div class="img" style="background-image: url(
+									{% if item.picture %}
+										{{MEDIA_ROOT}}{{item.picture.url}}
+									{% else %}
+										{% static 'files/default-picture.jpg' %}
+									{% endif %})"/>
 								</div>
-								<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
-							</div>
+								<div class="caption">
+									<p class="title">{{item.title}}</p>
+									<p class="price">${{item.price|floatformat:2}}</p>
+									<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
+								</div>
+							</a>
 						</div>
 					{% endfor %}
 				</div>
+				<div class = "row featured-profiles">
+					<div class="section-title">
+						<h2>Some of craftnet's featured entrepreneurs</h2>
+						<p>Check these guys out!</p>
+					</div>
+					<div class="row">
+						{% for userinfo in featureduserinfos %}
+							<div class = "col-sm-6 col-md-3">
+								<div class="profile">
+									<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
+									<div class = "caption">
+										<a class="profile-link" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
+										<p>{{userinfo.followers.all|length}} Followers</p>
+									</div>
+									<a type="button" class="btn btn-primary btn-lg" href="/acc/#signin">Follow</a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
 			</div>
-		{% endif %}
-	</div>
+		</div>
+		<div class="banner banner-small" style="background-image:url('{% static 'files/craft-banner2.jpg' %}')">
+			<h1>Don't wait to join</h1>
+			<p>The perfect outlet for your creative drive.</p>
+ 		</div>
+	{% endif %}
 {% endblock %}
