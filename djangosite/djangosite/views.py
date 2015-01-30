@@ -46,6 +46,14 @@ def home(request):
 	template = loader.get_template('Dhomepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+def about(request):
+	context={}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+	template = loader.get_template('about.html')
+	return HttpResponse(template.render(RequestContext(request, context)))
+
 '''
 def browseCategory(request):
 	#items = Item.objects.filter(category=request.)

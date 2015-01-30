@@ -509,6 +509,21 @@ body{
 .featured-profiles{
 	margin-bottom:50px;
 }
+.about{
+	width:50%;
+}
+.about #intro{
+	text-align:center;
+}
+.about h1{
+	font-size:64px;
+	font-weight:bold;
+	color:#ff5500;
+}
+.about h4{
+	font-style:italic;
+	margin-bottom:0px;
+}
 @media (max-width: 768px) {
 	#main-nav, #main-nav input, #main-nav .btn {
 		font-size: 0.95em;

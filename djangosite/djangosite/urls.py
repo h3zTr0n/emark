@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$','djangosite.views.home',name="home"),
+    url(r'^about/$','djangosite.views.about',name="about"),
     url(r'^admin/', include(admin.site.urls)),
 
     #url(r'^browseCategory','djangosite.views.browseCategory',name="browseCategory"),
