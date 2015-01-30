@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 		url(r'^checkout/pShipping/$', views.shipping, name = 'shipping'),
 		url(r'^checkout/pPayment/$', views.payment, name = 'payment'),
 		url(r'^checkout/pSubmitOrder/$', views.submitOrder, name = 'submitOrder'),
+		url(r'^checkout/clearOrder/$', views.clearOrder, name = 'clearOrder')
 	)	

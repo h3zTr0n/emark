@@ -1,133 +1,157 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset = "utf-8">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<!--<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>-->
-		<link rel="stylesheet" href="{% static 'css/all.css' %}">
-		{% block page_css %}
-		{% endblock %}
-		<link rel="shortcut icon" href="{% static 'files/craftnet-small-icon.jpg' %}"/>
-		<link rel = "stylesheet" href = "{% static 'css/checkout.css' %}">
-	</head>
-	<body>
+{% block content %}
+	<link rel = "stylesheet" href = "{% static 'css/checkout.css' %}">
+	
+	<div class = "container checkout-form-holder">
 
-		<div class = "container checkout-form-holder">
-			<div class = "shipping row exterior" id = "shipping">
-				<form class = "form-horizontal" method = "post" action = "/cart/checkout/pPayment/">
-					{% csrf_token %}
-					<div class = "form-group">
-						<label for = "country" class = "col-sm-3 control-label">Country : </label>
-						<div class = "col-sm-9">
-							<input type = "text" class = "form-control" name = "country" placeholder = "" required>
-						</div>
-					</div>
-					<div class = "form-group ">
-						<label for = "street" class = "col-sm-3 control-label">Street : </label>
-						<div class = "col-sm-9">
-							<input type = "text" class = "form-control" name = "street" placeholder = "" required>
-						</div>
-					</div>
-					<div class = "form-group">
-						<label for = "aptsuiteother" class = "col-sm-3 control-label">Apt / Suite / Other : </label>
-						<div class = "col-sm-9">
-							<input type = "text" class = "form-control" name = "aptsuiteother" placeholder = "">
-						</div>
-					</div>
-					<div class = "form-group">
-						<label for = "zipcode" class = "col-sm-3 control-label">Zip Code : </label>
-						<div class = "col-sm-9">
-							<input type = "text" class = "form-control" name = "zipcode" placeholder = "" required>
-						</div>
-					</div>
-					<div class = "form-group">
-						<label for = "city" class = "col-sm-3 control-label">City : </label>
-						<div class = "col-sm-9">
-							<input type = "text" class = "form-control" name = "city" placeholder = "" required>
-						</div>
-					</div>
-					<div class = "form-group">
-						<label for = "state" class = "col-sm-3 control-label">State : </label>
-						<div class = "col-sm-9">
-							<input type = "text" class = "form-control" name = "state" placeholder = "" required>
-						</div>
-					</div>
-
-					<div class = "form-group" >
-						<div class = "col-sm-offset-2 col-sm-3">
-							<button type = "submit" class = "btn btn-default" id = "shipfilled">Ship to this address</button>
-						</div>
-					</div>
-				</form>
+		<div class = "shipping row" id = "shipping">
+			<div class = "checkoutTop">
+				<label class = "topLabels shippingLabel">Shipping</label>
+				<label class = "topLabels paymentLabel">Payment</label>
+				<label class = "topLabels submitLabel">Submit</label>
 			</div>
-
-			<div class = "payment row exterior" id = "payment">
-				<form class = "form-horizontal" method = "post" action = "/cart/checkout/pSubmitOrder/">
+			<form class = "form-horizontal" method = "post" action = "/cart/checkout/pPayment/">
 				{% csrf_token %}
-					<div class = "form-group col-sm-12">
-						<label for = "cardNumber" class = "col-sm-3 control-label">Card Number : </label>
-						<div class = "col-sm-9">
-							<input type = "text" class = "form-control" name = "cardNumber" placeholder = "" required>
-						</div>
+				<div class = "form-group">
+					<label for = "country" class = "col-sm-3 control-label">Country : </label>
+					<div class = "col-sm-9">
+						<input type = "text" class = "form-control" name = "country" placeholder = "" required>
 					</div>
-					<div class = "form-group col-sm-12" id = "expiration">
-						<label for = "ExpMonth" class = "col-sm-3 control-label">Expiration Date : </label>
-						<div class = "col-sm-2">
-							<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" required>
-						</div>
-						<div class = "col-sm-3">
-							<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" required>
-						</div>
-						<div class = "col-sm-3"></div>
+				</div>
+				<div class = "form-group ">
+					<label for = "street" class = "col-sm-3 control-label">Street : </label>
+					<div class = "col-sm-9">
+						<input type = "text" class = "form-control" name = "street" placeholder = "" required>
+					</div>
+				</div>
+				<div class = "form-group">
+					<label for = "aptsuiteother" class = "col-sm-3 control-label">Apt / Suite / Other : </label>
+					<div class = "col-sm-9">
+						<input type = "text" class = "form-control" name = "aptsuiteother" placeholder = "">
+					</div>
+				</div>
+				<div class = "form-group">
+					<label for = "zipcode" class = "col-sm-3 control-label">Zip Code : </label>
+					<div class = "col-sm-9">
+						<input type = "text" class = "form-control" name = "zipcode" placeholder = "" required>
+					</div>
+				</div>
+				<div class = "form-group">
+					<label for = "city" class = "col-sm-3 control-label">City : </label>
+					<div class = "col-sm-9">
+						<input type = "text" class = "form-control" name = "city" placeholder = "" required>
+					</div>
+				</div>
+				<div class = "form-group">
+					<label for = "state" class = "col-sm-3 control-label">State : </label>
+					<div class = "col-sm-9">
+						<input type = "text" class = "form-control" name = "state" placeholder = "" required>
+					</div>
+				</div>
 
+				<div class = "form-group" >
+					<div class = "col-sm-offset-2 col-sm-3">
+						<button type = "submit" class = "btn btn-default" id = "shipfilled">Ship to this address</button>
 					</div>
-					<div class = "form-group col-sm-12">
-						<label for = "securityCode" class = "col-sm-3 control-label">Security Code : </label>
-						<div class = "col-sm-2">
-							<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999"required>
-						</div>
-					</div>
-					<div class = "form-group col-sm-12" >
-						<div class = "col-sm-offset-2 col-sm-3">
-							<button type = "submit" class = "btn btn-default" id = "SubmitPaymentInfo">Continue</button>
-						</div>
-					</div>
-				</form>
+				</div>
+			</form>
+		</div>
+
+		<div class = "payment row exterior" id = "payment">
+			<div class = "checkoutTop">
+				<label class = "topLabels shippingLabel">Shipping</label>
+				<label class = "topLabels paymentLabel">Payment</label>
+				<label class = "topLabels submitLabel">Submit</label>
 			</div>
-			<div class = "submitorder row exterior" id = "submitorder">
+			<form class = "form-horizontal" method = "post" action = "/cart/checkout/pSubmitOrder/">
+			{% csrf_token %}
 				<div class = "form-group col-sm-12">
-					<label>Address</label>
-				</div>
-				<div class = "form-group col-sm-12">
-					<label>{{address.street}}</label>
-				</div>
-				{% if address.aptsuiteother != "" %}
-					<div class = "form-group col-sm-12">
-						<label> {{address.aptsuiteother}}</label>
+					<label for = "cardNumber" class = "col-sm-3 control-label">Card Number : </label>
+					<div class = "col-sm-9">
+						<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" required>
 					</div>
-				{% endif %}
-				<div class = "form-group col-sm-12">
-					<label>{{address.city}} {{address.state}} {{address.zipcode}}</label>
+				</div>
+				<div class = "form-group col-sm-12" id = "expiration">
+					<label for = "ExpMonth" class = "col-sm-3 control-label">Expiration Date : </label>
+					<div class = "col-sm-2">
+						<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM"required>
+					</div>
+					<div class = "col-sm-3">
+						<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" placeholder = "YYYY" required>
+					</div>
+					<div class = "col-sm-3"></div>
+
 				</div>
 				<div class = "form-group col-sm-12">
-					<label>{{address.country}}</label>
+					<label for = "securityCode" class = "col-sm-3 control-label">Security Code : </label>
+					<div class = "col-sm-2">
+						<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" required>
+					</div>
 				</div>
-				<div class = "form-group col-sm-12">
-					<label></label>
+				<div class = "form-group col-sm-12" >
+					<div class = "col-sm-offset-2 col-sm-3">
+						<button type = "submit" class = "btn btn-default" id = "SubmitPaymentInfo">Continue</button>
+					</div>
 				</div>
-				<div class = "form-group col-sm-12">
-					<label>Credit Card Information</label>
+			</form>
+		</div>
+		<div class = "submitorder row exterior" id = "submitorder">
+			<div class = "checkoutTop">
+				<label class = "topLabels shippingLabel">Shipping</label>
+				<label class = "topLabels paymentLabel">Payment</label>
+				<label class = "topLabels submitLabel">Submit</label>
+			</div>
+			<div class = "form-group col-sm-12 submitdata">
+				<div class = "form-group col-sm-6">
+					<div class = "form-group col-sm-12" style = "border-bottom-style: solid">
+						<label class = "headsubmit">Address</label>
+					</div>
+					<div class = "form-group col-sm-12 submitdata">
+						<label>{{address.street}}</label>
+					</div>
+					{% if address.aptsuiteother != "" %}
+						<div class = "form-group col-sm-12 submitdata">
+							<label> {{address.aptsuiteother}}</label>
+						</div>
+					{% endif %}
+					<div class = "form-group col-sm-12 submitdata">
+						<label>{{address.city}} {{address.state}} {{address.zipcode}}</label>
+					</div>
+					<div class = "form-group col-sm-12 submitdata">
+						<label>{{address.country}}</label>
+					</div>
+					<div class = "form-group col-sm-12">
+						<label></label>
+					</div>
 				</div>
-				<div class = "form-group col-sm-12">
-					<label>Credit Card : {{creditcard.cardNumber}}</label>
+				<div class = "form-group col-sm-6">
+					<div class = "form-group col-sm-12" style = "border-bottom-style: solid">
+						<label class = "headsubmit">Credit Card Information</label>
+					</div>
+					<div class = "form-group col-sm-12">
+						<label>Credit Card : {{creditcard.cardNumber}}</label>
+					</div>
+					<div class = "form-group col-sm-12">
+						<label>Expiration Date : {{creditcard.monthExp}}/{{creditcard.yearExp}}</label>
+					</div>
 				</div>
-				<div class = "form-group col-sm-12">
-					<label>Expiration Date : {{creditcard.monthExp}}/{{creditcard.yearExp}}</label>
-				</div>
+			</div>
+			<div class = "form-group col-sm-12">
+				<label class = "headsubmit">Shopping Cart</label>
+			</div>
+			<div class = "cartitemlist">
+				{% for cartitem in cartlist %}
+					<div class = " col-sm-4 cartitem">
+						<label>{{cartitem.item.title}}</label></br>
+						<label>Quantity : {{cartitem.quantity}}</label>
+					</div>
+				{% endfor %}
+			</div>
+			<div class = "form group col-sm-12">
+				<a href = "/cart/checkout/clearOrder/"><button class = "item-btn btn btn-success">Submit order</button></a>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+{% endblock %}

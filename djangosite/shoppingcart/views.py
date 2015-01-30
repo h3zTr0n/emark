@@ -12,7 +12,8 @@ def displayCart(request):
 	context = {
 		"CartList" : shoppingCart,
 		"user" : request.user,
-		"cartListSum": sumCartPrices(request, shoppingCart)
+		"cartListSum": sumCartPrices(request, shoppingCart),
+		"numItems" : len(shoppingCart)
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
@@ -59,6 +60,7 @@ def checkout(request):
 		"user" : request.user,
 		"address" : None,
 		"creditcard": None,
+		"cartlist": ShoppingCartItem.objects.filter(user = request.user),
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
@@ -69,3 +71,10 @@ def checkout(request):
 		context['creditcard'] = CreditCards.objects.filter(user=request.user)[0]
 	template = loader.get_template('Dcheckout.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
+
+def clearOrder(request):
+	deleteItems = ShoppingCartItem.objects.filter(user = request.user)
+	for k in range(0, len(deleteItems)):
+		deleteItems[k].delete()
+
+	return HttpResponseRedirect("/cart/")
