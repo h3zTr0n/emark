@@ -8,12 +8,16 @@ import random
 
 # Create your views here.
 def displayCart(request):
-	shoppingCart = ShoppingCartItem.objects.filter(user = request.user)
+	shoppingCart = ShoppingCartItem.objects.filter(user = request.user, pending = False, received = False)
 	context = {
 		"CartList" : shoppingCart,
 		"user" : request.user,
 		"cartListSum": sumCartPrices(request, shoppingCart),
-		"numItems" : len(shoppingCart)
+		"numItems" : len(shoppingCart),
+		"pendingItems" : ShoppingCartItem.objects.filter(user=  request.user, pending = True, received = False),
+		"receivedItems" : ShoppingCartItem.objects.filter(user = request.user, received = True),
+		"pendingOrders" : getPendingOrders(request),
+		"finishedOrders" : getFinishedOrders(request),
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
@@ -21,7 +25,7 @@ def displayCart(request):
 	template = loader.get_template('DshoppingCart.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def addItemToUser(request, itemid, quantity):
-	if len(ShoppingCartItem.objects.filter(user = request.user, item = Item.objects.filter(itemid = itemid)[0])) == 0:
+	if len(ShoppingCartItem.objects.filter(user = request.user, item = Item.objects.filter(itemid = itemid)[0], pending = False)) == 0:
 		newItem = ShoppingCartItem(user = request.user, item = Item.objects.filter(itemid = itemid)[0], quantity = quantity, uniqueid = "sci" + Item.objects.filter(itemid = itemid)[0].title.replace(" ", "").lower() +  str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)))
 	else :
 		newItem = ShoppingCartItem.objects.filter(user = request.user, item = Item.objects.filter(itemid = itemid)[0])[0]
@@ -60,7 +64,7 @@ def checkout(request):
 		"user" : request.user,
 		"address" : None,
 		"creditcard": None,
-		"cartlist": ShoppingCartItem.objects.filter(user = request.user),
+		"cartlist": ShoppingCartItem.objects.filter(user = request.user, pending = False),
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
@@ -73,8 +77,26 @@ def checkout(request):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def clearOrder(request):
-	deleteItems = ShoppingCartItem.objects.filter(user = request.user)
-	for k in range(0, len(deleteItems)):
-		deleteItems[k].delete()
+	itemList = ShoppingCartItem.objects.filter(user = request.user)
+	for k in range(0, len(itemList)):
+		itemList[k].pending = True
+		itemList[k].save()
+	return HttpResponseRedirect("/cart/")
 
+def getPendingOrders(request):
+	yourItemList = Item.objects.filter(user = request.user)
+	pendingOrders = []
+	for item in yourItemList:
+		pendingOrders += ShoppingCartItem.objects.filter(item = item, pending = True, received = False)
+	return pendingOrders
+def getFinishedOrders(request):
+	yourItemList = Item.objects.filter(user = request.user)
+	finishedOrders = []
+	for item in yourItemList:
+		finishedOrders += ShoppingCartItem.objects.filter(item = item, received = True)
+	return finishedOrders
+def receivedItem(request, cartitemid) :
+	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = False)[0]
+	item.received = True
+	item.save()
 	return HttpResponseRedirect("/cart/")

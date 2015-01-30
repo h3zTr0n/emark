@@ -8,6 +8,8 @@ class ShoppingCartItem(models.Model):
 	item = models.ForeignKey(Item)
 	quantity = models.IntegerField()
 	uniqueid = models.TextField(default = "temp")
+	pending = models.BooleanField(default = False)
+	received = models.BooleanField(default = False)
 	def __str__(self):
 		return self.item.title
 

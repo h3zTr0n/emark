@@ -15,9 +15,33 @@
 			<div class="col-md-3" id="checkout">
 				<p>Subtotal ({{CartList|length}} Items):</p>
 				<p class="price">${{cartListSum|floatformat:2}} USD</p>
-				<a href = "/cart/checkout/pShipping"><button type = "button" class = "btn btn-default" {% if numItems == 0 %} disabled {% endif %}>PROCEED TO CHECKOUT</button></a>
+				<a href = "/cart/checkout/pShipping"><button type = "button" class = "btn btn-default" {% if numItems == 0 %} disabled="disabled" {% endif %}>PROCEED TO CHECKOUT</button></a>
+				<div class = "item-group requestordergroup">
+					<h4>Pending requests</h4>
+					{% for item in pendingItems %}
+						<div class = "item pending">
+							<p class="pending-item-title">{{item.item.title}}</p>
+							<p>Quantity : {{item.quantity}}</p>
+							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
+							<p>Bought from : <a href = "/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></p>
+							<a href = "/cart/shoppingitem/{{item.uniqueid}}/"><button type = "button" class = "btn btn-default">Received</button></a>
+						</div>
+					{% endfor %}
+				</div>
+				<div class = "item-group" >
+					<h4>Received Items</h4>
+					{% for item  in receivedItems %}	
+						<div class = "item received">
+							<p class="pending-item-title">{{item.item.title}}</p>
+							<p>Quantity : {{item.quantity}}</p>
+							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
+							<p>Bought from : <a href = "/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></p>
+
+						</div>
+					{% endfor %}
+				</div>
 			</div>
-			<div class = "col-md-9" id="cart-items"> 
+			<div class = "col-md-6" id="cart-items"> 
 				<div class="item-group">
 					<h4>Items In Your Cart</h4>
 					{% if numItems > 0 %}
@@ -38,6 +62,30 @@
 							<p>You currently have no items in your cart!</p>
 						</div>
 					{% endif %}
+				</div>
+			</div>
+			<div class = "col-md-3" id = "orders">
+				<div class = "item-group">
+					<h4>Pending Orders</h4>
+					{% for item  in pendingOrders %}	
+						<div class = "item pending-order">
+							<p class="pending-item-title">{{item.item.title}}</p>
+							<p>Quantity : {{item.quantity}}</p>
+							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
+							<p>Ordered By : <a href = "/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
+						</div>
+					{% endfor %}
+				</div>
+				<div class = "item-group">
+					<h4>Finished Orders</h4>
+					{% for item  in finishedOrders %}	
+						<div class = "item received">
+							<p class="pending-item-title">{{item.item.title}}</p>
+							<p>Quantity : {{item.quantity}}</p>
+							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
+							<p>Ordered By : <a href = "/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
