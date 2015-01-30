@@ -2,7 +2,7 @@
 GENERAL
 *************************************************/
 #wrapper{
-	width:60%;
+	width:80%;
 	margin: 0 auto;
 	margin-bottom: 30px;
 }
@@ -19,6 +19,8 @@ img {
 	padding-left:  10%;
 	padding-right : 10%;
 }
+
+
 
 /************************************************
 HEADING
@@ -49,6 +51,13 @@ SHOPPING
 }
 #checkout p{
 	margin-bottom:1%;
+}
+#orders {
+	background-color : #EEE;
+	padding:1%;
+}
+#orders p{
+	margin-bottom: 1%;
 }
 .item-group{
 	margin-bottom:3%;
@@ -85,7 +94,41 @@ SHOPPING
 }
 .price{
 	color:green;
-	font-size:16px;
+	font-size:13px;
+}
+
+/****************************
+PENDING/RECEIVED
+*****************************/
+.pending{
+	padding: 10px;
+	padding-top:0px;
+	background-color: #F6FF00;
+	margin-top: 10px;
+	font-size:12px;
+}
+.pending-item-title {
+	font-weight:bold;
+	font-size:15px;
+	margin-top:5%;
+}
+
+.received {
+	padding: 10px;
+	background-color: #3FE86C;
+	margin-top: 10px;
+	font-size:12px;
+}
+.requestordergroup {
+	margin-top: 20px;
+}
+
+.pending-order {
+	padding: 10px;
+	padding-top:0px;
+	background-color: #FF4242;
+	margin-top: 10px;
+	font-size:12px;
 }
 
 /************************************************
