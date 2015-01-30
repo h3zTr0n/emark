@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-	<title>craftnet - login or register</title>
+	<title>login or register - craftnet</title>
 {% endblock %}
 
 {% block page_css %}
@@ -19,7 +19,8 @@
 {% block content %}
 	<div class="container">
 		<div class="signin row" id="signin">
-			<form class="form-horizontal" method="post" action="/acc/pSignin/">
+			<form id="signinForm" class="form-horizontal" method="post" action="/acc/pSignin/">
+				<div id="signinAlert" class="alert alert-danger hidden" role="alert"></div>
 				{% csrf_token %}
 				<div class="form-group">
 					<label for="email" class="col-sm-2 control-label">Email</label>
@@ -42,7 +43,8 @@
 			</form>
 		</div>
 		<div class="register row" id="register">
-			<form class="form-horizontal" method="post" action="/acc/pRegister/">
+			<form id="registerForm" class="form-horizontal" method="post" action="/acc/pRegister/">
+				<div id="registerAlert" class="alert alert-danger hidden" role="alert"></div>
 				{% csrf_token %}
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>

@@ -1,7 +1,8 @@
 todo
 
 checkout stuff
-search filtering
-homepage listings
-AJAX EVERYWHERE
+more settings
+links!! connect everything
 UI STUFF - HELLA FORMATTING
+	consistency
+	mobile optimization

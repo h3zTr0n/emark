@@ -44,7 +44,7 @@ def getItem(request, username, itemid):
 		"Clothing",
 		"Art",
 	]
-	itemCategory = categories[item.category]
+	itemCategory = categories[item.category-1]
 
 	reviews = Review.objects.filter(item=item)
 
@@ -67,12 +67,18 @@ def editItem(request, itemid):
 	context={
 		"item":item,
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	template = loader.get_template('editItem.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def createItem(request):
 	template = loader.get_template('editItem.html')
 	context={}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 '''
@@ -164,13 +170,29 @@ def searchnew(request):
 		items = sorted(items, key=cmp_to_key(compareRelevancy))
 		items.reverse()
 	items = list(items)
+
+	#filtering options
+	categoryFilteredItems = []
+	categoryPriceFilteredItems = []
+
 	for item in items:
-		if (cata[item.category-1] == False):
-			items.remove(item)
-		if (minPrice and item.price < minPrice):
-			items.remove(item)
-		if (maxPrice and item.price > maxPrice):
-			items.remote(item)
+		if (cata[item.category-1] == True):
+			categoryFilteredItems.append(item)
+	for item in categoryFilteredItems:
+		if(minPrice == None and maxPrice == None):
+			categoryPriceFilteredItems.append(item)
+		if(minPrice and maxPrice == None):
+			if(item.price > minPrice):
+				categoryPriceFilteredItems.append(item)
+		if(maxPrice and minPrice == None):
+			if(item.price < maxPrice):
+				categoryPriceFilteredItems.append(item)
+		if(minPrice and maxPrice):
+			if(item.price > minPrice and item.price < maxPrice):
+				categoryPriceFilteredItems.append(item)
+
+	items = categoryPriceFilteredItems
+
 	context = {
 		"search": request.GET["q"],
 		"items": items,	
@@ -308,7 +330,7 @@ def saveItem(request, itemid):
 		category = request.POST['category']
 
 	if(itemid == 'new'):
-		picture = None
+		picture = request.FILES['pic']
 		itemid = request.POST['title'].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 		item = Item(user=request.user,title=title, details=details, price=price, picture=picture,description=description,tags=tags,category=category, itemid = itemid)
 	else:

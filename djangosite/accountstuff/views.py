@@ -40,7 +40,9 @@ def getProfile(request, username):
 		context["notFound"] = True
 	if (request.user.username == username):
 		context["self"] = True
-	
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 
 	template = loader.get_template('Dprofile.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
@@ -87,7 +89,7 @@ def signin(request):
 	password = request.POST['password']
 	pos = User.objects.filter(email=email)
 	if (len(pos) == 0):
-		return HttpResponse("User does not exist.")
+		return HttpResponse("Error: User does not exist.")
 	else:
 		pos = pos[0]
 	user = authenticate(username=pos.username, password=password)
@@ -95,8 +97,10 @@ def signin(request):
 		login(request, user)
 		return HttpResponse("Signed in as " + user.username) #TODO redirect? nah brah
 	else:
-		return HttpResponse("Password wrong.")
+		return HttpResponse("Error: Password wrong.")
 def register(request):
+	if not ("name" in request.POST and "email" in request.POST and "password" in request.POST and request.POST['name'] and request.POST['email'] and request.POST['password']):
+		return HttpResponse("Error: Missing Fields.")
 	name = request.POST['name'].split(" ")
 	fname = name.pop(0)
 	lname = " ".join(name)
@@ -147,14 +151,16 @@ def updateSettings(request):
 	if ('pic' in request.FILES and request.FILES['pic']):
 		userinfo.profile_picture = request.FILES['pic']
 
+	'''
 	if('oldpassword' in request.POST and request.POST['oldpassword']
 		and 'password' in request.POST and request.POST['password']
 		and 'passwordagain' in request.POST and request.POST['passwordagain']):
 		oldpassword = request.POST['oldpassword']
 		password = request.POST['password']
 		newpassword = request.POST['passwordagain']
-		if(oldpassword == user.password and password == newpassword):
+		if (oldpassword == user.password and password == newpassword):
 			user.password = newpassword
+	'''
 
 	user.save()
 	userinfo.save()

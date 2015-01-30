@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from shoppingcart.models import ShoppingCartItem
 from itemstuff.models import Item
 from django.template import RequestContext, loader
-from accountstuff.models import Address, CreditCards
+from accountstuff.models import Address, CreditCards, UserInfo
 import random
 
 # Create your views here.
@@ -15,6 +15,9 @@ def displayCart(request):
 		"cartListSum": sumCartPrices(request, shoppingCart),
 		"numItems" : len(shoppingCart)
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	template = loader.get_template('DshoppingCart.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def addItemToUser(request, itemid, quantity):
@@ -59,6 +62,9 @@ def checkout(request):
 		"creditcard": None,
 		"cartlist": ShoppingCartItem.objects.filter(user = request.user),
 	}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	if len(Address.objects.filter(user = request.user)) > 0:
 		context['address'] = Address.objects.filter(user = request.user)[0]
 	if len(CreditCards.objects.filter(user=request.user)) > 0:
