@@ -36,7 +36,7 @@
 							<p>Quantity : {{item.quantity}}</p>
 							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
 							<p>Bought from : <a href = "/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></p>
-
+							<a href = "/cart/removeitem/{{item.uniqueid}}/"><button type = "button" class = "btn btn-default">Finish</button></a>
 						</div>
 					{% endfor %}
 				</div>
