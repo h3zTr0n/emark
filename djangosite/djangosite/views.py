@@ -30,9 +30,9 @@ def home(request):
 		featureduserinfos.append(userinfos[rand])
 
 	items = Item.objects.all()
-	randInts3 = random.sample(range(len(items)),3)
+	randInts9 = random.sample(range(len(items)),9)
 	featureditems = []
-	for rand in randInts3:
+	for rand in randInts9:
 		featureditems.append(items[rand])
 		
 	randInts6 = random.sample(range(len(items)),6)
