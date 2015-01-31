@@ -82,6 +82,12 @@ html, body {
 	margin: 5px 15px 5px 5px;
 	display: inline-block;
 }
+.imgholder.tiny {
+	width: 25%;
+	height: 50px;
+	margin: 1px;
+	display: inline-block;
+}
 .profPic {
 	background-position: center;
 	background-repeat: no-repeat;
@@ -208,21 +214,25 @@ html, body {
 .navbar-right > li {
 	float: right;
 }
-.cart .description {
-	display: inline-block;
-	vertical-align: top;
+.cart .cart-item .description {
 	width: 70%;
 }
-.cart .description .title {
+.cart-item .description {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+}
+.cart-item .description .title {
 	font-weight: bold;
 }
-.cart .description .price {
+.cart-item .description .price {
 	float: right;
 	color: green;
 }
-.cart .description .name {
+.cart-item .description .name {
 	clear: both;
 	margin: 0;
+	text-align: left;
 }
 @media (max-width: 768px) {
 	/**/
