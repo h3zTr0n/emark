@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url(r'^settings/$', views.settings, name="settings2"),
     #url(r'^settings2/$', views.settingsOld, name="settings"),
 	url(r'^pUpdate/$', views.updateSettings, name='modifySettings'),
+	url(r'^changeAddress/$', views.updateAddress, name = 'updateAddress'),
+	url(r'^changeCCInfo/$', views.updateCC, name = 'updateCC')
 )
