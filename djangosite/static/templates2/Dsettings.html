@@ -90,98 +90,78 @@
 					</div>
 				</form>
 				<!--BEGINNING OF FORM FOR CHANGING ADDRESS-->
-				<div class = "panel panel-default">
-					<form class = "form-horizontal" method = "post" action = "/acc/changeAddress/">
+				<form class = "generalform" method = "post" action = "/acc/changeAddress/">
+					<div class = "panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">CHANGE ADDRESS</h3>
 						</div>
 						{% csrf_token %}
 						<div class = "panel-body">
 							<div class = "form-group">
-								<label for = "country" class = "col-sm-3 control-label">Country : </label>
-								<div class = "col-sm-9">
-									<input type = "text" class = "form-control" name = "country" value = "{{address.country}}"required>
-								</div>
+								<label for = "country">Country</label>
+								<input type = "text" class = "form-control" name = "country" value = "{{address.country}}"required>
 							</div>
 							<div class = "form-group ">
-								<label for = "street" class = "col-sm-3 control-label">Street : </label>
-								<div class = "col-sm-9">
-									<input type = "text" class = "form-control" name = "street" value = "{{address.street}}" required>
-								</div>
+								<label for = "street" >Street</label>
+								<input type = "text" class = "form-control" name = "street" value = "{{address.street}}" required>
 							</div>
 							<div class = "form-group">
-								<label for = "aptsuiteother" class = "col-sm-3 control-label">Apt / Suite / Other : </label>
-								<div class = "col-sm-9">
-									<input type = "text" class = "form-control" name = "aptsuiteother" value = "{{address.aptsuiteother}}">
-								</div>
+								<label for = "aptsuiteother">Apt / Suite / Other</label>
+								<input type = "text" class = "form-control" name = "aptsuiteother" value = "{{address.aptsuiteother}}">
 							</div>
 							<div class = "form-group">
-								<label for = "zipcode" class = "col-sm-3 control-label">Zip Code : </label>
-								<div class = "col-sm-9">
-									<input type = "text" class = "form-control" name = "zipcode" value = "{{address.zipcode}}" required>
-								</div>
+								<label for = "zipcode">Zip Code</label>
+								<input type = "text" class = "form-control" name = "zipcode" value = "{{address.zipcode}}" required>
 							</div>
 							<div class = "form-group">
-								<label for = "city" class = "col-sm-3 control-label">City : </label>
-								<div class = "col-sm-9">
-									<input type = "text" class = "form-control" name = "city" value = "{{address.city}}" required>
-								</div>
+								<label for = "city">City</label>
+								<input type = "text" class = "form-control" name = "city" value = "{{address.city}}" required>
 							</div>
 							<div class = "form-group">
-								<label for = "state" class = "col-sm-3 control-label">State : </label>
-								<div class = "col-sm-9">
-									<input type = "text" class = "form-control" name = "state" value = "{{address.state}}" required>
-								</div>
-							</div>
-
-							<div class = "form-group" >
-								<div class = "col-sm-offset-2 col-sm-3">
-									<button type = "submit" class = "btn btn-default" id = "shipfilled">Change to this address</button>
-								</div>
+								<label for = "state">State</label>
+								<input type = "text" class = "form-control" name = "state" value = "{{address.state}}" required>
 							</div>
 						</div>
-					</form>
-				</div>
+						<div class = "panel-footer" >
+							<input type="submit" value="Save" class="btn" />
+						</div>
+					</div>
+				</form>
 				<!--END OF FORM FOR CHANGING ADDRESS-->
 				<!--BEGINNING OF FORM TO CHANGE CREDIT CARD INFO-->
-				<div class = "panel panel-default">
-					<form class = "form-horizontal" method = "post" action = "/acc/changeCCInfo/">
-						<div class="panel-heading">
-							<h3 class="panel-title">CHANGE CREDIT CARD INFORMATION</h3>
-						</div>
-						{% csrf_token %}
-						<div class = "panel-body">
-							<div class = "form-group col-sm-12">
-								<label for = "cardNumber" class = "col-sm-3 control-label">Card Number : </label>
-								<div class = "col-sm-9">
+					<form class = "generalform" method = "post" action = "/acc/changeCCInfo/">
+						<div class = "panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">CHANGE CREDIT CARD INFORMATION</h3>
+							</div>
+							{% csrf_token %}
+							<div class = "panel-body">
+								<div class = "form-group">
+									<label for = "cardNumber">Card Number</label>
 									<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" value = "{{ccinfo.cardNumber}}"required>
 								</div>
-							</div>
-							<div class = "form-group col-sm-12" id = "expiration">
-								<label for = "ExpMonth" class = "col-sm-3 control-label">Expiration Date : </label>
-								<div class = "col-sm-2">
-									<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM" value = "{{ccinfo.monthExp}}"required>
+								<div class = "form-group" id = "expiration">
+									<label for = "ExpMonth" class = "col-sm-2 control-label">Expiration Date</label>
+									<div class =  "col-sm-2">
+										<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM" value = "{{ccinfo.monthExp}}"required>
+									</div>
+									<div class = "col-sm-2">
+										<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" placeholder = "YYYY" value = "{{ccinfo.yearExp}}" required>
+									</div>
+									<div class = "col-sm-2">
+										<label for = "securityCode">Security Code</label>
+									</div>
+									<div class = "col-sm-2">
+										<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" value = "{{ccinfo.securityCode}}" required>
+									</div>
 								</div>
-								<div class = "col-sm-3">
-									<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" placeholder = "YYYY" value = "{{ccinfo.yearExp}}" required>
-								</div>
-								<div class = "col-sm-3"></div>
 
 							</div>
-							<div class = "form-group col-sm-12">
-								<label for = "securityCode" class = "col-sm-3 control-label">Security Code : </label>
-								<div class = "col-sm-2">
-									<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" value = "{{ccinfo.securityCode}}" required>
-								</div>
-							</div>
-							<div class = "form-group col-sm-12" >
-								<div class = "col-sm-offset-2 col-sm-3">
-									<button type = "submit" class = "btn btn-default" id = "SubmitPaymentInfo">Change Card Info</button>
-								</div>
+							<div class = "panel-footer" >
+									<input type="submit" value="Save" class="btn" />
 							</div>
 						</div>
 					</form>
-				</div>
 				<!--END OF CHANGING CREDIT CARD INFO-->
 				<!-- TODO: birthday, cc and shipping -->
 			</div>	
