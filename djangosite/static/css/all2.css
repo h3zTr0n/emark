@@ -8,6 +8,7 @@
 html, body {
 	height:100%;
 	font-family: 'Open Sans', sans-serif;
+	position: relative;
 }
 .nav li:hover .dropdown-menu {
 	display: block;
@@ -42,6 +43,10 @@ html, body {
 	bottom: 0;
 	width: 100%;
 	padding: 5px;
+	background: rgba(128, 128, 128, 0.5);
+}
+.browseItem .caption a {
+	color: #333;
 }
 .browseItem .caption .title {
 	font-weight: bold;
@@ -126,20 +131,29 @@ html, body {
 .navbar-center {
 	width: 100%;
 	text-align: center;
+	background: #fefefe;
 }
 .navbar-center li {
 	float: none;
 	display: inline-block;
+	border-bottom: 5px solid transparent;
+}
+.navbar-center li:hover, .navbar-center li.active {
+	border-bottom-color: #ff6600;
+}
+.navbar-center li a {
+	padding: 5px 15px;
 }
 .navigation {
 	margin-bottom: 20px;
 }
 .footer {
 	width:100%;
-	/*
+	margin-top: 20px;
+	padding-top: 20px;
+	background: #f8f8f8;
 	position: absolute;
-	bottom: 0;
-	*/
+	max-height: 250px;
 }
 .footer .footer-title {
 	font-weight: bold;
@@ -160,6 +174,9 @@ html, body {
 .sidebar {
 	margin-bottom: 15px;
 	padding-bottom: 15px;
+	background: #f8f8f8;
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
 }
 .sidebar.inner {
 	padding: 5px 15px 10px;
@@ -167,6 +184,9 @@ html, body {
 .sidebar .price-input {
 	display: inline-block;
 	width: 100px;
+}
+.sidebar .name {
+	color: #333;
 }
 .sidebar .name, .sidebar .email, .sidebar .phonenumber, .sidebar .followers {
 	text-align: center;
@@ -191,29 +211,6 @@ html, body {
 .well h3 {
 	margin-top: 0;
 }
-.sidebar {
-	//temporary;
-	background: #f8f8f8;
-	border: 1px solid #e7e7e7;
-	border-radius: 5px;
-}
-.caption {
-	//temporary;
-	background: rgba(128, 128, 128, 0.5);
-}
-/* TO CHANGE IN BOOTSTRAP */
-.navbar {
-	margin: 0;
-}
-.navbar-form {
-	width: 41.66666667%; /* remove it */
-}
-.navbar-form .form-control {
-	width: 100%; /* remove it */
-}
-.navbar-right > li {
-	float: right;
-}
 .cart .cart-item .description {
 	width: 70%;
 }
@@ -233,6 +230,69 @@ html, body {
 	clear: both;
 	margin: 0;
 	text-align: left;
+}
+
+/* TO CHANGE IN BOOTSTRAP */
+.navbar {
+	margin: 0;
+	min-height: 30px;
+}
+.navbar-form {
+	width: 41.66666667%; /* remove it */
+}
+.navbar-form .form-control {
+	width: 100%; /* remove it */
+}
+.navbar-right > li {
+	float: right;
+}
+.navbar-default .navbar-brand {
+	color: #ff6600;
+}
+.navbar-default .navbar-brand:hover {
+	color: #cc5200;
+}
+/*
+.panel-default {
+	background: #f5f5f5;
+}
+.panel-default > .panel-heading {
+	border: 0;
+	border-bottom: 1px solid #ddd;
+	background: none;
+}
+.panel-default > .panel-footer {
+	border-top: 1px solid #ddd;
+	background: none;
+}
+*/
+.panel-title {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+.btn-primary {
+	border: 1px solid #cc5200;
+	background-color: #ff6600;
+}
+.btn-primary:hover {
+	border: 1px solid #AA3300;
+	background-color: #cc5200;
+}
+.panel-primary {
+	border: 1px solid #ff6600;
+}
+.panel-primary > .panel-heading {
+	background-color: #ff6600;
+	border-bottom: #ff6600;
+}
+a {
+	color: #ee6600;
+}
+a:hover, a:focus {
+	color: #cc5200;
+} 
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+	background-color: #ff6600;
 }
 @media (max-width: 768px) {
 	/**/
