@@ -5,6 +5,7 @@ from accountstuff.models import UserInfo
 from django.contrib.auth.models import User
 from itemstuff.models import Item
 import random
+from functools import cmp_to_key
 
 def home(request):
 	context = {}
@@ -24,10 +25,11 @@ def home(request):
 		context["feedItems"] = feedItems
 
 	userinfos = UserInfo.objects.all()
-	randInts4 = random.sample(range(len(userinfos)),4)
-	featureduserinfos = []
-	for rand in randInts4:
-		featureduserinfos.append(userinfos[rand])
+	userinfos = sorted(userinfos, key=cmp_to_key(compareFollowers))
+	userinfos.reverse()
+	featureduserinfos=[]
+	for i in range(0,4):
+		featureduserinfos.append(userinfos[i])
 
 	items = Item.objects.all()
 	randInts3 = random.sample(range(len(items)),3)
@@ -46,6 +48,8 @@ def home(request):
 	template = loader.get_template('Dhomepage.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+def compareFollowers(a,b):
+	return len(a.followers.all()) - len(b.followers.all())
 def about(request):
 	context={}
 	if (request.user.is_authenticated()):
