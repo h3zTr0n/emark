@@ -19,6 +19,8 @@ html, body {
 	height: 200px;
 	margin-left: 1%;
 	margin-bottom: 10px;
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
 }
 .browseItem.five {
 	width: 19%;
@@ -44,10 +46,11 @@ html, body {
 .browseItem .caption .title {
 	font-weight: bold;
 	float: left;
+	margin: 0;
 }
 .browseItem .caption .price {
 	float: right;
-	margin-top: 20px;
+	margin-top: 10px;
 	color: green;
 }
 .browseItem .caption .seller {
@@ -149,7 +152,11 @@ html, body {
 	border-radius: 5px;
 }
 .sidebar {
-	margin-bottom: 20px;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+}
+.sidebar.inner {
+	padding: 5px 15px 10px;
 }
 .sidebar .price-input {
 	display: inline-block;
@@ -178,6 +185,16 @@ html, body {
 .well h3 {
 	margin-top: 0;
 }
+.sidebar {
+	//temporary;
+	background: #f8f8f8;
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
+}
+.caption {
+	//temporary;
+	background: rgba(128, 128, 128, 0.5);
+}
 /* TO CHANGE IN BOOTSTRAP */
 .navbar {
 	margin: 0;
@@ -194,7 +211,7 @@ html, body {
 .cart .description {
 	display: inline-block;
 	vertical-align: top;
-	width: 71%;
+	width: 70%;
 }
 .cart .description .title {
 	font-weight: bold;
