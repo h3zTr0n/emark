@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block page_css %}
-	<!--<link rel="stylesheet" type="text/css" href="{% static 'css/itemListing.css' %}"/>-->
 {% endblock %}
 		
 {% block content %}
@@ -59,8 +58,7 @@
 						{% for item in selleritems %}
 							<div class="browseItem two">
 								<a href="/user/{{item.user.username}}/{{item.itemid}}">
-									<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/>
-									</div>
+									<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/></div>
 								</a>
 							</div>
 						{% endfor %}
@@ -68,7 +66,7 @@
 				</div>
 			</div>
 			<div class="col-md-8">
-				<div class="imgholder">
+				<div class="imgholder large">
 					<div class="img" style="background-image:url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/sample1.png' %}{% endif %}')"></div>
 				</div>
 				<div class="panel panel-default">
@@ -83,7 +81,7 @@
 					{% for review in reviews %}
 						<div class="panel panel-default review">
 							<div class="panel-heading">
-								<h4 class="panel-title">{{review.user.first_name}} {{review.user.last_name}}</h4>
+								<h4 class="panel-title"><a href="/user/{{review.user.username}}">{{review.user.first_name}} {{review.user.last_name}}</a></h4>
 							</div>
 							<div class="panel-body">	
 								<h5 class="review-rating">Rating: {{review.rating}}</h5>

@@ -52,6 +52,7 @@ html, body {
 }
 .browseItem .caption .seller {
 	clear: both;
+	margin: 0;
 }
 .img {
 	background-position: center;
@@ -60,10 +61,23 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
+/*
 .imgholder {
 	width: 100%;
 	height: 400px;
 	margin-bottom: 20px;
+}
+*/
+.imgholder.large {
+	width: 100%;
+	height: 400px;
+	margin-bottom: 20px;
+}
+.imgholder.small {
+	width: 25%;
+	height: 200px;
+	margin: 5px 15px 5px 5px;
+	display: inline-block;
 }
 .profPic {
 	background-position: center;
@@ -144,6 +158,10 @@ html, body {
 .sidebar .name, .sidebar .email, .sidebar .phonenumber, .sidebar .followers {
 	text-align: center;
 }
+.sidebar .price {
+	margin-top: 5px;
+	color: green;
+}
 .userlist {
 	list-style: none;
 	padding: 0;
@@ -173,7 +191,22 @@ html, body {
 .navbar-right > li {
 	float: right;
 }
-
+.cart .description {
+	display: inline-block;
+	vertical-align: top;
+	width: 71%;
+}
+.cart .description .title {
+	font-weight: bold;
+}
+.cart .description .price {
+	float: right;
+	color: green;
+}
+.cart .description .name {
+	clear: both;
+	margin: 0;
+}
 @media (max-width: 768px) {
 	/**/
 }
