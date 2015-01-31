@@ -389,7 +389,7 @@ body{
 .sidebar select, .sidebar input {
 	display: inline-block;
 }
-.sidebar .profile-information, .followlist, .followinglist{
+.sidebar .profile-information, .followlist, .followinglist, #sortf{
 	padding:4%;
 }
 .sidebar .follower-name{
@@ -533,6 +533,10 @@ body{
 .about h4{
 	font-style:italic;
 	margin-bottom:0px;
+}
+#sortf h3{
+	font-weight: bold;
+	margin-top:20px;
 }
 @media (max-width: 768px) {
 	#main-nav, #main-nav input, #main-nav .btn {
