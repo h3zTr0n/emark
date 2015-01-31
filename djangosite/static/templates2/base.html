@@ -104,44 +104,49 @@
 						</ul>
 					</div>
 					<div class="col-md-2 col-md-offset-1" id="site-information">
-						<p class="footer-title">Let Us Help You</p>
+						<p class="footer-title">For You</p>
 						<ul>
-							<li><a href="/acc/settings">Your Account</a></li>
-							<li><a href="#">Returns & Replacements</a></li>
-							<li><a href="#">Help</a></li>
+							{% if user and userinfo %}
+								<li><a href="/acc/settings">Account Settings</a></li>
+								<li><a href="/msg/">Messages</a></li>
+							{% else %}
+								<li><a href="/acc/#register">Register for craftnet</a></li>
+								<li><a href="/acc/#signin">Sign In</a></li>
+							{% endif %}
 						</ul>
 					</div>
 					<div class="col-md-2 col-md-offset-1" id="social-media">
 						<p class="footer-title">Follow craftnet</p>
 						<ul>
 							<li class="social-media-item">
-								<a class="social-media-link" href="#">
+								<a class="social-media-link" href="https://www.facebook.com/pages/Craftnet/652309304879283">
 									<img src="{% static 'files/facebook-icon.png' %}" class="social-media-icon" />
 									Facebook
 								</a>
 							</li>
 							<li class="social-media-item">
-								<a class="social-media-link" href="#">
+								<a class="social-media-link" href="https://twitter.com/CraftnetStore">
 									<img src="{% static 'files/twitter-icon.png' %}" class="social-media-icon" />
 									Twitter
 								</a>
 							</li>
 							<li class="social-media-item">
-								<a class="social-media-link" href="#">
+								<a class="social-media-link" href="https://www.pinterest.com/craftnet/">
 									<img src="{% static 'files/pinterest-icon.png' %}" class="social-media-icon" />
 									Pinterest
 								</a>
 							</li>
 							<li class="social-media-item">
-								<a class="social-media-link" href="#">
-									<img src="{% static 'files/instagram-icon.png' %}" class="social-media-icon" />
-									Instagram
+								<a class="social-media-link" href="mailto:craftnet.store@gmail.com">
+									<img src="{% static 'files/gmail-icon.png' %}" class="social-media-icon" />
+									Email Us
 								</a>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div class="copyright">
+					<div class="profPicTiny" style="background-image:url('{% static 'files/craftnet-square.png' %}')"></div>
 					<p>&copy; 2015 craftnet, inc.</p>	
 				</div>
 			</footer>
