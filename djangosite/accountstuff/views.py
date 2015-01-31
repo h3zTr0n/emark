@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
-from accountstuff.models import UserInfo
+from accountstuff.models import UserInfo, Address, CreditCards
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
 from itemstuff.models import Item
+
 import random
 
 #CLIENT
@@ -51,7 +52,9 @@ def settings(request):
 		return HttpResponseRedirect("/acc/#signin")
 	context = {
 		"user": request.user,
-		"userinfo": UserInfo.objects.filter(user=request.user)[0]
+		"userinfo": UserInfo.objects.filter(user=request.user)[0],
+		"address" : Address.objects.filter(user = request.user)[0],
+		"ccinfo": CreditCards.objects.filter(user = request.user)[0],
 	}
 	template = loader.get_template('Dsettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
@@ -182,3 +185,23 @@ def unfollow(request, username):
 		slaveInfo.following.remove(masterInfo.user)
 		masterInfo.followers.remove(slaveInfo.user)
 	return HttpResponseRedirect("/user/" + username +"/")
+
+def updateAddress(request):
+	currentAddress = Address.objects.filter(user = request.user)[0]
+	currentAddress.country = request.POST['country']
+	currentAddress.street = request.POST['street']
+	currentAddress.aptsuiteother = request.POST['aptsuiteother']
+	currentAddress.zipcode = request.POST['zipcode']
+	currentAddress.city = request.POST['city']
+	currentAddress.state = request.POST['state']
+	currentAddress.save()
+	return HttpResponseRedirect("/acc/settings/")
+
+def updateCC(request):
+	currentCC = CreditCards.objects.filter(user = request.user)[0]
+	currentCC.cardNumber = request.POST['cardNumber']
+	currentCC.monthExp = request.POST['ExpMonth']
+	currentCC.yearExp = request.POST['ExpYear']
+	currentCC.securityCode = request.POST['securityCode']
+	currentCC.save()
+	return HttpResponseRedirect("/acc/settings/")
