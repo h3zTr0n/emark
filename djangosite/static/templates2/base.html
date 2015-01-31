@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="{% static 'css/all.css' %}">
 		{% block page_css %}
 		{% endblock %}
-		<link rel="shortcut icon" href="{% static 'files/craftnet-small-icon.jpg' %}"/>
+		<link rel="shortcut icon" href="{% static 'files/craftnet-square.png' %}"/>
 	</head>
 	<body>
 		<div class="page-wrapper">
@@ -98,16 +98,15 @@
 					<div class="col-md-2 col-md-offset-2" id="site-information">
 						<p class="footer-title">About Us</p>
 						<ul>
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">Terms of Use</a></li>
-							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="/about/#term-of-use">Terms of Use</a></li>
+							<li><a href="/about/#privacy-policy">Privacy Policy</a></li>
+							<li><a href="/about/#faq">FAQ</a></li>
 						</ul>
 					</div>
 					<div class="col-md-2 col-md-offset-1" id="site-information">
 						<p class="footer-title">Let Us Help You</p>
 						<ul>
-							<li><a href="#">Your Account</a></li>
-							<li><a href="#">Shipping Rates & Policies</a></li>
+							<li><a href="/acc/settings">Your Account</a></li>
 							<li><a href="#">Returns & Replacements</a></li>
 							<li><a href="#">Help</a></li>
 						</ul>
@@ -137,12 +136,6 @@
 								<a class="social-media-link" href="#">
 									<img src="{% static 'files/instagram-icon.png' %}" class="social-media-icon" />
 									Instagram
-								</a>
-							</li>
-							<li class="social-media-item">
-								<a class="social-media-link" href="#">
-									<img src="{% static 'files/snapchat-icon.png' %}" class="social-media-icon" />
-									Snapchat
 								</a>
 							</li>
 						</ul>
