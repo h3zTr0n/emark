@@ -15,9 +15,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3 sidebar">
-				<div class="profile-information blockbg">
-					<h1 class="rowheader">{{user.first_name}} {{user.last_name}}</h1>
-					<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+				<div class="profile-information">
+					<h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
+					<div class="profPic large" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div><br>
 					<ul class="nav nav-pills nav-stacked" role="tablist">
 						<li role="presentation" class="active"><a href="#">Account</a></li>
 			  			<li role="presentation"><a href="#">Preferences</a></li>
@@ -28,9 +28,9 @@
 			</div>
 			<div class="col-md-9">
 				<form id="generalform" class="" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">GENERAL SETTINGS</h3>
+							<h3 class="panel-title">General Settings</h3>
 						</div>
 						<div class="panel-body">
 							{% csrf_token %}
@@ -60,14 +60,12 @@
 							</div>
 						</div>
 						<div class="panel-footer">
-							<input type="submit" value="Save" class="btn" />
+							<input type="submit" value="Save" class="btn btn-primary" />
 						</div>				
 					</div>
-				<!--</form>
-				<form id="generalform" class="" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">-->
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">CHANGE PASSWORD</h3>
+							<h3 class="panel-title">Change Password</h3>
 						</div>
 						<div class="panel-body">
 							{% csrf_token %}
@@ -85,11 +83,10 @@
 							</div>
 						</div>
 						<div class="panel-footer">
-							<input type="submit" value="Save" class="btn" />
+							<input type="submit" value="Save" class="btn btn-primary" />
 						</div>
 					</div>
 				</form>
-				<!-- TODO: birthday, cc and shipping -->
 			</div>	
 		</div>
 	</div>	

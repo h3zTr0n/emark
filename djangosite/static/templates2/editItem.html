@@ -2,30 +2,27 @@
 {% load staticfiles %}
 
 {% block page_css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/editItem.css' %}"
+<!--	<link rel="stylesheet" type="text/css" href="{% static 'css/editItem.css' %}">-->
 {% endblock %}
 
 {% block content %}
+<div class="container">
 	{% if item %}
 		<form id ="itemform" action="/item/saveItem/{{item.itemid}}" method="POST" enctype="multipart/form-data">
 	{% else %}
 		<form id ="itemform" action="/item/saveItem/new" method="POST" enctype="multipart/form-data">
 	{% endif %}
 		{% csrf_token %}
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">GENERAL SETTINGS</h3>
+				<h3 class="panel-title">Item Details</h3>
 			</div>
 			<div class="panel-body">
 				{% csrf_token %}
 				{% if item %}
-					<div id="current-picture">
-						{% if item.picture %}
-							<img src={{MEDIA_ROOT}}{{item.picture.url}}/>
-						{% else %}
-							<img src="{% static 'files/default-picture.jpg' %}"/>
-						{% endif %}
-					</div>
+				<div class="imgholder large">
+					<div class="img" style="background-image:url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"></div>
+				</div>
 				{% endif %}
 				<div class="form-group">
 				    <label for="pic">{% if item %}Change Current Picture{% else %}Add a picture{% endif %}</label>
@@ -48,7 +45,7 @@
 				    <textarea class="form-control" id="description" rows="5" name="description" placeholder="Describe your item">{{item.description}}</textarea>
 				</div>
 				<div class="form-group">
-					<label for="category">Category</label>
+					<label for="category">Category</label> 
 					<select name="category">
 						<option value="1" {% if item.category == 1 %}selected{% endif %}>Jewelry</option>
 						<option value="2" {% if item.category == 2 %}selected{% endif %}>Pottery</option>
@@ -62,15 +59,16 @@
 				    <input class="form-control" id="tags" name="tags" value="{{item.tags}}"/>
 				</div>
 				{% if item %}
-					<a style="color:red" href="/item/deleteItem/{{item.itemid}}">
+					<a class="btn btn-danger" href="/item/deleteItem/{{item.itemid}}">
 						<span class="glyphicon glyphicon-remove"></span>
-						Remove This Item
+						Remove Item
 					</a>
 				{% endif %}
 			</div>
 			<div class="panel-footer">
-				<input type="submit" value="{% if item %}Edit Item{% else %}Create Item{% endif %}" class="btn" />
+				<input type="submit" value="{% if item %}Save Item{% else %}Create Item{% endif %}" class="btn btn-primary" />
 			</div>
 		</div>	
 	</form>
+</div>
 {% endblock %}
