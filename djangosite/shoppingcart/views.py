@@ -100,7 +100,7 @@ def receivedItem(request, cartitemid) :
 	item.received = True
 	item.save()
 	return HttpResponseRedirect("/cart/")
-def removeItem(request, cartitemid):
+def removeFinishedItem(request, cartitemid):
 	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = True)
 	item.delete()
 	return HttpResponseRedirect("/cart/")
