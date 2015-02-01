@@ -6,94 +6,37 @@
 {% endblock %}
 
 {% block page_css %}
-<!--
-	<link rel="stylesheet" type="text/css" href="{% static 'css/account-settings.css' %}"/>
--->
+<style>
+#addressform, #ccinfo, #addressform:target ~ #generalform, #ccinfo:target ~ #generalform {
+  display: none;
+}
+#generalform:target, #addressform:target, #ccinfo:target {
+  display: block;
+}
+</style>
 {% endblock %}
 
 {% block content %}
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3 sidebar">
-				<div class="profile-information blockbg">
-					<h1 class="rowheader">{{user.first_name}} {{user.last_name}}</h1>
-					<div class="profPic" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
+				<div class="profile-information">
+					<h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
+					<div class="profPic large" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div><br>
 					<ul class="nav nav-pills nav-stacked" role="tablist">
-						<li role="presentation" class="active"><a href="#">Account</a></li>
-			  			<li role="presentation"><a href="#">Preferences</a></li>
-			  			<li role="presentation"><a href="#">Privacy & Security</a></li>
-			  			<li role="presentation"><a href="#">Payment Options</a></li>
+						<li role="presentation" class="active"><a href="#generalform">Account Preferences</a></li>
+			  			<li role="presentation"><a href="#addressform">Shipping Address</a></li>
+			  			<li role="presentation"><a href="#ccinfo">Credit Cart Info</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-9">
-				<form id="generalform" class="" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">GENERAL SETTINGS</h3>
-						</div>
-						<div class="panel-body">
-							{% csrf_token %}
-							<div class="form-group">
-							    <label for="pic">Change Current Picture</label>
-							    <input type="file" name="pic" id="pic">
-							</div>
-							<div class="form-group">
-							    <label for="firstname">First Name</label>
-							    <input class="form-control half-input" id="firstname" name="firstname" value="{{user.first_name}}" required/>
-							</div>
-							<div class="form-group">
-							    <label for="lastname">Last Name</label>
-							    <input class="form-control half-input" id="lastname" name="lastname" value="{{user.last_name}}" required/>
-							</div>
-							<div class="form-group">
-							    <label for="email">Email</label>
-								<input id="email" class="form-control" name="email" value="{{user.email}}" required/>
-							</div>
-							<div class="form-group">
-							    <label for="phonenumber">Phone Number</label>
-							    <input id="phonenumber" class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}" required/>
-							</div>
-							<div class="form-group">
-							    <label for="bio">Bio</label>
-							    <textarea class="form-control" id="bio" rows="5" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!" required>{{userinfo.bio}}</textarea>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<input type="submit" value="Save" class="btn" />
-						</div>				
-					</div>
-				<!--</form>
-				<form id="generalform" class="" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">-->
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">CHANGE PASSWORD</h3>
-						</div>
-						<div class="panel-body">
-							{% csrf_token %}
-							<div class="form-group">
-							    <label for="firstname">Old Password</label>
-							    <input class="form-control " id="oldpassword" name="oldpassword" type="password" required/>
-							</div>
-							<div class="form-group">
-							    <label for="lastname">New Password</label>
-							    <input class="form-control" id="password" name="password" type="password" required/>
-							</div>
-							<div class="form-group">
-							    <label for="lastname">New Password Again</label>
-							    <input class="form-control" id="passwordagain" name="passwordagain" type="password" required/>
-							</div>
-						</div>
-						<div class="panel-footer">
-							<input type="submit" value="Save" class="btn" />
-						</div>
-					</div>
-				</form>
+				
 				<!--BEGINNING OF FORM FOR CHANGING ADDRESS-->
-				<form class = "generalform" method = "post" action = "/acc/changeAddress/">
-					<div class = "panel panel-default">
+				<form id="addressform" method = "post" action = "/acc/changeAddress/">
+					<div class = "panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">CHANGE ADDRESS</h3>
+							<h3 class="panel-title">Shipping Address</h3>
 						</div>
 						{% csrf_token %}
 						<div class = "panel-body">
@@ -123,46 +66,107 @@
 							</div>
 						</div>
 						<div class = "panel-footer" >
-							<input type="submit" value="Save" class="btn" />
+							<input type="submit" value="Save" class="btn btn-primary" />
 						</div>
 					</div>
 				</form>
 				<!--END OF FORM FOR CHANGING ADDRESS-->
 				<!--BEGINNING OF FORM TO CHANGE CREDIT CARD INFO-->
-					<form class = "generalform" method = "post" action = "/acc/changeCCInfo/">
-						<div class = "panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">CHANGE CREDIT CARD INFORMATION</h3>
+				<form id = "ccinfo" method = "post" action = "/acc/changeCCInfo/">
+					<div class = "panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Credit Card Information</h3>
+						</div>
+						{% csrf_token %}
+						<div class = "panel-body">
+							<div class = "form-group">
+								<label for = "cardNumber">Card Number</label>
+								<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" value = "{{ccinfo.cardNumber}}" pattern = "\d{4}-?\d{4}-?\d{4}-?\d{4}" required>
 							</div>
-							{% csrf_token %}
-							<div class = "panel-body">
-								<div class = "form-group">
-									<label for = "cardNumber">Card Number</label>
-									<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" value = "{{ccinfo.cardNumber}}" pattern = "\d{4}-?\d{4}-?\d{4}-?\d{4}"required>
+							<div class = "form-group" id = "expiration">
+								<label for = "ExpMonth" class = "col-sm-2 control-label">Expiration Date</label>
+								<div class =  "col-sm-2">
+									<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM" value = "{{ccinfo.monthExp}}"required>
 								</div>
-								<div class = "form-group" id = "expiration">
-									<label for = "ExpMonth" class = "col-sm-2 control-label">Expiration Date</label>
-									<div class =  "col-sm-2">
-										<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM" value = "{{ccinfo.monthExp}}"required>
-									</div>
-									<div class = "col-sm-2">
-										<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" placeholder = "YYYY" value = "{{ccinfo.yearExp}}" required>
-									</div>
-									<div class = "col-sm-2">
-										<label for = "securityCode">Security Code</label>
-									</div>
-									<div class = "col-sm-2">
-										<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" value = "{{ccinfo.securityCode}}" required>
-									</div>
+								<div class = "col-sm-2">
+									<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" placeholder = "YYYY" value = "{{ccinfo.yearExp}}" required>
 								</div>
+								<div class = "col-sm-2">
+									<label for = "securityCode">Security Code</label>
+								</div>
+								<div class = "col-sm-2">
+									<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" value = "{{ccinfo.securityCode}}" required>
+								</div>
+							</div>
 
+						</div>
+						<div class = "panel-footer" >
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</div>
+					</div>
+				</form>
+				<!--END OF CHANGING CREDIT CARD INFO-->
+				<form id="generalform" class="" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">General Settings</h3>
+						</div>
+						<div class="panel-body">
+							{% csrf_token %}
+							<div class="form-group">
+							    <label for="pic">Change Current Picture</label>
+							    <input type="file" name="pic" id="pic">
 							</div>
-							<div class = "panel-footer" >
-									<input type="submit" value="Save" class="btn" />
+							<div class="form-group">
+							    <label for="firstname">First Name</label>
+							    <input class="form-control half-input" id="firstname" name="firstname" value="{{user.first_name}}" required/>
+							</div>
+							<div class="form-group">
+							    <label for="lastname">Last Name</label>
+							    <input class="form-control half-input" id="lastname" name="lastname" value="{{user.last_name}}" required/>
+							</div>
+							<div class="form-group">
+							    <label for="email">Email</label>
+								<input id="email" class="form-control" name="email" value="{{user.email}}" required/>
+							</div>
+							<div class="form-group">
+							    <label for="phonenumber">Phone Number</label>
+							    <input id="phonenumber" class="form-control" name="phonenumber" value="{{userinfo.phonenumber}}" required/>
+							</div>
+							<div class="form-group">
+							    <label for="bio">Bio</label>
+							    <textarea class="form-control" id="bio" rows="5" name="bio" placeholder="Tell us a little about yourself! e.g. Hi, I'm an artist!" required>{{userinfo.bio}}</textarea>
 							</div>
 						</div>
-					</form>
-				<!--END OF CHANGING CREDIT CARD INFO-->
+						<div class="panel-footer">
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</div>				
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Change Password</h3>
+						</div>
+						<div class="panel-body">
+							{% csrf_token %}
+							<div class="form-group">
+							    <label for="firstname">Old Password</label>
+							    <input class="form-control " id="oldpassword" name="oldpassword" type="password" required/>
+							</div>
+							<div class="form-group">
+							    <label for="lastname">New Password</label>
+							    <input class="form-control" id="password" name="password" type="password" required/>
+							</div>
+							<div class="form-group">
+							    <label for="lastname">New Password Again</label>
+							    <input class="form-control" id="passwordagain" name="passwordagain" type="password" required/>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</div>
+					</div>
+				</form>
+
 				<!-- TODO: birthday, cc and shipping -->
 			</div>	
 		</div>

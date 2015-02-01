@@ -2,7 +2,9 @@ todo
 
 checkout stuff
 more settings
+	birthday, cc and shipping
 links!! connect everything
 UI STUFF - HELLA FORMATTING
 	consistency
 	mobile optimization
+ajax item adding/editing/deletion/reviews

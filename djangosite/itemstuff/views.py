@@ -34,7 +34,7 @@ def browseCategory(request, category):
 def getItem(request, username, itemid):
 	seller = User.objects.filter(username=username)[0]
 	sellerinfo = UserInfo.objects.filter(user = seller)[0]
-	selleritems = Item.objects.filter(user=seller)
+	selleritems = Item.objects.filter(user=seller)[:4]
 
 	item = Item.objects.filter(itemid=itemid)[0]
 	categories = [
@@ -59,6 +59,11 @@ def getItem(request, username, itemid):
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+		sellerFollowers = sellerinfo.followers.all()
+		for follower in sellerFollowers:
+			if follower == request.user:
+				context["followed"] = True
+				break
 	template = loader.get_template('DitemListing.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
@@ -81,34 +86,13 @@ def createItem(request):
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 	return HttpResponse(template.render(RequestContext(request, context)))
 
-'''
-def cmp_to_key(mycmp):
-    'Convert a cmp= function into a key= function'
-    class K(object):
-        def __init__(self, obj, *args):
-            self.obj = obj
-        def __lt__(self, other):
-            return mycmp(self.obj, other.obj) < 0
-        def __gt__(self, other):
-            return mycmp(self.obj, other.obj) > 0
-        def __eq__(self, other):
-            return mycmp(self.obj, other.obj) == 0
-        def __le__(self, other):
-            return mycmp(self.obj, other.obj) <= 0
-        def __ge__(self, other):
-            return mycmp(self.obj, other.obj) >= 0
-        def __ne__(self, other):
-            return mycmp(self.obj, other.obj) != 0
-    return K
-'''
-
 def comparePrice(a, b):
 	return a.price - b.price
 
 def compareTime(a,b):
 	return (a.time - b.time).total_seconds()
 
-def searchnew(request):
+def search(request):
 	#categories = ["jewelry","pottery","sewingweaving","clothing","art"]
 	terms = request.GET["q"].split(' ')
 	sortby = "relevancy"
@@ -207,105 +191,6 @@ def searchnew(request):
 		"minPrice": minPrice,
 		"maxPrice": maxPrice,
 	}
-	if (request.user.is_authenticated()):
-		context["user"] = request.user
-		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
-	template = loader.get_template('Dsearch.html')
-	return HttpResponse(template.render(RequestContext(request, context)))
-
-def search(request):
-	categories = [
-		"jewelry",
-		"pottery",
-		"sewingweaving",
-		"clothing",
-		"art",
-	]
-
-	items = []
-	terms = request.GET["q"].split(' ')
-	sortby = "relevancy"
-	cata = {}
-	if (len(request.GET) > 1):
-		cata["jewelry"] = "cjewelry" in request.GET
-		cata["pottery"] = "cpottery" in request.GET
-		cata["sewingweaving"] = "csewingweaving" in request.GET
-		cata["clothing"] = "cclothing" in request.GET
-		cata["art"] = "cart" in request.GET
-	else:
-		cata["jewelry"] = True
-		cata["pottery"] = True
-		cata["sewingweaving"] = True
-		cata["clothing"] = True
-		cata["art"] = True
-	if "sort" in request.GET:
-		sortby = request.GET['sort'] 
-	for term in terms:
-		for item in Item.objects.filter(title__icontains=term):
-			if item not in items:
-				items.append(item)
-		for item in Item.objects.filter(details__icontains=term):
-			if item not in items:
-				items.append(item) 
-		for item in Item.objects.filter(description__icontains=term):
-			if item not in items:
-				items.append(item)
-		for item in Item.objects.filter(tags__icontains=term):
-			if item not in items:
-				items.append(item)
-	def compareRelevancy(a,b):
-		acount = bcount = 0
-		for term in terms:
-			if term in a.title:
-				acount+=1
-			if term in a.details:
-				acount+=1
-			if term in a.description:
-				acount+=1
-			if term in a.tags:
-				acount+=1
-			if term in b.title:
-				bcount+=1
-			if term in b.details:
-				bcount+=1
-			if term in b.description:
-				bcount+=1
-			if term in b.tags:
-				bcount+=1
-		return acount - bcount
-
-	if sortby == "lowtohigh":
-		items = sorted(items, key=cmp_to_key(comparePrice))
-	if sortby == "hightolow":
-		items = sorted(items, key=cmp_to_key(comparePrice))
-		items.reverse()
-	if sortby == "recent":
-		items = sorted(items, key=cmp_to_key(compareTime))
-		items.reverse()
-	if sortby == "relevancy":
-		items = sorted(items, key=cmp_to_key(compareRelevancy))
-		items.reverse()
-	items = list(items)
-	for item in items:
-		if (cata[categories[item.category-1]] == False):
-			items.remove(item)
-	context = {
-		"search": request.GET["q"],
-		"items": items,	
-		"sortby": sortby,
-		"cata": cata,
-	}
-	if ("minPrice" in request.GET and request.GET["minPrice"]):
-		context["minPrice"] = float(request.GET["minPrice"])
-		for item in items:
-			if (item.price < float(request.GET["minPrice"])):
-				items.remove(item)
-	if ("maxPrice" in request.GET and request.GET["maxPrice"]):
-		context["maxPrice"] = float(request.GET["maxPrice"])
-		for item in items:
-			if (item.price > float(request.GET["maxPrice"])):
-				items.remove(item)
-	
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]

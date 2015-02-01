@@ -6,86 +6,114 @@
 {% endblock %}
 
 {% block page_css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/shoppingcart.css' %}"/>
 {% endblock %}
 
 {% block content %}
-	<div id="wrapper">
-		<div class = "row">
-			<div class="col-md-3" id="checkout">
-				<p>Subtotal ({{CartList|length}} Items):</p>
-				<p class="price">${{cartListSum|floatformat:2}} USD</p>
-				<a href = "/cart/checkout/pShipping"><button type = "button" class = "btn btn-default" {% if numItems == 0 %} disabled="disabled" {% endif %}>PROCEED TO CHECKOUT</button></a>
-				<div class = "item-group requestordergroup">
-					<h4>Pending requests</h4>
-					{% for item in pendingItems %}
-						<div class = "item pending">
-							<p class="pending-item-title">{{item.item.title}}</p>
-							<p>Quantity : {{item.quantity}}</p>
-							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
-							<p>Bought from : <a href = "/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></p>
-							<a href = "/cart/shoppingitem/{{item.uniqueid}}/"><button type = "button" class = "btn btn-default">Received</button></a>
-						</div>
-					{% endfor %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="sidebar inner">
+					<h4>Subtotal ({{CartList|length}} Items):</h4>
+					<h3 class="price">${{cartListSum|floatformat:2}} USD</h3>
+					<a href="/cart/checkout/pShipping" type="button" class="btn btn-primary">Proceed To Checkout</a>
 				</div>
-				<div class = "item-group" >
-					<h4>Received Items</h4>
-					{% for item  in receivedItems %}	
-						<div class = "item received">
-							<p class="pending-item-title">{{item.item.title}}</p>
-							<p>Quantity : {{item.quantity}}</p>
-							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
-							<p>Bought from : <a href = "/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></p>
-							<a href = "/cart/removeitem/{{item.uniqueid}}/"><button type = "button" class = "btn btn-default">Finish</button></a>
-						</div>
-					{% endfor %}
-				</div>
-			</div>
-			<div class = "col-md-6" id="cart-items"> 
-				<div class="item-group">
-					<h4>Items In Your Cart</h4>
-					{% if numItems > 0 %}
-						{% for item in CartList %}
-							<div class = "item">
-								<img src = {% static 'files/young_profile.jpg' %} class = "img-thumbnail shopping-cart-images" alt = ""></img>
-								<div class="item-description">
-									<p class="item-title">{{item.item.title}}</p>
-									<p>Quantity : {{item.quantity}}</p>
-									<p class="price">${{item.item.price|floatformat:2}} USD</p>	
-									<p>Bought from : {{item.item.user.first_name}} {{item.item.user.last_name}}</p>
-									<a href = "/cart/remove/{{item.uniqueid}}"><button type = "button" class = "item-btn btn btn-danger">Remove Item</button></a>
+				<div class="sidebar inner">
+					<h4>Your Purchased Items</h4>
+					<div class="list-group">
+						{% for item in pendingItems %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h4 class="title">{{item.item.title}}</h4>
+									<h6 class="name"><a href="/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></h6>
+									<h5 class="price">${{item.item.price|floatformat:2}} USD</h5>
+									<h6>Quantity: {{item.quantity}}</h6>
+									<a href="/cart/shoppingitem/{{item.uniqueid}}/" type="button" class="btn btn-success">Received</button></a>
 								</div>
 							</div>
 						{% endfor %}
-					{% else %}
+					</div>
+					<h4>Received Purchases</h4>
+					<div class="list-group">
+						{% for item in receivedItems %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h4 class="title">{{item.item.title}}</h4>
+									<h6 class="name"><a href="/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></h6>
+									<h5 class="price">${{item.item.price|floatformat:2}} USD</h5>
+									<h6>Quantity: {{item.quantity}}</h6>
+									<a href="/cart/shoppingitem/{{item.uniqueid}}/" type="button" class="btn btn-success">Done</button></a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 cart" > 
+				<h2>Your Shopping Cart</h2>
+				<div class="list-group cart">
+					{% for item in CartList %}
+						<div class="list-group-item cart-item">
+							<div class="imgholder small">
+								<div class="img" style="background-image: url('{% if item.item.picture %}{{MEDIA_ROOT}}{{item.item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/></div>
+							</div>
+							<div class="description">
+								<h3 class="title">{{item.item.title}}</h3>
+								<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></h5>
+								<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+								<h5>Quantity: {{item.quantity}}</h5>
+								<a href="/cart/remove/{{item.uniqueid}}" type="button" class="btn btn-danger">Remove Item</button></a>
+							</div>
+						</div>
+					{% empty %}
 						<div>
 							<p>You currently have no items in your cart!</p>
 						</div>
-					{% endif %}
+					{% endfor %}
 				</div>
 			</div>
-			<div class = "col-md-3" id = "orders">
-				<div class = "item-group">
-					<h4>Pending Orders</h4>
-					{% for item  in pendingOrders %}	
-						<div class = "item pending-order">
-							<p class="pending-item-title">{{item.item.title}}</p>
-							<p>Quantity : {{item.quantity}}</p>
-							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
-							<p>Ordered By : <a href = "/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
-						</div>
-					{% endfor %}
-				</div>
-				<div class = "item-group">
-					<h4>Finished Orders</h4>
-					{% for item  in finishedOrders %}	
-						<div class = "item received">
-							<p class="pending-item-title">{{item.item.title}}</p>
-							<p>Quantity : {{item.quantity}}</p>
-							<p class="price">${{item.item.price|floatformat:2}} USD each</p>	
-							<p>Ordered By : <a href = "/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
-						</div>
-					{% endfor %}
+			<div class="col-md-3">
+				<div class="sidebar inner">
+					<h4>Orders From You</h4>
+					<div class="list-group">
+						{% for item in pendingOrders %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h3 class="title">{{item.item.title}}</h3>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+									<h5>Quantity: {{item.quantity}}</h5>
+									<a href="#" type="button" class="btn btn-success">Sent</button></a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<h4>Orders Sent</h4>
+					<div class="list-group">
+						{% for item in sentOrders %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h3 class="title">{{item.item.title}}</h3>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+									<h5>Quantity: {{item.quantity}}</h5>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<h4>Orders Received</h4>
+					<div class="list-group">
+						{% for item in finishedOrders %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h3 class="title">{{item.item.title}}</h3>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+									<h5>Quantity: {{item.quantity}}</h5>
+									<a href="#" type="button" class="btn btn-success">Done</button></a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 		</div>
