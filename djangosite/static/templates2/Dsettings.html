@@ -6,6 +6,14 @@
 {% endblock %}
 
 {% block page_css %}
+<style>
+#addressform, #ccinfo, #addressform:target ~ #generalform, #ccinfo:target ~ #generalform {
+  display: none;
+}
+#generalform:target, #addressform:target, #ccinfo:target {
+  display: block;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -16,14 +24,88 @@
 					<h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
 					<div class="profPic large" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div><br>
 					<ul class="nav nav-pills nav-stacked" role="tablist">
-						<li role="presentation" class="active"><a href="#">Account</a></li>
-			  			<li role="presentation"><a href="#">Preferences</a></li>
-			  			<li role="presentation"><a href="#">Privacy & Security</a></li>
-			  			<li role="presentation"><a href="#">Payment Options</a></li>
+						<li role="presentation" class="active"><a href="#generalform">Account Preferences</a></li>
+			  			<li role="presentation"><a href="#addressform">Shipping Address</a></li>
+			  			<li role="presentation"><a href="#ccinfo">Credit Cart Info</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-9">
+				
+				<!--BEGINNING OF FORM FOR CHANGING ADDRESS-->
+				<form id="addressform" method = "post" action = "/acc/changeAddress/">
+					<div class = "panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Shipping Address</h3>
+						</div>
+						{% csrf_token %}
+						<div class = "panel-body">
+							<div class = "form-group">
+								<label for = "country">Country</label>
+								<input type = "text" class = "form-control" name = "country" value = "{{address.country}}"required>
+							</div>
+							<div class = "form-group ">
+								<label for = "street" >Street</label>
+								<input type = "text" class = "form-control" name = "street" value = "{{address.street}}" required>
+							</div>
+							<div class = "form-group">
+								<label for = "aptsuiteother">Apt / Suite / Other</label>
+								<input type = "text" class = "form-control" name = "aptsuiteother" value = "{{address.aptsuiteother}}">
+							</div>
+							<div class = "form-group">
+								<label for = "zipcode">Zip Code</label>
+								<input type = "text" class = "form-control" name = "zipcode" value = "{{address.zipcode}}" required>
+							</div>
+							<div class = "form-group">
+								<label for = "city">City</label>
+								<input type = "text" class = "form-control" name = "city" value = "{{address.city}}" required>
+							</div>
+							<div class = "form-group">
+								<label for = "state">State</label>
+								<input type = "text" class = "form-control" name = "state" value = "{{address.state}}" required>
+							</div>
+						</div>
+						<div class = "panel-footer" >
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</div>
+					</div>
+				</form>
+				<!--END OF FORM FOR CHANGING ADDRESS-->
+				<!--BEGINNING OF FORM TO CHANGE CREDIT CARD INFO-->
+				<form id = "ccinfo" method = "post" action = "/acc/changeCCInfo/">
+					<div class = "panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Credit Card Information</h3>
+						</div>
+						{% csrf_token %}
+						<div class = "panel-body">
+							<div class = "form-group">
+								<label for = "cardNumber">Card Number</label>
+								<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" value = "{{ccinfo.cardNumber}}"required>
+							</div>
+							<div class = "form-group" id = "expiration">
+								<label for = "ExpMonth" class = "col-sm-2 control-label">Expiration Date</label>
+								<div class =  "col-sm-2">
+									<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM" value = "{{ccinfo.monthExp}}"required>
+								</div>
+								<div class = "col-sm-2">
+									<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" placeholder = "YYYY" value = "{{ccinfo.yearExp}}" required>
+								</div>
+								<div class = "col-sm-2">
+									<label for = "securityCode">Security Code</label>
+								</div>
+								<div class = "col-sm-2">
+									<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" value = "{{ccinfo.securityCode}}" required>
+								</div>
+							</div>
+
+						</div>
+						<div class = "panel-footer" >
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</div>
+					</div>
+				</form>
+				<!--END OF CHANGING CREDIT CARD INFO-->
 				<form id="generalform" class="" action="/acc/pUpdate/" method="POST" enctype="multipart/form-data">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
@@ -84,80 +166,6 @@
 						</div>
 					</div>
 				</form>
-				<!--BEGINNING OF FORM FOR CHANGING ADDRESS-->
-				<form class = "generalform" method = "post" action = "/acc/changeAddress/">
-					<div class = "panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">CHANGE ADDRESS</h3>
-						</div>
-						{% csrf_token %}
-						<div class = "panel-body">
-							<div class = "form-group">
-								<label for = "country">Country</label>
-								<input type = "text" class = "form-control" name = "country" value = "{{address.country}}"required>
-							</div>
-							<div class = "form-group ">
-								<label for = "street" >Street</label>
-								<input type = "text" class = "form-control" name = "street" value = "{{address.street}}" required>
-							</div>
-							<div class = "form-group">
-								<label for = "aptsuiteother">Apt / Suite / Other</label>
-								<input type = "text" class = "form-control" name = "aptsuiteother" value = "{{address.aptsuiteother}}">
-							</div>
-							<div class = "form-group">
-								<label for = "zipcode">Zip Code</label>
-								<input type = "text" class = "form-control" name = "zipcode" value = "{{address.zipcode}}" required>
-							</div>
-							<div class = "form-group">
-								<label for = "city">City</label>
-								<input type = "text" class = "form-control" name = "city" value = "{{address.city}}" required>
-							</div>
-							<div class = "form-group">
-								<label for = "state">State</label>
-								<input type = "text" class = "form-control" name = "state" value = "{{address.state}}" required>
-							</div>
-						</div>
-						<div class = "panel-footer" >
-							<input type="submit" value="Save" class="btn" />
-						</div>
-					</div>
-				</form>
-				<!--END OF FORM FOR CHANGING ADDRESS-->
-				<!--BEGINNING OF FORM TO CHANGE CREDIT CARD INFO-->
-				<form class = "generalform" method = "post" action = "/acc/changeCCInfo/">
-					<div class = "panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Credit Card Information</h3>
-						</div>
-						{% csrf_token %}
-						<div class = "panel-body">
-							<div class = "form-group">
-								<label for = "cardNumber">Card Number</label>
-								<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" value = "{{ccinfo.cardNumber}}"required>
-							</div>
-							<div class = "form-group" id = "expiration">
-								<label for = "ExpMonth" class = "col-sm-2 control-label">Expiration Date</label>
-								<div class =  "col-sm-2">
-									<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM" value = "{{ccinfo.monthExp}}"required>
-								</div>
-								<div class = "col-sm-2">
-									<input type = "number" class = "form-control" name = "ExpYear" min = "2015" max = "2100" placeholder = "YYYY" value = "{{ccinfo.yearExp}}" required>
-								</div>
-								<div class = "col-sm-2">
-									<label for = "securityCode">Security Code</label>
-								</div>
-								<div class = "col-sm-2">
-									<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" value = "{{ccinfo.securityCode}}" required>
-								</div>
-							</div>
-
-						</div>
-						<div class = "panel-footer" >
-							<input type="submit" value="Save" class="btn btn-primary" />
-						</div>
-					</div>
-				</form>
-				<!--END OF CHANGING CREDIT CARD INFO-->
 				<!-- TODO: birthday, cc and shipping -->
 			</div>	
 		</div>
