@@ -121,3 +121,7 @@ if (window.location.pathname == "/acc/settings/") {
 		}
 	}
 }
+
+if (document.getElementsByClassName("jumbotron").length > 0) {
+	//parallax
+}
