@@ -22,12 +22,13 @@ def displayCart(request):
 		shoppingCart = ShoppingCartItem.objects.filter(user = request.user, pending = False, received = False)
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
-		context["pendingItems"] = ShoppingCartItem.objects.filter(user=  request.user, pending = True, received = False),
+		context["pendingItems"] = ShoppingCartItem.objects.filter(user=  request.user, pending = True, received = False)
 		context["CartList"] = shoppingCart
 		context["numItems"] = len(shoppingCart)
-		context['receivedItems'] = ShoppingCartItem.objects.filter(user = request.user, received = True)
-		context['pendingOrders'] = getPendingOrders(request)
-		context['getFinishedOrders'] = getFinishedOrders(request)
+		context["receivedItems"] = ShoppingCartItem.objects.filter(user = request.user, received = True)
+		context["pendingOrders"] = getPendingOrders(request)
+		context["getFinishedOrders"] = getFinishedOrders(request)
+		context["cartListSum"] = sumCartPrices(request, shoppingCart)
 	else :
 		return HttpResponseRedirect("/acc/#signin")
 	template = loader.get_template('DshoppingCart.html')
