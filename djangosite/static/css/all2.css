@@ -262,6 +262,10 @@ html, body {
 .row2 {
 	margin-bottom: 30px;
 }
+.featured-items {
+	display: inline-block;
+	width: 100%;
+}
 
 /* TO CHANGE IN BOOTSTRAP */
 .navbar {
