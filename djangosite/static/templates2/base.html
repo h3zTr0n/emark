@@ -104,53 +104,48 @@
 				<div class="col-md-2 col-md-offset-2">
 					<h6 class="footer-title">About Us</h6>
 					<ul class="footer-list">
-						<li><a href="#">Support</a></li>
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Terms of Use</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">About Us</a></li>
+						<li><a href="/about/#terms-of-use">Terms of Use</a></li>
+						<li><a href="/about/#privacy-policy">Privacy Policy</a></li>
+						<li><a href="/about/#faq">FAQ</a></li>
 					</ul>
 				</div>
 				<div class="col-md-2 col-md-offset-1">
-					<h6 class="footer-title">Let Us Help You</h6>
+					<h6 class="footer-title">For You</h6>
 					<ul class="footer-list">
-						<li><a href="#">Your Account</a></li>
-						<li><a href="#">Shipping Rates & Policies</a></li>
-						<li><a href="#">Returns & Replacements</a></li>
-						<li><a href="#">Help</a></li>
+						{% if user and userinfo %}
+							<li><a href="/acc/settings">Account Settings</a></li>
+							<li><a href="/msg/">Messages</a></li>
+						{% else %}
+							<li><a href="/acc/#register">Register for craftnet</a></li>
+							<li><a href="/acc/#signin">Sign In</a></li>
+						{% endif %}
 					</ul>
 				</div>
 				<div class="col-md-2 col-md-offset-1">
 					<h6 class="footer-title">Follow craftnet</h6>
 					<ul class="footer-list">
 						<li class="social-media-item">
-							<a target="new" href="#">
+							<a target="new" href="https://www.facebook.com/pages/Craftnet/652309304879283">
 								<img src="{% static 'files/facebook-icon.png' %}" class="social-media-icon" />
 								Facebook
 							</a>
 						</li>
 						<li class="social-media-item">
-							<a target="new" href="#">
+							<a target="new" href="https://twitter.com/CraftnetStore">
 								<img src="{% static 'files/twitter-icon.png' %}" class="social-media-icon" />
 								Twitter
 							</a>
 						</li>
 						<li class="social-media-item">
-							<a target="new" href="#">
+							<a target="new" href="https://www.pinterest.com/craftnet">
 								<img src="{% static 'files/pinterest-icon.png' %}" class="social-media-icon" />
 								Pinterest
 							</a>
 						</li>
 						<li class="social-media-item">
-							<a target="new" href="#">
-								<img src="{% static 'files/instagram-icon.png' %}" class="social-media-icon" />
-								Instagram
-							</a>
-						</li>
-						<li class="social-media-item">
-							<a target="new" href="#">
-								<img src="{% static 'files/snapchat-icon.png' %}" class="social-media-icon" />
-								Snapchat
+							<a target="new" href="mailto:craftnet.store@gmail.com">
+								<img src="{% static 'files/gmail-icon.png' %}" class="social-media-icon" />
+								Contact Us
 							</a>
 						</li>
 					</ul>

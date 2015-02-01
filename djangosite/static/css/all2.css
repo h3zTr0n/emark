@@ -10,6 +10,9 @@ html, body {
 	font-family: 'Open Sans', sans-serif;
 	position: relative;
 }
+.container{
+	width:65%;
+}
 .nav li:hover .dropdown-menu {
 	display: block;
 }
