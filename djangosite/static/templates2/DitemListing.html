@@ -29,7 +29,7 @@
 								<label for="quantity">Quantity</label>
 								<input class="form-control" id = "quantity" type = "number" min = "1" max = "200000000" value="1">
 							</div>
-							<button type="submit" class="btn btn-primary btn-block" onclick="document.getElementById('qform').action='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>
+							<button type="submit" class="btn btn-default btn-block" onclick="document.getElementById('qform').action='{% if user and userinfo %}/cart/addItem/{{item.itemid}}/ + encodeURI(document.getElementById('quantity').value){% else %}/acc/#signin{% endif %}'">Add To Cart</button>
 						</form>
 					{% endif %}
 				</div>
@@ -112,7 +112,7 @@
 								</div>
 							{% else %}
 								<div class="panel-body">
-									<p>Only registered users may review items :(</p>
+									<p>Please sign in to review {{item.title}}</p>
 								</div>
 								<div class="panel-footer">
 									<a class="btn btn-primary" href="/acc/#signin">Sign In</a>

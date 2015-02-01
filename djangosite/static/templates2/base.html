@@ -29,7 +29,6 @@
 						{% if user and userinfo %}
 							<li>
 								<a href="/user/{{user.username}}/">
-									<!--<span class="glyphicon glyphicon-user"></span>-->
 									<div class="profPic tiny" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div> 
 									{{user.first_name}} {{user.last_name}}
 								</a>
