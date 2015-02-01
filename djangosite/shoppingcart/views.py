@@ -8,20 +8,28 @@ import random
 
 # Create your views here.
 def displayCart(request):
-	shoppingCart = ShoppingCartItem.objects.filter(user = request.user, pending = False, received = False)
 	context = {
-		"CartList" : shoppingCart,
-		"user" : request.user,
-		"cartListSum": sumCartPrices(request, shoppingCart),
-		"numItems" : len(shoppingCart),
-		"pendingItems" : ShoppingCartItem.objects.filter(user=  request.user, pending = True, received = False),
-		"receivedItems" : ShoppingCartItem.objects.filter(user = request.user, received = True),
-		"pendingOrders" : getPendingOrders(request),
-		"finishedOrders" : getFinishedOrders(request),
+		"CartList" : None,
+		"user" : None,
+		"cartListSum": None,
+		"numItems" : None,
+		"pendingItems" : None,
+		"receivedItems" : None,
+		"pendingOrders" : None,
+		"finishedOrders" : None,
 	}
 	if (request.user.is_authenticated()):
+		shoppingCart = ShoppingCartItem.objects.filter(user = request.user, pending = False, received = False)
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+		context["pendingItems"] = ShoppingCartItem.objects.filter(user=  request.user, pending = True, received = False),
+		context["CartList"] = shoppingCart
+		context["numItems"] = len(shoppingCart)
+		context['receivedItems'] = ShoppingCartItem.objects.filter(user = request.user, received = True)
+		context['pendingOrders'] = getPendingOrders(request)
+		context['getFinishedOrders'] = getFinishedOrders(request)
+	else :
+		return HttpResponseRedirect("/acc/#signin")
 	template = loader.get_template('DshoppingCart.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 def addItemToUser(request, itemid, quantity):
