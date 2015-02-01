@@ -29,69 +29,63 @@
 						<h5 class="email"><a href="mailto:{{requestedUser.email}}" target="new">{{requestedUser.email}}</a></h5>
 						<h5 class="phonenumber"><a href="tel:{{requestedUserInfo.phonenumber}}" target="new">{{ requestedUserInfo.phonenumber }}</a></h5>
 						<div class="form-group">
-							{% if user and userinfo %}
-								{% if self %}
-									<a href="/acc/settings/" type="button" class="btn btn-primary btn-block">Edit Profile</a>
-								{% elif followed %}
-									<a type="button" class="btn btn-primary btn-block" href="/user/unfollow/{{requestedUser.username}}/">Unfollow</a>
-									<a type="button" class="btn btn-default btn-block" href="/msg/{{requestedUser.username}}">Message</a>
-								{% else %}
-									<a type="button" class="btn btn-primary btn-block" href="/user/follow/{{requestedUser.username}}/">Follow</a>
-									<a type="button" class="btn btn-default btn-block" href="/msg/{{requestedUser.username}}">Message</a>
-								{% endif %}
+							{% if self %}
+								<a href="/acc/settings/" type="button" class="btn btn-primary btn-block">Edit Profile</a>
+							{% elif followed %}
+								<a type="button" class="btn btn-primary btn-block" href="/user/unfollow/{{requestedUser.username}}/">Unfollow</a>
+								<a type="button" class="btn btn-default btn-block" href="/msg/{{requestedUser.username}}">Message</a>
 							{% else %}
-								<a type="button" class="btn btn-primary btn-block" href="/acc/#signin">Follow</a>
-								<a type="button" class="btn btn-default btn-block" href="/acc/#signin">Message</a>
+								<a type="button" class="btn btn-primary btn-block" href="/user/follow/{{requestedUser.username}}/">Follow</a>
+								<a type="button" class="btn btn-default btn-block" href="/msg/{{requestedUser.username}}">Message</a>
 							{% endif %}
 						</div>
-					</div>
-					{% if requestedUserFollowerInfos|length > 0 %}
-						<div class="followlist">
-							<h4>Followers</h4>
-							<ul class="userlist">
-								{% for followerinfo in requestedUserFollowerInfos %}
-								<li>
-									<div class="profPic smaller" style="background-image: url('{% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"/></div>
-									<a class="name" href="/user/{{followerinfo.user.username}}">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</a>
-								</li>
-								{% endfor %}
-							</ul>
-						</div>
-					{% endif %}
-				</div>	
-				<div class="col-md-9">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">About {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
-						</div>
-						<div class="panel-body bio">
-							{{requestedUserInfo.bio}}
-						</div>
-					</div>
-					{% if itemsList %}
+						{% if requestedUserFollowerInfos|length > 0 %}
+							<div class="followlist">
+								<h4>Followers</h4>
+								<ul class="userlist">
+									{% for followerinfo in requestedUserFollowerInfos %}
+									<li>
+										<div class="profPic smaller" style="background-image: url('{% if followerinfo.profile_picture %}{{MEDIA_ROOT}}{{followerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"/></div>
+										<a class="name" href="/user/{{followerinfo.user.username}}">{{followerinfo.user.first_name}} {{followerinfo.user.last_name}}</a>
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+						{% endif %}
+					</div>	
+					<div class="col-md-9">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
+								<h3 class="panel-title">About {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
 							</div>
-							<div class="panel-body">
-								{% for item in itemsList %}
-									<div class="browseItem three">
-										<a href="/user/{{item.user.username}}/{{item.itemid}}">
-											<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/>
-											</div>
-											<div class="caption">
-												<h4 class="title">{{item.title}}</h4>
-												<h5 class="price">${{item.price|floatformat:2}}</h5>
-												<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
-											</div>
-										</a>
-									</div>
-								{%endfor%}
+							<div class="panel-body bio">
+								{{requestedUserInfo.bio}}
 							</div>
 						</div>
-					{% endif %}
+						{% if itemsList %}
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
+								</div>
+								<div class="panel-body">
+									{% for item in itemsList %}
+										<div class="browseItem three">
+											<a href="/user/{{item.user.username}}/{{item.itemid}}">
+												<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/>
+												</div>
+												<div class="caption">
+													<h4 class="title">{{item.title}}</h4>
+													<h5 class="price">${{item.price|floatformat:2}}</h5>
+													<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+												</div>
+											</a>
+										</div>
+									{%endfor%}
+								</div>
+							</div>
+						{% endif %}
+					</div>
 				</div>
 			</div>
-		</div>
 	{% endif %}
 {% endblock %}
