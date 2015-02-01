@@ -13,150 +13,152 @@
 		<link rel="shortcut icon" href="{% static 'files/craftnet-square.png' %}"/>
 	</head>
 	<body>
-		<div class="navigation">
-			<nav id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
-				<div class="container">
-					<div class="navbar-header col-xs-4 col-md-2">
-						<a class="navbar-brand" href="/">craftnet</a>
-					</div>
-					<form class="navbar-form col-xs-8 col-md-5" role="search" method="get" action="/search/">
-				        <div class="form-group threefourth">
-				        	<input type="text" class="form-control" placeholder="Search" id="q" name="q" value="{{search}}">
-				        </div>
-				        <button type="submit onefourth" class="btn btn-primary">Search</button>
-			    	</form>
-					<ul class="nav navbar-nav navbar-right col-xs-12 col-md-5">
-						{% if user and userinfo %}
-							<li>
-								<a href="/user/{{user.username}}/">
-									<div class="profPic tiny" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div> 
-									{{user.first_name}} {{user.last_name}}
-								</a>
-								<ul class="dropdown-menu" role="menu">
-									<li>
-										<a href="/item/createItem">
-											<span class="glyphicon glyphicon-plus"></span>
-											Add an Item
-										</a>
-									</li>
-									<li>
-										<a href="/msg/">
-											<span class="badge pull-right" id="unreadMessages"></span>
-											<span class="glyphicon glyphicon-comment"></span>
-											Messages
-										</a>
-									</li>
-									<li>
-										<a href="/acc/settings/">
-											<span class="glyphicon glyphicon-asterisk"></span>
-											Settings
-										</a>
-									</li>
-									<li>
-										<a href="/acc/signout/" class="text-danger">
-											<span class="glyphicon glyphicon-remove-circle"></span>
-											Sign Out
-										</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<a href="/cart/">
-									<span class="glyphicon glyphicon-shopping-cart"></span>
-									Shopping Cart
-								</a>
-							</li>
-						{% else %}
-							<li>
-								<a href="/acc/#signin">
-									<span class="glyphicon glyphicon-user"></span>
-									Sign In
-								</a>
-							</li>
-							<li>
-								<a href="/acc/#register">
-									<span class="glyphicon glyphicon-pencil"></span>
-									Register
-								</a>
-							</li>
-						{% endif %}
-					</ul>
-				</div>
-			</nav>
-			<nav id="category-nav" class="navbar navbar-default navbar-static-top navbar-nobg" role="navigation">
-				<div class="container-fluid">
-					<ul class="nav navbar-nav navbar-center">
-						<li {% if cnum == 1 %}class="active"{% endif %}><a href="/browse/jewelry">Jewelry</a></li>
-						<li {% if cnum == 2 %}class="active"{% endif %}><a href="/browse/pottery">Pottery</a></li>
-						<li {% if cnum == 3 %}class="active"{% endif %}><a href="/browse/sewingweaving">Sewing & Weaving</a></li>
-						<li {% if cnum == 4 %}class="active"{% endif %}><a href="/browse/clothing">Clothing</a></li>
-						<li {% if cnum == 5 %}class="active"{% endif %}><a href="/browse/art">Art</a></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-		<div class="content">
-			{% block content %}
-			{% endblock %}
-		</div>
-		<footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-2 col-md-offset-2">
-						<h6 class="footer-title">About Us</h6>
-						<ul class="footer-list">
-							<li><a href="/about/#terms-of-use">Terms of Use</a></li>
-							<li><a href="/about/#privacy-policy">Privacy Policy</a></li>
-							<li><a href="/about/#faq">FAQ</a></li>
-						</ul>
-					</div>
-					<div class="col-md-2 col-md-offset-1">
-						<h6 class="footer-title">For You</h6>
-						<ul class="footer-list">
+		<div id="wrapper">
+			<div class="navigation">
+				<nav id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
+					<div class="container">
+						<div class="navbar-header col-xs-4 col-md-2">
+							<a class="navbar-brand" href="/">craftnet</a>
+						</div>
+						<form class="navbar-form col-xs-8 col-md-5" role="search" method="get" action="/search/">
+					        <div class="form-group threefourth">
+					        	<input type="text" class="form-control" placeholder="Search" id="q" name="q" value="{{search}}">
+					        </div>
+					        <button type="submit onefourth" class="btn btn-primary">Search</button>
+				    	</form>
+						<ul class="nav navbar-nav navbar-right col-xs-12 col-md-5">
 							{% if user and userinfo %}
-								<li><a href="/acc/settings">Account Settings</a></li>
-								<li><a href="/msg/">Messages</a></li>
+								<li>
+									<a href="/user/{{user.username}}/">
+										<div class="profPic tiny" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div> 
+										{{user.first_name}} {{user.last_name}}
+									</a>
+									<ul class="dropdown-menu" role="menu">
+										<li>
+											<a href="/item/createItem">
+												<span class="glyphicon glyphicon-plus"></span>
+												Add an Item
+											</a>
+										</li>
+										<li>
+											<a href="/msg/">
+												<span class="badge pull-right" id="unreadMessages"></span>
+												<span class="glyphicon glyphicon-comment"></span>
+												Messages
+											</a>
+										</li>
+										<li>
+											<a href="/acc/settings/">
+												<span class="glyphicon glyphicon-asterisk"></span>
+												Settings
+											</a>
+										</li>
+										<li>
+											<a href="/acc/signout/" class="text-danger">
+												<span class="glyphicon glyphicon-remove-circle"></span>
+												Sign Out
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="/cart/">
+										<span class="glyphicon glyphicon-shopping-cart"></span>
+										Shopping Cart
+									</a>
+								</li>
 							{% else %}
-								<li><a href="/acc/#register">Register for craftnet</a></li>
-								<li><a href="/acc/#signin">Sign In</a></li>
+								<li>
+									<a href="/acc/#signin">
+										<span class="glyphicon glyphicon-user"></span>
+										Sign In
+									</a>
+								</li>
+								<li>
+									<a href="/acc/#register">
+										<span class="glyphicon glyphicon-pencil"></span>
+										Register
+									</a>
+								</li>
 							{% endif %}
 						</ul>
 					</div>
-					<div class="col-md-2 col-md-offset-1">
-						<h6 class="footer-title">Follow craftnet</h6>
-						<ul class="footer-list">
-							<li class="social-media-item">
-								<a target="new" href="https://www.facebook.com/pages/Craftnet/652309304879283">
-									<img src="{% static 'files/facebook-icon.png' %}" class="social-media-icon" />
-									Facebook
-								</a>
-							</li>
-							<li class="social-media-item">
-								<a target="new" href="https://twitter.com/CraftnetStore">
-									<img src="{% static 'files/twitter-icon.png' %}" class="social-media-icon" />
-									Twitter
-								</a>
-							</li>
-							<li class="social-media-item">
-								<a target="new" href="https://www.pinterest.com/craftnet">
-									<img src="{% static 'files/pinterest-icon.png' %}" class="social-media-icon" />
-									Pinterest
-								</a>
-							</li>
-							<li class="social-media-item">
-								<a target="new" href="mailto:craftnet.store@gmail.com">
-									<img src="{% static 'files/gmail-icon.png' %}" class="social-media-icon" />
-									Contact Us
-								</a>
-							</li>
+				</nav>
+				<nav id="category-nav" class="navbar navbar-default navbar-static-top navbar-nobg" role="navigation">
+					<div class="container-fluid">
+						<ul class="nav navbar-nav navbar-center">
+							<li {% if cnum == 1 %}class="active"{% endif %}><a href="/browse/jewelry">Jewelry</a></li>
+							<li {% if cnum == 2 %}class="active"{% endif %}><a href="/browse/pottery">Pottery</a></li>
+							<li {% if cnum == 3 %}class="active"{% endif %}><a href="/browse/sewingweaving">Sewing & Weaving</a></li>
+							<li {% if cnum == 4 %}class="active"{% endif %}><a href="/browse/clothing">Clothing</a></li>
+							<li {% if cnum == 5 %}class="active"{% endif %}><a href="/browse/art">Art</a></li>
 						</ul>
 					</div>
+				</nav>
+			</div>
+			<div class="content">
+				{% block content %}
+				{% endblock %}
+			</div>
+			<footer class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2 col-md-offset-2">
+							<h6 class="footer-title">About Us</h6>
+							<ul class="footer-list">
+								<li><a href="/about/#terms-of-use">Terms of Use</a></li>
+								<li><a href="/about/#privacy-policy">Privacy Policy</a></li>
+								<li><a href="/about/#faq">FAQ</a></li>
+							</ul>
+						</div>
+						<div class="col-md-2 col-md-offset-1">
+							<h6 class="footer-title">For You</h6>
+							<ul class="footer-list">
+								{% if user and userinfo %}
+									<li><a href="/acc/settings">Account Settings</a></li>
+									<li><a href="/msg/">Messages</a></li>
+								{% else %}
+									<li><a href="/acc/#register">Register for craftnet</a></li>
+									<li><a href="/acc/#signin">Sign In</a></li>
+								{% endif %}
+							</ul>
+						</div>
+						<div class="col-md-2 col-md-offset-1">
+							<h6 class="footer-title">Follow craftnet</h6>
+							<ul class="footer-list">
+								<li class="social-media-item">
+									<a target="new" href="https://www.facebook.com/pages/Craftnet/652309304879283">
+										<img src="{% static 'files/facebook-icon.png' %}" class="social-media-icon" />
+										Facebook
+									</a>
+								</li>
+								<li class="social-media-item">
+									<a target="new" href="https://twitter.com/CraftnetStore">
+										<img src="{% static 'files/twitter-icon.png' %}" class="social-media-icon" />
+										Twitter
+									</a>
+								</li>
+								<li class="social-media-item">
+									<a target="new" href="https://www.pinterest.com/craftnet">
+										<img src="{% static 'files/pinterest-icon.png' %}" class="social-media-icon" />
+										Pinterest
+									</a>
+								</li>
+								<li class="social-media-item">
+									<a target="new" href="mailto:craftnet.store@gmail.com">
+										<img src="{% static 'files/gmail-icon.png' %}" class="social-media-icon" />
+										Contact Us
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="copyright text-center">
-				<p>&copy; 2015 craftnet, inc.</p>	
-			</div>
-		</footer>
+				<div class="copyright text-center">
+					<p>&copy; 2015 craftnet, inc.</p>	
+				</div>
+			</footer>
+		</div>
 		<script src="{% static 'css/js.js' %}"></script>
 	</body>
 </html>
