@@ -19,7 +19,6 @@ html, body {
 	padding-bottom:200px;
 }
 .container{
-	width:65%;
 }
 .nav li:hover .dropdown-menu {
 	display: block;
@@ -34,7 +33,7 @@ html, body {
 	border: 1px solid #e7e7e7;
 	border-radius: 5px;
 }
-.browseItem.five {
+.border-widthseItem.five {
 	width: 19%;
 }
 .browseItem.four {
@@ -111,6 +110,10 @@ html, body {
 	border-radius: 100%;
 	margin: auto;
 }
+.profPic.huge {
+	width:300px;
+	height:300px;
+}
 .profPic.large {
 	width: 200px;
 	height: 200px;
@@ -163,7 +166,6 @@ html, body {
 	min-height:200px;
 	position: absolute;
 	background-color:#f8f8f8;
-	margin-top:20px;
 	bottom:0;
 	left:0;
 }
@@ -301,6 +303,9 @@ html, body {
 .navbar-default .navbar-brand:hover {
 	color: #cc5200;
 }
+.navbar-nobg {
+	background: none;
+}
 /*
 .panel-default {
 	background: #f5f5f5;
@@ -333,6 +338,21 @@ html, body {
 .panel-primary > .panel-heading {
 	background-color: #ff6600;
 	border-bottom: #ff6600;
+}
+.about #intro{
+	text-align:center;
+}
+.section-title{
+	text-align:center;
+}
+.section-title h2{
+	font-weight:bold;
+	margin-bottom:0px;
+}
+.section-title p{
+	margin-top:0px;
+	font-size:18px;
+	color:#333;
 }
 a {
 	color: #ee6600;
