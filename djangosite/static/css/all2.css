@@ -19,7 +19,6 @@ html, body {
 	padding-bottom:200px;
 }
 .container{
-	width:65%;
 }
 .nav li:hover .dropdown-menu {
 	display: block;
