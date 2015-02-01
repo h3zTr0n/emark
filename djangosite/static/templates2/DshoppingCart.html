@@ -41,7 +41,7 @@
 									<h6 class="name"><a href="/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></h6>
 									<h5 class="price">${{item.item.price|floatformat:2}} USD</h5>
 									<h6>Quantity: {{item.quantity}}</h6>
-									<a href="/cart/shoppingitem/{{item.uniqueid}}/" type="button" class="btn btn-success">Done</button></a>
+									<a href="/cart/removeItem/{{item.uniqueid}}/" type="button" class="btn btn-success">Done</button></a>
 								</div>
 							</div>
 						{% endfor %}
