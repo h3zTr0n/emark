@@ -23,15 +23,14 @@
 				<div class="profile-information">
 					<h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
 					<div class="profPic large" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div><br>
-					<ul class="nav nav-pills nav-stacked" role="tablist">
-						<li role="presentation" class="active"><a href="#generalform">Account Preferences</a></li>
+					<ul class="nav nav-pills nav-stacked" role="tablist" id="settingsnav">
+						<li role="presentation"><a href="#generalform">Account Preferences</a></li>
 			  			<li role="presentation"><a href="#addressform">Shipping Address</a></li>
 			  			<li role="presentation"><a href="#ccinfo">Credit Cart Info</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-9">
-				
 				<!--BEGINNING OF FORM FOR CHANGING ADDRESS-->
 				<form id="addressform" method = "post" action = "/acc/changeAddress/">
 					<div class = "panel panel-primary">
