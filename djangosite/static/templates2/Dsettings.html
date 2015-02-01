@@ -138,7 +138,7 @@
 							<div class = "panel-body">
 								<div class = "form-group">
 									<label for = "cardNumber">Card Number</label>
-									<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" value = "{{ccinfo.cardNumber}}"required>
+									<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" value = "{{ccinfo.cardNumber}}" pattern = "\d{4}-?\d{4}-?\d{4}-?\d{4}"required>
 								</div>
 								<div class = "form-group" id = "expiration">
 									<label for = "ExpMonth" class = "col-sm-2 control-label">Expiration Date</label>
