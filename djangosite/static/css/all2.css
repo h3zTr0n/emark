@@ -7,8 +7,16 @@
 
 html, body {
 	height:100%;
+	margin:0;
+	padding:0;
 	font-family: 'Open Sans', sans-serif;
-	position: relative;
+}
+#wrapper{
+	min-height:100%;
+	position:relative;
+}
+.content{
+	padding-bottom:200px;
 }
 .container{
 	width:65%;
@@ -152,11 +160,12 @@ html, body {
 }
 .footer {
 	width:100%;
-	margin-top: 20px;
-	padding-top: 20px;
-	background: #f8f8f8;
+	min-height:200px;
 	position: absolute;
-	max-height: 250px;
+	background-color:#f8f8f8;
+	margin-top:20px;
+	bottom:0;
+	left:0;
 }
 .footer .footer-title {
 	font-weight: bold;
