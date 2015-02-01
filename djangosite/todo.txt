@@ -2,6 +2,9 @@ todo
 
 ajax
 	items
+formatting
+	ratings
+	tags
 fixes
 	shoppingcart
 fanciness
