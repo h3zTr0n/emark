@@ -2,6 +2,11 @@ todo
 
 ajax
 	items
+functionality
+	messaging
+formatting
+	ratings
+	tags
 fixes
 	shoppingcart
 fanciness
