@@ -20,7 +20,7 @@
 			</div>
 			<div class="col-md-9">
 				{% if requestedUser and requestedUserInfo %}
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
 						</div>
@@ -54,7 +54,7 @@
 					</div>
 				{% else %}
 					<div class="well">
-						<h3 class="rowheader">Select a user</h3>
+						<h3>Select a user</h3>
 					</div>
 				{% endif %}
 			</div>

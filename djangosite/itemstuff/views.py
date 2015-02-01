@@ -34,7 +34,7 @@ def browseCategory(request, category):
 def getItem(request, username, itemid):
 	seller = User.objects.filter(username=username)[0]
 	sellerinfo = UserInfo.objects.filter(user = seller)[0]
-	selleritems = Item.objects.filter(user=seller)
+	selleritems = Item.objects.filter(user=seller)[:4]
 
 	item = Item.objects.filter(itemid=itemid)[0]
 	categories = [
@@ -59,6 +59,11 @@ def getItem(request, username, itemid):
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+		sellerFollowers = sellerinfo.followers.all()
+		for follower in sellerFollowers:
+			if follower == request.user:
+				context["followed"] = True
+				break
 	template = loader.get_template('DitemListing.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
