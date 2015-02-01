@@ -84,7 +84,33 @@ if (window.location.pathname == "/acc/") {
 	}
 }
 
+function refreshHashNav() {
+	switch (window.location.hash) {
+		case "#addressform":
+			document.getElementById("settingsnav").children[0].className = "";
+			document.getElementById("settingsnav").children[1].className = "active";
+			document.getElementById("settingsnav").children[2].className = "";
+			break;
+		case "#ccinfo":
+			document.getElementById("settingsnav").children[0].className = "";
+			document.getElementById("settingsnav").children[1].className = "";
+			document.getElementById("settingsnav").children[2].className = "active";
+			break;
+		default:
+			document.getElementById("settingsnav").children[0].className = "active";
+			document.getElementById("settingsnav").children[1].className = "";
+			document.getElementById("settingsnav").children[2].className = "";
+			break;
+	}
+}
+
 if (window.location.pathname == "/acc/settings/") {
+	refreshHashNav();
+	document.getElementById("settingsnav").onclick = function () {
+		window.setTimeout(function () {
+			refreshHashNav();
+		}, 1);
+	}
 	document.getElementById("generalform").onsubmit = function (e) {
 		if (document.getElementById("password").value != document.getElementById("passwordagain").value) {
 			document.getElementById("password").parentElement.className += " has-error";

@@ -53,17 +53,13 @@ def settings(request):
 	context = {
 		"user": request.user,
 		"userinfo": UserInfo.objects.filter(user=request.user)[0],
-		"address" : Address.objects.filter(user = request.user)[0],
-		"ccinfo": CreditCards.objects.filter(user = request.user)[0],
 	}
+	if len(Address.objects.filter(user = request.user)) > 0:
+		context["address"] = Address.objects.filter(user = request.user)[0]
+	if len(CreditCards.objects.filter(user = request.user)) > 0:
+		context["ccinfo"] = CreditCards.objects.filter(user = request.user)[0],
 	template = loader.get_template('Dsettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
-
-'''
-def signup(request): #gone
-	template = loader.get_template('signup.html')
-	return HttpResponse(template.render(RequestContext(request)))
-'''
 
 def main(request):
 	if (request.user.is_authenticated()):
