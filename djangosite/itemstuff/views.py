@@ -9,8 +9,6 @@ from functools import cmp_to_key
 
 # Create your views here.
 def browseCategory(request, category):
-	#categorypath = request.path.split("/")
-	#category = categorypath[len(categorypath)-1]
 	categories = {
 		"jewelry": 1,
 		"pottery": 2,
@@ -18,11 +16,13 @@ def browseCategory(request, category):
 		"clothing": 4,
 		"art": 5,
 	}
-	items = Item.objects.filter(category=categories[category.strip("/").lower()])
+	browsecata = category.strip("/").lower()
+	if(browsecata in categories):
+		items = Item.objects.filter(category=browsecata)		
+	else:
+		items = None
 
 	context = {
-		"cnum": categories[category.strip("/").lower()],
-		"category": category.strip("/").lower(),
 		"items": items,
 	}
 	if (request.user.is_authenticated()):
