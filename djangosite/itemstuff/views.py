@@ -32,11 +32,17 @@ def browseCategory(request, category):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def getItem(request, username, itemid):
-	seller = User.objects.filter(username=username)[0]
-	sellerinfo = UserInfo.objects.filter(user = seller)[0]
-	selleritems = Item.objects.filter(user=seller)[:4]
-
-	item = Item.objects.filter(itemid=itemid)[0]
+	if len(User.objects.filter(username=username)) > 0:
+		seller = User.objects.filter(username=username)[0]
+		sellerinfo = UserInfo.objects.filter(user = seller)[0]
+		selleritems = Item.objects.filter(user=seller)[:4]
+	else:
+		#TODO
+		return HttpResponse("User Not Found")
+	if len(Item.objects.filter(itemid=itemid)) > 0:
+		item = Item.objects.filter(itemid=itemid)[0]
+	else:
+		return HttpResponse("Item Not Found")
 	categories = [
 		"Jewelry",
 		"Pottery",
