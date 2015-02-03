@@ -75,6 +75,7 @@ def getItem(request, username, itemid):
 
 def editItem(request, itemid):
 	if len(Item.objects.filter(itemid=itemid)) > 0:
+		#TODO
 		item = Item.objects.filter(itemid=itemid)[0]
 	else:
 		return HttpResponse("Item Not Found")
@@ -243,7 +244,11 @@ def saveItem(request, itemid):
 	return HttpResponse("Success! editted/Created " + title + " for " + request.user.username)
 
 def deleteItem(request, itemid):
-	item = Item.objects.filter(itemid=itemid)[0]
+	if len(Item.objects.filter(itemid=itemid)) > 0:
+		item = Item.objects.filter(itemid=itemid)[0]
+	else:
+		#TODO
+		return HttpResponse("Item Not Found")
 	item.delete()
 	return HttpResponse("deleted this item")
 
