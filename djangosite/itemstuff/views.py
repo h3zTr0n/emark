@@ -18,7 +18,7 @@ def browseCategory(request, category):
 	}
 	browsecata = category.strip("/").lower()
 	if(browsecata in categories):
-		items = Item.objects.filter(category=browsecata)		
+		items = Item.objects.filter(category=categories[browsecata])		
 	else:
 		items = None
 
