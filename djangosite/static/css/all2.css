@@ -16,7 +16,7 @@ html, body {
 	position:relative;
 }
 .content{
-	padding-bottom:200px;
+	padding-bottom:225px;
 }
 .container{
 }
@@ -356,6 +356,10 @@ html, body {
 	margin-top:0px;
 	font-size:18px;
 	color:#333;
+}
+#not-found{
+	text-align:center;
+	margin-top:5%;
 }
 a {
 	color: #ee6600;
