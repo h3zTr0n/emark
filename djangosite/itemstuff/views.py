@@ -74,7 +74,10 @@ def getItem(request, username, itemid):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def editItem(request, itemid):
-	item = Item.objects.filter(itemid=itemid)[0]
+	if len(Item.objects.filter(itemid=itemid)) > 0:
+		item = Item.objects.filter(itemid=itemid)[0]
+	else:
+		return HttpResponse("Item Not Found")
 	context={
 		"item":item,
 	}
