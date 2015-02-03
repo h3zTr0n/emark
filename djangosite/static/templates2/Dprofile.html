@@ -17,7 +17,10 @@
 {% block content %}
 	{% if notFound %}
 		<div class="container">
-			<div class="h3">Sorry! We could not find the user you are looking for.</div>
+			<div id="not-found">
+				<div class="profPic large" style="background-image:url('{% static 'files/default-profile.jpg' %}')"></div>	
+				<div class="h3">Sorry! We could not find the user you are looking for.</div>
+			</div>
 		</div>
 	{% else %}
 		<div class="container">
