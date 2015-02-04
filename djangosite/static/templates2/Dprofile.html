@@ -58,37 +58,36 @@
 					</div>	
 				</div>
 				<div class="col-md-9">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">About {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
-							</div>
-							<div class="panel-body bio">
-								{{requestedUserInfo.bio}}
-							</div>
-						</div>	
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
-							</div>
-							<div class="panel-body">
-								{% if itemsList %}
-									{% for item in itemsList %}
-										<div class="browseItem three">
-											<a href="/user/{{item.user.username}}/{{item.itemid}}">
-												<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/>
-												</div>
-												<div class="caption">
-													<h4 class="title">{{item.title}}</h4>
-													<h5 class="price">${{item.price|floatformat:2}}</h5>
-													<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
-												</div>
-											</a>
-										</div>
-									{%endfor%}
-								{% else %}
-									<p>{{requestedUser.first_name}} hasn't posted any items yet.</p>
-								{% endif %}
-							</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">About {{requestedUser.first_name}} {{requestedUser.last_name}}</h3>
+						</div>
+						<div class="panel-body bio">
+							{{requestedUserInfo.bio}}
+						</div>
+					</div>	
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
+						</div>
+						<div class="panel-body">
+							{% if itemsList %}
+								{% for item in itemsList %}
+									<div class="browseItem three">
+										<a href="/user/{{item.user.username}}/{{item.itemid}}">
+											<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/>
+											</div>
+											<div class="caption">
+												<h4 class="title">{{item.title}}</h4>
+												<h5 class="price">${{item.price|floatformat:2}}</h5>
+												<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+											</div>
+										</a>
+									</div>
+								{%endfor%}
+							{% else %}
+								<p>{{requestedUser.first_name}} hasn't posted any items yet.</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>
