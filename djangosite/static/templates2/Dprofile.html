@@ -29,8 +29,8 @@
 					<div class="">
 						<h2 class="name">{{requestedUser.first_name}} {{requestedUser.last_name}}</h2>
 						<div class="profPic large" style="background-image:url('{% if requestedUserInfo.profile_picture %}{{MEDIA_ROOT}}{{requestedUserInfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
-						<h5 class="email"><a href="mailto:{{requestedUser.email}}" target="new">{{requestedUser.email}}</a></h5>
-						<h5 class="phonenumber"><a href="tel:{{requestedUserInfo.phonenumber}}" target="new">{{ requestedUserInfo.phonenumber }}</a></h5>
+						<h5 class="email">Email:<a href="mailto:{{requestedUser.email}}" target="new">{{requestedUser.email}}</a></h5>
+						<h5 class="phonenumber">Phone Number: <a href="tel:{{requestedUserInfo.phonenumber}}" target="new">{{ requestedUserInfo.phonenumber }}</a></h5>
 						<div class="form-group">
 							{% if self %}
 								<a href="/acc/settings/" type="button" class="btn btn-primary btn-block">Edit Profile</a>
@@ -65,13 +65,13 @@
 							<div class="panel-body bio">
 								{{requestedUserInfo.bio}}
 							</div>
-						</div>
-						{% if itemsList %}
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
-								</div>
-								<div class="panel-body">
+						</div>	
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
+							</div>
+							<div class="panel-body">
+								{% if itemsList %}
 									{% for item in itemsList %}
 										<div class="browseItem three">
 											<a href="/user/{{item.user.username}}/{{item.itemid}}">
@@ -85,9 +85,12 @@
 											</a>
 										</div>
 									{%endfor%}
-								</div>
+								{% else %}
+									<p>{{requestedUser.first_name}} hasn't posted any items yet.</p>
+								{% endif %}
 							</div>
-						{% endif %}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
