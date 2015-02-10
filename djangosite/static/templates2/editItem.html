@@ -20,29 +20,29 @@
 			<div class="panel-body">
 				{% csrf_token %}
 				{% if item %}
-				<div class="imgholder large">
-					<div class="img" style="background-image:url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"></div>
-				</div>
+					<div class="imgholder large">
+						<div class="img" style="background-image:url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"></div>
+					</div>
 				{% endif %}
 				<div class="form-group">
 				    <label for="pic">{% if item %}Change Current Picture{% else %}Add a picture{% endif %}</label>
-				    <input type="file" name="pic" id="pic">
+				    <input type="file" name="pic" id="pic" required>
 				</div>
 				<div class="form-group">
 				    <label for="title">Title</label>
-				    <input class="form-control" id="title" name="title" value="{{item.title}}"/>
+				    <input class="form-control" id="title" name="title" value="{{item.title}}" required/>
 				</div>
 				<div class="form-group">
 				    <label for="details">Details</label>
-				    <input class="form-control" id="details" name="details" value="{{item.details}}"/>
+				    <input class="form-control" id="details" name="details" value="{{item.details}}" required/>
 				</div>
 				<div class="form-group">
 				    <label for="price">Price</label>
-				    <input type="number" class="form-control" id="price" name="price" value="{{item.price}}"/>
+				    <input type="number" class="form-control" id="price" name="price" value="{{item.price}}" required/>
 				</div>
 				<div class="form-group">
 				    <label for="description">Description</label>
-				    <textarea class="form-control" id="description" rows="5" name="description" placeholder="Describe your item">{{item.description}}</textarea>
+				    <textarea class="form-control" id="description" rows="5" name="description" placeholder="Describe your item" required>{{item.description}}</textarea>
 				</div>
 				<div class="form-group">
 					<label for="category">Category</label> 

@@ -58,6 +58,24 @@ def about(request):
 	template = loader.get_template('about.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
+def handler404(request):
+	context={}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+	response = render_to_response('404.html', {}, context_instance=RequestContext(request,context))
+	response.status_code = 404
+	return response
+
+def handler500(request):
+	context={}
+	if (request.user.is_authenticated()):
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+	response = render_to_response('500.html', {}, context_instance=RequestContext(request,context))
+	response.status_code = 500
+	return response
+
 '''
 def browseCategory(request):
 	#items = Item.objects.filter(category=request.)
