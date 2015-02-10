@@ -236,7 +236,7 @@ def saveItem(request, itemid):
 			item.picture = request.FILES['pic']
 
 	item.save()
-	return HttpResponseRedirect("/user/" + request.user + "/" + item.itemid)
+	return HttpResponseRedirect("/user/" + request.user.username + "/" + item.itemid)
 
 def deleteItem(request, itemid):
 	item = Item.objects.filter(itemid=itemid)[0]
