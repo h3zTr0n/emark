@@ -1,26 +1,5 @@
-.exterior {
-	width : 55%;
-	height: 52%;
-	display: block;
-	margin:auto;
-	padding-right: 30px;
-	padding-left: 30px;
-	margin-bottom: 30px;
-	margin-top:10px;
-}
-.checkout-form-holder {
-	width : 100%;
-	height: 100%;
-	margin:auto;
-	text-align: center;
-}
-
 .shipping, .payment, .submitorder{
-	display : none;
 	padding-bottom:15px;
-	border-style: solid;
-	border-color: gray;
-	border-radius: 10px;
 }
 
 .shipping:target {
@@ -61,29 +40,19 @@ LABEL BACKGROUNDS AND STUFF FOR SHIPPING/PAYMENT/SUBMIT
 /*****************************************************
 SPECIFIC TO TARGET LABELS
 *****************************************************/
-.shipping:target, .shipping:target .shippingLabel {
-	background:#ccc;
+.shipping:target .shippingLabel { 
 	border-style:solid;
 }
-.payment:target, .payment:target .paymentLabel {
-	background:#bbb;
+.payment:target .paymentLabel {
 	border-style:solid;
 }
-
-.submitorder:target, .submitorder:target .submitLabel {
-	background:#ccc;
+.submitorder:target .submitLabel {
 	border-style:solid;
 }
-
-.submitorder:target .submitLabel{
-	border-bottom-color: blue;
-}
-
 /****************************************************
 FONTS
 *****************************************************/
 .submitdata {
-
 	font-size: 13px;
 }
 .cartitem {
@@ -99,11 +68,7 @@ Submit form css
 	text-align: left;
 }
 .cartitem {
-	background : #ddd;
 	padding:5px;
-	border-color: #fff;
-	border-style : solid;
-	border-radius: 10px;
 }
 .headsubmit{
 	margin-top: 10px;
