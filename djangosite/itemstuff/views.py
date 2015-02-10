@@ -236,12 +236,13 @@ def saveItem(request, itemid):
 			item.picture = request.FILES['pic']
 
 	item.save()
-	return HttpResponseRedirect("/user/"+request.user + "/" + item.itemid)
+	return HttpResponseRedirect("/user/" + request.user + "/" + item.itemid)
 
 def deleteItem(request, itemid):
 	item = Item.objects.filter(itemid=itemid)[0]
 	item.delete()
-	return HttpResponse("deleted this item")
+	#return HttpResponse("deleted this item")
+	return HttpResponseRedirect("/user/" + request.user.username + "/")
 
 def addRating(request):
 	user = request.user
@@ -259,4 +260,5 @@ def addRating(request):
 	rating = Review(user = user, item = item, rating = ratingnumber, text = ratingmessage)
 	rating.save()
 	
-	return HttpResponse("success, created a review for " + item.title)
+	return HttpResponseRedirect("/user/" + item.user.username + "/" + item.itemid)
+	#return HttpResponse("success, created a review for " + item.title)

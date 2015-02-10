@@ -5,7 +5,6 @@ ajax
 functionality
 	messaging
 formatting
-	ratings
 	tags
 fixes
 	shoppingcart
