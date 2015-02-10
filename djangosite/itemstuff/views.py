@@ -32,18 +32,10 @@ def browseCategory(request, category):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def getItem(request, username, itemid):
-	if len(User.objects.filter(username=username)) > 0:
-		seller = User.objects.filter(username=username)[0]
-		sellerinfo = UserInfo.objects.filter(user = seller)[0]
-		selleritems = Item.objects.filter(user=seller)[:4]
-	else:
-		template = loader.get_template('404.html')
-		return HttpResponse(template.render(RequestContext(request)))
-	if len(Item.objects.filter(itemid=itemid)) > 0:
-		item = Item.objects.filter(itemid=itemid)[0]
-	else:
-		template = loader.get_template('404.html')
-		return HttpResponse(template.render(RequestContext(request)))
+	seller = User.objects.filter(username=username)[0]
+	sellerinfo = UserInfo.objects.filter(user = seller)[0]
+	selleritems = Item.objects.filter(user=seller)[:4]
+	item = Item.objects.filter(itemid=itemid)[0]
 	categories = [
 		"Jewelry",
 		"Pottery",
@@ -75,12 +67,7 @@ def getItem(request, username, itemid):
 	return HttpResponse(template.render(RequestContext(request, context)))
 
 def editItem(request, itemid):
-	if len(Item.objects.filter(itemid=itemid)) > 0:
-		#TODO
-		item = Item.objects.filter(itemid=itemid)[0]
-	else:
-		template = loader.get_template('404.html')
-		return HttpResponse(template.render(RequestContext(request)))
+	item = Item.objects.filter(itemid=itemid)[0]
 	context={
 		"item":item,
 	}
@@ -246,11 +233,7 @@ def saveItem(request, itemid):
 	return HttpResponseRedirect("/user/"+request.user + "/" + item.itemid)
 
 def deleteItem(request, itemid):
-	if len(Item.objects.filter(itemid=itemid)) > 0:
-		item = Item.objects.filter(itemid=itemid)[0]
-	else:
-		template = loader.get_template('404.html')
-		return HttpResponse(template.render(RequestContext(request, context)))
+	item = Item.objects.filter(itemid=itemid)[0]
 	item.delete()
 	return HttpResponse("deleted this item")
 
