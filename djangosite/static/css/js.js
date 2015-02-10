@@ -125,3 +125,28 @@ if (window.location.pathname == "/acc/settings/") {
 if (document.getElementsByClassName("jumbotron").length > 0) {
 	//parallax
 }
+
+if (document.getElementById("rating")) {
+	var stars = document.getElementsByClassName("star");
+	for (var i = 0; i < stars.length; i++) {
+		stars[i].onclick = function (e) {
+			var cur = e.target.attributes["value"].value;
+			for (var j = 0; j < stars.length; j++) {
+				stars[j].className = j < cur ? "star n" : "star a";
+			}
+			document.getElementById("rating").value = cur;
+		}
+		stars[i].onmouseover = function (e) {
+			var cur = e.target.attributes["value"].value;
+			for (var j = 0; j < stars.length; j++) {
+				stars[j].className = j < cur ? "star n" : "star a";
+			}
+		}
+		stars[i].onmouseout = function (e) {
+			var cur = document.getElementById("rating").value;
+			for (var j = 0; j < stars.length; j++) {
+				stars[j].className = j < cur ? "star n" : "star a";
+			}
+		}
+	}
+}

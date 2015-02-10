@@ -53,6 +53,10 @@ def getItem(request, username, itemid):
 	itemCategory = categories[item.category-1]
 
 	reviews = Review.objects.filter(item=item)
+	reviews = list(reviews)
+	for review in reviews:
+		review.ratingp = review.rating * 20
+		review.negratingp = (5-review.rating) * 20
 
 	context = {
 		"seller":seller,
@@ -61,6 +65,8 @@ def getItem(request, username, itemid):
 		"item":item,
 		"itemCategory":itemCategory,
 		"reviews":reviews,
+		"ratingp":item.averagerating * 20,
+		"negratingp":(5 - item.averagerating) * 20
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user

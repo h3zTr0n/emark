@@ -9,6 +9,7 @@ formatting
 	tags
 fixes
 	shoppingcart
+link following
 fanciness
 	mobile optimization
 	parallax

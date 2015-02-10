@@ -14,7 +14,7 @@
 			<div class="col-md-4">
 				<div class="sidebar inner item-information">
 					<h1>{{item.title}}</h1>
-					<h5>{{item.averagerating}}</h5>
+					<h5><div class="stars"><div class="part filled" style="width:{{ratingp}}%"></div><div class="part empty" style="width:{{negratingp}}%"></div></div><!--{{item.averagerating}}--></h5>
 					<h3>Details</h3>
 					<em class="category">{{itemCategory}}</em>
 					<p>{{item.details}}</p>
@@ -84,7 +84,7 @@
 								<h4 class="panel-title"><a href="/user/{{review.user.username}}">{{review.user.first_name}} {{review.user.last_name}}</a>'s Review</h4>
 							</div>
 							<div class="panel-body">	
-								<h5 class="review-rating">Rating: {{review.rating}}</h5>
+								<h5 class="review-rating"><div class="stars"><div class="part filled" style="width:{{review.ratingp}}%"></div><div class="part empty" style="width:{{review.negratingp}}%"></div></div></h5>
 								<p>{{review.text}}</p>
 							</div>
 						</div>
@@ -98,8 +98,15 @@
 							{% if user and userinfo %}
 								<div class="panel-body">
 									<div class="form-group">
-										<label for="rating">Rating out of 5 (Format of this to change)</label>
-										<input type="number" class="form-control" id="rating" name="rating"/>
+										<label for="rating">Rating</label>
+										<input type="hidden" class="form-control" id="rating" name="rating" value="5"/>
+										<div class="pstars">
+											<div class="star a" value="1"></div>
+											<div class="star a" value="2"></div>
+											<div class="star a" value="3"></div>
+											<div class="star a" value="4"></div>
+											<div class="star a" value="5"></div>
+										</div>
 									</div>
 									<div class="form-group">
 									    <label for="review-message">Your Review</label>

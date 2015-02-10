@@ -282,6 +282,34 @@ html, body {
 	display: inline-block;
 	width: 100%;
 }
+.stars, .pstars {
+	width: 100px;
+	height: 20px;
+}
+.stars .part {
+	height: 100%;
+	background-image: url('http://puu.sh/fIk2z/18e840c8eb.png');
+	display: inline-block;
+	float: left;
+}
+.stars .empty {
+	background-position: 98% 21px;
+}
+.pstars .star {
+	height: 100%;
+	width: 20px;
+	background-image: url('http://puu.sh/fIk2z/18e840c8eb.png');
+	display: inline-block;
+	float: left;
+	cursor: pointer;
+	background-position: 0 0;
+}
+.pstars .n {
+	background-position-y: 0;
+}
+.pstars .a {
+	background-position-y: 21px;
+}
 
 /* TO CHANGE IN BOOTSTRAP */
 .navbar {
