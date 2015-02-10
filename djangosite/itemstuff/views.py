@@ -46,6 +46,10 @@ def getItem(request, username, itemid):
 	itemCategory = categories[item.category-1]
 
 	reviews = Review.objects.filter(item=item)
+	reviews = list(reviews)
+	for review in reviews:
+		review.ratingp = review.rating * 20
+		review.negratingp = (5-review.rating) * 20
 
 	context = {
 		"seller":seller,
@@ -54,6 +58,8 @@ def getItem(request, username, itemid):
 		"item":item,
 		"itemCategory":itemCategory,
 		"reviews":reviews,
+		"ratingp":item.averagerating * 20,
+		"negratingp":(5 - item.averagerating) * 20
 	}
 	if (request.user.is_authenticated()):
 		context["user"] = request.user
@@ -230,12 +236,13 @@ def saveItem(request, itemid):
 			item.picture = request.FILES['pic']
 
 	item.save()
-	return HttpResponseRedirect("/user/"+request.user + "/" + item.itemid)
+	return HttpResponseRedirect("/user/" + request.user.username + "/" + item.itemid)
 
 def deleteItem(request, itemid):
 	item = Item.objects.filter(itemid=itemid)[0]
 	item.delete()
-	return HttpResponse("deleted this item")
+	#return HttpResponse("deleted this item")
+	return HttpResponseRedirect("/user/" + request.user.username + "/")
 
 def addRating(request):
 	user = request.user
@@ -253,4 +260,5 @@ def addRating(request):
 	rating = Review(user = user, item = item, rating = ratingnumber, text = ratingmessage)
 	rating.save()
 	
-	return HttpResponse("success, created a review for " + item.title)
+	return HttpResponseRedirect("/user/" + item.user.username + "/" + item.itemid)
+	#return HttpResponse("success, created a review for " + item.title)
