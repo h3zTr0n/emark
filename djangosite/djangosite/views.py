@@ -58,11 +58,6 @@ def about(request):
 	template = loader.get_template('about.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
-def error(request):
-	context={}
-	template = loader.get_template('error.html')
-	return HttpResponse(template.render(RequestContext(request, context)))
-
 def handler404(request):
     response = render_to_response('404.html', {}, context_instance=RequestContext(request))
     response.status_code = 404

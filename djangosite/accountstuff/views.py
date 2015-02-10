@@ -38,7 +38,8 @@ def getProfile(request, username):
 		if(len(requestedUserFollowers) > 0):
 			context["requestedUserFollowerInfos"] = requestedUserFollowerInfos
 	if (len(posUsers) == 0):
-		context["notFound"] = True
+		template = loader.get_template('404.html')
+		return HttpResponse(template.render(RequestContext(request, context)))
 	if (request.user.username == username):
 		context["self"] = True
 	if (request.user.is_authenticated()):

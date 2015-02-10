@@ -37,12 +37,13 @@ def getItem(request, username, itemid):
 		sellerinfo = UserInfo.objects.filter(user = seller)[0]
 		selleritems = Item.objects.filter(user=seller)[:4]
 	else:
-		#TODO
-		return HttpResponse("User Not Found")
+		template = loader.get_template('404.html')
+		return HttpResponse(template.render(RequestContext(request)))
 	if len(Item.objects.filter(itemid=itemid)) > 0:
 		item = Item.objects.filter(itemid=itemid)[0]
 	else:
-		return HttpResponse("Item Not Found")
+		template = loader.get_template('404.html')
+		return HttpResponse(template.render(RequestContext(request)))
 	categories = [
 		"Jewelry",
 		"Pottery",
@@ -78,7 +79,8 @@ def editItem(request, itemid):
 		#TODO
 		item = Item.objects.filter(itemid=itemid)[0]
 	else:
-		return HttpResponse("Item Not Found")
+		template = loader.get_template('404.html')
+		return HttpResponse(template.render(RequestContext(request)))
 	context={
 		"item":item,
 	}
@@ -247,8 +249,8 @@ def deleteItem(request, itemid):
 	if len(Item.objects.filter(itemid=itemid)) > 0:
 		item = Item.objects.filter(itemid=itemid)[0]
 	else:
-		#TODO
-		return HttpResponse("Item Not Found")
+		template = loader.get_template('404.html')
+		return HttpResponse(template.render(RequestContext(request, context)))
 	item.delete()
 	return HttpResponse("deleted this item")
 
