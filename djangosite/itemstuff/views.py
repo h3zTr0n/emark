@@ -241,7 +241,7 @@ def saveItem(request, itemid):
 			item.picture = request.FILES['pic']
 
 	item.save()
-	return HttpResponse("Success! editted/Created " + title + " for " + request.user.username)
+	return HttpResponseRedirect("/user/"+request.user + "/" + item.itemid)
 
 def deleteItem(request, itemid):
 	if len(Item.objects.filter(itemid=itemid)) > 0:
