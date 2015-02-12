@@ -1,28 +1,7 @@
-.exterior {
-	width : 55%;
-	height: 52%;
-	display: block;
-	margin:auto;
-	padding-right: 30px;
-	padding-left: 30px;
-	margin-bottom: 30px;
-	margin-top:10px;
-}
-.checkout-form-holder {
-	width : 100%;
-	height: 100%;
-	margin:auto;
-	text-align: center;
-}
-
 .shipping, .payment, .submitorder{
-	display : none;
 	padding-bottom:15px;
-	border-style: solid;
-	border-color: gray;
-	border-radius: 10px;
+	display:none;
 }
-
 .shipping:target {
 	display:block;
 }
@@ -44,53 +23,48 @@ LABEL BACKGROUNDS AND STUFF FOR SHIPPING/PAYMENT/SUBMIT
 	margin-bottom:10px;
 	display:block;
 	padding-top:10px;
-	padding-bottom: :10px;
+	padding-bottom: 10px;
 }
 .topLabels {
-	background:#CFE;
+	background:#EEE;
 	margin:auto;
-	width:32%;
+	width:31%;
 	text-align: center;
 	height:50%;
 	padding:2%;
 	font-size: 18px;
-	border-radius: 2px
+	border-radius: 2px;
+	margin: 0 1%;
 }
 
 
 /*****************************************************
 SPECIFIC TO TARGET LABELS
 *****************************************************/
-.shipping:target, .shipping:target .shippingLabel {
-	background:#ccc;
-	border-style:solid;
+.shipping:target .shippingLabel {
+	background:#ff6600;
+	color:white;
 }
-.payment:target, .payment:target .paymentLabel {
-	background:#bbb;
-	border-style:solid;
+.payment:target .paymentLabel {
+	background:#ff6600;
+	color:white;
 }
-
-.submitorder:target, .submitorder:target .submitLabel {
-	background:#ccc;
-	border-style:solid;
+.submitorder:target .submitLabel {
+	background:#ff6600;
+	color:white;
 }
-
-.submitorder:target .submitLabel{
-	border-bottom-color: blue;
-}
-
 /****************************************************
 FONTS
 *****************************************************/
 .submitdata {
-
-	font-size: 13px;
+	font-size: 14px;
 }
 .cartitem {
 	font-size:13px;
 }
 .headsubmit {
-	font-size: 18px;
+	font-weight:bold;
+	font-size: 24px;
 }
 /*****************************
 Submit form css
@@ -99,12 +73,11 @@ Submit form css
 	text-align: left;
 }
 .cartitem {
-	background : #ddd;
 	padding:5px;
-	border-color: #fff;
-	border-style : solid;
-	border-radius: 10px;
 }
 .headsubmit{
-	margin-top: 10px;
+	margin-top: 25px;
+}
+.finalcart-items h1{
+	text-align:center;
 }

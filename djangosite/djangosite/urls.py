@@ -10,7 +10,6 @@ urlpatterns = patterns('',
 
     url(r'^$','djangosite.views.home',name="home"),
     url(r'^about/$','djangosite.views.about',name="about"),
-    url(r'^error/', 'djangosite.views.error', name="error"),
     url(r'^admin/', include(admin.site.urls)),
 
     #url(r'^browseCategory','djangosite.views.browseCategory',name="browseCategory"),
@@ -35,3 +34,4 @@ urlpatterns = patterns('',
 )+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'djangosite.views.handler404'
+handler500 = 'djangosite.views.handler500'

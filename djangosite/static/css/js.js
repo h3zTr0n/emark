@@ -13,6 +13,17 @@ function getFromUrl(url, method, formdata, callback) {
 	}
 }
 
+function isEmailTaken(email, callback) {
+	getFromUrl("/acc/isEmailTaken/?email=" + encodeURIComponent(email), "get", null, function (r) {
+		if (r == "AVAILABLE") {
+			callback(false);
+		}
+		else {
+			callback(r);
+		}
+	})
+}
+
 function checkMessages(firstTime) {
 	getFromUrl("/msg/pUnreadMessages/", "get", null, function (data) {
 		//console.log("Checked unread messages: Originally " + unread + ", Now " + data);
@@ -31,37 +42,58 @@ function checkMessages(firstTime) {
 var unread = -1;
 var delay = window.location.pathname.indexOf("/msg/") != -1 ? 1000 : 5000;
 var messageChecker = window.setInterval(function () {
-	checkMessages(false);
+	//checkMessages(false);
 }, delay);
 
 checkMessages(true);
 if (window.location.pathname.indexOf("/msg/") != -1) {
-	document.getElementsByClassName("msgsBody")[0].scrollTop = document.getElementsByClassName("msgsBody")[0].scrollHeight;
-	document.getElementById("formsendmsg").onsubmit = function (e) {
-		e.stopPropagation();
-		e.preventDefault();
-		getFromUrl("/msg/pSendMessage/", "post", new FormData(document.getElementById("formsendmsg")), function (r) {
-			window.location = window.location.href;
-			//console.log(r);
-		});
-		return 0;
+	if (window.location.pathname.length > 5) {
+		document.getElementsByClassName("msgsBody")[0].scrollTop = document.getElementsByClassName("msgsBody")[0].scrollHeight;
+		document.getElementById("formsendmsg").onsubmit = function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+			getFromUrl("/msg/pSendMessage/", "post", new FormData(document.getElementById("formsendmsg")), function (r) {
+				window.location = window.location.href;
+				//console.log(r);
+			});
+			return 0;
+		}
+		document.getElementById("msgin").focus();
 	}
-	document.getElementById("msgin").focus();
+	document.getElementById("msgCtrlBtn").onclick = function () {
+		document.getElementById("msgCtrl").className = "list-group-item";
+		isEmailTaken(document.getElementById("msgCtrlEmail").value, function (taken) {
+			if (taken) {
+				window.location = "/msg/" + taken;
+			}
+			else {
+				document.getElementById("msgCtrl").className = "list-group-item has-error";
+			}
+		});
+	}
 }
 
 if (window.location.pathname == "/acc/") {
 	document.getElementById("registerForm").onsubmit = function (e) {
 		e.stopPropagation();
 		e.preventDefault();
-		document.getElementById("registerAlert").innerHTML = "";
-		getFromUrl("/acc/pRegister/", "post", new FormData(document.getElementById("registerForm")), function (r) {
-			if (r.indexOf("Error") != -1) {
-				document.getElementById("registerAlert").className = "alert alert-danger";
-				document.getElementById("registerAlert").innerHTML = "<strong>Error!</strong> " + r.substring(7);
+		document.getElementById("remail").parentNode.className = "col-sm-10";
+		isEmailTaken(document.getElementById("remail").value, function (taken) {
+			if (!taken) {
+				document.getElementById("registerAlert").innerHTML = "";
+				getFromUrl("/acc/pRegister/", "post", new FormData(document.getElementById("registerForm")), function (r) {
+					if (r.indexOf("Error") != -1) {
+						document.getElementById("registerAlert").className = "alert alert-danger";
+						document.getElementById("registerAlert").innerHTML = "<strong>Error!</strong> " + r.substring(7);
+					}
+					else {
+						window.location = "/acc/settings/";
+						//console.log("r success");
+					}
+				});
 			}
 			else {
-				window.location = "/acc/settings/";
-				//console.log("r success");
+				document.getElementById("remail").parentNode.className = "col-sm-10 has-error";
 			}
 		});
 		return 0;
@@ -124,4 +156,29 @@ if (window.location.pathname == "/acc/settings/") {
 
 if (document.getElementsByClassName("jumbotron").length > 0) {
 	//parallax
+}
+
+if (document.getElementById("rating")) {
+	var stars = document.getElementsByClassName("star");
+	for (var i = 0; i < stars.length; i++) {
+		stars[i].onclick = function (e) {
+			var cur = e.target.attributes["value"].value;
+			for (var j = 0; j < stars.length; j++) {
+				stars[j].className = j < cur ? "star n" : "star a";
+			}
+			document.getElementById("rating").value = cur;
+		}
+		stars[i].onmouseover = function (e) {
+			var cur = e.target.attributes["value"].value;
+			for (var j = 0; j < stars.length; j++) {
+				stars[j].className = j < cur ? "star n" : "star a";
+			}
+		}
+		stars[i].onmouseout = function (e) {
+			var cur = document.getElementById("rating").value;
+			for (var j = 0; j < stars.length; j++) {
+				stars[j].className = j < cur ? "star n" : "star a";
+			}
+		}
+	}
 }

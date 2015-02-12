@@ -11,35 +11,33 @@ from shoppingcart.models import ShoppingCartItem
 import random
 
 #CLIENT
+def isEmailTaken(request):
+	if (len(User.objects.filter(email=request.GET["email"])) > 0):
+		return HttpResponse(User.objects.filter(email=request.GET["email"])[0].username)
+	else:
+		return HttpResponse("AVAILABLE")
 def getProfile(request, username):
 	posUsers = User.objects.filter(username=username)
 	context = {
 		"requestedUser": None,
 		"requestedUserInfo": None,
 		"requestedUserFollowerInfos": None,
-		"notFound": False,
 		"self": False,
 		"itemsList": None,
 		"followed": False
 	}
-	if (request.user.is_authenticated()):
-		context["user"] = request.user
-		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
-	if (len(posUsers) > 0):
-		context["requestedUser"] = posUsers[0]
-		context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
-		if(len(Item.objects.filter(user = context["requestedUser"])) > 0):
-			context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
-		requestedUserFollowers = context["requestedUserInfo"].followers.all()
-		requestedUserFollowerInfos = []
-		for follower in requestedUserFollowers:
-			if follower == request.user:
-				context["followed"] = True
-			requestedUserFollowerInfos.append(UserInfo.objects.filter(user=follower)[0])
-		if(len(requestedUserFollowers) > 0):
-			context["requestedUserFollowerInfos"] = requestedUserFollowerInfos
-	if (len(posUsers) == 0):
-		context["notFound"] = True
+	context["requestedUser"] = posUsers[0]
+	context["requestedUserInfo"] = UserInfo.objects.filter(user__username=username)[0]
+	if(len(Item.objects.filter(user = context["requestedUser"])) > 0):
+		context["itemsList"] = Item.objects.filter(user = context["requestedUser"])
+	requestedUserFollowers = context["requestedUserInfo"].followers.all()
+	requestedUserFollowerInfos = []
+	for follower in requestedUserFollowers:
+		if follower == request.user:
+			context["followed"] = True
+		requestedUserFollowerInfos.append(UserInfo.objects.filter(user=follower)[0])
+	if(len(requestedUserFollowers) > 0):
+		context["requestedUserFollowerInfos"] = requestedUserFollowerInfos
 	if (request.user.username == username):
 		context["self"] = True
 	if (request.user.is_authenticated()):

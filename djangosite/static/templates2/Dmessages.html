@@ -13,6 +13,9 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div class="list-group">
+					<div class="list-group-item" id="msgCtrl">
+						<input type="email" class="form-control msgCtrlEmail" placeholder="Email" id="msgCtrlEmail"><button type="button" class="btn btn-primary msgCtrlBtn" id="msgCtrlBtn">Find</button>
+					</div>
 				{% for obj in msgusers %}
 					<a class="list-group-item" href="/msg/{{obj.sender.username}}">{% if obj.unread != 0 %}<span class="badge">{{obj.unread}}</span> {% endif %}<div class="profPicTiny" style="background-image:url('{% if obj.userinfo.profile_picture %}{{MEDIA_ROOT}}{{obj.userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div> {{obj.sender.first_name}} {{obj.sender.last_name}}</a>
 				{% endfor %}

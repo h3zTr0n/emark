@@ -5,10 +5,10 @@ ajax
 functionality
 	messaging
 formatting
-	ratings
 	tags
 fixes
 	shoppingcart
+link following
 fanciness
 	mobile optimization
 	parallax

@@ -23,6 +23,8 @@ class Address(models.Model):
 	zipcode = models.TextField()
 	city = models.TextField()
 	state = models.TextField()
+	def __str__(self):
+		return self.street
 
 class CreditCards(models.Model):
 	user = models.ForeignKey(User)
@@ -30,3 +32,5 @@ class CreditCards(models.Model):
 	monthExp = models.IntegerField()
 	yearExp = models.IntegerField()
 	securityCode = models.IntegerField()
+	def __str__(self):
+		return self.cardNumber

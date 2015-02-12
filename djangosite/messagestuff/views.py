@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from messagestuff.models import Message
 from django.contrib.auth.models import User
@@ -56,6 +56,8 @@ def getUnreadMessages(touser, fromuser):
 #CLIENT VIEWS
 
 def main(request, username):
+	if (not request.user.is_authenticated()):
+		return HttpResponseRedirect("/acc/")
 	context = {}
 	if (username != ""):
 		context["requestedUser"] = User.objects.filter(username=username)[0]

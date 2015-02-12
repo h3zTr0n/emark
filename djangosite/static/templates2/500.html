@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	<title>Page Not Found</title>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div id="not-found">
+			<img src="{% static 'files/kite.svg' %}"/>
+			<h1>500</h1>
+			<h2>YOU TOOK A WRONG TURN!</h2>
+			<a href="/" type="button" class="btn btn-primary btn-lg">BACK TO SHOPPING</a>
+		</div>
+	</div>
+{% endblock %}

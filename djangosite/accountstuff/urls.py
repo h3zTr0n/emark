@@ -14,5 +14,6 @@ urlpatterns = patterns('',
 	url(r'^changeAddress/$', views.updateAddress, name = 'updateAddress'),
 	url(r'^changeCCInfo/$', views.updateCC, name = 'updateCC'),
 	url(r'^purchaseHistory/$', views.purchaseHistory, name ='purchaseHistory'),
-	url(r'^shoppingitem/(?P<cartitemid>[A-Za-z0-9]+)/$', views.receivedItem, name = 'receivedItem')
+	url(r'^shoppingitem/(?P<cartitemid>[A-Za-z0-9]+)/$', views.receivedItem, name = 'receivedItem'),
+	url(r'^isEmailTaken/$', views.isEmailTaken, name='isEmailTaken'),
 )
