@@ -53,7 +53,7 @@ html, body {
 	bottom: 0;
 	width: 100%;
 	padding: 5px;
-	background: rgba(128, 128, 128, 0.5);
+	background: rgba(225, 225, 225, 0.9);
 }
 .browseItem .caption a {
 	color: #333;

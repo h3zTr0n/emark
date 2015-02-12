@@ -49,7 +49,7 @@
 										</div>
 										<div class="panel-body">
 											{% for item in feedItems %}
-												<div class="browseItem two">
+												<div class="browseItem three">
 													<a href="/user/{{item.user.username}}/{{item.itemid}}">
 														<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/>
 														</div>
