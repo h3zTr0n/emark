@@ -226,12 +226,16 @@ def removeFinishedItem(request, cartitemid):
 
 def purchaseHistory(request):
 	context ={
+		"user" : None,
+		"userinfo" : None,
 		"finishedOrders":None,
 		"pendingItems":None,
 		"pendingOrders": None,
 		"receivedItems":None
 	}
 	if request.user.is_authenticated():
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
 		context["finishedOrders"] = getFinishedOrders(request)
 		context["receivedItems"] = ShoppingCartItem.objects.filter(user = request.user, received = True)
 		context["pendingOrders"] = getPendingOrders(request)
