@@ -7,7 +7,9 @@
 	<div class = "container">
 		<div class = "shipping" id = "shipping">
 			<div class = "checkoutTop">
-				<label class = "topLabels shippingLabel">Shipping</label><label class = "topLabels paymentLabel">Payment</label><label class = "topLabels submitLabel">Submit</label>
+				<label class = "topLabels shippingLabel">Shipping</label>
+				<label class = "topLabels paymentLabel">Payment</label>
+				<label class = "topLabels submitLabel">Submit</label>
 			</div>
 			<form method = "post" action = "/cart/checkout/pPayment/">
 				<div class="panel panel-primary">	
@@ -17,7 +19,6 @@
 					</div>
 					<div class="panel-body">
 						<div class = "form-group">
-<<<<<<< HEAD
 							<label for = "country">Country : </label>
 							<input type = "text" class = "form-control" name = "country" value="{{address.country}}" required>
 						</div>
@@ -40,30 +41,6 @@
 						<div class = "form-group">
 							<label for = "state">State : </label>
 							<input type = "text" class = "form-control" name = "state" value="{{address.state}}" required>
-=======
-							<label for = "country">Country</label>
-							<input type = "text" class = "form-control" name = "country" required>
-						</div>
-						<div class = "form-group">
-							<label for = "street">Street</label>
-							<input type = "text" class = "form-control" name = "street" placeholder = "" required>
-						</div>
-						<div class = "form-group">
-							<label for = "aptsuiteother">Apt / Suite / Other</label>
-							<input type = "text" class = "form-control" name = "aptsuiteother" placeholder = "">
-						</div>
-						<div class = "form-group">
-							<label for = "zipcode">Zip Code</label>
-							<input type = "text" class = "form-control" name = "zipcode" placeholder = "" required>
-						</div>
-						<div class = "form-group">
-							<label for = "city" >City</label>
-							<input type = "text" class = "form-control" name = "city" placeholder = "" required>
-						</div>
-						<div class = "form-group">
-							<label for = "state">State</label>
-							<input type = "text" class = "form-control" name = "state" placeholder = "" required>
->>>>>>> 9706b2c6e5f0b63a1a3cee70358fc60ff903b0cc
 						</div>
 					</div>
 					<div class="panel-footer">
@@ -74,13 +51,9 @@
 		</div>
 		<div class = "payment" id = "payment">
 			<div class = "checkoutTop">
-<<<<<<< HEAD
 				<a href="/cart/checkout/#shipping"><label class = "topLabels shippingLabel">Shipping</label></a>
-				<a href="/cart/checkout/#payment"><label class = "topLabels paymentLabel">Payment</label></a>
+				<label class = "topLabels paymentLabel">Payment</label>
 				<label class = "topLabels submitLabel">Submit</label>
-=======
-				<label class = "topLabels shippingLabel">Shipping</label><label class = "topLabels paymentLabel">Payment</label><label class = "topLabels submitLabel">Submit</label>
->>>>>>> 9706b2c6e5f0b63a1a3cee70358fc60ff903b0cc
 			</div>
 			<form method = "post" action = "/cart/checkout/pSubmitOrder/">
 			{% csrf_token %}
@@ -122,13 +95,9 @@
 		</div>
 		<div class = "submitorder" id = "submitorder">
 			<div class = "checkoutTop">
-<<<<<<< HEAD
 				<a href="/cart/checkout/#shipping"><label class = "topLabels shippingLabel">Shipping</label></a>
 				<a href="/cart/checkout/#payment"><label class = "topLabels paymentLabel">Payment</label></a>
 				<a href="/cart/checkout/#submitorder"><label class = "topLabels submitLabel">Submit</label></a>
-=======
-				<label class = "topLabels shippingLabel">Shipping</label><label class = "topLabels paymentLabel">Payment</label><label class = "topLabels submitLabel">Submit</label>
->>>>>>> 9706b2c6e5f0b63a1a3cee70358fc60ff903b0cc
 			</div>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
