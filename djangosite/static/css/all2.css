@@ -96,13 +96,13 @@ html, body {
 	margin-bottom: 20px;
 }
 .imgholder.small {
-	width: 25%;
+	width: 23%;
 	height: 200px;
-	margin: 5px 15px 5px 5px;
+	margin: 0 1%;
 	display: inline-block;
 }
 .imgholder.tiny {
-	width: 25%;
+	width: 24%;
 	height: 50px;
 	margin: 1px;
 	display: inline-block;
@@ -232,7 +232,8 @@ html, body {
 	margin-top: 0;
 }
 .cart .cart-item .description {
-	width: 70%;
+	margin: 0 1%;
+	width: 73%;
 }
 .cart-item .description {
 	display: inline-block;

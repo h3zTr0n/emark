@@ -7,9 +7,7 @@
 	<div class = "container">
 		<div class = "shipping" id = "shipping">
 			<div class = "checkoutTop">
-				<label class = "topLabels shippingLabel">Shipping</label>
-				<label class = "topLabels paymentLabel">Payment</label>
-				<label class = "topLabels submitLabel">Submit</label>
+				<label class = "topLabels shippingLabel">Shipping</label><label class = "topLabels paymentLabel">Payment</label><label class = "topLabels submitLabel">Submit</label>
 			</div>
 			<form method = "post" action = "/cart/checkout/pPayment/">
 				<div class="panel panel-primary">	
@@ -19,27 +17,27 @@
 					</div>
 					<div class="panel-body">
 						<div class = "form-group">
-							<label for = "country">Country : </label>
+							<label for = "country">Country</label>
 							<input type = "text" class = "form-control" name = "country" required>
 						</div>
 						<div class = "form-group">
-							<label for = "street">Street : </label>
+							<label for = "street">Street</label>
 							<input type = "text" class = "form-control" name = "street" placeholder = "" required>
 						</div>
 						<div class = "form-group">
-							<label for = "aptsuiteother">Apt / Suite / Other : </label>
+							<label for = "aptsuiteother">Apt / Suite / Other</label>
 							<input type = "text" class = "form-control" name = "aptsuiteother" placeholder = "">
 						</div>
 						<div class = "form-group">
-							<label for = "zipcode">Zip Code : </label>
+							<label for = "zipcode">Zip Code</label>
 							<input type = "text" class = "form-control" name = "zipcode" placeholder = "" required>
 						</div>
 						<div class = "form-group">
-							<label for = "city" >City : </label>
+							<label for = "city" >City</label>
 							<input type = "text" class = "form-control" name = "city" placeholder = "" required>
 						</div>
 						<div class = "form-group">
-							<label for = "state">State : </label>
+							<label for = "state">State</label>
 							<input type = "text" class = "form-control" name = "state" placeholder = "" required>
 						</div>
 					</div>
@@ -63,13 +61,13 @@
 					</div>
 					<div class="panel-body">
 						<div class = "form-group col-sm-12">
-							<label for = "cardNumber" class = "col-sm-3 control-label">Card Number : </label>
+							<label for = "cardNumber" class = "col-sm-3 control-label">Card Number</label>
 							<div class = "col-sm-9">
 								<input type = "text" class = "form-control" name = "cardNumber" size= "19" placeholder = "XXXX-XXXX-XXXX-XXXX" maxLength = "19" pattern = "\d{4}-?\d{4}-?\d{4}-?\d{4}" required>
 							</div>
 						</div>
 						<div class = "form-group col-sm-12" id = "expiration">
-							<label for = "ExpMonth" class = "col-sm-3 control-label">Expiration Date : </label>
+							<label for = "ExpMonth" class = "col-sm-3 control-label">Expiration Date</label>
 							<div class = "col-sm-2">
 								<input type = "number" class = "form-control" name = "ExpMonth" min = "1" max = "12" placeholder = "MM"required>
 							</div>
@@ -80,7 +78,7 @@
 
 						</div>
 						<div class = "form-group col-sm-12">
-							<label for = "securityCode" class = "col-sm-3 control-label">Security Code : </label>
+							<label for = "securityCode" class = "col-sm-3 control-label">Security Code</label>
 							<div class = "col-sm-2">
 								<input type = "number" class = "form-control" name = "securityCode" min = "100" max = "999" placeholder = "XXX" required>
 							</div>
