@@ -13,6 +13,17 @@ function getFromUrl(url, method, formdata, callback) {
 	}
 }
 
+function isEmailTaken(email, callback) {
+	getFromUrl("/acc/isEmailTaken/?email=" + encodeURIComponent(email), "get", null, function (r) {
+		if (r == "AVAILABLE") {
+			callback(false);
+		}
+		else {
+			callback(r);
+		}
+	})
+}
+
 function checkMessages(firstTime) {
 	getFromUrl("/msg/pUnreadMessages/", "get", null, function (data) {
 		//console.log("Checked unread messages: Originally " + unread + ", Now " + data);
@@ -31,22 +42,35 @@ function checkMessages(firstTime) {
 var unread = -1;
 var delay = window.location.pathname.indexOf("/msg/") != -1 ? 1000 : 5000;
 var messageChecker = window.setInterval(function () {
-	checkMessages(false);
+	//checkMessages(false);
 }, delay);
 
 checkMessages(true);
 if (window.location.pathname.indexOf("/msg/") != -1) {
-	document.getElementsByClassName("msgsBody")[0].scrollTop = document.getElementsByClassName("msgsBody")[0].scrollHeight;
-	document.getElementById("formsendmsg").onsubmit = function (e) {
-		e.stopPropagation();
-		e.preventDefault();
-		getFromUrl("/msg/pSendMessage/", "post", new FormData(document.getElementById("formsendmsg")), function (r) {
-			window.location = window.location.href;
-			//console.log(r);
-		});
-		return 0;
+	if (window.location.pathname.length > 5) {
+		document.getElementsByClassName("msgsBody")[0].scrollTop = document.getElementsByClassName("msgsBody")[0].scrollHeight;
+		document.getElementById("formsendmsg").onsubmit = function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+			getFromUrl("/msg/pSendMessage/", "post", new FormData(document.getElementById("formsendmsg")), function (r) {
+				window.location = window.location.href;
+				//console.log(r);
+			});
+			return 0;
+		}
+		document.getElementById("msgin").focus();
 	}
-	document.getElementById("msgin").focus();
+	document.getElementById("msgCtrlBtn").onclick = function () {
+		document.getElementById("msgCtrl").className = "list-group-item";
+		isEmailTaken(document.getElementById("msgCtrlEmail").value, function (taken) {
+			if (taken) {
+				window.location = "/msg/" + taken;
+			}
+			else {
+				document.getElementById("msgCtrl").className = "list-group-item has-error";
+			}
+		});
+	}
 }
 
 if (window.location.pathname == "/acc/") {

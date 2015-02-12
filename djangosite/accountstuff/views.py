@@ -10,6 +10,11 @@ from itemstuff.models import Item
 import random
 
 #CLIENT
+def isEmailTaken(request):
+	if (len(User.objects.filter(email=request.GET["email"])) > 0):
+		return HttpResponse(User.objects.filter(email=request.GET["email"])[0].username)
+	else:
+		return HttpResponse("AVAILABLE")
 def getProfile(request, username):
 	posUsers = User.objects.filter(username=username)
 	context = {

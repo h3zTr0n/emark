@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     #url(r'^settings2/$', views.settingsOld, name="settings"),
 	url(r'^pUpdate/$', views.updateSettings, name='modifySettings'),
 	url(r'^changeAddress/$', views.updateAddress, name = 'updateAddress'),
-	url(r'^changeCCInfo/$', views.updateCC, name = 'updateCC')
+	url(r'^changeCCInfo/$', views.updateCC, name = 'updateCC'),
+	url(r'^isEmailTaken/$', views.isEmailTaken, name='isEmailTaken'),
 )

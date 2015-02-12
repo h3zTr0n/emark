@@ -319,6 +319,15 @@ html, body {
 .pstars .a {
 	background-position-y: 21px;
 }
+.msgCtrlEmail {
+	margin: 0 1% 0 0;
+	width: 73%;
+	display: inline-block;
+}
+.msgCtrlBtn {
+	margin: 0;
+	width: 25%;
+}
 
 /* TO CHANGE IN BOOTSTRAP */
 .navbar {
