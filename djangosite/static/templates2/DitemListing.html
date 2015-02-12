@@ -29,9 +29,13 @@
 								<label for="quantity">Quantity</label>
 								<input class="form-control" id = "quantity" type = "number" min = "1" max = "200000000" value="1">
 							</div>
-							<button type="submit" class="btn btn-primary btn-block" onclick="document.getElementById('qform').action='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>
+							{% if user and userinfo%}
+								<button type="submit" class="btn btn-primary btn-block" onclick="document.getElementById('qform').action='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>
+							{% else %}
+								<a href="/acc/#signin" class="btn btn-primary btn-block">Add to Cart</a>
+							{% endif %}
 						</form>
-					{% endif %}
+					{% endif %}	
 				</div>
 				<div class="sidebar inner seller-information">
 					<a href="/user/{{seller.username}}">
