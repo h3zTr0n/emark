@@ -277,6 +277,10 @@ html, body {
 .jumbotron.small{
 	margin-top:5%;
 }
+.profile{
+	background-color:#EEE;
+	padding:7%;
+}
 .profile .description {
 	text-align: center;
 }
@@ -406,7 +410,7 @@ html, body {
 	margin-top:0px;
 }
 .featured-entrepreneurs{
-	margin-top:10px;
+	margin-top:50px;
 }
 a {
 	color: #ee6600;
