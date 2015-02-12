@@ -42,7 +42,7 @@
 								<div class="list-group-item cart-item">
 									<div class="description">
 										<h3 class="title">{{item.item.title}}</h3>
-										<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+										<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></h5>
 										<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
 										<h5>Quantity: {{item.quantity}}</h5>
 										<a href="/acc/shoppingitem/{{item.uniqueid}}/" type="button" class="btn btn-success">Received</button></a>
@@ -110,7 +110,7 @@
 							<div class="list-group-item cart-item">
 								<div class="description">
 									<h3 class="title">{{item.item.title}}</h3>
-									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.item.user.first_name}} {{item.item.user.last_name}}</a></h5>
 									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
 									<h5>Quantity: {{item.quantity}}</h5>
 								</div>
