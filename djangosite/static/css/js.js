@@ -136,6 +136,26 @@ function refreshHashNav() {
 	}
 }
 
+function refreshHashNavPurchaseHistory() {
+	switch (window.location.hash) {
+		case "#received":
+			document.getElementById("settingsnav").children[0].className = "";
+			document.getElementById("settingsnav").children[1].className = "active";
+			document.getElementById("settingsnav").children[2].className = "";
+			break;
+		case "#finishedorders":
+			document.getElementById("settingsnav").children[0].className = "";
+			document.getElementById("settingsnav").children[1].className = "";
+			document.getElementById("settingsnav").children[2].className = "active";
+			break;
+		default:
+			document.getElementById("settingsnav").children[0].className = "active";
+			document.getElementById("settingsnav").children[1].className = "";
+			document.getElementById("settingsnav").children[2].className = "";
+			break;
+	}
+}
+
 if (window.location.pathname == "/acc/settings/") {
 	refreshHashNav();
 	document.getElementById("settingsnav").onclick = function () {
@@ -151,6 +171,15 @@ if (window.location.pathname == "/acc/settings/") {
 			e.preventDefault();
 			return 0;
 		}
+	}
+}
+
+if (window.location.pathname == "/acc/purchaseHistory/") {
+	refreshHashNavPurchaseHistory();
+	document.getElementById("settingsnav").onclick = function () {
+		window.setTimeout(function () {
+			refreshHashNavPurchaseHistory();
+		}, 1);
 	}
 }
 
