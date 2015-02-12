@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from datetime import date
 from itemstuff.models import Item
+from shoppingcart.models import ShoppingCartItem
 
 import random
 
@@ -55,7 +56,7 @@ def settings(request):
 	if len(Address.objects.filter(user = request.user)) > 0:
 		context["address"] = Address.objects.filter(user = request.user)[0]
 	if len(CreditCards.objects.filter(user = request.user)) > 0:
-		context["ccinfo"] = CreditCards.objects.filter(user = request.user)[0],
+		context["ccinfo"] = CreditCards.objects.filter(user = request.user)[0]
 	template = loader.get_template('Dsettings.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
 
@@ -199,3 +200,45 @@ def updateCC(request):
 	currentCC.securityCode = request.POST['securityCode']
 	currentCC.save()
 	return HttpResponseRedirect("/acc/settings/")
+
+def getPendingOrders(request):
+	yourItemList = Item.objects.filter(user = request.user)
+	pendingOrders = []
+	for item in yourItemList:
+		pendingOrders += ShoppingCartItem.objects.filter(item = item, pending = True, received = False)
+	return pendingOrders
+
+def getFinishedOrders(request):
+	yourItemList = Item.objects.filter(user = request.user)
+	finishedOrders = []
+	for item in yourItemList:
+		finishedOrders += ShoppingCartItem.objects.filter(item = item, received = True)
+	return finishedOrders
+def receivedItem(request, cartitemid) :
+	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = False)[0]
+	item.received = True
+	item.save()
+	return HttpResponseRedirect("/acc/purchaseHistory/#pending")
+def removeFinishedItem(request, cartitemid):
+	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = True)
+	item.delete()
+	return HttpResponseRedirect("/cart/")
+
+def purchaseHistory(request):
+	context ={
+		"user" : None,
+		"userinfo" : None,
+		"finishedOrders":None,
+		"pendingItems":None,
+		"pendingOrders": None,
+		"receivedItems":None
+	}
+	if request.user.is_authenticated():
+		context["user"] = request.user
+		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
+		context["finishedOrders"] = getFinishedOrders(request)
+		context["receivedItems"] = ShoppingCartItem.objects.filter(user = request.user, received = True)
+		context["pendingOrders"] = getPendingOrders(request)
+		context["pendingItems"] = ShoppingCartItem.objects.filter(user = request.user, pending = True, received = False)
+	template=loader.get_template('purchaseHistory.html')
+	return HttpResponse(template.render(RequestContext(request, context)))

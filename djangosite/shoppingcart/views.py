@@ -13,21 +13,13 @@ def displayCart(request):
 		"user" : None,
 		"cartListSum": None,
 		"numItems" : None,
-		"pendingItems" : None,
-		"receivedItems" : None,
-		"pendingOrders" : None,
-		"finishedOrders" : None,
 	}
 	if (request.user.is_authenticated()):
 		shoppingCart = ShoppingCartItem.objects.filter(user = request.user, pending = False, received = False)
 		context["user"] = request.user
 		context["userinfo"] = UserInfo.objects.filter(user=request.user)[0]
-		context["pendingItems"] = ShoppingCartItem.objects.filter(user=  request.user, pending = True, received = False)
 		context["CartList"] = shoppingCart
 		context["numItems"] = len(shoppingCart)
-		context["receivedItems"] = ShoppingCartItem.objects.filter(user = request.user, received = True)
-		context["pendingOrders"] = getPendingOrders(request)
-		context["getFinishedOrders"] = getFinishedOrders(request)
 		context["cartListSum"] = sumCartPrices(request, shoppingCart)
 	else :
 		return HttpResponseRedirect("/acc/#signin")
@@ -98,24 +90,3 @@ def clearOrder(request):
 		itemList[k].save()
 	return HttpResponseRedirect("/cart/")
 
-def getPendingOrders(request):
-	yourItemList = Item.objects.filter(user = request.user)
-	pendingOrders = []
-	for item in yourItemList:
-		pendingOrders += ShoppingCartItem.objects.filter(item = item, pending = True, received = False)
-	return pendingOrders
-def getFinishedOrders(request):
-	yourItemList = Item.objects.filter(user = request.user)
-	finishedOrders = []
-	for item in yourItemList:
-		finishedOrders += ShoppingCartItem.objects.filter(item = item, received = True)
-	return finishedOrders
-def receivedItem(request, cartitemid) :
-	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = False)[0]
-	item.received = True
-	item.save()
-	return HttpResponseRedirect("/cart/")
-def removeFinishedItem(request, cartitemid):
-	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = True)
-	item.delete()
-	return HttpResponseRedirect("/cart/")

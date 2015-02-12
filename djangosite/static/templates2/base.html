@@ -17,16 +17,15 @@
 			<div class="navigation">
 				<nav id="main-nav" class="navbar navbar-default navbar-static-top top-top" role="navigation">
 					<div class="container">
-						<div class="navbar-header col-xs-4 col-md-2">
+						<div class="navbar-header col-xs-4 col-sm-2 col-md-2">
 							<a class="navbar-brand" href="/">craftnet</a>
 						</div>
-						<form class="navbar-form col-xs-8 col-md-5" role="search" method="get" action="/search/">
+						<form class="navbar-form col-xs-8 col-sm-5 col-md-6" role="search" method="get" action="/search/">
 					        <div class="form-group threefourth">
 					        	<input type="text" class="form-control" placeholder="Search" id="q" name="q" value="{{search}}">
-					        </div>
-					        <button type="submit onefourth" class="btn btn-primary">Search</button>
+					        </div><button type="submit" class="btn btn-primary onefourth">Search</button>
 				    	</form>
-						<ul class="nav navbar-nav navbar-right col-xs-12 col-md-5">
+						<ul class="nav navbar-nav navbar-right col-xs-12 col-sm-5 col-md-4">
 							{% if user and userinfo %}
 								<li>
 									<a href="/user/{{user.username}}/">
@@ -38,6 +37,12 @@
 											<a href="/item/createItem">
 												<span class="glyphicon glyphicon-plus"></span>
 												Add an Item
+											</a>
+										</li>
+										<li>
+											<a href="/acc/purchaseHistory/#pending">
+												<span class="glyphicon glyphicon-plus"></span>
+												Purchase History
 											</a>
 										</li>
 										<li>
