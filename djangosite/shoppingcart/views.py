@@ -52,12 +52,18 @@ def removeItem(request, scitemid):
 	#return displayCart(request)
 	return HttpResponseRedirect("/cart/")
 def shipping(request):
-	if len(Address.objects.filter(user = request.user)) > 0:
-		return HttpResponseRedirect("/cart/checkout/pPayment/")
+	context={}
+	user = request.user
+	if len(Address.objects.filter(user = user)) > 0:
+		address = Address.objects.filter(user = user)[0]
+		context["address"] = address
 	return HttpResponseRedirect("/cart/checkout/#shipping")
 def payment(request):
-	if len(CreditCards.objects.filter(user=request.user)) > 0:
-		return HttpResponseRedirect("/cart/checkout/pSubmitOrder/")
+	context={}
+	user = request.user
+	if len(CreditCards.objects.filter(user = user)) > 0:
+		creditcard = Address.objects.filter(user = user)[0]
+		context["creditcard"] = creditcard
 	newAddress = Address(user = request.user, country = request.POST['country'], street = request.POST['street'], aptsuiteother = request.POST['aptsuiteother'], zipcode = request.POST['zipcode'], city = request.POST['city'], state = request.POST['state'])
 	newAddress.save()
 	
