@@ -49,6 +49,9 @@
 									</div>
 								</div>
 							{% endfor %}
+							{% if pendingItemsLength == 0 %}
+								<p>You currently have no pending items!</p>
+							{% endif %}
 						</div>
 					</div>
 					<div class = "panel panel-primary">
@@ -66,6 +69,9 @@
 									</div>
 								</div>
 							{% endfor %}
+							{% if pendingOrdersLength == 0 %}
+								<p>You currently have no pending orders!</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>
@@ -88,6 +94,9 @@
 								</div>
 							</div>
 						{% endfor %}
+						{% if finishedOrdersLength == 0 %}
+							<p>You currently have no finished orders!</p>
+						{% endif %}
 					</div>
 
 				</div>
@@ -107,6 +116,9 @@
 								</div>
 							</div>
 						{% endfor %}
+						{% if receivedItemsLength == 0 %}
+							<p>You currently have no received items!</p>
+						{% endif %}
 					</div>
 				</div>
 				<!--END OF CHANGING CREDIT CARD INFO-->
