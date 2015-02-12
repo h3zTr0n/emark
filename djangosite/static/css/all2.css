@@ -440,6 +440,9 @@ a:hover, a:focus {
 	.browseItem.three {
 		width: 98%;
 	}
+	.browseItem.four {
+		width: 48%;
+	}
 	.featured-entrepreneurs > div {
 		margin-bottom: 10px;
 	}
@@ -448,5 +451,8 @@ a:hover, a:focus {
 	}
 	.content {
 		padding-bottom: 400px;
+	}
+	.form-inline .form-control {
+		display: inline-block;
 	}
 }
