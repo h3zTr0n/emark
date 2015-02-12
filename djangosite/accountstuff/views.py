@@ -231,7 +231,7 @@ def purchaseHistory(request):
 		"finishedOrders":None,
 		"pendingItems":None,
 		"pendingOrders": None,
-		"receivedItems":None
+		"receivedItems":None,
 	}
 	if request.user.is_authenticated():
 		context["user"] = request.user
@@ -240,5 +240,9 @@ def purchaseHistory(request):
 		context["receivedItems"] = ShoppingCartItem.objects.filter(user = request.user, received = True)
 		context["pendingOrders"] = getPendingOrders(request)
 		context["pendingItems"] = ShoppingCartItem.objects.filter(user = request.user, pending = True, received = False)
+		context["pendingOrdersLength"] = len(context["pendingOrders"])
+		context["finishedOrdersLength"]= len(context["finishedOrders"])
+		context["pendingItemsLength"] =len(context["pendingItems"])
+		context["receivedItemsLength"] = len(context["receivedItems"])
 	template=loader.get_template('purchaseHistory.html')
 	return HttpResponse(template.render(RequestContext(request, context)))
