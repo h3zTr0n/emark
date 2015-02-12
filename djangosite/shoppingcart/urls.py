@@ -10,6 +10,4 @@ urlpatterns = patterns('',
 		url(r'^checkout/pPayment/$', views.payment, name = 'payment'),
 		url(r'^checkout/pSubmitOrder/$', views.submitOrder, name = 'submitOrder'),
 		url(r'^checkout/clearOrder/$', views.clearOrder, name = 'clearOrder'),
-		
-
 	)	
