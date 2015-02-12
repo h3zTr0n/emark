@@ -421,6 +421,12 @@ html, body {
 .featured-entrepreneurs{
 	margin-top:50px;
 }
+.rowheader{
+	text-align:center;
+}
+.create-button{
+	margin-bottom:3%;
+}
 a {
 	color: #ee6600;
 }
