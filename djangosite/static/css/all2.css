@@ -169,7 +169,6 @@ html, body {
 }
 .footer {
 	width:100%;
-	min-height:200px;
 	position: absolute;
 	background-color:#f8f8f8;
 	padding-top:1%;
@@ -351,20 +350,6 @@ html, body {
 .top-top {
 	z-index: 1001;
 }
-/*
-.panel-default {
-	background: #f5f5f5;
-}
-.panel-default > .panel-heading {
-	border: 0;
-	border-bottom: 1px solid #ddd;
-	background: none;
-}
-.panel-default > .panel-footer {
-	border-top: 1px solid #ddd;
-	background: none;
-}
-*/
 .panel-title {
 	font-size: 1.3em;
 	font-weight: bold;
@@ -436,6 +421,9 @@ a:hover, a:focus {
 	.navbar .container {
 		padding: 0;
 	}
+	.navbar .container div, .navbar .container form, .navbar .container ul {
+		padding-right: 0;
+	}
 	.navbar-brand {
 		margin: 10px 0 0 0;
 		font-size: 1.5em;
@@ -448,5 +436,17 @@ a:hover, a:focus {
 	}
 	.onefourth {
 		width: 33%;
+	}
+	.browseItem.three {
+		width: 98%;
+	}
+	.featured-entrepreneurs > div {
+		margin-bottom: 10px;
+	}
+	.jumbotron {
+		font-size: 0.8em;
+	}
+	.content {
+		padding-bottom: 400px;
 	}
 }
