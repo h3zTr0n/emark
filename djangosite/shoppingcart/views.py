@@ -92,24 +92,3 @@ def clearOrder(request):
 		itemList[k].save()
 	return HttpResponseRedirect("/cart/")
 
-def getPendingOrders(request):
-	yourItemList = Item.objects.filter(user = request.user)
-	pendingOrders = []
-	for item in yourItemList:
-		pendingOrders += ShoppingCartItem.objects.filter(item = item, pending = True, received = False)
-	return pendingOrders
-def getFinishedOrders(request):
-	yourItemList = Item.objects.filter(user = request.user)
-	finishedOrders = []
-	for item in yourItemList:
-		finishedOrders += ShoppingCartItem.objects.filter(item = item, received = True)
-	return finishedOrders
-def receivedItem(request, cartitemid) :
-	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = False)[0]
-	item.received = True
-	item.save()
-	return HttpResponseRedirect("/cart/")
-def removeFinishedItem(request, cartitemid):
-	item = ShoppingCartItem.objects.filter(uniqueid = cartitemid, received = True)
-	item.delete()
-	return HttpResponseRedirect("/cart/")

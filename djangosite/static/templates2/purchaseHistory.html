@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	<title>settings - craftnet</title>
+{% endblock %}
+
+{% block page_css %}
+<style>
+#pending, #finishedorders, #pending:target ~ #received, #finishedorders:target ~ #received {
+  display: none;
+}
+#received:target, #pending:target, #finishedorders:target {
+  display: block;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 sidebar">
+				<div class="profile-information">
+					<h1 class="name">Purchases and Requests</h1>
+					<ul class="nav nav-pills nav-stacked" role	="tablist" id="settingsnav">
+						<li role="presentation"><a href="#pending">Pending</a></li>
+			  			<li role="presentation"><a href="#received">Received</a></li>
+			  			<li role="presentation"><a href="#finishedorders">Finished Orders</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<!--BEGINNING OF FORM FOR CHANGING ADDRESS-->
+				<div class = "panel panel-primary" id = "pending">
+					<div class="panel-heading">
+						<h3 class="panel-title">Pending Requests by You</h3>
+					</div>
+					{% csrf_token %}
+					<div class = "panel-body">
+						{% for item in pendingItems %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h3 class="title">{{item.item.title}}</h3>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+									<h5>Quantity: {{item.quantity}}</h5>
+									<a href="/acc/shoppingitem/{{item.uniqueid}}/" type="button" class="btn btn-success">Received</button></a>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<div class = "panel-heading">
+						<h3 class = "panel-title">Orders To You</h3>
+					</div>
+					<div class = "panel-body">
+						{% for item in pendingOrders %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h3 class="title">{{item.item.title}}</h3>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+									<h5>Quantity: {{item.quantity}}</h5>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<!--END OF FORM FOR CHANGING ADDRESS-->
+				<!--BEGINNING OF FORM TO CHANGE CREDIT CARD INFO-->
+				
+				<div class = "panel panel-primary" id = "finishedorders">
+					<div class="panel-heading">
+						<h3 class="panel-title">Your Completed Orders</h3>
+					</div>
+					{% csrf_token %}
+					<div class = "panel-body">
+						{% for item in finishedOrders %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h3 class="title">{{item.item.title}}</h3>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+									<h5>Quantity: {{item.quantity}}</h5>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+
+				</div>
+				<div class="panel panel-primary" id = "received">
+					<div class="panel-heading">
+						<h3 class="panel-title">Received Items</h3>
+					</div>
+					<div class="panel-body">
+						{% csrf_token %}
+						{% for item in receivedItems %}
+							<div class="list-group-item cart-item">
+								<div class="description">
+									<h3 class="title">{{item.item.title}}</h3>
+									<h5 class="name"><a href="/user/{{item.item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
+									<h4 class="price">${{item.item.price|floatformat:2}} USD</h4>
+									<h5>Quantity: {{item.quantity}}</h5>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<!--END OF CHANGING CREDIT CARD INFO-->
+				<!-- TODO: birthday, cc and shipping -->
+			</div>	
+		</div>
+	</div>	
+{% endblock %}
+
