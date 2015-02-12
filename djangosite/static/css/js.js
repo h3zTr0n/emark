@@ -77,15 +77,23 @@ if (window.location.pathname == "/acc/") {
 	document.getElementById("registerForm").onsubmit = function (e) {
 		e.stopPropagation();
 		e.preventDefault();
-		document.getElementById("registerAlert").innerHTML = "";
-		getFromUrl("/acc/pRegister/", "post", new FormData(document.getElementById("registerForm")), function (r) {
-			if (r.indexOf("Error") != -1) {
-				document.getElementById("registerAlert").className = "alert alert-danger";
-				document.getElementById("registerAlert").innerHTML = "<strong>Error!</strong> " + r.substring(7);
+		document.getElementById("remail").parentNode.className = "col-sm-10";
+		isEmailTaken(document.getElementById("remail").value, function (taken) {
+			if (!taken) {
+				document.getElementById("registerAlert").innerHTML = "";
+				getFromUrl("/acc/pRegister/", "post", new FormData(document.getElementById("registerForm")), function (r) {
+					if (r.indexOf("Error") != -1) {
+						document.getElementById("registerAlert").className = "alert alert-danger";
+						document.getElementById("registerAlert").innerHTML = "<strong>Error!</strong> " + r.substring(7);
+					}
+					else {
+						window.location = "/acc/settings/";
+						//console.log("r success");
+					}
+				});
 			}
 			else {
-				window.location = "/acc/settings/";
-				//console.log("r success");
+				document.getElementById("remail").parentNode.className = "col-sm-10 has-error";
 			}
 		});
 		return 0;
