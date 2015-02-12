@@ -104,40 +104,21 @@
 					<h3 class="panel-title	">Review Order</h3>
 				</div>
 				<div class="panel-body">
-					<div class = "form-group row submitdata">
-						<div class = "form-group col-sm-6">
-							<div class = "form-group" style = "border-bottom-style: solid">
-								<label class = "headsubmit">Address</label>
-							</div>
-							<div class = "form-group submitdata">
-								<label>{{address.street}}</label>
-							</div>
+					<div class = "row submitdata">
+						<div class = "col-sm-6">
+							<h1 class="headsubmit">Address</h1>
+							<p>{{address.street}}</p>
 							{% if address.aptsuiteother != "" %}
-								<div class = "form-group submitdata">
-									<label> {{address.aptsuiteother}}</label>
-								</div>
+								<p>{{address.aptsuiteother}}</p>
 							{% endif %}
-							<div class = "form-group submitdata">
-								<label>{{address.city}} {{address.state}} {{address.zipcode}}</label>
-							</div>
-							<div class = "form-group submitdata">
-								<label>{{address.country}}</label>
-							</div>
-							<div class = "form-group">
-								<label></label>
-							</div>
-							<div class = "form-group" style = "border-bottom-style: solid">
-								<label class = "headsubmit">Credit Card Information</label>
-							</div>
-							<div class = "form-group">
-								<label>Credit Card : {{creditcard.cardNumber}}</label>
-							</div>
-							<div class = "form-group">
-								<label>Expiration Date : {{creditcard.monthExp}}/{{creditcard.yearExp}}</label>
-							</div>
+							<p>{{address.city}} {{address.state}} {{address.zipcode}}</p>
+							<p>{{address.country}}</p>
+							<h1 class="headsubmit">Credit Card Information</h1>
+							<p>Credit Card : {{creditcard.cardNumber}}</p>
+							<p>Expiration Date : {{creditcard.monthExp}}/{{creditcard.yearExp}}</p>
 						</div>
-						<div class="col-sm-6">
-							<label class = "headsubmit">Shopping Cart</label>
+						<div class="col-sm-6 finalcart-items">
+							<h1 class="headsubmit">Final Order</h1>
 							<div class = "cartitemlist">
 								{% for cartitem in cartlist %}
 									<div class = "browseItem two">
@@ -147,8 +128,8 @@
 											<p class="title">{{cartitem.item.title}}</p>
 											<p class="price">${{cartitem.item.price|floatformat:2}}</p>
 											<p class="seller">{{cartitem.item.user.first_name}} {{cartitem.item.user.last_name}}</p>
+											<p class="quantity">Quantity : {{cartitem.quantity}}</p>
 										</div>
-										<label>Quantity : {{cartitem.quantity}}</label>
 									</div>
 								{% endfor %}
 							</div>

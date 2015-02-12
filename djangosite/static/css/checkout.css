@@ -1,7 +1,7 @@
 .shipping, .payment, .submitorder{
 	padding-bottom:15px;
+	display:none;
 }
-
 .shipping:target {
 	display:block;
 }
@@ -26,9 +26,9 @@ LABEL BACKGROUNDS AND STUFF FOR SHIPPING/PAYMENT/SUBMIT
 	padding-bottom: :10px;
 }
 .topLabels {
-	background:#CFE;
+	background:#EEE;
 	margin:auto;
-	width:32%;
+	width:33%;
 	text-align: center;
 	height:50%;
 	padding:2%;
@@ -40,26 +40,30 @@ LABEL BACKGROUNDS AND STUFF FOR SHIPPING/PAYMENT/SUBMIT
 /*****************************************************
 SPECIFIC TO TARGET LABELS
 *****************************************************/
-.shipping:target .shippingLabel { 
-	border-style:solid;
+.shipping:target .shippingLabel {
+	background:#ff6600;
+	color:white;
 }
 .payment:target .paymentLabel {
-	border-style:solid;
+	background:#ff6600;
+	color:white;
 }
 .submitorder:target .submitLabel {
-	border-style:solid;
+	background:#ff6600;
+	color:white;
 }
 /****************************************************
 FONTS
 *****************************************************/
 .submitdata {
-	font-size: 13px;
+	font-size: 14px;
 }
 .cartitem {
 	font-size:13px;
 }
 .headsubmit {
-	font-size: 18px;
+	font-weight:bold;
+	font-size: 24px;
 }
 /*****************************
 Submit form css
@@ -71,5 +75,8 @@ Submit form css
 	padding:5px;
 }
 .headsubmit{
-	margin-top: 10px;
+	margin-top: 25px;
+}
+.finalcart-items h1{
+	text-align:center;
 }

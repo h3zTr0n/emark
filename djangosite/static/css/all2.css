@@ -64,10 +64,15 @@ html, body {
 	margin: 0;
 }
 .browseItem .caption .price {
+	margin-bottom:0px;
 	float: right;
 	color: green;
 }
 .browseItem .caption .seller {
+	clear: both;
+	margin: 0;
+}
+.browseItem .caption .quantity {
 	clear: both;
 	margin: 0;
 }
