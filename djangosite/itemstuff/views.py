@@ -74,6 +74,7 @@ def getItem(request, username, itemid):
 
 def editItem(request, itemid):
 	item = Item.objects.filter(itemid=itemid)[0]
+	item.tags = item.tags if item.tags else ""
 	context={
 		"item":item,
 	}
