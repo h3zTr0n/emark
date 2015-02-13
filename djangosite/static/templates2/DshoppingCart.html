@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-	<title>your cart - craftnet</title>
+	<title>Your Cart</title>
 {% endblock %}
 
 {% block page_css %}
@@ -18,7 +18,8 @@
 					<a href="/cart/checkout/pShipping" type="button" class="btn btn-primary">Proceed To Checkout</a>
 				</div>
 			</div>
-			<div class="col-md-6 cart" >
+			<div class="col-md-6 cart" > 
+				<h2>Your Shopping Cart</h2>
 				<div class="list-group cart">
 					{% for item in CartList %}
 						<div class="list-group-item cart-item">

@@ -13,12 +13,12 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="sidebar inner item-information">
-					<h1 class="item-title">{{item.title}}</h1>
+					<h1>{{item.title}}</h1>
 					<h5><div class="stars"><div class="part filled" style="width:{{ratingp}}%"></div><div class="part empty" style="width:{{negratingp}}%"></div></div><!--{{item.averagerating}}--></h5>
-					<h4 class="price">${{item.price|floatformat:2}}</h4>
-					<h3>Item Details</h3>
+					<h3>Details</h3>
 					<em class="category">{{itemCategory}}</em>
 					<p>{{item.details}}</p>
+					<h4 class="price">${{item.price|floatformat:2}}</h4>
 					{% if seller == user %}
 						<form method="get" action="/item/editItem/{{item.itemid}}">
 							<button type="submit" class="btn btn-primary btn-block">Edit Item</button>
@@ -29,16 +29,12 @@
 								<label for="quantity">Quantity</label>
 								<input class="form-control" id = "quantity" type = "number" min = "1" max = "200000000" value="1">
 							</div>
-							{% if user and userinfo%}
-								<button type="submit" class="btn btn-primary btn-block" onclick="document.getElementById('qform').action='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>
-							{% else %}
-								<a href="/acc/#signin" class="btn btn-primary btn-block">Add to Cart</a>
-							{% endif %}
+							<button type="submit" class="btn btn-primary btn-block" onclick="document.getElementById('qform').action='/cart/addItem/{{item.itemid}}/' + encodeURI(document.getElementById('quantity').value)">Add To Cart</button>
 						</form>
-					{% endif %}	
+					{% endif %}
 				</div>
 				<div class="sidebar inner seller-information">
-					<a href="/user/{{seller.username}}" class="seller-name">
+					<a href="/user/{{seller.username}}">
 						<h3 class="name">{{seller.first_name}} {{seller.last_name}}<h3>
 						<div class="profPic large" style="background-image:url('{% if sellerinfo.profile_picture %}{{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 					</a>
@@ -64,10 +60,6 @@
 								<a href="/user/{{item.user.username}}/{{item.itemid}}">
 									<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/></div>
 								</a>
-								<div class="caption">
-									<p class="title">{{item.title}}</p>
-									<h5 class="price" style="clear:both; float:left;">${{item.price|floatformat:2}}</h5>
-								</div>
 							</div>
 						{% endfor %}
 					</div>
@@ -97,46 +89,44 @@
 							</div>
 						</div>
 					{% endfor %}
-					{% if seller != user %}
-						<form id="reviewform" action="/item/addRating/" method="POST">
-							{% csrf_token %}
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h3 class="panel-title">Post A Review</h3>
-								</div>
-								{% if user and userinfo %}
-									<div class="panel-body">
-										<div class="form-group">
-											<label for="rating">Rating</label>
-											<input type="hidden" class="form-control" id="rating" name="rating" value="5"/>
-											<div class="pstars">
-												<div class="star a" value="1"></div>
-												<div class="star a" value="2"></div>
-												<div class="star a" value="3"></div>
-												<div class="star a" value="4"></div>
-												<div class="star a" value="5"></div>
-											</div>
-										</div>
-										<div class="form-group">
-										    <label for="review-message">Your Review</label>
-										    <textarea class="form-control" id="review-message" rows="5" name="review-message" placeholder="What do you have to say?"></textarea>
-										</div>
-										<input type="hidden" value={{item.itemid}} id="itemid" name="itemid" />	
-									</div>
-									<div class="panel-footer">
-										<input type="submit" value="Post Review" class="btn btn-primary" />
-									</div>
-								{% else %}
-									<div class="panel-body">
-										<p>Please sign in to review {{item.title}}</p>
-									</div>
-									<div class="panel-footer">
-										<a class="btn btn-primary" href="/acc/#signin">Sign In</a>
-									</div>
-								{% endif %}
+					<form id="reviewform" action="/item/addRating/" method="POST">
+						{% csrf_token %}
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Post A Review</h3>
 							</div>
-						</form>
-					{% endif %}
+							{% if user and userinfo %}
+								<div class="panel-body">
+									<div class="form-group">
+										<label for="rating">Rating</label>
+										<input type="hidden" class="form-control" id="rating" name="rating" value="5"/>
+										<div class="pstars">
+											<div class="star a" value="1"></div>
+											<div class="star a" value="2"></div>
+											<div class="star a" value="3"></div>
+											<div class="star a" value="4"></div>
+											<div class="star a" value="5"></div>
+										</div>
+									</div>
+									<div class="form-group">
+									    <label for="review-message">Your Review</label>
+									    <textarea class="form-control" id="review-message" rows="5" name="review-message" placeholder="What do you have to say?"></textarea>
+									</div>
+									<input type="hidden" value={{item.itemid}} id="itemid" name="itemid" />	
+								</div>
+								<div class="panel-footer">
+									<input type="submit" value="Post Review" class="btn btn-primary" />
+								</div>
+							{% else %}
+								<div class="panel-body">
+									<p>Please sign in to review {{item.title}}</p>
+								</div>
+								<div class="panel-footer">
+									<a class="btn btn-primary" href="/acc/#signin">Sign In</a>
+								</div>
+							{% endif %}
+						</div>
+					</form>
 				</div>
 			</div>	
 		</div>
