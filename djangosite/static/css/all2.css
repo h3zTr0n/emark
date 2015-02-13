@@ -345,6 +345,7 @@ html, body {
 	border: 1px solid #ff6600;
 	border-radius: 3px;
 	margin-bottom: 10px;
+	padding-bottom: 2px;
 }
 .tag {
 	padding: 2px 5px;

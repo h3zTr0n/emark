@@ -42,7 +42,7 @@ function checkMessages(firstTime) {
 var unread = -1;
 var delay = window.location.pathname.indexOf("/msg/") != -1 ? 1000 : 5000;
 var messageChecker = window.setInterval(function () {
-	//checkMessages(false);
+	checkMessages(false);
 }, delay);
 
 checkMessages(true);
@@ -238,28 +238,35 @@ function createTagElem(name) {
 	return elem;
 }
 if (document.getElementById("tags")) {
+	console.log("inside method");
 	if (document.getElementById("tags").value.length > 0) {
+		console.log("making defaults");
 		var tagsl = document.getElementById("tags").value.split(",");
 		for (var i = 0; i < tagsl.length; i++) {
 			tags[tagsl[i]] = createTagElem(tagsl[i]);
+			console.log("added " + tagsl[i]);
 		}
 	}
 	document.getElementById("tagBtn").onclick = function() {
+		console.log("clicked button");
 		var tag = document.getElementById("tagTxt").value.replace(",","").replace("'","").replace("\"","").replace("\\","").replace("  "," ").trim();
 		document.getElementById("tagTxt").value = "";
 		if (tags[tag]) {
 			return 0;
 		}
 		tags[tag] = createTagElem(tag);
+		console.log("added " + tag);
 		recalc();
 	}
 	document.getElementById("tagTxt").onkeypress = function (e) {
 		if (e.keyCode == 32 || e.keyCode == 44) {
+			console.log("pushed space or comma");
 			var tagsl = document.getElementById("tagTxt").value.replace("'","").replace("\"","").replace("\\","").replace("  "," ").trim().split(",");
 			document.getElementById("tagTxt").value = "";
 			for (var i = 0; i < tagsl.length; i++) {
 				if (tagsl[i] && !tags[tagsl[i]]) {
 					tags[tagsl[i]] = createTagElem(tagsl[i]);
+					console.log("added " + tagsl[i]);
 				}
 			}
 			recalc();
