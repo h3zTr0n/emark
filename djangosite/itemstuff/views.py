@@ -136,7 +136,7 @@ def search(request):
 				acount+=1
 			if term in a.description:
 				acount+=1
-			if term in a.tags:
+			if a.tags and term in a.tags:
 				acount+=1
 			if term in b.title:
 				bcount+=1
@@ -144,7 +144,7 @@ def search(request):
 				bcount+=1
 			if term in b.description:
 				bcount+=1
-			if term in b.tags:
+			if b.tags and term in b.tags:
 				bcount+=1
 		return acount - bcount
 	if sortby == "lowtohigh":
