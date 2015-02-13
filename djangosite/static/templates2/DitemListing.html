@@ -13,12 +13,12 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="sidebar inner item-information">
-					<h1>{{item.title}}</h1>
+					<h1 class="item-title">{{item.title}}</h1>
 					<h5><div class="stars"><div class="part filled" style="width:{{ratingp}}%"></div><div class="part empty" style="width:{{negratingp}}%"></div></div><!--{{item.averagerating}}--></h5>
-					<h3>Details</h3>
+					<h4 class="price">${{item.price|floatformat:2}}</h4>
+					<h3>Item Details</h3>
 					<em class="category">{{itemCategory}}</em>
 					<p>{{item.details}}</p>
-					<h4 class="price">${{item.price|floatformat:2}}</h4>
 					{% if seller == user %}
 						<form method="get" action="/item/editItem/{{item.itemid}}">
 							<button type="submit" class="btn btn-primary btn-block">Edit Item</button>
@@ -64,6 +64,10 @@
 								<a href="/user/{{item.user.username}}/{{item.itemid}}">
 									<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/></div>
 								</a>
+								<div class="caption">
+									<p class="title">{{item.title}}</p>
+									<h5 class="price" style="clear:both; float:left;">${{item.price|floatformat:2}}</h5>
+								</div>
 							</div>
 						{% endfor %}
 					</div>
