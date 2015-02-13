@@ -201,6 +201,12 @@ html, body {
 .sidebar.inner {
 	padding: 5px 15px 10px;
 }
+.sidebar.inner .seller-name:hover{
+	text-decoration: none;
+}
+.sidebar.inner .seller-name h3:hover{
+	color:#ff6600;
+}
 .sidebar .price-input {
 	display: inline-block;
 	width: 100px;
