@@ -38,7 +38,7 @@
 					{% endif %}	
 				</div>
 				<div class="sidebar inner seller-information">
-					<a href="/user/{{seller.username}}">
+					<a href="/user/{{seller.username}}" class="seller-name">
 						<h3 class="name">{{seller.first_name}} {{seller.last_name}}<h3>
 						<div class="profPic large" style="background-image:url('{% if sellerinfo.profile_picture %}{{MEDIA_ROOT}}{{sellerinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 					</a>
@@ -93,44 +93,46 @@
 							</div>
 						</div>
 					{% endfor %}
-					<form id="reviewform" action="/item/addRating/" method="POST">
-						{% csrf_token %}
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">Post A Review</h3>
-							</div>
-							{% if user and userinfo %}
-								<div class="panel-body">
-									<div class="form-group">
-										<label for="rating">Rating</label>
-										<input type="hidden" class="form-control" id="rating" name="rating" value="5"/>
-										<div class="pstars">
-											<div class="star a" value="1"></div>
-											<div class="star a" value="2"></div>
-											<div class="star a" value="3"></div>
-											<div class="star a" value="4"></div>
-											<div class="star a" value="5"></div>
+					{% if seller != user %}
+						<form id="reviewform" action="/item/addRating/" method="POST">
+							{% csrf_token %}
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Post A Review</h3>
+								</div>
+								{% if user and userinfo %}
+									<div class="panel-body">
+										<div class="form-group">
+											<label for="rating">Rating</label>
+											<input type="hidden" class="form-control" id="rating" name="rating" value="5"/>
+											<div class="pstars">
+												<div class="star a" value="1"></div>
+												<div class="star a" value="2"></div>
+												<div class="star a" value="3"></div>
+												<div class="star a" value="4"></div>
+												<div class="star a" value="5"></div>
+											</div>
 										</div>
+										<div class="form-group">
+										    <label for="review-message">Your Review</label>
+										    <textarea class="form-control" id="review-message" rows="5" name="review-message" placeholder="What do you have to say?"></textarea>
+										</div>
+										<input type="hidden" value={{item.itemid}} id="itemid" name="itemid" />	
 									</div>
-									<div class="form-group">
-									    <label for="review-message">Your Review</label>
-									    <textarea class="form-control" id="review-message" rows="5" name="review-message" placeholder="What do you have to say?"></textarea>
+									<div class="panel-footer">
+										<input type="submit" value="Post Review" class="btn btn-primary" />
 									</div>
-									<input type="hidden" value={{item.itemid}} id="itemid" name="itemid" />	
-								</div>
-								<div class="panel-footer">
-									<input type="submit" value="Post Review" class="btn btn-primary" />
-								</div>
-							{% else %}
-								<div class="panel-body">
-									<p>Please sign in to review {{item.title}}</p>
-								</div>
-								<div class="panel-footer">
-									<a class="btn btn-primary" href="/acc/#signin">Sign In</a>
-								</div>
-							{% endif %}
-						</div>
-					</form>
+								{% else %}
+									<div class="panel-body">
+										<p>Please sign in to review {{item.title}}</p>
+									</div>
+									<div class="panel-footer">
+										<a class="btn btn-primary" href="/acc/#signin">Sign In</a>
+									</div>
+								{% endif %}
+							</div>
+						</form>
+					{% endif %}
 				</div>
 			</div>	
 		</div>
