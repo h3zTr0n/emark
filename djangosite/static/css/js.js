@@ -163,7 +163,7 @@ if (window.location.pathname == "/acc/settings/") {
 			refreshHashNav();
 		}, 1);
 	}
-	document.getElementById("generalform").onsubmit = function (e) {
+	document.getElementById("passwordform").onsubmit = function (e) {
 		if (document.getElementById("password").value != document.getElementById("passwordagain").value) {
 			document.getElementById("password").parentElement.className += " has-error";
 			document.getElementById("passwordagain").parentElement.className += " has-error";
@@ -208,6 +208,64 @@ if (document.getElementById("rating")) {
 			for (var j = 0; j < stars.length; j++) {
 				stars[j].className = j < cur ? "star n" : "star a";
 			}
+		}
+	}
+}
+
+var tags = {};
+function recalc() {
+	document.getElementById("tags").value = "";
+	for (var tag in tags) {
+		if (tags.hasOwnProperty(tag) && tags[tag]) {
+			if (document.getElementById("tags").value.length != 0)  {
+				document.getElementById("tags").value += ",";
+			}
+			document.getElementById("tags").value += tag;
+		}
+	}
+}
+function createTagElem(name) {
+	var elem = document.createElement("div");
+	elem.className = "tag";
+	elem.innerHTML = name + " <button class='close'>&times;</button></div>";
+	document.getElementById("tagHolder").appendChild(elem);
+	elem.children[0].onclick = function (e) {
+		e.target.parentElement.remove();
+		var tname = e.target.parentElement.innerText.substring(0, e.target.parentElement.innerText.length-2);
+		tags[tname] = null;
+		recalc();
+	}
+	return elem;
+}
+if (document.getElementById("tags")) {
+	if (document.getElementById("tags").value.length > 0) {
+		var tagsl = document.getElementById("tags").value.split(",");
+		for (var i = 0; i < tagsl.length; i++) {
+			tags[tagsl[i]] = createTagElem(tagsl[i]);
+		}
+	}
+	document.getElementById("tagBtn").onclick = function() {
+		var tag = document.getElementById("tagTxt").value.replace(",","").replace("'","").replace("\"","").replace("\\","").replace("  "," ").trim();
+		document.getElementById("tagTxt").value = "";
+		if (tags[tag]) {
+			return 0;
+		}
+		tags[tag] = createTagElem(tag);
+		recalc();
+	}
+	document.getElementById("tagTxt").onkeypress = function (e) {
+		if (e.keyCode == 32 || e.keyCode == 44) {
+			var tagsl = document.getElementById("tagTxt").value.replace("'","").replace("\"","").replace("\\","").replace("  "," ").trim().split(",");
+			document.getElementById("tagTxt").value = "";
+			for (var i = 0; i < tagsl.length; i++) {
+				if (tagsl[i] && !tags[tagsl[i]]) {
+					tags[tagsl[i]] = createTagElem(tagsl[i]);
+				}
+			}
+			recalc();
+			e.preventDefault();
+			e.stopPropagation();
+			return 0;
 		}
 	}
 }

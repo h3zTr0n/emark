@@ -60,7 +60,10 @@
 				</div>
 				<div class="form-group">
 				    <label for="tags">Tags</label>
-				    <input class="form-control" id="tags" name="tags" value="{{item.tags}}"/>
+				    <input class="form-control" id="tags" name="tags" value="{{item.tags}}" type="hidden"/>
+				    <div id="tagHolder"></div>
+				    <input type="text" placeholder="Tag" id="tagTxt" class="form-control">
+				    <input type="button" value="Add" id="tagBtn" class="btn btn-primary">
 				</div>
 				{% if item %}
 					<a class="btn btn-danger" href="/item/deleteItem/{{item.itemid}}">

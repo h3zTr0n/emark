@@ -330,6 +330,28 @@ html, body {
 	margin: 0;
 	width: 25%;
 }
+#tagTxt {
+	max-width: 100px;
+	display: inline-block;
+}
+#tagHolder {
+	min-height: 34px;
+	border: 1px solid #ff6600;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+.tag {
+	padding: 2px 5px;
+	background: #ff6600;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 3px 0 0 5px;
+	color: white;
+	border: 1px solid #cc5200;
+}
+.tag .close {
+	margin-left: 5px;
+}
 
 /* TO CHANGE IN BOOTSTRAP */
 .navbar {
@@ -359,7 +381,7 @@ html, body {
 	border: 1px solid #cc5200;
 	background-color: #ff6600;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
 	border: 1px solid #AA3300;
 	background-color: #cc5200;
 }
