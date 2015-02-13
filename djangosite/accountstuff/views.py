@@ -102,15 +102,7 @@ def register(request):
 	name = request.POST['name'].split(" ")
 	fname = name.pop(0)
 	lname = " ".join(name)
-	'''
-	if (not username in request.POST):
-		username = request.POST['firstname'] + request.POST['lastname']
-		username = username.replace(" ", "").lower() + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9) + "" + random.randint(0,9)
-	else:
-		username = request.POST['username']
-	if len(User.objects.filter(username=username)) is not 0:
-		return HttpResponse("Error: Username taken.")
-	'''
+	
 	username = request.POST["name"].replace(" ", "").lower() + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9)) + str(random.randint(0,9))
 	email = request.POST['email']
 	password = request.POST['password']
@@ -149,20 +141,9 @@ def updateSettings(request):
 	if ('pic' in request.FILES and request.FILES['pic']):
 		userinfo.profile_picture = request.FILES['pic']
 
-	'''
-	if('oldpassword' in request.POST and request.POST['oldpassword']
-		and 'password' in request.POST and request.POST['password']
-		and 'passwordagain' in request.POST and request.POST['passwordagain']):
-		oldpassword = request.POST['oldpassword']
-		password = request.POST['password']
-		newpassword = request.POST['passwordagain']
-		if (oldpassword == user.password and password == newpassword):
-			user.password = newpassword
-	'''
-
 	user.save()
 	userinfo.save()
-	return HttpResponse("Success! Settings were changed") #TODO redirect?
+	return HttpResponseRedirect("/user/" + user.username + "/")
 
 def follow(request, username):
 	masterInfo = UserInfo.objects.filter(user = User.objects.filter(username = username)[0])[0]

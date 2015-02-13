@@ -54,6 +54,7 @@ html, body {
 	width: 100%;
 	padding: 5px;
 	background: rgba(225, 225, 225, 0.9);
+	word-break: break-word;
 }
 .browseItem .caption a {
 	color: #333;
@@ -201,9 +202,15 @@ html, body {
 .sidebar.inner {
 	padding: 5px 15px 10px;
 }
+.sidebar.inner .seller-name:hover{
+	text-decoration: none;
+}
+.sidebar.inner .seller-name h3:hover{
+	color:#ff6600;
+}
 .sidebar .price-input {
 	display: inline-block;
-	width: 100px;
+	width: 33%
 }
 .sidebar .name {
 	color: #333;
@@ -231,14 +238,12 @@ html, body {
 .well h3 {
 	margin-top: 0;
 }
-.cart .cart-item .description {
+.cart-item .description {
 	margin: 0 1%;
 	width: 73%;
-}
-.cart-item .description {
 	display: inline-block;
 	vertical-align: top;
-	width: 100%;
+	word-break: break-word;
 }
 .cart-item .description .title {
 	font-weight: bold;
@@ -282,6 +287,7 @@ html, body {
 .profile{
 	background-color:#EEE;
 	padding:7%;
+	word-break: break-word;
 }
 .profile .description {
 	text-align: center;
@@ -330,6 +336,29 @@ html, body {
 	margin: 0;
 	width: 25%;
 }
+#tagTxt {
+	max-width: 100px;
+	display: inline-block;
+}
+#tagHolder {
+	min-height: 34px;
+	border: 1px solid #ff6600;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	padding-bottom: 2px;
+}
+.tag {
+	padding: 2px 5px;
+	background: #ff6600;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 3px 0 0 5px;
+	color: white;
+	border: 1px solid #cc5200;
+}
+.tag .close {
+	margin-left: 5px;
+}
 
 /* TO CHANGE IN BOOTSTRAP */
 .navbar {
@@ -359,7 +388,7 @@ html, body {
 	border: 1px solid #cc5200;
 	background-color: #ff6600;
 }
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
 	border: 1px solid #AA3300;
 	background-color: #cc5200;
 }
@@ -409,12 +438,27 @@ html, body {
 .create-button{
 	margin-bottom:3%;
 }
+.item-information .item-title{
+	font-weight:bold;
+	margin-top:10px;
+	word-wrap: break-word;
+}
+.item-information h3{
+	margin-bottom:0px;
+}
+.item-information .price{
+	font-style: italic;
+}
 a {
 	color: #ee6600;
 }
 a:hover, a:focus {
 	color: #cc5200;
 } 
+.sidebar.inner.featured-items.title{
+	color:black;
+	word-break: break-word;
+}
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
 	background-color: #ff6600;
 }

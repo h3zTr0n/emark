@@ -60,7 +60,7 @@
 								<input type = "text" class = "form-control" name = "city" value = "{{address.city}}" required>
 							</div>
 							<div class = "form-group">
-								<label for = "state">State</label>
+								<label for = "state">State / Province</label>
 								<input type = "text" class = "form-control" name = "state" value = "{{address.state}}" required>
 							</div>
 						</div>
@@ -136,7 +136,7 @@
 						</div>
 					</div>
 				</form>
-				<form id="generalform" class="" action="/acc/pUpdate/" method="POST">
+				<form id="passwordform" class="" action="/acc/pUpdate/" method="POST">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">Change Password</h3>
@@ -144,15 +144,15 @@
 						<div class="panel-body">
 							{% csrf_token %}
 							<div class="form-group">
-							    <label for="firstname">Old Password</label>
+							    <label for="oldpassword">Old Password</label>
 							    <input class="form-control " id="oldpassword" name="oldpassword" type="password" required/>
 							</div>
 							<div class="form-group">
-							    <label for="lastname">New Password</label>
+							    <label for="password">New Password</label>
 							    <input class="form-control" id="password" name="password" type="password" required/>
 							</div>
 							<div class="form-group">
-							    <label for="lastname">New Password Again</label>
+							    <label for="passwordagain">New Password Again</label>
 							    <input class="form-control" id="passwordagain" name="passwordagain" type="password" required/>
 							</div>
 						</div>
