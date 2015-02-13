@@ -54,6 +54,7 @@ html, body {
 	width: 100%;
 	padding: 5px;
 	background: rgba(225, 225, 225, 0.9);
+	word-break: break-word;
 }
 .browseItem .caption a {
 	color: #333;
@@ -237,14 +238,12 @@ html, body {
 .well h3 {
 	margin-top: 0;
 }
-.cart .cart-item .description {
+.cart-item .description {
 	margin: 0 1%;
 	width: 73%;
-}
-.cart-item .description {
 	display: inline-block;
 	vertical-align: top;
-	width: 100%;
+	word-break: break-word;
 }
 .cart-item .description .title {
 	font-weight: bold;
@@ -288,6 +287,7 @@ html, body {
 .profile{
 	background-color:#EEE;
 	padding:7%;
+	word-break: break-word;
 }
 .profile .description {
 	text-align: center;
