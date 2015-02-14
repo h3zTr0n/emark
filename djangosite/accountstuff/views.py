@@ -175,10 +175,13 @@ def updateAddress(request):
 
 def updateCC(request):
 	currentCC = CreditCards.objects.filter(user = request.user)[0]
-	currentCC.cardNumber = request.POST['cardNumber']
-	currentCC.monthExp = request.POST['ExpMonth']
-	currentCC.yearExp = request.POST['ExpYear']
-	currentCC.securityCode = request.POST['securityCode']
+	if currentCC == None:
+		currentCC= CreditCards(user = request.user, cardNumber = request.POST['cardNumber'], monthExp = request.POST['ExpMonth'], yearExp = request.POST['ExpYear'] , securityCode =request.POST['securityCode'] )
+	else:
+		currentCC.cardNumber = request.POST['cardNumber']
+		currentCC.monthExp = request.POST['ExpMonth']
+		currentCC.yearExp = request.POST['ExpYear']
+		currentCC.securityCode = request.POST['securityCode']
 	currentCC.save()
 	return HttpResponseRedirect("/acc/settings/")
 
