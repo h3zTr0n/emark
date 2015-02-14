@@ -28,19 +28,29 @@ def home(request):
 	userinfos = sorted(userinfos, key=cmp_to_key(compareFollowers))
 	userinfos.reverse()
 	featureduserinfos=[]
-	for i in range(0,4):
-		featureduserinfos.append(userinfos[i])
+	featureduserinfos=userinfos[:4]
+	#for i in range(0,4):
+	#	featureduserinfos.append(userinfos[i])
 
 	items = Item.objects.all()
-	randInts3 = random.sample(range(len(items)),3)
+
+	#for logged-out
 	featureditems = []
-	for rand in randInts3:
-		featureditems.append(items[rand])
-		
-	randInts6 = random.sample(range(len(items)),6)
+	if(len(items) >= 3):
+		randInts3 = random.sample(range(len(items)),3)
+		for rand in randInts3:
+			featureditems.append(items[rand])
+
+	#for logged-in
+	possibleItems = []
+	for item in items:
+		if(item.user != request.user):
+			possibleItems.append(item)
 	featureditems2 = []
-	for rand in randInts6:
-		featureditems2.append(items[rand])
+	if(len(possibleItems) >= 6):
+		randInts6 = random.sample(range(len(possibleItems)),6)
+		for rand in randInts6:
+			featureditems2.append(possibleItems[rand])
 
 	context["featureduserinfos"] = featureduserinfos
 	context["featureditems"] = featureditems

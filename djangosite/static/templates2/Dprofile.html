@@ -37,8 +37,8 @@
 								<a type="button" class="btn btn-primary btn-block" href="/user/unfollow/{{requestedUser.username}}/">Unfollow</a>
 								<a type="button" class="btn btn-default btn-block" href="/msg/{{requestedUser.username}}">Message</a>
 							{% else %}
-								<a type="button" class="btn btn-primary btn-block" href="/user/follow/{{requestedUser.username}}/">Follow</a>
-								<a type="button" class="btn btn-default btn-block" href="/msg/{{requestedUser.username}}">Message</a>
+								<a type="button" class="btn btn-primary btn-block" {% if user and userinfo %}href="/user/follow/{{requestedUser.username}}/"{% else %}href="/acc/#signin"{% endif %}>Follow</a>
+								<a type="button" class="btn btn-default btn-block" {% if user and userinfo %}href="/msg/{{requestedUser.username}}"{% else %}href="/acc/#signin"{% endif %}>Message</a>
 							{% endif %}
 						</div>
 						{% if requestedUserFollowerInfos|length > 0 %}
