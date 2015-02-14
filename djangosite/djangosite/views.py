@@ -33,18 +33,24 @@ def home(request):
 	#	featureduserinfos.append(userinfos[i])
 
 	items = Item.objects.all()
-	featureditems = []
-	featureditems2 = []
 
+	#for logged-out
+	featureditems = []
 	if(len(items) >= 3):
 		randInts3 = random.sample(range(len(items)),3)
 		for rand in randInts3:
 			featureditems.append(items[rand])
 
-	if(len(items) >= 6):
-		randInts6 = random.sample(range(len(items)),6)
+	#for logged-in
+	possibleItems = []
+	for item in items:
+		if(item.user != request.user):
+			possibleItems.append(item)
+	featureditems2 = []
+	if(len(possibleItems) >= 6):
+		randInts6 = random.sample(range(len(possibleItems)),6)
 		for rand in randInts6:
-			featureditems2.append(items[rand])
+			featureditems2.append(possibleItems[rand])
 
 	context["featureduserinfos"] = featureduserinfos
 	context["featureditems"] = featureditems
