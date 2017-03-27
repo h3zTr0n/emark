@@ -19,7 +19,7 @@
 				<nav id="main-nav" class="navbar navbar-default navbar-static-top top-top" role="navigation">
 					<div class="container">
 						<div class="navbar-header col-xs-4 col-sm-2 col-md-2">
-							<a class="navbar-brand" href="/">craftnet</a>
+							<a class="navbar-brand" href="/">Emark</a>
 						</div>
 						<form class="navbar-form col-xs-8 col-sm-5 col-md-6" role="search" method="get" action="/search/">
 					        <div class="form-group threefourth">
@@ -30,7 +30,7 @@
 							{% if user and userinfo %}
 								<li>
 									<a href="/user/{{user.username}}/">
-										<div class="profPic tiny" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div> 
+										<div class="profPic tiny" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 										{{user.first_name}} {{user.last_name}}
 									</a>
 									<ul class="dropdown-menu" role="menu">
@@ -124,13 +124,13 @@
 									<li><a href="/acc/settings">Account Settings</a></li>
 									<li><a href="/msg/">Messages</a></li>
 								{% else %}
-									<li><a href="/acc/#register">Register for craftnet</a></li>
+									<li><a href="/acc/#register">Register for Emark</a></li>
 									<li><a href="/acc/#signin">Sign In</a></li>
 								{% endif %}
 							</ul>
 						</div>
 						<div class="col-md-2 col-md-offset-1">
-							<h6 class="footer-title">Follow craftnet</h6>
+							<h6 class="footer-title">Follow Emark</h6>
 							<ul class="footer-list">
 								<li class="social-media-item">
 									<a target="new" href="https://www.facebook.com/pages/Craftnet/652309304879283">
@@ -161,7 +161,7 @@
 					</div>
 				</div>
 				<div class="copyright text-center">
-					<p>&copy; 2015 craftnet, inc.</p>	
+					<p>&copy; 2017 Emark services.</p>
 				</div>
 			</footer>
 		</div>

@@ -17,7 +17,7 @@
 	{% if notFound %}
 		<div class="container">
 			<div id="not-found">
-				<div class="profPic large" style="background-image:url('{% static 'files/default-profile.jpg' %}')"></div>	
+				<div class="profPic large" style="background-image:url('{% static 'files/default-profile.jpg' %}')"></div>
 				<div class="h3">Sorry! We could not find the user you are looking for.</div>
 			</div>
 		</div>
@@ -54,7 +54,7 @@
 								</ul>
 							</div>
 						{% endif %}
-					</div>	
+					</div>
 				</div>
 				<div class="col-md-9">
 					<div class="panel panel-default">
@@ -64,7 +64,7 @@
 						<div class="panel-body bio">
 							{{requestedUserInfo.bio}}
 						</div>
-					</div>	
+					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">{{requestedUser.first_name}} {{requestedUser.last_name}}'s Items</h3>
@@ -78,7 +78,7 @@
 											</div>
 											<div class="caption">
 												<h4 class="title">{{item.title}}</h4>
-												<h5 class="price">${{item.price|floatformat:2}}</h5>
+												<h5 class="price">ZMK{{item.price|floatformat:2}}</h5>
 												<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
 											</div>
 										</a>

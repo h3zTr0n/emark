@@ -19,7 +19,7 @@
 				<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/></div>
 				<div class="caption">
 					<h4 class="title">{{item.title}}</h4>
-					<h5 class="price">${{item.price|floatformat:2}}</h5>
+					<h5 class="price">ZMK{{item.price|floatformat:2}}</h5>
 					<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
 				</div>
 			</a>

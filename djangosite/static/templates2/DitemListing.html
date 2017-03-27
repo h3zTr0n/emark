@@ -7,7 +7,7 @@
 
 {% block page_css %}
 {% endblock %}
-		
+
 {% block content %}
 	<div class="container">
 		<div class="row">
@@ -15,7 +15,7 @@
 				<div class="sidebar inner item-information">
 					<h1 class="item-title">{{item.title}}</h1>
 					<h5><div class="stars"><div class="part filled" style="width:{{ratingp}}%"></div><div class="part empty" style="width:{{negratingp}}%"></div></div><!--{{item.averagerating}}--></h5>
-					<h4 class="price">${{item.price|floatformat:2}}</h4>
+					<h4 class="price">ZMK{{item.price|floatformat:2}}</h4>
 					<h3>Item Details</h3>
 					<em class="category">{{itemCategory}}</em>
 					<p>{{item.details}}</p>
@@ -35,7 +35,7 @@
 								<a href="/acc/#signin" class="btn btn-primary btn-block">Add to Cart</a>
 							{% endif %}
 						</form>
-					{% endif %}	
+					{% endif %}
 				</div>
 				<div class="sidebar inner seller-information">
 					<a href="/user/{{seller.username}}" class="seller-name">
@@ -66,7 +66,7 @@
 								</a>
 								<div class="caption">
 									<p class="title">{{item.title}}</p>
-									<h5 class="price" style="clear:both; float:left;">${{item.price|floatformat:2}}</h5>
+									<h5 class="price" style="clear:both; float:left;">ZMK{{item.price|floatformat:2}}</h5>
 								</div>
 							</div>
 						{% endfor %}
@@ -91,7 +91,7 @@
 							<div class="panel-heading">
 								<h4 class="panel-title"><a href="/user/{{review.user.username}}">{{review.user.first_name}} {{review.user.last_name}}</a>'s Review</h4>
 							</div>
-							<div class="panel-body">	
+							<div class="panel-body">
 								<h5 class="review-rating"><div class="stars"><div class="part filled" style="width:{{review.ratingp}}%"></div><div class="part empty" style="width:{{review.negratingp}}%"></div></div></h5>
 								<p>{{review.text}}</p>
 							</div>
@@ -121,7 +121,7 @@
 										    <label for="review-message">Your Review</label>
 										    <textarea class="form-control" id="review-message" rows="5" name="review-message" placeholder="What do you have to say?"></textarea>
 										</div>
-										<input type="hidden" value={{item.itemid}} id="itemid" name="itemid" />	
+										<input type="hidden" value={{item.itemid}} id="itemid" name="itemid" />
 									</div>
 									<div class="panel-footer">
 										<input type="submit" value="Post Review" class="btn btn-primary" />
@@ -138,7 +138,7 @@
 						</form>
 					{% endif %}
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 {% endblock %}

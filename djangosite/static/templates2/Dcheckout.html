@@ -7,7 +7,7 @@
 
 {% block content %}
 	<link rel = "stylesheet" href = "{% static 'css/checkout.css' %}">
-	
+
 	<div class = "container">
 		<div class = "shipping" id = "shipping">
 			<div class = "checkoutTop">
@@ -16,7 +16,7 @@
 				<label class = "topLabels submitLabel">Submit</label>
 			</div>
 			<form method = "post" action = "/cart/checkout/pPayment/">
-				<div class="panel panel-primary">	
+				<div class="panel panel-primary">
 					{% csrf_token %}
 					<div class="panel-heading">
 						<h3 class="panel-title">Shipping Address</h3>
@@ -130,7 +130,7 @@
 										</div>
 										<div class="caption">
 											<p class="title">{{cartitem.item.title}}</p>
-											<p class="price">${{cartitem.item.price|floatformat:2}}</p>
+											<p class="price">ZMK{{cartitem.item.price|floatformat:2}}</p>
 											<p class="seller">{{cartitem.item.user.first_name}} {{cartitem.item.user.last_name}}</p>
 											<p class="quantity">Quantity : {{cartitem.quantity}}</p>
 										</div>

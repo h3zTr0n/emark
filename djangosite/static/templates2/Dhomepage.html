@@ -36,9 +36,9 @@
 							</ul>
 						</div>
 					{% endif %}
-				</div>	
+				</div>
 				<div class="col-md-9">
-					<a href="/item/createItem" class="btn btn-primary btn-lg btn-block create-button">Post an item of your own!</a>
+					<a href="/item/createItem" class="btn btn-primary btn-lg btn-block create-button">Post an advert of your own!</a>
 					<div class="feed">
 						<div class="grid">
 							<div class="panel panel-default">
@@ -55,7 +55,7 @@
 														</div>
 														<div class="caption">
 															<p class="title">{{item.title}}</p>
-															<p class="price">${{item.price|floatformat:2}}</p>
+															<p class="price">ZMK{{item.price|floatformat:2}}</p>
 															<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
 														</div>
 													</a>
@@ -83,7 +83,7 @@
 														</div>
 														<div class="caption">
 															<p class="title">{{item.title}}</p>
-															<p class="price">${{item.price|floatformat:2}}</p>
+															<p class="price">ZMK{{item.price|floatformat:2}}</p>
 															<p class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></p>
 														</div>
 													</a>
@@ -101,8 +101,8 @@
 	{% else %}
 		<div class="jumbotron large" style="background-image:url('{% static 'files/craft-banner.jpg' %}')">
 			<div class="container">
-				<h1>Welcome To Craftnet</h1>
-				<p class="lead">Where arts and crafts meet business</p>
+				<h1>Welcome To Emark</h1>
+				<p class="lead">Where we serve you better</p>
 				<a href="/acc/#register/" class="btn btn-primary btn-lg">Join Us</a>
 			</div>
 		</div>
@@ -119,7 +119,7 @@
 								<div class="img" style="background-image: url('{% if item.picture %} {{MEDIA_ROOT}}{{item.picture.url}} {% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/> </div>
 								<div class="caption">
 									<h4 class="title">{{item.title}}</h4>
-									<h5 class="price">${{item.price|floatformat:2}}</h5>
+									<h5 class="price">ZMK{{item.price|floatformat:2}}</h5>
 									<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
 								</div>
 							</a>
@@ -130,13 +130,13 @@
 			<div class="row">
 				<div class="featured-entrepreneurs">
 					<div class="section-title">
-						<h2>Some of craftnet's featured entrepreneurs</h2>
+						<h2>Some of Emark's featured entrepreneurs</h2>
 						<p>Check these guys out!</p>
 					</div>
 					{% for userinfo in featureduserinfos %}
 						<div class = "col-sm-6 col-md-3">
 							<div class="profile">
-								<div class="profPic large" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>	
+								<div class="profPic large" style="background-image:url('{% if userinfo.profile_picture %}{{MEDIA_ROOT}}{{userinfo.profile_picture.url}}{% else %}{% static 'files/default-profile.jpg' %}{% endif %}')"></div>
 								<div class = "description">
 									<a class="name" href="/user/{{userinfo.user.username}}">{{userinfo.user.first_name}} {{userinfo.user.last_name}}</a>
 									<p class="followers">{{userinfo.followers.all|length}} Followers</p>

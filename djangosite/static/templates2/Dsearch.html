@@ -55,7 +55,7 @@
 						</div>
 					<h3>Filter By Price</h3>
 						<div class="form-group">
-					 		$<input type="number" name="minPrice" class="form-control price-input" placeholder="MIN" value="{{minPrice|floatformat:2}}"> to $<input  type="number" name="maxPrice" class="form-control price-input" placeholder="MAX" value="{{maxPrice|floatformat:2}}">
+					 		ZMK<input type="number" name="minPrice" class="form-control price-input" placeholder="MIN" value="{{minPrice|floatformat:2}}"> to ZMK<input  type="number" name="maxPrice" class="form-control price-input" placeholder="MAX" value="{{maxPrice|floatformat:2}}">
 				 		</div>
 			 		<button type="submit" class="btn btn-primary btn-block">Filter</button>
 				</form>
@@ -67,7 +67,7 @@
 							<div class="img" style="background-image: url('{% if item.picture %}{{MEDIA_ROOT}}{{item.picture.url}}{% else %}{% static 'files/default-picture.jpg' %}{% endif %}')"/></div>
 							<div class="caption">
 								<h4 class="title">{{item.title}}</h4>
-								<h5 class="price">${{item.price|floatformat:2}}</h5>
+								<h5 class="price">ZMK{{item.price|floatformat:2}}</h5>
 								<h5 class="seller"><a href="/user/{{item.user.username}}">{{item.user.first_name}} {{item.user.last_name}}</a></h5>
 							</div>
 						</a>
