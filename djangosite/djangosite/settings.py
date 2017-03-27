@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*',]
 # Application definition
 
 INSTALLED_APPS = (
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,29 @@ INSTALLED_APPS = (
     'messagestuff',
     'shoppingcart',
 )
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, "static", "templates2"),],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.core.context_processors.request',
+                'django.template.context_processors.debug',
+                # 'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+# from django.conf import global_settings
+
+# TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+#     'django.core.context_processors.request',
+# )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -92,9 +116,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "static", "templates2"),
-)
+# TEMPLATE_DIRS = (
+#     os.path.join(BASE_DIR, "static", "templates2"),
+# )
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') #"/var/www/example.com/media/"
 MEDIA_URL = '/media/' #http://media.example.com/

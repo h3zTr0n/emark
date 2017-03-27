@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 #from accountstuff import views
 from accountstuff import views
 
-urlpatterns = patterns('',
+urlpatterns = [
 	url(r'^$', views.main, name='signup'),
 	url(r'^info/$', views.info, name='info'),
 	url(r'^pSignin/$', views.signin, name='signin'),
@@ -16,4 +16,4 @@ urlpatterns = patterns('',
 	url(r'^purchaseHistory/$', views.purchaseHistory, name ='purchaseHistory'),
 	url(r'^shoppingitem/(?P<cartitemid>[A-Za-z0-9]+)/$', views.receivedItem, name = 'receivedItem'),
 	url(r'^isEmailTaken/$', views.isEmailTaken, name='isEmailTaken'),
-)
+]

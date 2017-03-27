@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, url
 from shoppingcart import views
 
-urlpatterns = patterns('',
+urlpatterns = [
 		url(r'^$', views.displayCart,  name = 'shoppingCart'),
 		url(r'^addItem/(?P<itemid>[A-Za-z0-9 ]+)/(?P<quantity>[0-9]+)$', views.addItemToUser, name = 'addItemToUser'),
 		url(r'^remove/(?P<scitemid>[A-za-z0-9]+)$', views.removeItem, name = 'removeItem'),
@@ -10,4 +10,4 @@ urlpatterns = patterns('',
 		url(r'^checkout/pPayment/$', views.payment, name = 'payment'),
 		url(r'^checkout/pSubmitOrder/$', views.submitOrder, name = 'submitOrder'),
 		url(r'^checkout/clearOrder/$', views.clearOrder, name = 'clearOrder'),
-	)	
+	]	
