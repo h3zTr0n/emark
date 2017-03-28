@@ -49,13 +49,16 @@
 				    <textarea class="form-control" id="description" rows="5" name="description" placeholder="Describe your item" required>{{item.description}}</textarea>
 				</div>
 				<div class="form-group">
-					<label for="category">Category</label> 
+					<label for="category">Category</label>
 					<select name="category">
-						<option value="1" {% if item.category == 1 %}selected{% endif %}>Jewelry</option>
-						<option value="2" {% if item.category == 2 %}selected{% endif %}>Pottery</option>
-						<option value="3" {% if item.category == 3 %}selected{% endif %}>Sewing & Weaving</option>
-						<option value="4" {% if item.category == 4 %}selected{% endif %}>Clothing</option>
-						<option value="5" {% if item.category == 5 %}selected{% endif %}>Art</option>
+						<option value="1" {% if item.category == 1 %}selected{% endif %}>Electronics</option>
+						<option value="2" {% if item.category == 2 %}selected{% endif %}>Events</option>
+						<option value="3" {% if item.category == 3 %}selected{% endif %}>Education</option>
+						<option value="4" {% if item.category == 4 %}selected{% endif %}>Motor</option>
+						<option value="5" {% if item.category == 5 %}selected{% endif %}>Service</option>
+						<option value="6" {% if item.category == 6 %}selected{% endif %}>Jobs</option>
+						<option value="7" {% if item.category == 7 %}selected{% endif %}>Boutiques & Fashion</option>
+						<option value="8" {% if item.category == 8 %}selected{% endif %}>Home & Garden</option>
 					</select>
 				</div>
 				<div class="form-group">
@@ -75,7 +78,7 @@
 			<div class="panel-footer">
 				<input type="submit" value="{% if item %}Save Item{% else %}Create Item{% endif %}" class="btn btn-primary" />
 			</div>
-		</div>	
+		</div>
 	</form>
 </div>
 {% endblock %}

@@ -1,6 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# CATEGORY_CHOICES = (
+# 	("electronics", "electronics"),
+# 	("events", "events"),
+# 	("education", "education"),
+# 	("motor", "motor"),
+# 	("service", "service"),
+# 	("jobs", "jobs"),
+# 	("boutiques & Fashion", "boutiques & Fashion"),
+# 	("home & garden", "home & garden"),
+# )
 # Create your models here.
 class Item(models.Model):
 	user = models.ForeignKey(User)
@@ -11,6 +21,7 @@ class Item(models.Model):
 	picture = models.FileField(upload_to="items/",null=True,blank=True)
 	description = models.TextField()
 	category = models.IntegerField()
+	# category = models.CharField(max_length=255, choices=CATEGORY_CHOICES)
 	tags = models.TextField(blank=True, null=True)
 	time = models.DateTimeField(auto_now=True)
 	itemid = models.TextField()

@@ -10,15 +10,18 @@ from functools import cmp_to_key
 # Create your views here.
 def browseCategory(request, category):
 	categories = {
-		"jewelry": 1,
-		"pottery": 2,
-		"sewingweaving": 3,
-		"clothing": 4,
-		"art": 5,
+		"electronics": 1,
+		"events": 2,
+		"education": 3,
+		"motor": 4,
+		"service": 5,
+		"jobs": 6,
+		"boutiques & Fashion": 7,
+		"home & garden": 8,
 	}
 	browsecata = category.strip("/").lower()
 	if(browsecata in categories):
-		items = Item.objects.filter(category=categories[browsecata])		
+		items = Item.objects.filter(category=categories[browsecata])
 	else:
 		items = None
 
@@ -37,11 +40,14 @@ def getItem(request, username, itemid):
 	selleritems = Item.objects.filter(user=seller)[:4]
 	item = Item.objects.filter(itemid=itemid)[0]
 	categories = [
-		"Jewelry",
-		"Pottery",
-		"Sewing & Weaving",
-		"Clothing",
-		"Art",
+	"Electronics",
+	"Events",
+	"Education",
+	"Motor",
+	"Service",
+	"Jobs",
+	"Boutiques & Fashion",
+	"Home & Garden",
 	]
 	itemCategory = categories[item.category-1]
 
@@ -106,7 +112,7 @@ def search(request):
 		sortby = request.GET['sort']
 	cata = [True, True, True, True, True]
 	if (len(request.GET) > 1):
-		cata = ["cjewelry" in request.GET, "cpottery" in request.GET, "csewingweaving" in request.GET, "cclothing" in request.GET, "cart" in request.GET]
+		cata = ["cELECTRONICS" in request.GET, "cEVENTS" in request.GET, "cEDUCATION" in request.GET, "cMOTOR" in request.GET, "cCLOTHING" in request.GET, "cSERVICE" in request.GET, "cJOBS" in request.GET,  "cBOUTIQUESFASHION" in request.GET,  "cJOBS" in request.GET, "cHOMEGARDEN" in request.GET]
 	minPrice = None
 	maxPrice = None
 	if ("minPrice" in request.GET and request.GET["minPrice"]):
@@ -121,7 +127,7 @@ def search(request):
 				items.append(item)
 		for item in Item.objects.filter(details__icontains=term):
 			if item not in items:
-				items.append(item) 
+				items.append(item)
 		for item in Item.objects.filter(description__icontains=term):
 			if item not in items:
 				items.append(item)
@@ -185,14 +191,19 @@ def search(request):
 
 	context = {
 		"search": request.GET["q"],
-		"items": items,	
+		"items": items,
 		"sortby": sortby,
 		"cata": {
-			"jewelry": cata[0],
-			"pottery": cata[1],
-			"sewingweaving": cata[2],
-			"clothing": cata[3],
-			"art": cata[4],
+			"ELECTRONICS": cata[0],
+			"EVENTS": cata[1],
+			"EDUCATION": cata[2],
+			"MOTOR": cata[3],
+			"CLOTHING": cata[4],
+			"SERVICE": cata[5],
+			"JOBS": cata[6],
+			"BOUTIQUESFASHION": cata[7],
+			"JOBS": cata[8],
+			"HOMEGARDEN": cata[9],
 		},
 		"minPrice": minPrice,
 		"maxPrice": maxPrice,
@@ -250,8 +261,8 @@ def addRating(request):
 	ratingnumber = request.POST['rating']
 	ratingmessage = request.POST['review-message']
 	itemid = request.POST['itemid']
-	
-	item = Item.objects.filter(itemid = itemid)[0]	
+
+	item = Item.objects.filter(itemid = itemid)[0]
 	numRatings = len(Review.objects.filter(item=item))
 	totalRatings = (item.averagerating)*numRatings
 	newRating = (totalRatings + float(ratingnumber))/(numRatings + 1)
@@ -260,6 +271,6 @@ def addRating(request):
 
 	rating = Review(user = user, item = item, rating = ratingnumber, text = ratingmessage)
 	rating.save()
-	
+
 	return HttpResponseRedirect("/user/" + item.user.username + "/" + item.itemid)
 	#return HttpResponse("success, created a review for " + item.title)
