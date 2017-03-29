@@ -1,17 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# CATEGORY_CHOICES = (
-# 	("electronics", "electronics"),
-# 	("events", "events"),
-# 	("education", "education"),
-# 	("motor", "motor"),
-# 	("service", "service"),
-# 	("jobs", "jobs"),
-# 	("boutiques & Fashion", "boutiques & Fashion"),
-# 	("home & garden", "home & garden"),
-# )
+CATEGORY_CHOICES = (
+	("electronics", "electronics"),
+	("events", "events"),
+	("education", "education"),
+	("motor", "motor"),
+	("service", "service"),
+	("jobs", "jobs"),
+	("boutiques & Fashion", "boutiques & Fashion"),
+	("home & garden", "home & garden"),
+)
 # Create your models here.
+
 class Item(models.Model):
 	user = models.ForeignKey(User)
 	#user = models.TextField()
@@ -29,6 +30,8 @@ class Item(models.Model):
 
 	def __str__(self):
 		return self.title
+
+	# if self.category == str("ENGINEERING").lower:
 
 class Review(models.Model):
 	user = models.ForeignKey(User)

@@ -23,8 +23,6 @@ SECRET_KEY = '$97-kjzu%y^+q^jp*!hcy2@xu+m3d(lgftj8(!cy!-e4@%m(0z'
 DEBUG = True
 #DEBUG = False
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = ['*',]
 
 
@@ -49,6 +47,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, "static", "templates2"),],
         'APP_DIRS': True,
+        # 'TEMPLATE_DEBUG': True,
         'OPTIONS': {
             'context_processors': [
                 'django.core.context_processors.request',
