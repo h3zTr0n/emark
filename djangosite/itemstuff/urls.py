@@ -7,4 +7,5 @@ urlpatterns = [
 	url(r'^editItem/(?P<itemid>.+)$', views.editItem, name='editItem'),
 	url(r'^deleteItem/(?P<itemid>.+)$', views.deleteItem, name='deleteItem'),
 	url(r'^addRating/$',views.addRating, name='addRating'),
+	url(r'^category/electronic/$', views.ElectronicFormView.as_view(), name="electronic"),
 ]

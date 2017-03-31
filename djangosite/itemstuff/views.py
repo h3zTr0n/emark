@@ -274,3 +274,20 @@ def addRating(request):
 
 	return HttpResponseRedirect("/user/" + item.user.username + "/" + item.itemid)
 	#return HttpResponse("success, created a review for " + item.title)
+
+
+# views for handling cateegory models
+from django.views import generic
+
+from .forms import ElectronicsModelForm
+from .forms import BoutiquesFashionModelForm
+from .forms import MotorModelForm
+from .forms import EventModelForm
+
+class ElectronicFormView(generic.CreateView):
+	form_class = ElectronicsModelForm
+	template_name = "itemstuff/electronic_form.html"
+
+	def form_valid(Self, form):
+		form.instance.created_by = self.request.user
+		return super(ElectronicFormView, self).form_valid(form) 
