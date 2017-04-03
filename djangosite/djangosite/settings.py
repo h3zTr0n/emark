@@ -41,7 +41,11 @@ INSTALLED_APPS = (
     'messagestuff',
     'shoppingcart',
     'bootstrap3',
+    'imagefit',
 )
+
+# imagefit configurations
+IMAGEFIT_ROOT = "public"
 
 TEMPLATES = [
     {

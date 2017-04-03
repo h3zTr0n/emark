@@ -25,7 +25,13 @@ urlpatterns = [
     url(r'^$', home, name="home"),
     url(r'^about/$', about, name="about"),
 
-    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    # imagefit routing
+    url(r'^imagefit/', include('imagefit.urls')),
+
+    # jet routing
+    url(r'^jet/', include('jet.urls', 'jet')),
+
+    # admin routing configurations
     url(r'^admin/', include(admin.site.urls)),
 
     #url(r'^browseCategory','djangosite.views.browseCategory',name="browseCategory"),
