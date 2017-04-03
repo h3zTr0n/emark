@@ -35,7 +35,7 @@ urlpatterns = [
     #url(r'^shoppingCart','djangosite.views.shoppingCart',name="shoppingCart"),
 
     url(r'^acc/', include('accountstuff.urls')),
-    url(r'^item/', include('itemstuff.urls')),
+    url(r'^item/', include('itemstuff.urls', namespace="item")),
     url(r'^msg/', include('messagestuff.urls')),
     url(r'^cart/', include('shoppingcart.urls')),
 

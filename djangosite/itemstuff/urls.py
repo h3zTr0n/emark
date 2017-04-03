@@ -7,5 +7,10 @@ urlpatterns = [
 	url(r'^editItem/(?P<itemid>.+)$', views.editItem, name='editItem'),
 	url(r'^deleteItem/(?P<itemid>.+)$', views.deleteItem, name='deleteItem'),
 	url(r'^addRating/$',views.addRating, name='addRating'),
-	url(r'^category/electronic/$', views.ElectronicFormView.as_view(), name="electronic"),
+
+	# category view routings
+	url(r'^electronics/$', views.ElectronicFormView.as_view(), name="electronic"),
+	url(r'^boutiques_fashion/$', views.BoutiquesFashionFormView.as_view(), name="boutiques_fashion"),
+	url(r'^motor/$', views.MotorFormView.as_view(), name="motor"),
+	url(r'^event/$', views.EventFormView.as_view(), name="event"),
 ]

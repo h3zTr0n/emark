@@ -50,7 +50,7 @@
 #main-nav .navbar-right-item{
 	float:right;
 }
-#main-nav .navbar-right-item:hover .dropdown-menu {
+#main-nav .navbar-right-item:hover .dropdown-menu{
 	display: block;
 }
 #category-nav{
@@ -69,6 +69,7 @@
    	display: inline-block;
    	border-bottom:6px solid transparent;
 }
+
 #category-nav li a{
 	padding-top:6px;
 	padding-bottom:6px;
@@ -286,7 +287,7 @@ body{
 	width:55%;
 }
 .section-title{
-	text-align:center;	
+	text-align:center;
 }
 .section-title h2{
 	color:#333;

@@ -283,11 +283,41 @@ from .forms import ElectronicsModelForm
 from .forms import BoutiquesFashionModelForm
 from .forms import MotorModelForm
 from .forms import EventModelForm
+from django.core.urlresolvers import reverse_lazy
+
+from braces import views
 
 class ElectronicFormView(generic.CreateView):
 	form_class = ElectronicsModelForm
-	template_name = "itemstuff/electronic_form.html"
+	template_name = "Delectronic.html"
+	success_url = reverse_lazy("browseCategory")
 
 	def form_valid(Self, form):
 		form.instance.created_by = self.request.user
-		return super(ElectronicFormView, self).form_valid(form) 
+		return super(ElectronicFormView, self).form_valid(form)
+
+class BoutiquesFashionFormView(generic.CreateView):
+	form_class = BoutiquesFashionModelForm
+	template_name = "boutiques_fashion.html"
+
+	def form_valid(self, form):
+		form.instance.created_by = self.request.user
+		return super(BoutiquesFashionFormView, self).form_valid(form)
+
+class MotorFormView(generic.CreateView):
+	form_class = MotorModelForm
+	template_name = "motor.html"
+
+	def form_valid(self, form):
+		form.instance.created_by = self.request.user
+		return super(MotorFormView, self).form_valid(form)
+
+class EventFormView(generic.CreateView):
+	form_class = EventModelForm
+	template_name = "event.html"
+	success_url = reverse_lazy("home")
+
+
+	def form_valid(self, form):
+		form.instance.created_by = self.request.user
+		return super(EventFormView, self).form_valid(form)

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	<title>About Us</title>
+{% endblock %}
+
+{% block page_css %}
+{% endblock %}
+
+{% block content %}
+	<div class="container about">
+		<div id="intro">
+			<h1>ABOUT Emark</h1>
+			<div class="profPic huge" style="background-image:url('{% static 'files/emark-square.png' %}')"></div>
+		</div>
+		<div id="terms-of-use">
+			<div class="section-title">
+				<h2>What is Emark</h2>
+				<p>Last Updated March 24, 2017</p>
+			</div>
+			<p>Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern craftnet's relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website.</p>
+		</div>
+		<div id="privacy-policy">
+			<div class="section-title">
+				<h2>What is we do</h2>
+				<p>Last Updated January 29, 2015</p>
+			</div>
+			<p>This privacy policy discloses the privacy practices for (www.craftnet.cf). This privacy policy applies solely to information collected by this web site. It will notify you of the following:</p>
+			<ol>
+				<li>Emark ...</li>
+				<li>Emark ...</li>
+			</ol>
+ </div>
+		<div id="faq">
+			<div class="section-title">
+				<h2>Frequently Asked Questions</h2>
+				<p>Your questions, answered.</p>
+			</div>
+			<h4>What is Emark?</h4>
+			<p>Emark is a one of a kind, online advertising-platform.</p>
+			<h4>How can I add my own advert and its information?</h4>
+		</div>
+		<div id="disclaimer">
+			<div class="section-title">
+				<p>copywrite (c) Emark services 2017</p>
+			</div>
+			<p style="font-style:italic; text-align:center;">Emark is the best advertising platform you can not wait to come aboard.</p>
+		</div>
+	</div>
+{% endblock %}
+
+
+      <!--<form action="#" method="post" class="form">
+      {% load bootstrap3 %}
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% buttons %}
+              <button type="submit" class="btn btn-primary">
+                  {% bootstrap_icon "star" %} Submit
+              </button>
+          {% endbuttons %}
+      </form>-->

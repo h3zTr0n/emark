@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'itemstuff',
     'messagestuff',
     'shoppingcart',
+    'bootstrap3',
 )
 
 TEMPLATES = [
@@ -114,6 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR,'static') #"/var/www/example.com/media/"
 
 #STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
