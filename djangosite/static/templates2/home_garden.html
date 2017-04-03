@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block title %}
+   	<title>Home & Garden</title>
+{% endblock %}
+
+{% block page_css %}
+{% endblock %}
+
+{% block content %}
+    <div class = "page-header">
+      <h1 class="text-center">
+        Home & Garden Category
+        <small>Place your advert here.</small>
+      </h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <form action="#" method="post" class="form">
+          {% load bootstrap3 %}
+              {% csrf_token %}
+              {% bootstrap_form form %}
+              {% buttons %}
+                  <button type="submit" class="btn btn-primary">
+                      {% bootstrap_icon "star" %} Submit
+                  </button>
+              {% endbuttons %}
+          </form>
+        </div>
+        <div class="col-md-4">
+          <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="http://placehold.it/600x270" alt="">
+                <div class="caption">
+                    <h4 class="text-center">Home & Garden</h4>
+                    <p>
+                         This is a category where you can place ad addvert
+                          that relates to the Home & Garden category.
+                    </p>
+                    <p class="text-center">
+                        <i class="fa fa-thumbs-o-up votes"></i><i class="fa fa-thumbs-o-down votes"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+      </div>
+    </div>
+   {% endblock %}

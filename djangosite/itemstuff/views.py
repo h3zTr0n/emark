@@ -37,7 +37,7 @@ def browseCategory(request, category):
 def getItem(request, username, itemid):
 	seller = User.objects.filter(username=username)[0]
 	sellerinfo = UserInfo.objects.filter(user = seller)[0]
-	selleritems = Item.objects.filter(user=seller)[:4]
+	selleritems = Item.objects.filter(user=seller)[:8]
 	item = Item.objects.filter(itemid=itemid)[0]
 	categories = [
 	"Electronics",
@@ -283,6 +283,12 @@ from .forms import ElectronicsModelForm
 from .forms import BoutiquesFashionModelForm
 from .forms import MotorModelForm
 from .forms import EventModelForm
+
+from .forms import JobModelForm
+from .forms import ServiceModelForm
+from .forms import EducationModelForm
+from .forms import HomeGardenModelForm
+
 from django.core.urlresolvers import reverse_lazy
 
 from braces import views
@@ -290,7 +296,7 @@ from braces import views
 class ElectronicFormView(generic.CreateView):
 	form_class = ElectronicsModelForm
 	template_name = "Delectronic.html"
-	success_url = reverse_lazy("browseCategory")
+	success_url = reverse_lazy("home")
 
 	def form_valid(Self, form):
 		form.instance.created_by = self.request.user
@@ -321,3 +327,39 @@ class EventFormView(generic.CreateView):
 	def form_valid(self, form):
 		form.instance.created_by = self.request.user
 		return super(EventFormView, self).form_valid(form)
+
+class JobFormView(generic.CreateView):
+	form_class = JobModelForm
+	template_name = "job.html"
+	success_url = reverse_lazy("home")
+
+	def form_valid(self, form):
+		form.instance.created_by = self.request.user
+		return super(JobFormView, self).form_valid(form)
+
+class ServiceFormView(generic.CreateView):
+	form_class = ServiceModelForm
+	template_name = "service.html"
+	success_url = reverse_lazy("home")
+
+	def form_valid(self, form):
+		form.instance.created_by = self.request.user
+		return super(ServiceFormView, self).form_valid(form)
+
+class EducationFormView(generic.CreateView):
+	form_class = EducationModelForm
+	template_name = "education.html"
+	success_url = reverse_lazy("home")
+
+	def form_valid(self, form):
+		form.instance.created_by = self.request.user
+		return super(EducationFormView, self).form_valid(form)
+
+class HomeGardenFormView(generic.CreateView):
+	form_class = HomeGardenModelForm
+	template_name = 'home_garden.html'
+	success_url = reverse_lazy("home")
+
+	def form_valid(self, form):
+		form.instance.created_by = self.request.user
+		return super(HomeGardenFormView, self).form_valid(form)

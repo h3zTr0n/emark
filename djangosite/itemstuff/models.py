@@ -279,10 +279,82 @@ class Event(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class Job(models.Model):
+	title = models.CharField(
+		_("Job Tile"),
+		max_length=255
+		)
+	description = models.TextField(
+		_("Job description")
+	)
+	published = models.DateTimeField(editable=False,
+									default=timezone.now)
+	deadline = models.DateField(auto_now_add=False)
+	created_by = models.ForeignKey(User,
+								on_delete=models.CASCADE
+								)
+	class Meta:
+		verbose_name_plural = _("Jobs")
 
+	def __unicode__(self):
+		return self.title
+
+class Service(models.Model):
+	name = models.CharField(
+		_("Service Name"),
+		max_length=255
+		)
+	description = models.TextField(
+		_("Service description")
+	)
+	location = models.CharField(
+		_("Service provider's Location"),
+		choices=PROVINCE_CHOICES,
+		max_length=255
+	)
+	published = models.DateTimeField(default=timezone.now,
+									editable=False)
+	created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	class Meta:
+		verbose_name_plural="Services"
+
+	def __unicode__(Self):
+		return self.name
 #
-#
-#
+
+class Education(models.Model):
+	title = models.CharField(
+		_("Title"),
+		max_length=255
+	)
+	description = models.TextField(
+	)
+	published = models.DateTimeField(
+		auto_now=False, default=timezone.now
+	)
+	created_by = models.ForeignKey(User,
+								on_delete=models.CASCADE,
+								editable=False)
+	class Meta:
+		verbose_name_plural="Education Adverts"
+
+	def __unicode__(self):
+		return self.title
+
+class HomeGarden(models.Model):
+	title = models.CharField(
+		max_length=255
+	)
+	description = models.TextField()
+	published = models.DateTimeField(editable=False, default=timezone.now)
+	created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	class Meta:
+		verbose_name_plural = _("Home and Garden Adverts")
+
+	def __unicode__(self):
+		return self.title
 # class Education(models.Model):
 # 	pass
 #
