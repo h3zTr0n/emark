@@ -45,7 +45,6 @@ INSTALLED_APPS = (
 
     # heroku deploy dependencies
     'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
 )
 
 # imagefit configurations
