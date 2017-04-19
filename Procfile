@@ -1,1 +1,1 @@
-web: gunicorn djangosite.wsgi  
+web: gunicorn djangosite.wsgi --preload --workers 1
