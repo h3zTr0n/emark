@@ -144,4 +144,4 @@ WEB_CONCURRENCY=2
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
