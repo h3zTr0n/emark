@@ -42,6 +42,10 @@ INSTALLED_APPS = (
     'shoppingcart',
     'bootstrap3',
     'imagefit',
+
+    # heroku deploy dependencies
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
 )
 
 # imagefit configurations
@@ -72,6 +76,8 @@ TEMPLATES = [
 # )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -132,3 +138,11 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media') #"/var/www/example.com/media/"
 MEDIA_URL = '/media/' #http://media.example.com/
+
+# heroku configurations
+WEB_CONCURRENCY=2
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

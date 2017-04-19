@@ -14,3 +14,10 @@ pyparsing==2.2.0
 rsa==3.4.2
 six==1.10.0
 uritemplate==3.0.0
+
+# heroku configurations
+
+dj-database-url==0.4.1
+gunicorn==19.6.0
+psycopg2==2.6.2
+whitenoise==3.2
